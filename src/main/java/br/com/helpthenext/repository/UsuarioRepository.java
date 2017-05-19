@@ -4,10 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Query;
 
-import br.com.helpthenext.filters.Utils;
 import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
-import br.com.helpthenext.repository.*;
+import br.com.helpthenext.uteis.Uteis;
  
  
 public class UsuarioRepository implements Serializable {
@@ -20,7 +19,7 @@ public class UsuarioRepository implements Serializable {
 		try {
  
 			//QUERY QUE VAI SER EXECUTADA (UsuarioEntity.findUser) 	
-			Query query = Utils.JpaEntityManager().createNamedQuery("UsuarioEntity.findUser");
+			Query query = Uteis.JpaEntityManager().createNamedQuery("UsuarioEntity.findUser");
  
 			//PARÂMETROS DA QUERY
 			query.setParameter("usuario", usuarioModel.getUsuario());
@@ -33,6 +32,8 @@ public class UsuarioRepository implements Serializable {
  
 			return null;
 		}
+ 
+ 
  
 	}
 }
