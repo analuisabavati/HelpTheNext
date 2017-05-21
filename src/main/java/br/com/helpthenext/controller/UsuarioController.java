@@ -1,4 +1,5 @@
-package br.com.helpthenext.usuario.controller;
+package br.com.helpthenext.controller;
+
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
