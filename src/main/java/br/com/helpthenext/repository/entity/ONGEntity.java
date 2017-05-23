@@ -15,22 +15,19 @@ import br.com.helpthenext.enums.Causas;
  
  
 @Entity
-@Table(name="tb_pessoa")
-public class VoluntarioEntity {
- 
+@Table(name="tb_ong")
+public class ONGEntity {
+
 	@Id
 	@GeneratedValue
-	@Column(name = "id_pessoa")
+	@Column(name = "id_ong")
 	private Integer codigo;
  
-	@Column(name = "nome_pessoa")
-	private String  nome;
- 
-	@Column(name = "sexo")
-	private String  sexo;
+	@Column(name = "nome_ong")
+	private String  nomeONG;
  
 	@Column(name = "dt_cadastro")
-	private LocalDateTime dataCadastro;
+	private LocalDateTime	dataCadastro;
  
 	@Column(name = "email")
 	private String  email;
@@ -45,33 +42,31 @@ public class VoluntarioEntity {
 	@JoinColumn(name="id_usuario_cadastro")
 	private UsuarioEntity usuarioEntity;
 	
-	@Column(name = "ft_perfil")
+	@Column(name = "ft_logo")
 	private byte[] foto;
 	
 	@Column(name = "telefone")
 	private String telefone;
 	
+	@Column(name = "nome_responsavel")
+	private String nomeResponsavel;
+	
+	@Column(name = "descricao")
+	private String descricao;
+	
 	private List<Causas> causas;
 	
-	private List<Causas> habilidades;
-
+	@Column(name = "website")
+	private String website;
+	
+	@Column(name = "facebook")
+	private String facebook;
+ 
 	public Integer getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getSexo() {
-		return sexo;
-	}
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
 	}
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
