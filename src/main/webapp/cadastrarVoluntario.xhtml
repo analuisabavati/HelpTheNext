@@ -9,7 +9,7 @@
  
 <h:head>
 </h:head>
-<h:body>
+<h:body style="display:flex; background-image: url('resources/imagens/background.jpg') ; background-size: 100% 100%">
 		   <p:tabView style="width:600px;height:370px;margin:auto;">
 	 		 	<p:tab title="Cadastro de Voluntario">
  
@@ -31,7 +31,8 @@
 	            				     	  requiredMessage="O sexo é de preenchimento obrigatório">
  
             				<f:selectItem itemLabel="Masculino" itemValue="M" />
-            				<f:selectItem itemLabel="Feminino" itemValue="F" />            				
+            				<f:selectItem itemLabel="Feminino" itemValue="F" />         
+            				 <f:selectItem itemLabel="Outro" itemValue="O" />            						   				
         				</p:selectOneRadio>
  
 	            		<p:outputLabel value="E-mail" for="inputText-email"/>
@@ -50,6 +51,14 @@
 	            			     value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
 	            			     required="true"
 	            		             requiredMessage="O endereço é de preenchimento obrigatório"/>
+	            		             
+	            		<p:outputLabel value="Telefone" for="inputText-telefone"/>
+	            		<p:inputText id="inputText-telefone" 
+	            			     style="width:400px" 
+	            			     maxlength="200" 
+	            			     value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
+	            			     required="true"
+	            		             requiredMessage="O endereço é de preenchimento obrigatório"/>             
  
 	            		<p:spacer/>
  
@@ -59,6 +68,7 @@
 						 actionListener="#{cadastrarVoluntarioController.salvarNovoVoluntario}"
 						 update="panelGrid-campos-form"/>
  
+ 				<p:commandButton value="Voltar"  outcome="index.xhtml"/>
  
 	 		 	</h:panelGrid>
  

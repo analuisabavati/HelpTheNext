@@ -56,6 +56,9 @@ public class VoluntarioEntity {
 
 	@Transient
 	private List<Causas> habilidades;
+	
+	@Column(name = "cpf")
+	private String  cpf;
 
 	public Integer getCodigo() {
 		return codigo;
