@@ -2,6 +2,7 @@ package br.com.helpthenext.enums;
 
 public enum Causas {
 
+	OUTRAS,
 	PESSOAS_COM_DEFICIENCIA,
 	SAUDE,
 	PROTECAO_ANIMAL,
