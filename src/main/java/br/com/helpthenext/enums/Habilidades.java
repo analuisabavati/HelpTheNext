@@ -1,5 +1,17 @@
 package br.com.helpthenext.enums;
 
-public class Habilidades {
+public enum Habilidades {
 
+	ARTES_ARTESANATO,
+	COMUNICACAO,
+	DANDA_MUSICA,
+	DIREITO,
+	EDUCACAO,
+	ESPORTES,
+	GASTRONOMIA,
+	GESTAO,
+	IDIOMAS,
+	INFORMATICA_ELETRONICA,
+	SAUDE_PISCIOLOGIA,
+	OUTROS;
 }

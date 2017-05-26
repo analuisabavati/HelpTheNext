@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.helpthenext.enums.Causas;
  
@@ -53,7 +54,8 @@ public class ONGEntity {
 	
 	@Column(name = "descricao")
 	private String descricao;
-	
+
+	@Transient	
 	private List<Causas> causas;
 	
 	@Column(name = "website")
