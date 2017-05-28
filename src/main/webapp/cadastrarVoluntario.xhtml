@@ -43,7 +43,6 @@
 						required="true"
 						requiredMessage="O email é de preenchimento obrigatório" />
 
-
 					<p:outputLabel value="Endereço" for="inputText-endereco" />
 					<p:inputText id="inputText-endereco" style="width:400px"
 						maxlength="200"
@@ -62,22 +61,21 @@
 
 					<h:panelGrid columns="2" cellpadding="1">
 
-						<p:commandButton value="Voltar" outcome="index.xhtml" />
+						<p:button value="Voltar" outcome="index.xhtml" />
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"
 							actionListener="#{cadastrarVoluntarioController.salvarNovoVoluntario}"
-							update="panelGrid-campos-form" />
+							update="panelGrid-campos-form" />				
 
 					</h:panelGrid>
 					
 				</h:panelGrid>
 
-				<p:messages showDetail="true" autoUpdate="true" closable="true"
-					severity="warn" />
+				<p:messages showDetail="true" autoUpdate="true" closable="true" severity="warn" />
 				<p:messages autoUpdate="true" closable="true" severity="error" />
 				<p:messages showDetail="true" autoUpdate="true" closable="true"
-					severity="info" />
+severity="info" />
 
 			</h:form>
 
