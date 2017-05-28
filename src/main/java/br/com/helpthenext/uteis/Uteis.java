@@ -19,7 +19,8 @@ public class Uteis {
 		return (EntityManager)request.getAttribute("entityManager");
 	}
  
-	//MOSTRAR MENSAGEM
+	
+	// exibir mensagem
 	public static void Mensagem(String mensagem){
  
 		FacesContext facesContext = FacesContext.getCurrentInstance();

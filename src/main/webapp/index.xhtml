@@ -8,45 +8,44 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
 	<h:outputStylesheet library="css" name="default.css" />
-
 </h:head>
 
-<!--
-<h:body style="display:flex;">
 
--->
-<h:body style="display:flex; background-image: url('resources/imagens/background.jpg') ; background-size: 100% 100%">
+<h:body
+	style="display:flex; background-image: url('resources/imagens/background.jpg') ; background-size: 100% 100%">
 
-	<h:form style=" margin:auto;">
+	 <div position="north" >  
+		<p:graphicImage url="/resources/imagens/banner.jpg" />
+     </div>
 
-		<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
-
-		<p:panel id="panel-login-principal" header="Help The Next"
-			style="width:400px;">
+	<div style="padding-top: 10%;">
+		<h:form>
+			<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
+			<p:panel id="panel-login-principal" header="Help The Next"
+				style="width:400px;">
  
  				Selecione uma das opções abaixo: 
  				&nbsp;
 	        	<h:panelGrid columns="3" cellpadding="20">
 
-				<p:button outcome="login.xhtml" value="Fazer Login"
-					icon="ui-icon-star">
-				</p:button>
+					<p:button outcome="login.xhtml" value="Fazer Login"
+						icon="ui-icon-star">
+					</p:button>
 
-				<p:button outcome="cadastrarVoluntario.xhtml" value="Cadastrar voluntario"
-					icon="ui-icon-star">
-				</p:button>
+					<p:button outcome="cadastrarVoluntario.xhtml"
+						value="Cadastrar voluntario" icon="ui-icon-star">
+					</p:button>
 
-				<p:button outcome="login.xhtml" value="Cadastrar ONG"
-					icon="ui-icon-star">
-				</p:button>
+					<p:button outcome="login.xhtml" value="Cadastrar ONG"
+						icon="ui-icon-star">
+					</p:button>
 
-			</h:panelGrid>
+				</h:panelGrid>
 
-		</p:panel>
-
-	</h:form>
+			</p:panel>
+		</h:form>
+	</div>
 
 </h:body>
 </html>

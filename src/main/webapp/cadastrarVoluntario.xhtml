@@ -1,85 +1,88 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- 
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
- 
+
 <h:head>
 </h:head>
-<h:body style="display:flex; background-image: url('resources/imagens/background.jpg') ; background-size: 100% 100%">
-		   <p:tabView style="width:600px;height:370px;margin:auto;">
-	 		 	<p:tab title="Cadastro de Voluntario">
- 
-	 		 	<h:form id="form-cadastro">	 	
- 
-	 		 	<h:panelGrid id="panelGrid-campos-form" columns="2" cellpadding="10">
- 
-	 		 			<p:outputLabel value="Nome" for="inputText-nome"/>
-	            		<p:inputText id="inputText-nome" 
-	            				  style="width:300px" maxlength="70" 
-	            				  value="#{cadastrarVoluntarioController.voluntarioModel.nome}"
-	            				  required="true"
-	            				  requiredMessage="O nome é de preenchimento obrigatório"/>
- 
-	            		<p:outputLabel for="selectOneRadio-sexo" value="Sexo:" />
-        				<p:selectOneRadio id="selectOneRadio-sexo" 
-        						  value="#{cadastrarVoluntarioController.voluntarioModel.sexo}"
-        						  required="true"
-	            				     	  requiredMessage="O sexo é de preenchimento obrigatório">
- 
-            				<f:selectItem itemLabel="Masculino" itemValue="M" />
-            				<f:selectItem itemLabel="Feminino" itemValue="F" />         
-            				 <f:selectItem itemLabel="Outro" itemValue="O" />            						   				
-        				</p:selectOneRadio>
- 
-	            		<p:outputLabel value="E-mail" for="inputText-email"/>
-	            		<p:inputText id="inputText-email" 
-	            			     style="width:300px" 
-	            			     maxlength="80" 
-	            			     value="#{cadastrarVoluntarioController.voluntarioModel.email}"
-	            			     required="true"
-	            			     requiredMessage="O email é de preenchimento obrigatório"/>           		
- 
- 
-	            		<p:outputLabel value="Endereço" for="inputText-endereco"/>
-	            		<p:inputText id="inputText-endereco" 
-	            			     style="width:400px" 
-	            			     maxlength="200" 
-	            			     value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
-	            			     required="true"
-	            		             requiredMessage="O endereço é de preenchimento obrigatório"/>
-	            		             
-	            		<p:outputLabel value="Telefone" for="inputText-telefone"/>
-	            		<p:inputText id="inputText-telefone" 
-	            			     style="width:400px" 
-	            			     maxlength="200" 
-	            			     value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
-	            			     required="true"
-	            		             requiredMessage="O endereço é de preenchimento obrigatório"/>             
- 
-	            		<p:spacer/>
- 
-	            		<p:commandButton value="Salvar" 
-	            				 id="commandButton-salvar"
-						 icon="ui-icon-gear"
-						 actionListener="#{cadastrarVoluntarioController.salvarNovoVoluntario}"
-						 update="panelGrid-campos-form"/>
- 
- 				<p:commandButton value="Voltar"  outcome="index.xhtml"/>
- 
-	 		 	</h:panelGrid>
- 
-	 		 		<p:messages showDetail="true" autoUpdate="true" closable="true" severity="warn"/>
-	 		 		<p:messages autoUpdate="true" closable="true" severity="error"/>		
-		   			<p:messages showDetail="true" autoUpdate="true" closable="true" severity="info"/>
- 
-	 		 		</h:form>
- 
-	 			 </p:tab>		 		
- 
-	 		</p:tabView>
+<h:body
+	style="display:flex; background-image: url('resources/imagens/background.jpg') ; background-size: 100% 100%">
+
+	<p:tabView style="width:80%; height:70%; margin:auto;">
+		<p:tab title="Cadastro de Voluntario">
+
+			<h:form id="form-cadastro">
+
+				<h:panelGrid id="panelGrid-campos-form" columns="2" cellpadding="10">
+
+					<p:outputLabel value="Nome" for="inputText-nome" />
+					<p:inputText id="inputText-nome" style="width:300px" maxlength="70"
+						value="#{cadastrarVoluntarioController.voluntarioModel.nome}"
+						required="true"
+						requiredMessage="O nome é de preenchimento obrigatório" />
+
+					<p:outputLabel for="selectOneRadio-sexo" value="Sexo:" />
+					<p:selectOneRadio id="selectOneRadio-sexo"
+						value="#{cadastrarVoluntarioController.voluntarioModel.sexo}"
+						required="true"
+						requiredMessage="O sexo é de preenchimento obrigatório">
+
+						<f:selectItem itemLabel="Masculino" itemValue="M" />
+						<f:selectItem itemLabel="Feminino" itemValue="F" />
+						<f:selectItem itemLabel="Outro" itemValue="O" />
+					</p:selectOneRadio>
+
+					<p:outputLabel value="E-mail" for="inputText-email" />
+					<p:inputText id="inputText-email" style="width:300px"
+						maxlength="80"
+						value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+						required="true"
+						requiredMessage="O email é de preenchimento obrigatório" />
+
+
+					<p:outputLabel value="Endereço" for="inputText-endereco" />
+					<p:inputText id="inputText-endereco" style="width:400px"
+						maxlength="200"
+						value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
+						required="true"
+						requiredMessage="O endereço é de preenchimento obrigatório" />
+
+					<p:outputLabel value="Telefone" for="inputText-telefone" />
+					<p:inputText id="inputText-telefone" style="width:400px"
+						maxlength="200"
+						value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
+						required="true"
+						requiredMessage="O endereço é de preenchimento obrigatório" />
+
+					<p:spacer />
+
+					<h:panelGrid columns="2" cellpadding="1">
+
+						<p:commandButton value="Voltar" outcome="index.xhtml" />
+
+						<p:commandButton value="Salvar" id="commandButton-salvar"
+							icon="ui-icon-gear"
+							actionListener="#{cadastrarVoluntarioController.salvarNovoVoluntario}"
+							update="panelGrid-campos-form" />
+
+					</h:panelGrid>
+					
+				</h:panelGrid>
+
+				<p:messages showDetail="true" autoUpdate="true" closable="true"
+					severity="warn" />
+				<p:messages autoUpdate="true" closable="true" severity="error" />
+				<p:messages showDetail="true" autoUpdate="true" closable="true"
+					severity="info" />
+
+			</h:form>
+
+		</p:tab>
+
+	</p:tabView>
 </h:body>
 </html>
