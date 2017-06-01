@@ -6,7 +6,7 @@
 
 <h:form>
 
-		<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
+	<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
 
 	<h:panelGrid columns="8" cellpadding="1">
 		<p:graphicImage url="/resources/imagens/banner.jpg" />
@@ -22,12 +22,12 @@
 		<p:commandButton value="Acessar" id="commandButton-acessar"
 			icon="ui-icon-gear" action="#{usuarioController.EfetuarLogin}"
 			update="growl-mensagem" />
-			
+
 	</h:panelGrid>
 
 	<p:menubar style="background :	#AFEEEE;">
 		<p:menuitem value="Sobre Nós" icon="ui-icon-home" />
-		<p:menuitem value="Cadastrar Voluntario" icon="ui-icon-document" />
+		<p:menuitem value="Cadastrar Voluntario" icon="ui-icon-document" url="cadastrarVoluntario.xhtml" />
 		<p:menuitem value="Cadastrar ONG" icon="ui-icon-document" />
 	</p:menubar>
 
