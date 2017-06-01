@@ -11,41 +11,23 @@
 	<h:outputStylesheet library="css" name="default.css" />
 </h:head>
 
+<h:body>
+	<h:head>
+		<h:outputStylesheet library="css" name="default.css" />
+	</h:head>
 
-<h:body
-	style="display:flex; background-image: url('resources/imagens/background.jpg') ; background-size: 100% 100%">
-<div  style="margin: 0 auto; width: 50%;">
-	 <h:head position="north" >  
-		<p:graphicImage url="/resources/imagens/banner.jpg" />
-     </h:head >
-
-	<div style="padding-top: 10%;">
-		<h:form>
-			<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
-			<p:panel id="panel-login-principal" header="Help The Next"
-				style="margin: 0 auto; width: 90%;">
- 
- 				Selecione uma das opções abaixo: 
- 				&nbsp;
-	        	<h:panelGrid columns="3" cellpadding="20">
-
-					<p:button outcome="login.xhtml" value="Fazer Login"
-						icon="ui-icon-star">
-					</p:button>
-
-					<p:button outcome="cadastrarVoluntario.xhtml"
-						value="Cadastrar voluntario" icon="ui-icon-star">
-					</p:button>
-
-					<p:button outcome="login.xhtml" value="Cadastrar ONG"
-						icon="ui-icon-star">
-					</p:button>
-
-				</h:panelGrid>
-
-			</p:panel>
-		</h:form>
+	<div id="header">
+		<ui:include src="headerInicial.xhtml" />
 	</div>
-</div>
+
+	<div id="content" style="margin-top: 5%;">
+		<ui:insert name="content">
+		</ui:insert>
+	</div>
+
+	<div id="footer">
+		<ui:include src="/template/footer.xhtml" />
+	</div>
+		
 </h:body>
 </html>

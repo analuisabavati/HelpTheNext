@@ -10,7 +10,9 @@ public class VoluntarioModel {
 	private LocalDateTime	dataCadastro;
 	private String  	email;
 	private String  	endereco;
-	private String  	origemCadastro;
+	private byte[] foto;
+	private String telefone;
+	
 	private UsuarioModel    usuarioModel;
  
 	public Integer getCodigo() {

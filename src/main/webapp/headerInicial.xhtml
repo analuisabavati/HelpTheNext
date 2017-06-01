@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:form>
+
+		<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
+
+	<h:panelGrid columns="8" cellpadding="1">
+		<p:graphicImage url="/resources/imagens/banner.jpg" />
+
+		<p:outputLabel value="Login" />
+		<p:inputText id="inputText-login"
+			value="#{usuarioController.usuarioModel.usuario}" />
+
+		<p:outputLabel value="Senha" />
+		<p:password id="password-usuario"
+			value="#{usuarioController.usuarioModel.senha}" />
+
+		<p:commandButton value="Acessar" id="commandButton-acessar"
+			icon="ui-icon-gear" action="#{usuarioController.EfetuarLogin}"
+			update="growl-mensagem" />
+			
+	</h:panelGrid>
+
+	<p:menubar style="background :	#AFEEEE;">
+		<p:menuitem value="Sobre Nós" icon="ui-icon-home" />
+		<p:menuitem value="Cadastrar Voluntario" icon="ui-icon-document" />
+		<p:menuitem value="Cadastrar ONG" icon="ui-icon-document" />
+	</p:menubar>
+
+</h:form>
+
+</html>

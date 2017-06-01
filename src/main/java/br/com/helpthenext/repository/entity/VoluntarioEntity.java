@@ -38,9 +38,6 @@ public class VoluntarioEntity {
 	@Column(name = "endereco")
 	private String  endereco;
  
-	@Column(name = "origemCadastro")
-	private String  origemCadastro;
- 
 	@OneToOne
 	@JoinColumn(name="id_usuario_cadastro")
 	private UsuarioEntity usuarioEntity;

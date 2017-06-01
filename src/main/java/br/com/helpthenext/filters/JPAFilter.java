@@ -12,12 +12,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
  
-/***
- * ESSE FILTER VAI SER CHAMADO TODA VEZ QUE FOR REALIZADO 
- * UMA REQUISIÇÃO PARA O FACES SERVLET.
- * */
+
+// Este filter será chamado quando for realizado uma rquisicao ao faces servlet
 @WebFilter(servletNames ={ "Faces Servlet" })
-public class JPAFilter implements Filter {
+public class JPAFilter implements Filter { 
  
  
 	private EntityManagerFactory entityManagerFactory;
