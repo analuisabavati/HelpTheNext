@@ -8,7 +8,7 @@
 
 	<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
 
-	<h:panelGrid columns="8" cellpadding="1" style="  text-align: left;">
+	<h:panelGrid columns="8" cellpadding="1">
 		<p:graphicImage url="/resources/imagens/banner.jpg" />
 
 		<p:outputLabel value="Login" />
@@ -20,13 +20,13 @@
 			value="#{usuarioController.usuarioModel.senha}" />
 
 		<p:commandButton value="Acessar" id="commandButton-acessar"
-			icon="ui-icon-gear" action="#{usuarioController.EfetuarLogin}"
-			update="growl-mensagem" />
+							icon="ui-icon-gear" action="#{usuarioController.EfetuarLogin}"
+							update="growl-mensagem" />
 
 	</h:panelGrid>
 
 	<p:menubar style="background :	#AFEEEE;">
-		<p:menuitem value="Sobre Nós" icon="ui-icon-home" />
+		<p:menuitem value="Sobre Nós" icon="ui-icon-home" url="index.xhtml" />
 		<p:menuitem value="Cadastrar Voluntario" icon="ui-icon-document" url="cadastrarVoluntario.xhtml" />
 		<p:menuitem value="Cadastrar ONG" icon="ui-icon-document" url="cadastrarONG.xhtml" />
 	</p:menubar>

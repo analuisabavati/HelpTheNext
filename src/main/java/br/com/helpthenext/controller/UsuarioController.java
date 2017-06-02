@@ -2,6 +2,8 @@ package br.com.helpthenext.controller;
 
 import java.io.Serializable;
 
+import javax.annotation.ManagedBean;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,7 +19,6 @@ import br.com.helpthenext.uteis.Uteis;
 @Named(value="usuarioController")
 @SessionScoped
 public class UsuarioController implements Serializable {
- 
 	private static final long serialVersionUID = 1L;
  
 	@Inject
