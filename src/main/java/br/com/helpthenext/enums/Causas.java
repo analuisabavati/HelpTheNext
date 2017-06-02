@@ -2,7 +2,7 @@ package br.com.helpthenext.enums;
 
 public enum Causas {
 
-	OUTRAS,
+	
 	PESSOAS_COM_DEFICIENCIA,
 	SAUDE,
 	PROTECAO_ANIMAL,
@@ -15,6 +15,7 @@ public enum Causas {
 	CRIANCAS_JOVENS,
 	CONSUMO_CONSCIENTE,
 	CAPACITAÇÃO_PROFISSIONAL,
-	COMBATE__PROBREZA;
+	COMBATE__PROBREZA,
+	OUTRAS;
 	
 }
