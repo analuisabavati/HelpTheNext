@@ -20,14 +20,23 @@
 		<ui:include src="/template/headerInicial.xhtml" />
 	</div>
 
-	<div id="content" style="margin-top: 5%;">
+	<div id="content" style="margin-left: 10%; margin-top: 5%;">
 		<ui:insert name="content">
+			<div id="numeros" style="width:70%;">
+				<h:panelGrid columns="2" >
+
+					<p:graphicImage url="/resources/imagens/voluntariado.png"
+						width="250" height="200" />
+						<p:outputLabel value="Login" />
+
+				</h:panelGrid>
+			</div>
 		</ui:insert>
 	</div>
 
 	<div id="footer">
 		<ui:include src="/template/footer.xhtml" />
 	</div>
-		
+
 </h:body>
 </html>

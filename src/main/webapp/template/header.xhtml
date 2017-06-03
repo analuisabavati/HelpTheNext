@@ -5,10 +5,20 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:form>
-	<p:graphicImage url="/resources/imagens/banner.jpg" />
+	<h:panelGrid columns="2" cellpadding="1">
+		<p:graphicImage url="/resources/imagens/banner.jpg" />
+
+		<p:menubar>
+		<p:submenu label="Minha Conta" >
+			<p:menuitem value="Editar Cadastro" url="cadastrarVaga.xhtml" icon="ui-icon-pencil" />
+		</p:submenu>
+		</p:menubar>
+		
+
+	</h:panelGrid>
 
 	<p:menubar style="background :	#AFEEEE;">
-		<p:menuitem value="Home" icon="ui-icon-home" />
+		<p:menuitem value="Home" icon="ui-icon-home"  url="home.xhtml" />
 		<p:submenu label="Vagas" icon="ui-icon-pencil">
 			<p:menuitem value="Cadastrar Nova Vaga" url="cadastrarVaga.xhtml" icon="ui-icon-pencil" />
 			<p:menuitem value="Visualizar Vagas" url="#" icon="ui-icon-document" />

@@ -89,6 +89,30 @@
 							</p:selectManyCheckbox>
 						</h:form>
 						
+						<p:outputLabel value="Disponibilidade:" />
+						<h:form>
+							<p:selectManyCheckbox id="basic"
+								value="#{cadastrarVoluntarioController.selectedConsoles}" layout="grid" columns="3">
+								<f:selectItem itemLabel="Segunda-Feira" itemValue="0" />
+								<f:selectItem itemLabel="Terça-Feira" itemValue="1" />
+								<f:selectItem itemLabel="Quarta-Feira" itemValue="2" />
+								<f:selectItem itemLabel="Quinta-Feira" itemValue="3" />
+								<f:selectItem itemLabel="Sexta-Feira" itemValue="4" />
+								<f:selectItem itemLabel="Sabado" itemValue="5" />
+								<f:selectItem itemLabel="Domingo" itemValue="5" />
+							</p:selectManyCheckbox>
+						</h:form>
+						
+						<p:outputLabel value="Periodo" />
+						<h:form>
+							<p:selectManyCheckbox id="basic"
+								value="#{cadastrarVoluntarioController.selectedConsoles}" layout="grid" columns="3">
+								<f:selectItem itemLabel="Manha" itemValue="0" />
+								<f:selectItem itemLabel="Tarde" itemValue="1" />
+								<f:selectItem itemLabel="Noite" itemValue="2" />
+							</p:selectManyCheckbox>
+						</h:form>
+						
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"
 							actionListener="#{cadastrarVoluntarioController.SalvarNovaPessoa}"
