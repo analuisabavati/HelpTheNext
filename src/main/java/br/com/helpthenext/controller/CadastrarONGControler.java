@@ -19,27 +19,4 @@ public class CadastrarONGControler {
 	@Inject
 	ONGRepository ongRepository;
  
- /*
-	public VoluntarioModel getVoluntarioModel() {
-		return voluntarioModel;
-	}
- 
-	public void setVoluntarioModel(VoluntarioModel voluntarioModel) {
-		this.voluntarioModel = voluntarioModel;
-	}
- 
-	/**
-	 *SALVA UM NOVO REGISTRO VIA INPUT 
-	 */
-	public void salvarNovoVoluntario(){
- 
-		voluntarioModel.setUsuarioModel(this.usuarioController.GetUsuarioSession());
- 
-		voluntarioRepository.SalvarNovoRegistro(this.voluntarioModel);
- 
-		this.voluntarioModel = null;
- 
-		Uteis.MensagemInfo("Registro cadastrado com sucesso");
- 
-	}*/
 }

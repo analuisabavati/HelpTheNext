@@ -30,7 +30,6 @@ public class VoluntarioRepository {
 		voluntarioEntity.setEmail(voluntarioModel.getEmail());
 		voluntarioEntity.setEndereco(voluntarioModel.getEndereco());
 		voluntarioEntity.setNome(voluntarioModel.getNome());
-		voluntarioEntity.setOrigemCadastro(voluntarioModel.getOrigemCadastro());
 		voluntarioEntity.setSexo(voluntarioModel.getSexo());
  
 		UsuarioEntity usuarioEntity = entityManager.find(UsuarioEntity.class, voluntarioModel.getUsuarioModel().getCodigo()); 

@@ -42,9 +42,6 @@ public class CadastrarVoluntarioController {
 
 		voluntarioModel.setUsuarioModel(this.usuarioController.GetUsuarioSession());
 
-		// INFORMANDO QUE O CADASTRO FOI VIA INPUT
-		voluntarioModel.setOrigemCadastro("I");
-
 		voluntarioRepository.SalvarNovoRegistro(this.voluntarioModel);
 
 		this.voluntarioModel = null;

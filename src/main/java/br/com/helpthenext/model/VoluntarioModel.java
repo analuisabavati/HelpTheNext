@@ -51,12 +51,6 @@ public class VoluntarioModel {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public String getOrigemCadastro() {
-		return origemCadastro;
-	}
-	public void setOrigemCadastro(String origemCadastro) {
-		this.origemCadastro = origemCadastro;
-	}
 	public UsuarioModel getUsuarioModel() {
 		return usuarioModel;
 	}
