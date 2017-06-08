@@ -2,15 +2,13 @@ package br.com.helpthenext.controller;
 
 import java.io.Serializable;
 
-import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
- 
+
 import org.apache.commons.lang3.StringUtils;
- 
+
 import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.repository.UsuarioRepository;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
@@ -53,7 +51,6 @@ public class UsuarioController implements Serializable {
 			return null;
 		}
 		else if(StringUtils.isEmpty(usuarioModel.getSenha()) || StringUtils.isBlank(usuarioModel.getSenha())){
- 
 			Uteis.Mensagem("Favor informara senha!");
 			return null;
 		}

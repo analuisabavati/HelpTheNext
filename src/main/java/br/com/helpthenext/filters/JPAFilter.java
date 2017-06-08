@@ -17,7 +17,6 @@ import javax.servlet.annotation.WebFilter;
 @WebFilter(servletNames ={ "Faces Servlet" })
 public class JPAFilter implements Filter { 
  
- 
 	private EntityManagerFactory entityManagerFactory;
  
 	private String persistence_unit_name = "unit_app";

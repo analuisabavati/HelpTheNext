@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import br.com.helpthenext.enums.TipoUsuario;
+
 @Table(name="tb_usuario")
 @Entity	
 @NamedQuery(name = "UsuarioEntity.findUser", 
@@ -27,6 +29,9 @@ public class UsuarioEntity implements Serializable {
  
 	@Column(name="ds_senha")
 	private String senha;
+	
+	@Column(name="tp_usuario")
+	private TipoUsuario tipoUsuario;
  
 	public String getCodigo() {
 		return codigo;
@@ -46,5 +51,13 @@ public class UsuarioEntity implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+	
+	
  
 }

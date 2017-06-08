@@ -37,7 +37,7 @@ public class AutenticacaoFilter implements Filter {
 			UsuarioModel usuarioModel =(UsuarioModel) httpSession.getAttribute("usuarioAutenticado");
  
 			if(usuarioModel == null){
- 
+
 				httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+ "/index.xhtml");
  
 			}
