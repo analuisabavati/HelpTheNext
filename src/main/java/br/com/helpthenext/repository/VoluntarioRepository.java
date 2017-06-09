@@ -17,10 +17,7 @@ public class VoluntarioRepository {
  
 	EntityManager entityManager;
  
-	/***
-	 * MÉTODO RESPONSÁVEL POR SALVAR UMA NOVO VOLUNTARIO
-	 * @param voluntarioModel
-	 */
+	//Cadastra novo Voluntario 
 	public void salvarNovoRegistro(VoluntarioModel voluntarioModel){
  
 		entityManager =  Uteis.JpaEntityManager();
@@ -32,7 +29,6 @@ public class VoluntarioRepository {
 		voluntarioEntity.setSexo(voluntarioModel.getSexo());
 		voluntarioEntity.setDataNascimento(voluntarioModel.getDataNascimento());
 
-	
 		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		usuarioEntity.setSenha(voluntarioModel.getUsuarioEntity().getSenha());
 		usuarioEntity.setTipoUsuario(voluntarioModel.getUsuarioEntity().getTipoUsuario());

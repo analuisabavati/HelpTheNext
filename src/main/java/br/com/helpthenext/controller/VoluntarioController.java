@@ -35,7 +35,7 @@ public class VoluntarioController {
 		voluntarioModel.getUsuarioEntity().setTipoUsuario(TipoUsuario.VOLUNTARIO);		
 		voluntarioRepository.salvarNovoRegistro(this.voluntarioModel);
 		this.voluntarioModel = null;
-		Uteis.MensagemInfo("Registro cadastrado com sucesso");
+		Uteis.MensagemInfo(" Voluntario cadastrado com sucesso!");
 	}
 
 	private String[] selectedConsoles;
