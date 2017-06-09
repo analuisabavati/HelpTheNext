@@ -19,41 +19,45 @@
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
-						
-							<p:outputLabel value="Titulo do evento" for="inputText-titulo" />
-						<p:inputText id="inputText-titulo" style="width:100%"
-							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
-							required="true"
-							requiredMessage="O titulo do evento é de preenchimento obrigatório" />
 
-							<p:outputLabel value="Descrição do evento" for="inputText-descricao" />
-						<p:inputTextarea rows="6" cols="33" id="inputText-descricao" style="width:100%"
-							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+						<p:outputLabel value="Titulo do evento" for="inputText-titulo" />
+						<p:inputText id="inputText-titulo" style="width:100%"
+							maxlength="80" value="#{eventoController.eventoModel.tipo}"
 							required="true"
+							requiredMessage="O campo titulo é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Descrição do evento"
+							for="inputText-descricao" />
+						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
+							style="width:100%" maxlength="80"
+							value="#{eventoController.eventoModel.descricao}" required="true"
 							requiredMessage="O campo descrição é de preenchimento obrigatório" />
-							
-							<p:outputLabel value="Responsavel pelo evento" for="inputText-responsavel" />
+
+						<p:outputLabel value="Responsavel pelo evento"
+							for="inputText-responsavel" />
 						<p:inputText id="inputText-responsavel" style="width:100%"
 							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+							value="#{eventoController.eventoModel.nomeResponsavel}"
 							required="true"
-							requiredMessage="O reposavel pelo evento é de preenchimento obrigatório" />
-							
-							<p:outputLabel value="Local do evento" for="inputText-local" />
+							requiredMessage="O campo responsavel é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Local do evento" for="inputText-local" />
 						<p:inputText id="inputText-local" style="width:100%"
-							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+							maxlength="80" value="#{eventoController.eventoModel.local}"
 							required="true"
-							requiredMessage="O local do evento é de preenchimento obrigatório" />
-							
-							<p:outputLabel value="Horario do evento" for="inputText-horario" />
+							requiredMessage="O campo local é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Horario do evento" for="inputText-horario" />
 						<p:inputText id="inputText-horario" style="width:100%"
-							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+							maxlength="80" value="#{eventoController.eventoModel.horario}"
 							required="true"
-							requiredMessage="O local do evento é de preenchimento obrigatório" />
+							requiredMessage="O campo horario é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Email" for="inputText-email" />
+						<p:inputText id="inputText-email" style="width:100%"
+							maxlength="80" value="#{eventoController.eventoModel.email}"
+							required="true"
+							requiredMessage="O campo email é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Banner do evento" />
 						<h:form enctype="multipart/form-data">
@@ -66,7 +70,8 @@
 						<h:form>
 
 							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}" layout="grid" columns="3">
+								value="#{eventoController.selectedConsoles}" layout="grid"
+								columns="3">
 								<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
 								<f:selectItem itemLabel="Saude" itemValue="1" />
 								<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
@@ -75,18 +80,20 @@
 								<f:selectItem itemLabel="Idosos" itemValue="5" />
 								<f:selectItem itemLabel="Educação" itemValue="6" />
 								<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-								<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
+								<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+									itemValue="8" />
 								<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
 								<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
-								<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+								<f:selectItem itemLabel="Capacitação Profissional"
+									itemValue="11" />
 								<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
 								<f:selectItem itemLabel="Outras" itemValue="13" />
 							</p:selectManyCheckbox>
 						</h:form>
-							
+
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"
-							actionListener="#{cadastrarVoluntarioController.SalvarNovaPessoa}"
+							actionListener="#{eventoController.SalvarNovoRegistro}"
 							update="panelGrid-campos-form" />
 
 					</h:panelGrid>
