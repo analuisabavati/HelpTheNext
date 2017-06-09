@@ -4,13 +4,14 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.uteis.Uteis;
 
-@Named(value = "cadastrarVoluntarioController")
+@Named(value = "voluntarioController")
 @RequestScoped
-public class CadastrarVoluntarioController {
+public class VoluntarioController {
 
 	@Inject
 	VoluntarioModel voluntarioModel;
@@ -29,25 +30,17 @@ public class CadastrarVoluntarioController {
 		this.voluntarioModel = voluntarioModel;
 	}
 
-	/**
-	 * SALVA UM NOVO REGISTRO VIA INPUT
-	 */
+
 	public void salvarNovoVoluntario() {
-
-		voluntarioModel.setUsuarioModel(this.usuarioController.GetUsuarioSession());
-
-		voluntarioRepository.SalvarNovoRegistro(this.voluntarioModel);
-
+		voluntarioModel.getUsuarioEntity().setTipoUsuario(TipoUsuario.VOLUNTARIO);		
+		voluntarioRepository.salvarNovoRegistro(this.voluntarioModel);
 		this.voluntarioModel = null;
-
 		Uteis.MensagemInfo("Registro cadastrado com sucesso");
-
 	}
 
 	private String[] selectedConsoles;
 
   
- 
     public String[] getSelectedConsoles() {
         return selectedConsoles;
     }

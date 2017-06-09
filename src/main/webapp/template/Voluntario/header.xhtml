@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:form>
+	<h:panelGrid columns="2" cellpadding="1">
+		<p:graphicImage url="/resources/imagens/banner.jpg" />
+	</h:panelGrid>
+
+	<p:menubar style="background :	#AFEEEE;">
+		<p:menuitem value="Home" icon="ui-icon-home" url="home.xhtml" />
+		<p:submenu label="Vagas" icon="ui-icon-pencil">
+			<p:menuitem value="Visualizar Vagas" url="#" icon="ui-icon-document" />
+		</p:submenu>
+		
+		<p:submenu label="Eventos" icon="ui-icon-document">
+			<p:menuitem value="Cadastrar Evento" url="cadastrarEvento.xhtml"
+				icon="ui-icon-pencil" />
+			<p:menuitem value="Visualizar Evento(s)" url="#"
+				icon="ui-icon-document" />
+		</p:submenu>
+		
+		<p:submenu label="Doações" icon="ui-icon-document">
+			<p:menuitem value="Cadastrar Doação" url="cadastrarDoacao.xhtml"
+				icon="ui-icon-pencil" />
+			<p:menuitem value="Visualizar Doações" url="#"
+				icon="ui-icon-document" />
+		</p:submenu>
+
+		<p:submenu label="Minha Conta" icon="ui-icon-pencil"
+			sytle="margin-right: 5%">
+			<p:menuitem value="Editar Cadastro" url="cadastrarVaga.xhtml"
+				icon="ui-icon-pencil" />
+			<p:menuitem value="Logout" icon="ui-icon-extlink"
+				action="#{usuarioController.Logout}" />
+		</p:submenu>
+	</p:menubar>
+
+</h:form>
+
+</html>

@@ -21,21 +21,26 @@ public class VoluntarioRepository {
 	 * MÉTODO RESPONSÁVEL POR SALVAR UMA NOVO VOLUNTARIO
 	 * @param voluntarioModel
 	 */
-	public void SalvarNovoRegistro(VoluntarioModel voluntarioModel){
+	public void salvarNovoRegistro(VoluntarioModel voluntarioModel){
  
 		entityManager =  Uteis.JpaEntityManager();
  
 		voluntarioEntity = new VoluntarioEntity();
 		voluntarioEntity.setDataCadastro(LocalDateTime.now());
 		voluntarioEntity.setEmail(voluntarioModel.getEmail());
-		voluntarioEntity.setEndereco(voluntarioModel.getEndereco());
 		voluntarioEntity.setNome(voluntarioModel.getNome());
 		voluntarioEntity.setSexo(voluntarioModel.getSexo());
- 
-		UsuarioEntity usuarioEntity = entityManager.find(UsuarioEntity.class, voluntarioModel.getUsuarioModel().getCodigo()); 
-		 
+		voluntarioEntity.setDataNascimento(voluntarioModel.getDataNascimento());
+
+	
+		UsuarioEntity usuarioEntity = new UsuarioEntity();
+		usuarioEntity.setSenha(voluntarioModel.getUsuarioEntity().getSenha());
+		usuarioEntity.setTipoUsuario(voluntarioModel.getUsuarioEntity().getTipoUsuario());
+		usuarioEntity.setUsuario(voluntarioModel.getUsuarioEntity().getUsuario());
+		entityManager.persist(usuarioEntity);
+
 		voluntarioEntity.setUsuarioEntity(usuarioEntity);
- 
+		
 		entityManager.persist(voluntarioEntity);
 	}
 }

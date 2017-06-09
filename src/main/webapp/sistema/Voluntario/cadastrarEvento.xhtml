@@ -10,38 +10,52 @@
 <h:head>
 </h:head>
 
-<ui:composition template="/template/layoutBase.xhtml">
+<ui:composition template="/template/Voluntario/layoutBase.xhtml">
 	<ui:define name="content">
 		<p:tabView style="width:50% ;margin:auto;">
-			<p:tab title="Cadastro de Vaga de Voluntariado">
+			<p:tab title="Cadastro de Eventos Beneficientes">
 
 				<h:form id="form-cadastro">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 						
-							<p:outputLabel value="Titulo da Vaga" for="inputText-titulo" />
+							<p:outputLabel value="Titulo do evento" for="inputText-titulo" />
 						<p:inputText id="inputText-titulo" style="width:100%"
 							maxlength="80"
 							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
 							required="true"
-							requiredMessage="O titulo da vaga é de preenchimento obrigatório" />
+							requiredMessage="O titulo do evento é de preenchimento obrigatório" />
 
-							<p:outputLabel value="Descrição da Vaga" for="inputText-descricao" />
+							<p:outputLabel value="Descrição do evento" for="inputText-descricao" />
 						<p:inputTextarea rows="6" cols="33" id="inputText-descricao" style="width:100%"
 							maxlength="80"
 							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
 							required="true"
 							requiredMessage="O campo descrição é de preenchimento obrigatório" />
 							
-							<p:outputLabel value="Responsavel pela Vaga" for="inputText-responsavel" />
+							<p:outputLabel value="Responsavel pelo evento" for="inputText-responsavel" />
 						<p:inputText id="inputText-responsavel" style="width:100%"
 							maxlength="80"
 							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
 							required="true"
-							requiredMessage="O titulo da vaga é de preenchimento obrigatório" />
+							requiredMessage="O reposavel pelo evento é de preenchimento obrigatório" />
+							
+							<p:outputLabel value="Local do evento" for="inputText-local" />
+						<p:inputText id="inputText-local" style="width:100%"
+							maxlength="80"
+							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+							required="true"
+							requiredMessage="O local do evento é de preenchimento obrigatório" />
+							
+							<p:outputLabel value="Horario do evento" for="inputText-horario" />
+						<p:inputText id="inputText-horario" style="width:100%"
+							maxlength="80"
+							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+							required="true"
+							requiredMessage="O local do evento é de preenchimento obrigatório" />
 
-						<p:outputLabel value="Banner da Vaga" />
+						<p:outputLabel value="Banner do evento" />
 						<h:form enctype="multipart/form-data">
 							<p:growl id="messages" showDetail="true" />
 							<p:fileUpload value="#{fileUploadView.file}" mode="simple"
@@ -69,50 +83,7 @@
 								<f:selectItem itemLabel="Outras" itemValue="13" />
 							</p:selectManyCheckbox>
 						</h:form>
-						
-							<p:outputLabel value="Habilidades  Necessárias" />
-						<h:form>
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}" layout="grid" columns="3">
-								<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
-								<f:selectItem itemLabel="Comunicação" itemValue="1" />
-								<f:selectItem itemLabel="Dança/Musica" itemValue="2" />
-								<f:selectItem itemLabel="Direito" itemValue="3" />
-								<f:selectItem itemLabel="Educação" itemValue="4" />
-								<f:selectItem itemLabel="Esportes" itemValue="5" />
-								<f:selectItem itemLabel="Gastronomia" itemValue="6" />
-								<f:selectItem itemLabel="Gestão" itemValue="7" />
-								<f:selectItem itemLabel="Idiomas" itemValue="8" />
-								<f:selectItem itemLabel="Informatica/Eletronica" itemValue="9" />
-								<f:selectItem itemLabel="Saude/Psicologia" itemValue="10" />
-								<f:selectItem itemLabel="Outras" itemValue="11" />
-							</p:selectManyCheckbox>
-						</h:form>
-						
-						<p:outputLabel value="Disponibilidade:" />
-						<h:form>
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}" layout="grid" columns="3">
-								<f:selectItem itemLabel="Segunda-Feira" itemValue="0" />
-								<f:selectItem itemLabel="Terça-Feira" itemValue="1" />
-								<f:selectItem itemLabel="Quarta-Feira" itemValue="2" />
-								<f:selectItem itemLabel="Quinta-Feira" itemValue="3" />
-								<f:selectItem itemLabel="Sexta-Feira" itemValue="4" />
-								<f:selectItem itemLabel="Sabado" itemValue="5" />
-								<f:selectItem itemLabel="Domingo" itemValue="5" />
-							</p:selectManyCheckbox>
-						</h:form>
-						
-						<p:outputLabel value="Periodo" />
-						<h:form>
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}" layout="grid" columns="3">
-								<f:selectItem itemLabel="Manha" itemValue="0" />
-								<f:selectItem itemLabel="Tarde" itemValue="1" />
-								<f:selectItem itemLabel="Noite" itemValue="2" />
-							</p:selectManyCheckbox>
-						</h:form>
-						
+							
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"
 							actionListener="#{cadastrarVoluntarioController.SalvarNovaPessoa}"

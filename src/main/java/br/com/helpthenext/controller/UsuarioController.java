@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.repository.UsuarioRepository;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
@@ -56,15 +57,19 @@ public class UsuarioController implements Serializable {
 		}
 		else{	
 			usuarioEntity = usuarioRepository.ValidaUsuario(usuarioModel);
- 
-			if(usuarioEntity!= null){
+			if(usuarioEntity != null){
 				usuarioModel.setSenha(null);
 				usuarioModel.setCodigo(usuarioEntity.getCodigo());
+				usuarioModel.setTipoUsuario(usuarioEntity.getTipoUsuario());
  
 				FacesContext facesContext = FacesContext.getCurrentInstance();
 				facesContext.getExternalContext().getSessionMap().put("usuarioAutenticado", usuarioModel);
  
-				return "sistema/home?faces-redirect=true";
+				if (TipoUsuario.ONG.equals(usuarioModel.getTipoUsuario())) {
+					return "sistema/ONG/home?faces-redirect=true";
+				} else {
+					return "sistema/Voluntario/home?faces-redirect=true";
+				}
 			}
 			else{
 				Uteis.Mensagem("Não foi possível efetuar o login com esse usuário e senha!");

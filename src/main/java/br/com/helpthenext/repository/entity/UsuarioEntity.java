@@ -57,7 +57,5 @@ public class UsuarioEntity implements Serializable {
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
-	
-	
- 
+
 }

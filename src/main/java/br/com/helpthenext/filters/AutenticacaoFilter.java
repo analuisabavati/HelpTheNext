@@ -26,28 +26,20 @@ public class AutenticacaoFilter implements Filter {
  
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
  
-		HttpSession httpSession 				= ((HttpServletRequest) request).getSession(); 
- 
+		HttpSession httpSession 	= ((HttpServletRequest) request).getSession(); 
 		HttpServletRequest httpServletRequest   = (HttpServletRequest) request;
- 
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
  
 		if(httpServletRequest.getRequestURI().indexOf("index.xhtml") <= -1){
- 
 			UsuarioModel usuarioModel =(UsuarioModel) httpSession.getAttribute("usuarioAutenticado");
- 
 			if(usuarioModel == null){
-
 				httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+ "/index.xhtml");
- 
 			}
 			else{
- 
 				chain.doFilter(request, response);
 			}
 		}		
 		else{
- 
 			chain.doFilter(request, response);
 		}
 	}

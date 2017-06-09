@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import br.com.helpthenext.model.ONGModel;
 import br.com.helpthenext.repository.ONGRepository;
 
-public class CadastrarONGControler {
+public class ONGControler {
 
 	@Inject
 	ONGModel Model;
