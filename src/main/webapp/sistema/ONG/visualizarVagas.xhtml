@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<ui:composition template="/template/ONG/layoutBase.xhtml">
+	<ui:define name="content">
+		<h:form id="form">
+			<p:repeat value="#{consultaVagasView.vagas}" var="vaga">
+				<h:panelGrid columns="2" style="width:80%"
+					columnClasses="logo,detail">
+					<p:commandLink update=":form:vagaDetail"
+						oncomplete="PF('vagaDialog').show()">
+						<f:setPropertyActionListener value="#{vaga}"
+							target="#{consultaVagasView.selectedVaga}" />
+					<p:graphicImage value="#{consultaVagasView.selectedVaga.banner}" stream="false" />
+					</p:commandLink>
+					<p:outputPanel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="Titulo:" />
+							<h:outputText value="#{vaga.titulo}" style="font-weight: bold" />
+							<h:outputText value="Descrição: " />
+							<h:outputText value="#{vaga.descricao}" style="font-weight: bold" />
+							<h:outputText value="Nome do Responsavel:" />
+							<h:outputText value="#{vaga.nomeResponsavel}"
+								style="font-weight: bold" />
+						</h:panelGrid>
+					</p:outputPanel>
+				</h:panelGrid>
+				<hr />
+			</p:repeat>
+			<p:dialog header="Vaga Info" widgetVar="vagaDialog" modal="true"
+				showEffect="blind" hideEffect="explode" resizable="false">
+				<p:outputPanel id="vagaDetail" style="text-align:center;">
+					<p:panelGrid columns="2"
+						rendered="#{not empty consultaVagasView.selectedVaga}"
+						columnClasses="label,value">
+						<f:facet name="header">
+					<p:graphicImage value="#{consultaVagasView.selectedVaga.banner}" stream="false" />
+                </f:facet>
+
+						<h:outputText value="Titulo:" />
+						<h:outputText value="#{vaga.titulo}" style="font-weight: bold" />
+						<h:outputText value="Descrição: " />
+						<h:outputText value="#{vaga.descricao}" style="font-weight: bold" />
+						<h:outputText value="Nome do Responsavel:" />
+						<h:outputText value="#{vaga.nomeResponsavel}"
+							style="font-weight: bold" />
+
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
