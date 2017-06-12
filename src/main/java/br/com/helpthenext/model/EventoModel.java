@@ -1,6 +1,6 @@
 package br.com.helpthenext.model;
 
-import java.security.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import br.com.helpthenext.enums.Causas;
@@ -14,7 +14,7 @@ public class EventoModel {
 	private byte[] banner;
 	private String local;
 	private String email;
-	private Timestamp horario;
+	private Date dataHora;
 	private List<Causas> causas;
 
 	public Long getId() {
@@ -73,14 +73,6 @@ public class EventoModel {
 		this.email = email;
 	}
 
-	public Timestamp getHorario() {
-		return horario;
-	}
-
-	public void setHorario(Timestamp horario) {
-		this.horario = horario;
-	}
-
 	public List<Causas> getCausas() {
 		return causas;
 	}
@@ -89,4 +81,13 @@ public class EventoModel {
 		this.causas = causas;
 	}
 
+	public Date getDataHora() {
+		return dataHora;
+	}
+
+	public void setDataHora(Date dataHora) {
+		this.dataHora = dataHora;
+	}
+
+	
 }

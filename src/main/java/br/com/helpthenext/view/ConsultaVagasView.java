@@ -12,8 +12,8 @@ import javax.inject.Named;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.VagaRepository;
  
-@Named(value="consultaVagasView")
 @ViewScoped
+@Named(value="consultaVagasView")
 public class ConsultaVagasView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -42,21 +42,15 @@ public class ConsultaVagasView implements Serializable {
 		this.vagaModel = vagaModel;
 	}
 	
-	
- 
 	public VagaModel getSelectedVaga() {
 		return selectedVaga;
 	}
 	public void setSelectedVaga(VagaModel selectedVaga) {
 		this.selectedVaga = selectedVaga;
 	}
-	/***
-	 * CARREGA AS PESSOAS NA INICIALIZAÇÃO 
-	 */
-	@PostConstruct
+	
+	@PostConstruct // executado na inicialização da classe
 	public void init(){
- 
-		//RETORNAR AS PESSOAS CADASTRADAS
 		this.vagas = vagaRepository.getVagas();
 	}
 }

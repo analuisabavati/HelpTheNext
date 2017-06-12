@@ -15,14 +15,13 @@
 		<p:tabView style="width:50% ;margin:auto;">
 			<p:tab title="Cadastro de Eventos Beneficientes">
 
-				<h:form id="form-cadastro">
+				<h:form id="form-cadastro-evento">
 
-					<h:panelGrid id="panelGrid-campos-form" columns="2"
-						cellpadding="10">
+					<h:panelGrid id="panelGrid-campos-form" columns="2" cellpadding="10">
 
 						<p:outputLabel value="Titulo do evento" for="inputText-titulo" />
 						<p:inputText id="inputText-titulo" style="width:100%"
-							maxlength="80" value="#{eventoController.eventoModel.tipo}"
+							maxlength="80" value="#{eventoController.eventoModel.titulo}"
 							required="true"
 							requiredMessage="O campo titulo é de preenchimento obrigatório" />
 
@@ -47,9 +46,10 @@
 							required="true"
 							requiredMessage="O campo local é de preenchimento obrigatório" />
 
-						<p:outputLabel value="Horario do evento" for="inputText-horario" />
-						<p:inputText id="inputText-horario" style="width:100%"
-							maxlength="80" value="#{eventoController.eventoModel.horario}"
+						<p:outputLabel value="Data/Hora do evento" for="inputText-horario" />
+						 <p:calendar pattern="MM/dd/yyyy HH:mm:ss" 
+						 id="inputText-horario" style="width:100%"
+							maxlength="80" value="#{eventoController.eventoModel.dataHora}"
 							required="true"
 							requiredMessage="O campo horario é de preenchimento obrigatório" />
 
@@ -80,12 +80,10 @@
 								<f:selectItem itemLabel="Idosos" itemValue="5" />
 								<f:selectItem itemLabel="Educação" itemValue="6" />
 								<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-								<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
-									itemValue="8" />
+								<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
 								<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
 								<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
-								<f:selectItem itemLabel="Capacitação Profissional"
-									itemValue="11" />
+								<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
 								<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
 								<f:selectItem itemLabel="Outras" itemValue="13" />
 							</p:selectManyCheckbox>
@@ -93,13 +91,12 @@
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"
-							actionListener="#{eventoController.SalvarNovoRegistro}"
+							actionListener="#{eventoController.salvarNovoEvento}"
 							update="panelGrid-campos-form" />
 
 					</h:panelGrid>
 
-					<p:messages showDetail="true" autoUpdate="true" closable="true"
-						severity="warn" />
+					<p:messages showDetail="true" autoUpdate="true" closable="true" severity="warn" />
 					<p:messages autoUpdate="true" closable="true" severity="error" />
 					<p:messages showDetail="true" autoUpdate="true" closable="true"
 						severity="info" />

@@ -1,13 +1,15 @@
 package br.com.helpthenext.repository.entity;
 
 import java.io.Serializable;
-import java.security.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -15,6 +17,11 @@ import br.com.helpthenext.enums.Causas;
 
 @Table(name = "tb_evento")
 @Entity
+@NamedQueries({
+	 
+	@NamedQuery(name = "EventoEntity.findAll",query= "SELECT p FROM EventoEntity p")
+ 
+})
 public class EventoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -43,7 +50,7 @@ public class EventoEntity implements Serializable {
 	private String email;
 	
 	@Column(name = "horario")
-	private Timestamp horario;
+	private Date dataHora;
 
 	// @Column(name = "causas")
 	@Transient
@@ -117,12 +124,12 @@ public class EventoEntity implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Timestamp getHorario() {
-		return horario;
+	public Date getDataHora() {
+		return dataHora;
 	}
 
-	public void setHorario(Timestamp horario) {
-		this.horario = horario;
+	public void setDataHora(Date dataHora) {
+		this.dataHora = dataHora;
 	}
 
 	
