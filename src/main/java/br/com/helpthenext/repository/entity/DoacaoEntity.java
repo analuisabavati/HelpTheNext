@@ -6,8 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name = "tb_doacao")
@@ -35,5 +37,52 @@ public class DoacaoEntity  implements Serializable {
 	@Column(name = "foto")
 	private byte[] foto;
 	
+	@OneToOne
+	@JoinColumn(name="id_voluntario")
+	private VoluntarioEntity voluntarioEntity;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	public VoluntarioEntity getVoluntarioEntity() {
+		return voluntarioEntity;
+	}
+
+	public void setVoluntarioEntity(VoluntarioEntity voluntarioEntity) {
+		this.voluntarioEntity = voluntarioEntity;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }

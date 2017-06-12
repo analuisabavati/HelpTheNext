@@ -9,9 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.com.helpthenext.model.EventoModel;
-import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.entity.EventoEntity;
-import br.com.helpthenext.repository.entity.VagaEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 public class EventoRepository {
