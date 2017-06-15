@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.model.EventoModel;
-import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.EventoRepository;
 
 @ViewScoped

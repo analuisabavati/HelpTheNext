@@ -4,14 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import br.com.helpthenext.enums.Causas;
 
@@ -52,9 +57,19 @@ public class EventoEntity implements Serializable {
 	@Column(name = "horario")
 	private Date dataHora;
 
-	// @Column(name = "causas")
-	@Transient
+	@ElementCollection(targetClass=Causas.class)
+    @Enumerated(EnumType.ORDINAL)
+    @CollectionTable(name="evento_causas")
+    @Column(name="causas") 
 	private List<Causas> causas;
+	
+	@ManyToOne
+	@JoinColumn(name="id_ong")
+	private ONGEntity ongEntity;
+	
+	@ManyToOne
+	@JoinColumn(name="id_voluntario")
+	private VoluntarioEntity voluntarioEntity;
 
 	public Long getId() {
 		return id;
@@ -130,6 +145,22 @@ public class EventoEntity implements Serializable {
 
 	public void setDataHora(Date dataHora) {
 		this.dataHora = dataHora;
+	}
+
+	public ONGEntity getOngEntity() {
+		return ongEntity;
+	}
+
+	public void setOngEntity(ONGEntity ongEntity) {
+		this.ongEntity = ongEntity;
+	}
+
+	public VoluntarioEntity getVoluntarioEntity() {
+		return voluntarioEntity;
+	}
+
+	public void setVoluntarioEntity(VoluntarioEntity voluntarioEntity) {
+		this.voluntarioEntity = voluntarioEntity;
 	}
 
 	

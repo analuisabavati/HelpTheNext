@@ -1,16 +1,20 @@
 package br.com.helpthenext.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.VoluntarioModel;
+import br.com.helpthenext.repository.UsuarioRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.uteis.Uteis;
 
-@Named(value = "voluntarioController")
 @RequestScoped
+@Named(value = "voluntarioController")
 public class VoluntarioController {
 
 	@Inject
@@ -22,6 +26,22 @@ public class VoluntarioController {
 	@Inject
 	VoluntarioRepository voluntarioRepository;
 
+	@Inject
+	UsuarioRepository usuarioRepository;
+	
+	@Inject
+	FileUploadView fileUpload;
+	
+	private List<String> x = new ArrayList<>();
+	
+	public List<String> getX() {
+		return x;
+	}
+
+	public void setX(List<String> x) {
+		this.x = x;
+	}
+
 	public VoluntarioModel getVoluntarioModel() {
 		return voluntarioModel;
 	}
@@ -30,23 +50,17 @@ public class VoluntarioController {
 		this.voluntarioModel = voluntarioModel;
 	}
 
-
 	public void salvarNovoVoluntario() {
-		voluntarioModel.getUsuarioEntity().setTipoUsuario(TipoUsuario.VOLUNTARIO);		
-		voluntarioRepository.salvarNovoRegistro(this.voluntarioModel);
-		this.voluntarioModel = null;
-		Uteis.MensagemInfo(" Voluntario cadastrado com sucesso!");
+		if (usuarioRepository.validaUsuarioCadastrado(this.voluntarioModel.getUsuarioEntity().getUsuario()) != null) {
+			Uteis.Mensagem("Nome de usuario já utilizado. Por favor informe outro usuario!");
+		} else {
+			
+			voluntarioModel.getUsuarioEntity().setTipoUsuario(TipoUsuario.VOLUNTARIO);
+			voluntarioRepository.salvarNovoRegistro(this.voluntarioModel);
+			this.voluntarioModel = null;
+			Uteis.MensagemInfo(" Voluntario cadastrado com sucesso!");
+		}
 	}
 
-	private String[] selectedConsoles;
-
-  
-    public String[] getSelectedConsoles() {
-        return selectedConsoles;
-    }
- 
-    public void setSelectedConsoles(String[] selectedConsoles) {
-        this.selectedConsoles = selectedConsoles;
-    }
- 
+	
 }

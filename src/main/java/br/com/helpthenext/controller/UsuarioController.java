@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -29,7 +28,7 @@ public class UsuarioController implements Serializable {
  
 	@Inject
 	private UsuarioEntity usuarioEntity;
- 
+	 
 	public UsuarioModel getUsuarioModel() {
 		return usuarioModel;
 	}
@@ -53,14 +52,14 @@ public class UsuarioController implements Serializable {
 			return null;
 		}
 		else if(StringUtils.isEmpty(usuarioModel.getSenha()) || StringUtils.isBlank(usuarioModel.getSenha())){
-			Uteis.Mensagem("Favor informara senha!");
+			Uteis.MensagemAtencao("Favor informar a senha!");
 			return null;
 		}
 		else{	
 			usuarioEntity = usuarioRepository.ValidaUsuario(usuarioModel);
 			if(usuarioEntity != null){
 				usuarioModel.setSenha(null);
-				usuarioModel.setCodigo(usuarioEntity.getCodigo());
+				usuarioModel.setCodigo(usuarioEntity.getId());
 				usuarioModel.setTipoUsuario(usuarioEntity.getTipoUsuario());
  
 				FacesContext facesContext = FacesContext.getCurrentInstance();

@@ -31,7 +31,10 @@ public class EventoRepository {
 		eventoEntity.setDataHora(eventoModel.getDataHora());
 		eventoEntity.setLocal(eventoModel.getLocal());
 		eventoEntity.setEmail(eventoModel.getEmail());
-
+		eventoEntity.setBanner(eventoModel.getBanner());
+		
+		//causas
+		
 		entityManager.persist(eventoEntity);
 	}
 

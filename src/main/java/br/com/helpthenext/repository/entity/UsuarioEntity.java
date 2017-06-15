@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -13,8 +14,11 @@ import br.com.helpthenext.enums.TipoUsuario;
 
 @Table(name="tb_usuario")
 @Entity	
-@NamedQuery(name = "UsuarioEntity.findUser", 
-		    query= "SELECT u FROM UsuarioEntity u WHERE u.usuario = :usuario AND u.senha = :senha")
+@NamedQueries({
+	@NamedQuery(name = "UsuarioEntity.findUser", query= "SELECT u FROM UsuarioEntity u WHERE u.usuario = :usuario AND u.senha = :senha"),
+	@NamedQuery(name = "UsuarioEntity.findUserCadastro", query = "SELECT u FROM UsuarioEntity u WHERE u.usuario = :usuario")
+})
+
 public class UsuarioEntity implements Serializable {
  
 	private static final long serialVersionUID = 1L;
@@ -22,7 +26,7 @@ public class UsuarioEntity implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name="id_usuario")
-	private String codigo;
+	private Long id;
  
 	@Column(name="ds_login")
 	private String usuario;
@@ -32,12 +36,15 @@ public class UsuarioEntity implements Serializable {
 	
 	@Column(name="tp_usuario")
 	private TipoUsuario tipoUsuario;
- 
-	public String getCodigo() {
-		return codigo;
+	
+	public Long getId() {
+		return id;
 	}
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	public String getUsuario() {
 		return usuario;

@@ -27,8 +27,9 @@ public class DoacaoRepository {
 		doacaoEntity = new DoacaoEntity();
 		doacaoEntity.setTitulo(doacaoModel.getTitulo());
 		doacaoEntity.setDescricao(doacaoModel.getDescricao());
-	
-
+		doacaoEntity.setFoto(doacaoModel.getFoto());
+		doacaoEntity.setVoluntarioEntity(doacaoModel.getVoluntarioEntity());
+		
 		entityManager.persist(doacaoEntity);
 	}
 

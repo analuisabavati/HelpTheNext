@@ -3,14 +3,19 @@ package br.com.helpthenext.repository.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.enums.Habilidades;
@@ -29,7 +34,7 @@ public class VagaEntity implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id_vaga")
-	private String id;
+	private Long id;
 
 	@Column(name = "titulo")
 	private String titulo;
@@ -46,20 +51,36 @@ public class VagaEntity implements Serializable {
 	@Column(name = "email")
 	private String email;
 
-//	@Column(name = "causas")
-	@Transient
+	@ElementCollection(targetClass=Causas.class)
+    @Enumerated(EnumType.ORDINAL)
+    @CollectionTable(name="vaga_causas")
+    @Column(name="causas") 
 	private List<Causas> causas;
 
-	//@Column(name = "habilidades")
-	@Transient
+	@ElementCollection(targetClass=Habilidades.class)
+    @Enumerated(EnumType.ORDINAL)
+    @CollectionTable(name="vaga_habilidades")
+    @Column(name="habilidades") 
 	private List<Habilidades> habilidades;
+	
+	@ManyToOne
+	@JoinColumn(name="id_ong")
+	private ONGEntity ongEntity;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public ONGEntity getOngEntity() {
+		return ongEntity;
+	}
+
+	public void setOngEntity(ONGEntity ongEntity) {
+		this.ongEntity = ongEntity;
 	}
 
 	public String getTitulo() {
@@ -121,5 +142,8 @@ public class VagaEntity implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
 
+	
 }

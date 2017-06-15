@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.enums.Habilidades;
+import br.com.helpthenext.repository.entity.ONGEntity;
 
 public class VagaModel {
 
@@ -14,6 +15,7 @@ public class VagaModel {
 	private byte[] banner;
 	private List<Causas> causas;
 	private List<Habilidades> habilidades;
+	private ONGEntity ongEntity;
 
 	public String getTitulo() {
 		return titulo;
@@ -70,5 +72,15 @@ public class VagaModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public ONGEntity getOngEntity() {
+		return ongEntity;
+	}
+
+	public void setOngEntity(ONGEntity ongEntity) {
+		this.ongEntity = ongEntity;
+	}
+	
+	
 
 }

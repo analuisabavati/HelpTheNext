@@ -14,14 +14,26 @@ public class UsuarioRepository implements Serializable {
  
 	public UsuarioEntity ValidaUsuario(UsuarioModel usuarioModel){
 		try {
-			//QUERY QUE VAI SER EXECUTADA (UsuarioEntity.findUser) 	
+			
 			Query query = Uteis.JpaEntityManager().createNamedQuery("UsuarioEntity.findUser");
  
-			//PARÂMETROS DA QUERY
 			query.setParameter("usuario", usuarioModel.getUsuario());
 			query.setParameter("senha", usuarioModel.getSenha());
  
-			//RETORNA O USUÁRIO SE FOR LOCALIZADO
+			return (UsuarioEntity)query.getSingleResult();
+			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public UsuarioEntity validaUsuarioCadastrado(String usuario){
+		try {
+			
+			Query query = Uteis.JpaEntityManager().createNamedQuery("UsuarioEntity.findUserCadastro");
+ 
+			query.setParameter("usuario", usuario);
+			
 			return (UsuarioEntity)query.getSingleResult();
 		} catch (Exception e) {
 			return null;

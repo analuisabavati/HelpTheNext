@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+
+<ui:composition template="/template/layoutBaseIndex.xhtml">
+
+	<ui:define name="content">
+
+		<p:tabView style="width:50% ;margin:auto;">
+			<p:tab title="Cadastro de Voluntário">
+			<h:panelGrid id="panelGrid-campos-form" columns="2"
+						cellpadding="10">
+				<h:form>
+							<p:selectManyCheckbox id="dias" layout="grid" columns="1" value="#{voluntarioController.x}" >
+								<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
+								<f:selectItem itemLabel="Terça-Feira" itemValue="2" />
+								<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
+								<f:selectItem itemLabel="Quinta-Feira" itemValue="4" />
+								<f:selectItem itemLabel="Sexta-Feira" itemValue="5" />
+								<f:selectItem itemLabel="Sabado" itemValue="6" />
+								<f:selectItem itemLabel="Domingo" itemValue="0" />
+							</p:selectManyCheckbox>
+						</h:form>
+						
+						
+					</h:panelGrid>
+							<p:commandButton value="Salvar" id="commandButton-salvar"
+							icon="ui-icon-gear" actionListener="#{voluntarioController.salvarNovoVoluntario}"
+							update="panelGrid-campos-form" />
+						
+
+			</p:tab>
+
+		</p:tabView>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

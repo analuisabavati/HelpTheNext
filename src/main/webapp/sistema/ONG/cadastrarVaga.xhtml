@@ -54,75 +54,72 @@
 						</h:form>
 
 						<p:outputLabel value="Causas" />
-						<h:form>
+						<p:selectManyCheckbox id="basic"
+							value="#{cadastrarVoluntarioController.selectedConsoles}"
+							layout="grid" columns="3">
+							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
+							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+							<f:selectItem itemLabel="Idosos" itemValue="5" />
+							<f:selectItem itemLabel="Educação" itemValue="6" />
+							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+								itemValue="8" />
+							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+							<f:selectItem itemLabel="Outras" itemValue="13" />
+						</p:selectManyCheckbox>
 
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}"
-								layout="grid" columns="3">
-								<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-								<f:selectItem itemLabel="Saude" itemValue="1" />
-								<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-								<f:selectItem itemLabel="Participação cidada" itemValue="3" />
-								<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
-								<f:selectItem itemLabel="Idosos" itemValue="5" />
-								<f:selectItem itemLabel="Educação" itemValue="6" />
-								<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-								<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
-									itemValue="8" />
-								<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
-								<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
-								<f:selectItem itemLabel="Capacitação Profissional"
-									itemValue="11" />
-								<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
-								<f:selectItem itemLabel="Outras" itemValue="13" />
-							</p:selectManyCheckbox>
-						</h:form>
 
 						<p:outputLabel value="Habilidades  Necessárias" />
-						<h:form>
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}"
-								layout="grid" columns="3">
-								<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
-								<f:selectItem itemLabel="Comunicação" itemValue="1" />
-								<f:selectItem itemLabel="Dança/Musica" itemValue="2" />
-								<f:selectItem itemLabel="Direito" itemValue="3" />
-								<f:selectItem itemLabel="Educação" itemValue="4" />
-								<f:selectItem itemLabel="Esportes" itemValue="5" />
-								<f:selectItem itemLabel="Gastronomia" itemValue="6" />
-								<f:selectItem itemLabel="Gestão" itemValue="7" />
-								<f:selectItem itemLabel="Idiomas" itemValue="8" />
-								<f:selectItem itemLabel="Informatica/Eletronica" itemValue="9" />
-								<f:selectItem itemLabel="Saude/Psicologia" itemValue="10" />
-								<f:selectItem itemLabel="Outras" itemValue="11" />
-							</p:selectManyCheckbox>
-						</h:form>
+
+						<p:selectManyCheckbox id="basic"
+							value="#{cadastrarVoluntarioController.selectedConsoles}"
+							layout="grid" columns="3">
+							<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
+							<f:selectItem itemLabel="Comunicação" itemValue="1" />
+							<f:selectItem itemLabel="Dança/Musica" itemValue="2" />
+							<f:selectItem itemLabel="Direito" itemValue="3" />
+							<f:selectItem itemLabel="Educação" itemValue="4" />
+							<f:selectItem itemLabel="Esportes" itemValue="5" />
+							<f:selectItem itemLabel="Gastronomia" itemValue="6" />
+							<f:selectItem itemLabel="Gestão" itemValue="7" />
+							<f:selectItem itemLabel="Idiomas" itemValue="8" />
+							<f:selectItem itemLabel="Informatica/Eletronica" itemValue="9" />
+							<f:selectItem itemLabel="Saude/Psicologia" itemValue="10" />
+							<f:selectItem itemLabel="Outras" itemValue="11" />
+						</p:selectManyCheckbox>
+
 
 						<p:outputLabel value="Disponibilidade:" />
-						<h:form>
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}"
-								layout="grid" columns="3">
-								<f:selectItem itemLabel="Segunda-Feira" itemValue="0" />
-								<f:selectItem itemLabel="Terça-Feira" itemValue="1" />
-								<f:selectItem itemLabel="Quarta-Feira" itemValue="2" />
-								<f:selectItem itemLabel="Quinta-Feira" itemValue="3" />
-								<f:selectItem itemLabel="Sexta-Feira" itemValue="4" />
-								<f:selectItem itemLabel="Sabado" itemValue="5" />
-								<f:selectItem itemLabel="Domingo" itemValue="5" />
-							</p:selectManyCheckbox>
-						</h:form>
+
+						<p:selectManyCheckbox id="basic"
+							value="#{cadastrarVoluntarioController.selectedConsoles}"
+							layout="grid" columns="3">
+							<f:selectItem itemLabel="Segunda-Feira" itemValue="0" />
+							<f:selectItem itemLabel="Terça-Feira" itemValue="1" />
+							<f:selectItem itemLabel="Quarta-Feira" itemValue="2" />
+							<f:selectItem itemLabel="Quinta-Feira" itemValue="3" />
+							<f:selectItem itemLabel="Sexta-Feira" itemValue="4" />
+							<f:selectItem itemLabel="Sabado" itemValue="5" />
+							<f:selectItem itemLabel="Domingo" itemValue="5" />
+						</p:selectManyCheckbox>
+
 
 						<p:outputLabel value="Periodo" />
-						<h:form>
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}"
-								layout="grid" columns="3">
-								<f:selectItem itemLabel="Manha" itemValue="0" />
-								<f:selectItem itemLabel="Tarde" itemValue="1" />
-								<f:selectItem itemLabel="Noite" itemValue="2" />
-							</p:selectManyCheckbox>
-						</h:form>
+
+						<p:selectManyCheckbox id="basic"
+							value="#{cadastrarVoluntarioController.selectedConsoles}"
+							layout="grid" columns="3">
+							<f:selectItem itemLabel="Manha" itemValue="0" />
+							<f:selectItem itemLabel="Tarde" itemValue="1" />
+							<f:selectItem itemLabel="Noite" itemValue="2" />
+						</p:selectManyCheckbox>
+
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"

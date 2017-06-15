@@ -25,140 +25,129 @@
 						<p:outputLabel value="Usuario" for="inputText-usuario" />
 						<p:inputText id="inputText-usuario" style="width:90%"
 							maxlength="70"
-							value="#{cadastrarVoluntarioController.voluntarioModel.nome}"
+							value="#{ongController.ongModel.usuarioEntity.usuario}"
 							required="true"
-							requiredMessage="O Usuario é de preenchimento obrigatório" />
+							requiredMessage="O campo usuario é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Senha" for="inputText-senha" />
 						<p:inputText id="inputText-senha" style="width:90%" maxlength="70"
-							value="#{cadastrarVoluntarioController.voluntarioModel.nome}"
+							value="#{ongController.ongModel.usuarioEntity.senha}"
 							required="true"
-							requiredMessage="A Senha é de preenchimento obrigatório" />
+							requiredMessage="O campo senha é de preenchimento obrigatório" />
 
 						<p:separator />
 						<br />
 
-						<p:outputLabel value="Nome da ONG" for="inputText-nome" />
-						<p:inputText id="inputText-nome" style="width:90%" maxlength="70"
-							value="#{cadastrarVoluntarioController.voluntarioModel.nome}"
+						<p:outputLabel value="Nome da ONG" for="inputText-nomeONG" />
+						<p:inputText id="inputText-nomeONG" style="width:90%"
+							maxlength="70" value="#{ongController.ongModel.nomeONG}"
 							required="true"
-							requiredMessage="O nome é de preenchimento obrigatório" />
+							requiredMessage="O campo nome da ONG é de preenchimento obrigatório" />
 
-						<p:outputLabel value="Nome do responsavel" for="inputText-sobrenome" />
-						<p:inputText id="inputText-sobrenome" style="width:90%"
-							maxlength="70"
-							value="#{cadastrarVoluntarioController.voluntarioModel.nome}"
+						<p:outputLabel value="Nome do responsavel"
+							for="inputText-nomeResponsavel" />
+						<p:inputText id="inputText-nomeResponsavel" style="width:90%"
+							maxlength="70" value="#{ongController.ongModel.nomeResponsavel}"
 							required="true"
-							requiredMessage="O Sobrenome é de preenchimento obrigatório" />
-							
-							<p:outputLabel value="Descrição da ONG" for="inputText-descricao" />
-						<p:inputTextarea rows="6" cols="33" id="inputText-descricao" style="width:100%"
-							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
-							required="true"
-							requiredMessage="O email é de preenchimento obrigatório" />
+							requiredMessage="O campo nome do responsavel é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Descrição da ONG" for="inputText-descricao" />
+						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
+							style="width:100%" maxlength="80"
+							value="#{ongController.ongModel.descricao}" required="true"
+							requiredMessage="O campo descrição é de preenchimento obrigatório" />
 
 						<p:outputLabel value="E-mail" for="inputText-email" />
 						<p:inputText id="inputText-email" style="width:100%"
-							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+							maxlength="80" value="#{ongController.ongModel.email}"
 							required="true"
 							requiredMessage="O email é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Telefone" for="inputText-telefone" />
 						<p:inputText id="inputText-telefone" style="width:100%"
-							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+							maxlength="80" value="#{ongController.ongModel.telefone}"
 							required="true"
-							requiredMessage="O Telefone é de preenchimento obrigatório" />
-							
-							<p:separator />
+							requiredMessage="O campo telefone é de preenchimento obrigatório" />
+
+						<p:separator />
 						<br />
 
 						<p:outputLabel value="Rua" for="inputText-rua" />
 						<p:inputText id="inputText-rua" style="width:100%" maxlength="200"
-							value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
-							required="true"
-							requiredMessage="A rua é de preenchimento obrigatório" />
+							value="#{ongController.ongModel.rua}" required="true"
+							requiredMessage="O campo rua é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Numero" for="inputText-numero" />
 						<p:inputText id="inputText-numero" style="width:50px"
-							maxlength="200"
-							value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
+							maxlength="200" value="#{ongController.ongModel.numero}"
 							required="true"
-							requiredMessage="O numero é de preenchimento obrigatório" />
+							requiredMessage="O campo numero é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Complemento" for="inputText-complemento" />
 						<p:inputText id="inputText-complemento" style="width:100%"
-							maxlength="200"
-							value="#{cadastrarVoluntarioController.voluntarioModel.endereco}" />
+							maxlength="200" value="#{ongController.ongModel.complemento}" />
 
 						<p:outputLabel value="CEP" for="inputText-cep" />
 						<p:inputText id="inputText-cep" style="width:100%" maxlength="200"
-							value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
-							required="true"
-							requiredMessage="O endereço é de preenchimento obrigatório" />
+							value="#{ongController.ongModel.cep}" required="true"
+							requiredMessage="O campo cep é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Cidade" for="inputText-cidade" />
 						<p:inputText id="inputText-cidade" style="width:100%"
-							maxlength="200"
-							value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
+							maxlength="200" value="#{ongController.ongModel.cidade}"
 							required="true"
-							requiredMessage="A cidade é de preenchimento obrigatório" />
+							requiredMessage="O campo cidade é de preenchimento obrigatório" />
 
 
 						<p:outputLabel value="Estado" for="inputText-estado" />
 						<p:inputText id="inputText-estado" style="width:100%"
-							maxlength="200"
-							value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
+							maxlength="200" value="#{ongController.ongModel.estado}"
 							required="true"
-							requiredMessage="O estado  é de preenchimento obrigatório" />
+							requiredMessage="O campo estado  é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Pais" for="inputText-pais" />
 						<p:inputText id="inputText-pais" style="width:100%"
-							maxlength="200"
-							value="#{cadastrarVoluntarioController.voluntarioModel.endereco}"
+							maxlength="200" value="#{ongController.ongModel.pais}"
 							required="true"
-							requiredMessage="O pais é de preenchimento obrigatório" />
-							
-							<p:separator />
+							requiredMessage="O campo pais é de preenchimento obrigatório" />
+
+						<p:separator />
 						<br />
 
 						<p:outputLabel value="Logo da ONG" />
 						<h:form enctype="multipart/form-data">
 							<p:growl id="messages" showDetail="true" />
-							<p:fileUpload value="#{fileUploadView.file}" mode="simple"
-								skinSimple="true" />
+							<p:fileUpload value="#{ongController.ongModel.logo}"
+								mode="simple" label="Escolher" skinSimple="true" />
 						</h:form>
 
-<p:separator />
+						<p:separator />
 						<br />
 
 						<p:outputLabel value="Causas" />
-						<h:form>
+						<p:selectManyCheckbox id="basic"
+							value="#{ongController.ongModel.causas}" layout="grid"
+							columns="3">
+							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
+							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+							<f:selectItem itemLabel="Idosos" itemValue="5" />
+							<f:selectItem itemLabel="Educação" itemValue="6" />
+							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+								itemValue="8" />
+							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+							<f:selectItem itemLabel="Outras" itemValue="13" />
+						</p:selectManyCheckbox>
 
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}" layout="grid" columns="3">
-								<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-								<f:selectItem itemLabel="Saude" itemValue="1" />
-								<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-								<f:selectItem itemLabel="Participação cidada" itemValue="3" />
-								<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
-								<f:selectItem itemLabel="Idosos" itemValue="5" />
-								<f:selectItem itemLabel="Educação" itemValue="6" />
-								<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-								<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
-								<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
-								<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
-								<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
-								<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
-								<f:selectItem itemLabel="Outras" itemValue="13" />
-							</p:selectManyCheckbox>
-						</h:form>
-						
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"
-							actionListener="#{cadastrarVoluntarioController.SalvarNovaPessoa}"
+							actionListener="#{ongController.salvarNovaONG}"
 							update="panelGrid-campos-form" />
 
 					</h:panelGrid>

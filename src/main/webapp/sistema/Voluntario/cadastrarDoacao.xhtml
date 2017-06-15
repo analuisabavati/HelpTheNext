@@ -19,21 +19,20 @@
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
-						
-							<p:outputLabel value="Titulo da doação" for="inputText-titulo" />
+
+						<p:outputLabel value="Titulo da doação" for="inputText-titulo" />
 						<p:inputText id="inputText-titulo" style="width:100%"
-							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
+							maxlength="80" value="#{doacaoController.doacaoModel.titulo}"
 							required="true"
 							requiredMessage="O titulo da vaga é de preenchimento obrigatório" />
 
-							<p:outputLabel value="Descrição da doação" for="inputText-descricao" />
-						<p:inputTextarea rows="6" cols="33" id="inputText-descricao" style="width:100%"
-							maxlength="80"
-							value="#{cadastrarVoluntarioController.voluntarioModel.email}"
-							required="true"
+						<p:outputLabel value="Descrição da doação"
+							for="inputText-descricao" />
+						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
+							style="width:100%" maxlength="80"
+							value="#{doacaoController.doacaoModel.descricao}" required="true"
 							requiredMessage="O campo descrição é de preenchimento obrigatório" />
-						
+
 
 						<p:outputLabel value="Foto do objeto para doação" />
 						<h:form enctype="multipart/form-data">
@@ -43,29 +42,30 @@
 						</h:form>
 
 						<p:outputLabel value="Disponibilidade para retirada:" />
-						<h:form>
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}" layout="grid" columns="3">
-								<f:selectItem itemLabel="Segunda-Feira" itemValue="0" />
-								<f:selectItem itemLabel="Terça-Feira" itemValue="1" />
-								<f:selectItem itemLabel="Quarta-Feira" itemValue="2" />
-								<f:selectItem itemLabel="Quinta-Feira" itemValue="3" />
-								<f:selectItem itemLabel="Sexta-Feira" itemValue="4" />
-								<f:selectItem itemLabel="Sabado" itemValue="5" />
-								<f:selectItem itemLabel="Domingo" itemValue="5" />
-							</p:selectManyCheckbox>
-						</h:form>
-						
+						<p:selectManyCheckbox id="basic"
+							value="#{cadastrarVoluntarioController.selectedConsoles}"
+							layout="grid" columns="3">
+							<f:selectItem itemLabel="Segunda-Feira" itemValue="0" />
+							<f:selectItem itemLabel="Terça-Feira" itemValue="1" />
+							<f:selectItem itemLabel="Quarta-Feira" itemValue="2" />
+							<f:selectItem itemLabel="Quinta-Feira" itemValue="3" />
+							<f:selectItem itemLabel="Sexta-Feira" itemValue="4" />
+							<f:selectItem itemLabel="Sabado" itemValue="5" />
+							<f:selectItem itemLabel="Domingo" itemValue="5" />
+						</p:selectManyCheckbox>
+
+
 						<p:outputLabel value="Periodo" />
-						<h:form>
-							<p:selectManyCheckbox id="basic"
-								value="#{cadastrarVoluntarioController.selectedConsoles}" layout="grid" columns="3">
-								<f:selectItem itemLabel="Manha" itemValue="0" />
-								<f:selectItem itemLabel="Tarde" itemValue="1" />
-								<f:selectItem itemLabel="Noite" itemValue="2" />
-							</p:selectManyCheckbox>
-						</h:form>
-						
+
+						<p:selectManyCheckbox id="basic"
+							value="#{cadastrarVoluntarioController.selectedConsoles}"
+							layout="grid" columns="3">
+							<f:selectItem itemLabel="Manha" itemValue="0" />
+							<f:selectItem itemLabel="Tarde" itemValue="1" />
+							<f:selectItem itemLabel="Noite" itemValue="2" />
+						</p:selectManyCheckbox>
+
+
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"
 							actionListener="#{cadastrarVoluntarioController.SalvarNovaPessoa}"

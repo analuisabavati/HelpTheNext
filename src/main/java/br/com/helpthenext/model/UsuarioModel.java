@@ -8,15 +8,15 @@ public class UsuarioModel implements Serializable {
  
 	private static final long serialVersionUID = 1L;
  
-	private String codigo;
+	private Long codigo;
 	private String usuario;
 	private String senha;
 	private TipoUsuario tipoUsuario;
  
-	public String getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(String codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public String getUsuario() {

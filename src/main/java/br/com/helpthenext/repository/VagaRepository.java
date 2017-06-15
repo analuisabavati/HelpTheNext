@@ -21,13 +21,18 @@ public class VagaRepository {
 
 	// Cadastra novo Voluntario
 	public void salvarNovoRegistro(VagaModel vagaModel) {
-
+		
 		entityManager = Uteis.JpaEntityManager();
 
 		vagaEntity = new VagaEntity();
 		vagaEntity.setTitulo(vagaModel.getTitulo());
 		vagaEntity.setDescricao(vagaModel.getDescricao());
 		vagaEntity.setNomeResponsavel(vagaModel.getDescricao());
+		vagaEntity.setEmail(vagaModel.getEmail());
+		vagaEntity.setBanner(vagaModel.getBanner());
+		// causas e habilidades
+		
+		vagaEntity.setOngEntity(vagaModel.getOngEntity());
 
 		entityManager.persist(vagaEntity);
 	}

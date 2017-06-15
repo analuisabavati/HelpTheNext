@@ -1,11 +1,15 @@
 package br.com.helpthenext.controller;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.DoacaoRepository;
 import br.com.helpthenext.uteis.Uteis;
 
+@Named(value = "doacaoController")
+@RequestScoped
 public class DoacaoController {
 
 	@Inject
