@@ -4,8 +4,7 @@
              version="2.0">
  
     <persistence-unit name="unit_app" transaction-type="RESOURCE_LOCAL">
-        <description>
-            ARQUIVO DE PERSISTÊNCIA JPA E HIBERNATE            
+        <description>            
         </description>
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
  
