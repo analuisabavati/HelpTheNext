@@ -1,9 +1,9 @@
 package br.com.helpthenext.model;
 
 import java.util.Date;
-import java.util.List;
 
-import br.com.helpthenext.enums.Causas;
+import br.com.helpthenext.repository.entity.ONGEntity;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
 
 public class EventoModel {
 
@@ -15,7 +15,25 @@ public class EventoModel {
 	private String local;
 	private String email;
 	private Date dataHora;
-	private List<Causas> causas;
+	private String[] causas;
+	private ONGEntity ongEntity;
+	private VoluntarioEntity voluntarioEntity;
+
+	public ONGEntity getOngEntity() {
+		return ongEntity;
+	}
+
+	public void setOngEntity(ONGEntity ongEntity) {
+		this.ongEntity = ongEntity;
+	}
+
+	public VoluntarioEntity getVoluntarioEntity() {
+		return voluntarioEntity;
+	}
+
+	public void setVoluntarioEntity(VoluntarioEntity voluntarioEntity) {
+		this.voluntarioEntity = voluntarioEntity;
+	}
 
 	public Long getId() {
 		return id;
@@ -73,11 +91,11 @@ public class EventoModel {
 		this.email = email;
 	}
 
-	public List<Causas> getCausas() {
+	public String[] getCausas() {
 		return causas;
 	}
 
-	public void setCausas(List<Causas> causas) {
+	public void setCausas(String[] causas) {
 		this.causas = causas;
 	}
 

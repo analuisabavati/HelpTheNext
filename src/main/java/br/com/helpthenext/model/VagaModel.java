@@ -1,9 +1,5 @@
 package br.com.helpthenext.model;
 
-import java.util.List;
-
-import br.com.helpthenext.enums.Causas;
-import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.repository.entity.ONGEntity;
 
 public class VagaModel {
@@ -13,9 +9,11 @@ public class VagaModel {
 	private String nomeResponsavel;
 	private String email;
 	private byte[] banner;
-	private List<Causas> causas;
-	private List<Habilidades> habilidades;
+	private String[] causas;
+	private String[] habilidades;
 	private ONGEntity ongEntity;
+	private String[] dias;
+	private String[] periodos;
 
 	public String getTitulo() {
 		return titulo;
@@ -49,22 +47,6 @@ public class VagaModel {
 		this.banner = banner;
 	}
 
-	public List<Causas> getCausas() {
-		return causas;
-	}
-
-	public void setCausas(List<Causas> causas) {
-		this.causas = causas;
-	}
-
-	public List<Habilidades> getHabilidades() {
-		return habilidades;
-	}
-
-	public void setHabilidades(List<Habilidades> habilidades) {
-		this.habilidades = habilidades;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -80,7 +62,37 @@ public class VagaModel {
 	public void setOngEntity(ONGEntity ongEntity) {
 		this.ongEntity = ongEntity;
 	}
-	
-	
 
+	public String[] getCausas() {
+		return causas;
+	}
+
+	public void setCausas(String[] causas) {
+		this.causas = causas;
+	}
+
+	public String[] getHabilidades() {
+		return habilidades;
+	}
+
+	public void setHabilidades(String[] habilidades) {
+		this.habilidades = habilidades;
+	}
+
+	public void setDias(String[] dias) {
+		this.dias = dias;
+	}
+
+	public void setPeriodos(String[] periodos) {
+		this.periodos = periodos;
+	}
+
+	public String[] getDias() {
+		return dias;
+	}
+
+	public String[] getPeriodos() {
+		return periodos;
+	}
+	
 }

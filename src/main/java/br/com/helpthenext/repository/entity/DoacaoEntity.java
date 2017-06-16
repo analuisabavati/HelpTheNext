@@ -1,17 +1,24 @@
 package br.com.helpthenext.repository.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.com.helpthenext.enums.DiasSemana;
+import br.com.helpthenext.enums.Periodos;
 
 @Table(name = "tb_doacao")
 @Entity
@@ -38,6 +45,34 @@ public class DoacaoEntity  implements Serializable {
 	@Column(name = "foto")
 	private byte[] foto;
 	
+	@ElementCollection(targetClass = DiasSemana.class)
+	@Enumerated(EnumType.ORDINAL)
+	@CollectionTable(name = "doacao_dias")
+	@Column(name = "dias_disponiveis")
+	private List<DiasSemana> dias;
+
+	@ElementCollection(targetClass = Periodos.class)
+	@Enumerated(EnumType.ORDINAL)
+	@CollectionTable(name = "doacao_periodos")
+	@Column(name = "periodos_disponiveis")
+	private List<Periodos> periodos;
+	
+	public List<DiasSemana> getDias() {
+		return dias;
+	}
+
+	public void setDias(List<DiasSemana> dias) {
+		this.dias = dias;
+	}
+
+	public List<Periodos> getPeriodos() {
+		return periodos;
+	}
+
+	public void setPeriodos(List<Periodos> periodos) {
+		this.periodos = periodos;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="id_voluntario")
 	private VoluntarioEntity voluntarioEntity;

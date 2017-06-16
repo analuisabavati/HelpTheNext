@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.entity.EventoEntity;
 import br.com.helpthenext.uteis.Uteis;
@@ -33,7 +34,14 @@ public class EventoRepository {
 		eventoEntity.setEmail(eventoModel.getEmail());
 		eventoEntity.setBanner(eventoModel.getBanner());
 		
-		//causas
+		List<Causas> causas = new ArrayList<>();
+		for(String p4 : eventoModel.getCausas()) {
+			causas.add(Causas.values()[new Integer(p4)]);
+		}
+		eventoEntity.setCausas(causas);
+		
+		eventoEntity.setOngEntity(eventoModel.getOngEntity());
+		eventoEntity.setVoluntarioEntity(eventoModel.getVoluntarioEntity());
 		
 		entityManager.persist(eventoEntity);
 	}

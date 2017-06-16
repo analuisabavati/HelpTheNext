@@ -4,6 +4,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.ONGModel;
 import br.com.helpthenext.repository.ONGRepository;
@@ -26,10 +28,15 @@ public class ONGController {
 	@Inject
 	UsuarioRepository usuarioRepository;
 	
+	private UploadedFile uploadedFile;
+	
 	public void salvarNovaONG() {
 		if (usuarioRepository.validaUsuarioCadastrado(this.ongModel.getUsuarioEntity().getUsuario()) != null) {
 			Uteis.Mensagem("Nome de usuario já utilizado. Por favor informe outro usuario!");
 		} else {
+			if (uploadedFile != null) {
+				ongModel.setFoto(uploadedFile.getContents());
+			}
 			ongModel.getUsuarioEntity().setTipoUsuario(TipoUsuario.ONG);
 			ongRepository.salvarNovoRegistro(this.ongModel);
 			this.ongModel = null;
@@ -37,14 +44,12 @@ public class ONGController {
 		}
 	}
 
-	private String[] selectedConsoles;
-
-	public String[] getSelectedConsoles() {
-		return selectedConsoles;
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
 	}
 
-	public void setSelectedConsoles(String[] selectedConsoles) {
-		this.selectedConsoles = selectedConsoles;
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
 	}
 
 	public ONGModel getOngModel() {

@@ -9,7 +9,21 @@ public class DoacaoModel {
 	private String descricao;
 	private byte[] foto;
 	private VoluntarioEntity voluntarioEntity;
+	private String[] dias;
+	private String[] periodos;
 	
+	public String[] getDias() {
+		return dias;
+	}
+	public void setDias(String[] dias) {
+		this.dias = dias;
+	}
+	public String[] getPeriodos() {
+		return periodos;
+	}
+	public void setPeriodos(String[] periodos) {
+		this.periodos = periodos;
+	}
 	public Long getId() {
 		return id;
 	}

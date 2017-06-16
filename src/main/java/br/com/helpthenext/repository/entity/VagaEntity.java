@@ -18,7 +18,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import br.com.helpthenext.enums.Causas;
+import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Habilidades;
+import br.com.helpthenext.enums.Periodos;
 
 @Table(name = "tb_vaga")
 @Entity
@@ -62,6 +64,18 @@ public class VagaEntity implements Serializable {
     @CollectionTable(name="vaga_habilidades")
     @Column(name="habilidades") 
 	private List<Habilidades> habilidades;
+	
+	@ElementCollection(targetClass = DiasSemana.class)
+	@Enumerated(EnumType.ORDINAL)
+	@CollectionTable(name = "vaga_dias")
+	@Column(name = "dias")
+	private List<DiasSemana> dias;
+
+	@ElementCollection(targetClass = Periodos.class)
+	@Enumerated(EnumType.ORDINAL)
+	@CollectionTable(name = "vaga_periodos")
+	@Column(name = "periodos")
+	private List<Periodos> periodos;
 	
 	@ManyToOne
 	@JoinColumn(name="id_ong")
@@ -142,8 +156,21 @@ public class VagaEntity implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
-	
+	public List<DiasSemana> getDias() {
+		return dias;
+	}
+
+	public void setDias(List<DiasSemana> dias) {
+		this.dias = dias;
+	}
+
+	public List<Periodos> getPeriodos() {
+		return periodos;
+	}
+
+	public void setPeriodos(List<Periodos> periodos) {
+		this.periodos = periodos;
+	}
+		
 }

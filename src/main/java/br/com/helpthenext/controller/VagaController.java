@@ -4,6 +4,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.VagaRepository;
 import br.com.helpthenext.uteis.Uteis;
@@ -17,8 +19,21 @@ public class VagaController {
 
 	@Inject
 	VagaRepository vagaRepository;
+	
+	private UploadedFile uploadedFile;
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
 		
 	public void salvarNovaVaga() {
+		if (uploadedFile != null) {
+			vagaModel.setBanner(uploadedFile.getContents());
+		}
 		vagaRepository.salvarNovoRegistro(this.vagaModel);
 		this.vagaModel = null;
 		Uteis.MensagemInfo("Vaga cadastrada com sucesso!");
@@ -31,16 +46,6 @@ public class VagaController {
 	public void setVagaModel(VagaModel vagaModel) {
 		this.vagaModel = vagaModel;
 	}
-	
-	private String[] selectedConsoles;
 
-	  
-    public String[] getSelectedConsoles() {
-        return selectedConsoles;
-    }
- 
-    public void setSelectedConsoles(String[] selectedConsoles) {
-        this.selectedConsoles = selectedConsoles;
-    } 
 	
 }

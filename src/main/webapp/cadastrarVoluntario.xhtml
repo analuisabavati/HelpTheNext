@@ -17,7 +17,7 @@
 		<p:tabView style="width:50% ;margin:auto;">
 			<p:tab title="Cadastro de Voluntário">
 
-				<h:form id="form-cadastro">
+				<h:form id="form-cadastro" enctype="multipart/form-data">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
@@ -144,19 +144,16 @@
 						<p:separator />
 						<br />
 
-						<p:outputLabel value="Foto de Perfil" />
-						<h:form enctype="multipart/form-data">
-							<p:growl id="messages" showDetail="true" />
-							<p:fileUpload value="#{fileUploadView.file}" mode="simple"
-								skinSimple="true" />
-						</h:form>
+						<p:outputLabel value="Foto de Perfil" for="foto" />
+						<p:fileUpload id="foto" mode="simple"
+							value="#{voluntarioController.uploadedFile}" />
 						<p:separator />
 						<br />
 
 						<p:outputLabel value="Causas" for="causas" />
 						<p:selectManyCheckbox id="causas"
 							value="#{voluntarioController.voluntarioModel.causas}"
-							layout="grid" columns="3">
+							layout="grid" columns="2">
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
 							<f:selectItem itemLabel="Saude" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
@@ -179,7 +176,7 @@
 						<p:outputLabel value="Habilidades" for="habilidades" />
 						<p:selectManyCheckbox id="habilidades"
 							value="#{voluntarioController.voluntarioModel.habilidades}"
-							layout="grid" columns="3">
+							layout="grid" columns="2">
 							<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
 							<f:selectItem itemLabel="Comunicação" itemValue="1" />
 							<f:selectItem itemLabel="Dança/Musica" itemValue="2" />
@@ -210,7 +207,6 @@
 							<f:selectItem itemLabel="Domingo" itemValue="0" />
 						</p:selectManyCheckbox>
 
-
 						<p:selectManyCheckbox id="periodos" layout="grid" columns="1"
 							value="#{voluntarioController.voluntarioModel.disponibilidadePeriodos}">
 							<f:selectItem itemLabel="Manha" itemValue="0" />
@@ -220,8 +216,8 @@
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"
-							actionListener="#{voluntarioController.salvarNovoVoluntario}"
-							update="panelGrid-campos-form" />
+							action="#{voluntarioController.salvarNovoVoluntario}"
+							update="panelGrid-campos-form" ajax="false" />
 
 					</h:panelGrid>
 

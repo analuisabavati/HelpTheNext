@@ -8,6 +8,10 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.helpthenext.enums.Causas;
+import br.com.helpthenext.enums.DiasSemana;
+import br.com.helpthenext.enums.Habilidades;
+import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.entity.VagaEntity;
 import br.com.helpthenext.uteis.Uteis;
@@ -30,7 +34,30 @@ public class VagaRepository {
 		vagaEntity.setNomeResponsavel(vagaModel.getDescricao());
 		vagaEntity.setEmail(vagaModel.getEmail());
 		vagaEntity.setBanner(vagaModel.getBanner());
-		// causas e habilidades
+		
+		List<Causas> causas = new ArrayList<>();
+		for(String p4 : vagaModel.getCausas()) {
+			causas.add(Causas.values()[new Integer(p4)]);
+		}
+		vagaEntity.setCausas(causas);
+		
+		List<Habilidades> hab = new ArrayList<>();
+		for(String p3 : vagaModel.getHabilidades()) {
+			hab.add(Habilidades.values()[new Integer(p3)]);
+		}
+		vagaEntity.setHabilidades(hab);
+		
+		List<DiasSemana> dias = new ArrayList<>();
+		for(String p1 : vagaModel.getDias()){
+			dias.add(DiasSemana.values()[new Integer(p1)]);
+		}
+		vagaEntity.setDias(dias);
+		
+		List<Periodos> periodos = new ArrayList<>();
+		for(String p : vagaModel.getPeriodos()){
+			periodos.add(Periodos.values()[new Integer(p)]);
+		}
+		vagaEntity.setPeriodos(periodos);
 		
 		vagaEntity.setOngEntity(vagaModel.getOngEntity());
 

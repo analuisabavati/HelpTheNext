@@ -101,13 +101,13 @@ public class VoluntarioEntity {
 
 	@ElementCollection(targetClass = DiasSemana.class)
 	@Enumerated(EnumType.ORDINAL)
-	@CollectionTable(name = "voluntario_diasDisponiveis")
+	@CollectionTable(name = "voluntario_dias_disponiveis")
 	@Column(name = "dias_disponiveis")
 	private List<DiasSemana> diasDisponiveis;
 
 	@ElementCollection(targetClass = Periodos.class)
 	@Enumerated(EnumType.ORDINAL)
-	@CollectionTable(name = "voluntario_periodosDisponiveis")
+	@CollectionTable(name = "voluntario_periodos_disponiveis")
 	@Column(name = "periodos_disponiveis")
 	private List<Periodos> periodosDisponiveis;
 

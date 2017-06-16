@@ -1,9 +1,7 @@
 package br.com.helpthenext.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
 
 public class ONGModel {
@@ -12,12 +10,10 @@ public class ONGModel {
 	private String nomeONG;
 	private LocalDateTime dataCadastro;
 	private String  email;
-	private String  origemCadastro;
-	private UsuarioEntity usuarioEntity;
+	private UsuarioEntity usuarioEntity = new UsuarioEntity();
 	private String telefone;
 	private String nomeResponsavel;
 	private String descricao;
-	private List<Causas> causas;
 	private String website;
 	private String facebook;
 	private String  rua;
@@ -28,7 +24,14 @@ public class ONGModel {
 	private String  estado;
 	private String  pais;
 	private byte[] foto;
+	private String[] causas;
 	
+	public String[] getCausas() {
+		return causas;
+	}
+	public void setCausas(String[] causas) {
+		this.causas = causas;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -53,12 +56,6 @@ public class ONGModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getOrigemCadastro() {
-		return origemCadastro;
-	}
-	public void setOrigemCadastro(String origemCadastro) {
-		this.origemCadastro = origemCadastro;
-	}
 	public UsuarioEntity getUsuarioEntity() {
 		return usuarioEntity;
 	}
@@ -82,12 +79,6 @@ public class ONGModel {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-	public List<Causas> getCausas() {
-		return causas;
-	}
-	public void setCausas(List<Causas> causas) {
-		this.causas = causas;
 	}
 	public String getWebsite() {
 		return website;

@@ -4,6 +4,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.DoacaoRepository;
 import br.com.helpthenext.uteis.Uteis;
@@ -17,8 +19,21 @@ public class DoacaoController {
 	
 	@Inject
 	DoacaoRepository doacaoRepository;
+	
+	private UploadedFile uploadedFile;
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
 		
-	public void salvarNovoEvento() {
+	public void salvarNovaDoacao() {
+		if (uploadedFile != null) {
+			doacaoModel.setFoto(uploadedFile.getContents());
+		}
 		doacaoRepository.salvarNovoRegistro(this.doacaoModel);
 		this.doacaoModel = null;
 		Uteis.MensagemInfo("Doação cadastrada com sucesso!");

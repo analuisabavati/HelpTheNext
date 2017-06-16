@@ -1,11 +1,11 @@
 package br.com.helpthenext.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.VoluntarioModel;
@@ -29,32 +29,15 @@ public class VoluntarioController {
 	@Inject
 	UsuarioRepository usuarioRepository;
 	
-	@Inject
-	FileUploadView fileUpload;
-	
-	private List<String> x = new ArrayList<>();
-	
-	public List<String> getX() {
-		return x;
-	}
-
-	public void setX(List<String> x) {
-		this.x = x;
-	}
-
-	public VoluntarioModel getVoluntarioModel() {
-		return voluntarioModel;
-	}
-
-	public void setVoluntarioModel(VoluntarioModel voluntarioModel) {
-		this.voluntarioModel = voluntarioModel;
-	}
+	private UploadedFile uploadedFile;
 
 	public void salvarNovoVoluntario() {
 		if (usuarioRepository.validaUsuarioCadastrado(this.voluntarioModel.getUsuarioEntity().getUsuario()) != null) {
 			Uteis.Mensagem("Nome de usuario já utilizado. Por favor informe outro usuario!");
 		} else {
-			
+			if (uploadedFile != null) {
+				voluntarioModel.setFotoPerfil(uploadedFile.getContents());
+			}
 			voluntarioModel.getUsuarioEntity().setTipoUsuario(TipoUsuario.VOLUNTARIO);
 			voluntarioRepository.salvarNovoRegistro(this.voluntarioModel);
 			this.voluntarioModel = null;
@@ -62,5 +45,20 @@ public class VoluntarioController {
 		}
 	}
 
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+	
+	public VoluntarioModel getVoluntarioModel() {
+		return voluntarioModel;
+	}
+
+	public void setVoluntarioModel(VoluntarioModel voluntarioModel) {
+		this.voluntarioModel = voluntarioModel;
+	}
 	
 }

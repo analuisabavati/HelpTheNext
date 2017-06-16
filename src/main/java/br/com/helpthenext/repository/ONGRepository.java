@@ -1,10 +1,13 @@
 package br.com.helpthenext.repository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.ONGModel;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
@@ -28,7 +31,13 @@ public class ONGRepository {
 		ongEntity.setNomeResponsavel(ongModel.getNomeResponsavel());
 		ongEntity.setTelefone(ongModel.getTelefone());
 		ongEntity.setDescricao(ongModel.getDescricao());
-		//cauas
+		
+		List<Causas> causas = new ArrayList<>();
+		for(String p4 : ongModel.getCausas()){
+			causas.add(Causas.values()[new Integer(p4)]);
+		}
+		ongEntity.setCausas(causas);
+		
 		ongEntity.setWebsite(ongModel.getWebsite());
 		ongEntity.setFacebook(ongModel.getFacebook());
 		ongEntity.setNumero(ongModel.getNumero());
@@ -38,10 +47,8 @@ public class ONGRepository {
 		ongEntity.setPais(ongModel.getPais());
 		ongEntity.setFoto(ongModel.getFoto());
 		
-		UsuarioEntity usuarioEntity = new UsuarioEntity();
-		usuarioEntity.setSenha(ongModel.getUsuarioEntity().getSenha());
-		usuarioEntity.setTipoUsuario(ongModel.getUsuarioEntity().getTipoUsuario());
-		usuarioEntity.setUsuario(ongModel.getUsuarioEntity().getUsuario());
+		UsuarioEntity usuarioEntity = ongModel.getUsuarioEntity();
+		
 		entityManager.persist(usuarioEntity);
 
 		ongEntity.setUsuarioEntity(usuarioEntity);
