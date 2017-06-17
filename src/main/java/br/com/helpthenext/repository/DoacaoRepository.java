@@ -31,7 +31,6 @@ public class DoacaoRepository {
 		return entityManager.find(DoacaoEntity.class, id);
 	}
 
-	// Cadastra novo Voluntario
 	public void salvarNovoRegistro(DoacaoModel doacaoModel) {
 
 		entityManager = Uteis.JpaEntityManager();
@@ -69,15 +68,21 @@ public class DoacaoRepository {
 		Collection<DoacaoEntity> eventosEntity = (Collection<DoacaoEntity>) query.getResultList();
 
 		List<DoacaoModel> doacoesModel = new ArrayList<DoacaoModel>();
-		DoacaoModel eventoModel = null;
+		DoacaoModel doacaoModel = null;
 
 		for (DoacaoEntity vagaEntity : eventosEntity) {
-			eventoModel = new DoacaoModel();
+			doacaoModel = new DoacaoModel();
 		
-			eventoModel.setTitulo(vagaEntity.getTitulo());
-			eventoModel.setDescricao(vagaEntity.getDescricao());
-
-			doacoesModel.add(eventoModel);
+			doacaoModel.setId(vagaEntity.getId());
+			doacaoModel.setTitulo(vagaEntity.getTitulo());
+			doacaoModel.setDescricao(vagaEntity.getDescricao());
+			doacaoModel.setDescricao(vagaEntity.getDescricao());
+			doacaoModel.setVoluntarioEntity(vagaEntity.getVoluntarioEntity());
+	
+			//	doacaoModel.setDias(dias);
+			//	doacaoModel.setPeriodos(periodos);
+			
+			doacoesModel.add(doacaoModel);
 		}
 
 		return doacoesModel;
