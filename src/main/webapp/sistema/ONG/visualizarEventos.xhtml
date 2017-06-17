@@ -15,13 +15,13 @@
 		<h:form id="form">
 
 			<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
-				columns="3" layout="grid" rows="12" paginator="true"
-				style="margin-top:20px">
+				columns="3" layout="grid" rows="5" paginator="true"
+				style="margin-top:20px; margin-right:20px; margin-left:20px">
 
 				<f:facet name="header"> Eventos </f:facet>
 
 				<p:panel header="#{evento.titulo}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%">
+					<h:panelGrid columns="1" style="width:100%; hight:200px">
 
 						<p:commandLink update=":form:eventoDetail" actionListener="#{consultaEventosView.ativarBotoes}"
 							oncomplete="PF('eventoDialog').show()">

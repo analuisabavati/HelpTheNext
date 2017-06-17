@@ -9,6 +9,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.helpthenext.enums.TipoUsuario;
+import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.VagaRepository;
  
@@ -28,6 +30,15 @@ public class ConsultaVagasView implements Serializable {
 	private List<VagaModel> vagas;
  
 	private VagaModel selectedVaga;
+	
+	@PostConstruct // executado na inicialização da classe
+	public void init(){
+		this.vagas = vagaRepository.getVagas();
+	}
+	
+	public void ativarBotoes() {
+		
+	}
  
 	public List<VagaModel> getVagas() {
 		return vagas;
@@ -48,9 +59,5 @@ public class ConsultaVagasView implements Serializable {
 	public void setSelectedVaga(VagaModel selectedVaga) {
 		this.selectedVaga = selectedVaga;
 	}
-	
-	@PostConstruct // executado na inicialização da classe
-	public void init(){
-		this.vagas = vagaRepository.getVagas();
-	}
+
 }

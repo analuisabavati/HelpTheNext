@@ -15,7 +15,7 @@
 		<h:form id="form">
 
 			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
-				layout="grid" rows="12" paginator="true" style="margin-top:20px">
+				layout="grid" rows="5" paginator="true" style="margin-top:20px">
 
 				<f:facet name="header"> vagas </f:facet>
 
@@ -52,7 +52,6 @@
 					<p:panelGrid columns="2"
 						rendered="#{not empty consultaVagasView.selectedVaga}"
 						columnClasses="label,value">
-
 						<h:outputText value="Titulo:" />
 						<h:outputText value="#{consultaVagasView.selectedVaga.titulo}"
 							style="font-weight: bold" />
