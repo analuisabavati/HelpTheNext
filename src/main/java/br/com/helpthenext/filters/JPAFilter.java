@@ -12,8 +12,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
  
-
-// Este filter será chamado quando for realizado uma rquisicao ao faces servlet
+// Este filter será chamado quando for realizado uma requisicao ao faces servlet
 @WebFilter(servletNames ={ "Faces Servlet" })
 public class JPAFilter implements Filter { 
  

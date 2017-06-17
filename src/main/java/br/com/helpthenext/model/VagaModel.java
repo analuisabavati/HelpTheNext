@@ -4,6 +4,7 @@ import br.com.helpthenext.repository.entity.ONGEntity;
 
 public class VagaModel {
 
+	private Long id;
 	private String titulo;
 	private String descricao;
 	private String nomeResponsavel;
@@ -14,6 +15,14 @@ public class VagaModel {
 	private ONGEntity ongEntity;
 	private String[] dias;
 	private String[] periodos;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getTitulo() {
 		return titulo;

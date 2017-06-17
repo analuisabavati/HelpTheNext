@@ -1,6 +1,7 @@
 package br.com.helpthenext.repository.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +24,7 @@ import br.com.helpthenext.enums.Causas;
 @Table(name = "tb_evento")
 @Entity
 @NamedQueries({
-	 
-	@NamedQuery(name = "EventoEntity.findAll",query= "SELECT p FROM EventoEntity p")
- 
+	@NamedQuery(name = "EventoEntity.findAll", query= "SELECT p FROM EventoEntity p")
 })
 public class EventoEntity implements Serializable {
 
@@ -70,6 +69,18 @@ public class EventoEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_voluntario")
 	private VoluntarioEntity voluntarioEntity;
+	
+	@Column(name = "dt_cadastro")
+	private LocalDateTime dataCadastro;
+	
+	
+	public LocalDateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
 	public Long getId() {
 		return id;

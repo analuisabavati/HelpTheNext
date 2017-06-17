@@ -2,6 +2,8 @@ package br.com.helpthenext.model;
 
 import java.util.Date;
 
+import org.primefaces.model.StreamedContent;
+
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 

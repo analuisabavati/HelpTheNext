@@ -1,6 +1,7 @@
 package br.com.helpthenext.repository.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
@@ -80,6 +81,9 @@ public class VagaEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_ong")
 	private ONGEntity ongEntity;
+	
+	@Column(name = "dt_cadastro")
+	private LocalDateTime dataCadastro;
 
 	public Long getId() {
 		return id;
@@ -172,5 +176,14 @@ public class VagaEntity implements Serializable {
 	public void setPeriodos(List<Periodos> periodos) {
 		this.periodos = periodos;
 	}
+
+	public LocalDateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 		
+	
 }

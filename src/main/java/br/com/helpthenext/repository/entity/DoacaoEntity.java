@@ -1,6 +1,7 @@
 package br.com.helpthenext.repository.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
@@ -57,6 +58,18 @@ public class DoacaoEntity  implements Serializable {
 	@Column(name = "periodos_disponiveis")
 	private List<Periodos> periodos;
 	
+	@Column(name = "dt_cadastro")
+	private LocalDateTime dataCadastro;
+	
+
+	public LocalDateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
 	public List<DiasSemana> getDias() {
 		return dias;
 	}

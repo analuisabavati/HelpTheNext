@@ -1,5 +1,6 @@
 package br.com.helpthenext.repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,6 +32,7 @@ public class DoacaoRepository {
 		doacaoEntity.setDescricao(doacaoModel.getDescricao());
 		doacaoEntity.setFoto(doacaoModel.getFoto());
 		doacaoEntity.setVoluntarioEntity(doacaoModel.getVoluntarioEntity());
+		doacaoEntity.setDataCadastro(LocalDateTime.now());
 		
 		List<DiasSemana> dias = new ArrayList<>();
 		for(String p1 : doacaoModel.getDias()){

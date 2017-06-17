@@ -25,7 +25,7 @@ public class AutenticacaoFilter implements Filter {
 	}
  
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
- 
+		
 		HttpSession httpSession 	= ((HttpServletRequest) request).getSession(); 
 		HttpServletRequest httpServletRequest   = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;

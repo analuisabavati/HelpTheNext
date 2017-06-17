@@ -1,5 +1,6 @@
 package br.com.helpthenext.repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +24,7 @@ public class VagaRepository {
 
 	EntityManager entityManager;
 
-	// Cadastra novo Voluntario
+	// Cadastra nova vaga
 	public void salvarNovoRegistro(VagaModel vagaModel) {
 		
 		entityManager = Uteis.JpaEntityManager();
@@ -34,7 +35,8 @@ public class VagaRepository {
 		vagaEntity.setNomeResponsavel(vagaModel.getDescricao());
 		vagaEntity.setEmail(vagaModel.getEmail());
 		vagaEntity.setBanner(vagaModel.getBanner());
-		
+		vagaEntity.setDataCadastro(LocalDateTime.now());
+
 		List<Causas> causas = new ArrayList<>();
 		for(String p4 : vagaModel.getCausas()) {
 			causas.add(Causas.values()[new Integer(p4)]);

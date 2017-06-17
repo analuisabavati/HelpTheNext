@@ -62,7 +62,4 @@ public class ConsultaEventosView implements Serializable {
 		this.eventos = eventoRepository.getEventos();
 	}
 
-	
-	
-
 }

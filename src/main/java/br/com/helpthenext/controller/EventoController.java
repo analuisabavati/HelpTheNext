@@ -4,6 +4,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.EventoRepository;
 import br.com.helpthenext.uteis.Uteis;
@@ -18,23 +20,35 @@ public class EventoController {
 	@Inject
 	EventoRepository eventoRepository;
 		
+	private UploadedFile uploadedFile;
+	
 	public void salvarNovoEvento() {
+		if (uploadedFile != null) {
+			eventoModel.setBanner(uploadedFile.getContents());
+		}
 		eventoRepository.salvarNovoRegistro(this.eventoModel);
 		this.eventoModel = null;
 		Uteis.MensagemInfo("Evento cadastrado com sucesso!");
 	}
- 
-	private String[] selectedConsoles;
 
-	  
-    public String[] getSelectedConsoles() {
-        return selectedConsoles;
-    }
- 
-    public void setSelectedConsoles(String[] selectedConsoles) {
-        this.selectedConsoles = selectedConsoles;
-    }
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+	
+	public EventoRepository getEventoRepository() {
+		return eventoRepository;
+	}
 
+
+	public void setEventoRepository(EventoRepository eventoRepository) {
+		this.eventoRepository = eventoRepository;
+	}
+
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+	
 	public EventoModel getEventoModel() {
 		return eventoModel;
 	}

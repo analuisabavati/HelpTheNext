@@ -13,42 +13,46 @@
 <ui:composition template="/template/ONG/layoutBase.xhtml">
 	<ui:define name="content">
 		<h:form id="form">
-			<p:repeat value="#{consultaEventosView.eventos}" var="evento">
-				<h:panelGrid columns="2" style="width:80%"
-					columnClasses="logo,detail">
+
+			<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
+				columns="3" layout="grid" rows="12" paginator="true"
+				style="margin-top:20px">
+
+				<f:facet name="header"> Eventos </f:facet>
+
+				<p:panel header="#{evento.titulo}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+					
 					<p:commandLink update=":form:eventoDetail"
 						oncomplete="PF('eventoDialog').show()">
 						<f:setPropertyActionListener value="#{evento}"
 							target="#{consultaEventosView.selectedEvento}" />
-					<p:graphicImage value="#{consultaEventosView.selectedEvento.banner}" stream="false" />
+					<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
+							<f:param name="eventoId" value="#{evento.id}" />
+						</p:graphicImage>
 					</p:commandLink>
-					<p:outputPanel>
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputText value="Titulo:" />
-							<h:outputText value="#{evento.titulo}" style="font-weight: bold" />
-							<h:outputText value="Data/Hora: " />
-							<h:outputText value="#{evento.dataHora}" style="font-weight: bold" />
-						</h:panelGrid>
-					</p:outputPanel>
-				</h:panelGrid>
-				<hr />
-			</p:repeat>
-			<p:dialog header="Vaga Info" widgetVar="eventoDialog" modal="true"
+						
+						<h:outputText value="Data/Hora:" />
+						<h:outputText value="#{evento.dataHora}" />
+					</h:panelGrid>
+				</p:panel>
+
+			</p:dataGrid>
+
+			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="eventoDetail" style="text-align:center;">
 					<p:panelGrid columns="2"
 						rendered="#{not empty consultaEventosView.selectedEvento}"
 						columnClasses="label,value">
-						<f:facet name="header">
-					<p:graphicImage value="#{consultaEventosView.selectedEvento.banner}" stream="false" />
-                </f:facet>
-
+						
 						<h:outputText value="Titulo:" />
-						<h:outputText value="#{evento.titulo}" style="font-weight: bold" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.titulo}" style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
-						<h:outputText value="#{evento.descricao}" style="font-weight: bold" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.descricao}"
+							style="font-weight: bold" />
 						<h:outputText value="Nome do Responsavel:" />
-						<h:outputText value="#{evento.nomeResponsavel}"
+						<h:outputText value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
 							style="font-weight: bold" />
 
 					</p:panelGrid>
