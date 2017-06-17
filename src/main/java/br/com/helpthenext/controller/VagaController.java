@@ -47,5 +47,4 @@ public class VagaController {
 		this.vagaModel = vagaModel;
 	}
 
-	
 }

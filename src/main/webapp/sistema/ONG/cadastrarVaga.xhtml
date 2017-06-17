@@ -16,7 +16,7 @@
 			<p:tab title="Cadastro de Vaga de Voluntariado"
 				enctype="multipart/form-data">
 
-				<h:form id="form-cadastro">
+				<h:form id="form-cadastro" enctype="multipart/form-data">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
@@ -37,24 +37,20 @@
 							for="inputText-responsavel" />
 						<p:inputText id="inputText-responsavel" style="width:100%"
 							maxlength="80"
-							value="#{vagaController.vagaModel.nomeResponsavel}"
-							required="true"
-							requiredMessage="O campo responsavel é de preenchimento obrigatório" />
+							value="#{vagaController.vagaModel.nomeResponsavel}" />
 
 						<p:outputLabel value="Email" for="inputText-email" />
 						<p:inputText id="inputText-email" style="width:100%"
-							maxlength="80" value="#{vagaController.vagaModel.email}"
-							required="true"
-							requiredMessage="O campo email  é de preenchimento obrigatório" />
+							maxlength="80" value="#{vagaController.vagaModel.email}" />
 
 						<p:outputLabel value="Banner da Vaga" for="foto" />
-						<p:fileUpload id="foto" mode="simple"
-							value="#{vagaController.uploadedFile}" />
+						<p:fileUpload id="foto" mode="simple" value="#{vagaController.uploadedFile}" />
 
 						<p:outputLabel value="Causas" />
 						<p:selectManyCheckbox id="causas"
-							value="#{vagaController.vagaModel.causas}"
-							layout="grid" columns="2">
+							value="#{vagaController.vagaModel.causas}" layout="grid"
+							columns="2" required="true"
+							requiredMessage="O campo Causas é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
 							<f:selectItem itemLabel="Saude" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
@@ -76,8 +72,9 @@
 						<p:outputLabel value="Habilidades  Necessárias" />
 
 						<p:selectManyCheckbox id="habilidades"
-							value="#{vagaController.vagaModel.habilidades}"
-							layout="grid" columns="2">
+							value="#{vagaController.vagaModel.habilidades}" layout="grid"
+							columns="2" required="true"
+							requiredMessage="O campo Habilidades é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
 							<f:selectItem itemLabel="Comunicação" itemValue="1" />
 							<f:selectItem itemLabel="Dança/Musica" itemValue="2" />
@@ -96,8 +93,9 @@
 						<p:outputLabel value="Disponibilidade:" />
 
 						<p:selectManyCheckbox id="dia"
-							value="#{vagaController.vagaModel.dias}"
-							layout="grid" columns="1">
+							value="#{vagaController.vagaModel.dias}" layout="grid"
+							columns="1" required="true"
+							requiredMessage="O campo Disponibilidade é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Segunda-Feira" itemValue="0" />
 							<f:selectItem itemLabel="Terça-Feira" itemValue="1" />
 							<f:selectItem itemLabel="Quarta-Feira" itemValue="2" />
@@ -110,8 +108,9 @@
 
 						<p:outputLabel value="Periodo" />
 						<p:selectManyCheckbox id="periodo"
-							value="#{vagaController.vagaModel.periodos}"
-							layout="grid" columns="3">
+							value="#{vagaController.vagaModel.periodos}" layout="grid"
+							columns="3" required="true"
+							requiredMessage="O campo Periodo é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Manha" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />

@@ -87,6 +87,7 @@ public class VagaRepository {
 		for (VagaEntity vagaEntity : vagasEntity) {
 			vagaModel = new VagaModel();
 		
+			vagaModel.setId(vagaEntity.getId());
 			vagaModel.setTitulo(vagaEntity.getTitulo());
 			vagaModel.setDescricao(vagaEntity.getDescricao());
 			vagaModel.setNomeResponsavel(vagaEntity.getNomeResponsavel());

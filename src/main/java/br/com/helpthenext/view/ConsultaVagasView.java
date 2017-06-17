@@ -20,13 +20,13 @@ public class ConsultaVagasView implements Serializable {
 	 
 	@Inject transient
 	private VagaModel vagaModel;
+	
+	@Inject transient
+	private VagaRepository vagaRepository;
  
 	@Produces 
 	private List<VagaModel> vagas;
  
-	@Inject transient
-	private VagaRepository vagaRepository;
-	
 	private VagaModel selectedVaga;
  
 	public List<VagaModel> getVagas() {

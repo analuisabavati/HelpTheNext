@@ -13,46 +13,60 @@
 <ui:composition template="/template/ONG/layoutBase.xhtml">
 	<ui:define name="content">
 		<h:form id="form">
-			<p:repeat value="#{consultaVagasView.vagas}" var="vaga">
-				<h:panelGrid columns="2" style="width:80%"
-					columnClasses="logo,detail">
-					<p:commandLink update=":form:vagaDetail"
-						oncomplete="PF('vagaDialog').show()">
-						<f:setPropertyActionListener value="#{vaga}"
-							target="#{consultaVagasView.selectedVaga}" />
-					<p:graphicImage value="#{consultaVagasView.selectedVaga.banner}" stream="false" />
-					</p:commandLink>
-					<p:outputPanel>
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputText value="Titulo:" />
-							<h:outputText value="#{vaga.titulo}" style="font-weight: bold" />
-							<h:outputText value="Descrição: " />
-							<h:outputText value="#{vaga.descricao}" style="font-weight: bold" />
-							<h:outputText value="Nome do Responsavel:" />
-							<h:outputText value="#{vaga.nomeResponsavel}"
-								style="font-weight: bold" />
+
+			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
+				layout="grid" rows="12" paginator="true" style="margin-top:20px">
+
+				<f:facet name="header"> vagas </f:facet>
+
+				<p:panel>
+					<h:panelGrid columns="1" style="width:100%">
+
+						<p:commandLink update=":form:vagaDetail"
+							actionListener="#{consultaVagasView.ativarBotoes}"
+							oncomplete="PF('vagaDialog').show()">
+							<f:setPropertyActionListener value="#{vaga}"
+								target="#{consultaVagasView.selectedVaga}" />
+							<p:graphicImage value="#{vagaImagem.imagem}" style="width:100%;">
+								<f:param name="vagaId" value="#{vaga.id}" />
+							</p:graphicImage>
+
+						</p:commandLink>
+
+						<h:panelGrid columns="2" style="width:100%">
+							<h:outputText value="Titulo:" style="font-weight: bold" />
+							<h:outputText value="#{vaga.titulo}" />
+							
+							<h:outputText value="Local:" style="font-weight: bold" />
+							<h:outputText value="#{vaga.titulo}" />
+							
 						</h:panelGrid>
-					</p:outputPanel>
-				</h:panelGrid>
-				<hr />
-			</p:repeat>
-			<p:dialog header="Vaga Info" widgetVar="vagaDialog" modal="true"
+					</h:panelGrid>
+				</p:panel>
+
+			</p:dataGrid>
+
+			<p:dialog header="vaga Info" widgetVar="vagaDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="vagaDetail" style="text-align:center;">
 					<p:panelGrid columns="2"
 						rendered="#{not empty consultaVagasView.selectedVaga}"
 						columnClasses="label,value">
-						<f:facet name="header">
-					<p:graphicImage value="#{consultaVagasView.selectedVaga.banner}" stream="false" />
-                </f:facet>
 
 						<h:outputText value="Titulo:" />
-						<h:outputText value="#{vaga.titulo}" style="font-weight: bold" />
-						<h:outputText value="Descrição: " />
-						<h:outputText value="#{vaga.descricao}" style="font-weight: bold" />
-						<h:outputText value="Nome do Responsavel:" />
-						<h:outputText value="#{vaga.nomeResponsavel}"
+						<h:outputText value="#{consultaVagasView.selectedVaga.titulo}"
 							style="font-weight: bold" />
+						<h:outputText value="Descrição: " />
+						<h:outputText value="#{consultaVagasView.selectedVaga.descricao}"
+							style="font-weight: bold" />
+						<h:outputText value="Nome do Responsavel:" />
+						<h:outputText
+							value="#{consultaVagasView.selectedVaga.nomeResponsavel}"
+							style="font-weight: bold" />
+
+						<p:button value="Editar"
+							disabled="#{!(consultaVagasView.botaoEditar)}">
+						</p:button>
 
 					</p:panelGrid>
 				</p:outputPanel>
