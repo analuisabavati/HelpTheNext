@@ -1,6 +1,5 @@
 package br.com.helpthenext.repository;
 
-import java.io.ByteArrayInputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,8 +8,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
-import org.primefaces.model.DefaultStreamedContent;
 
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.EventoModel;
@@ -25,9 +22,7 @@ public class EventoRepository {
 	EntityManager entityManager;
 
 	public EventoEntity getEvento(Long id) {
-
 		entityManager = Uteis.JpaEntityManager();
-
 		return entityManager.find(EventoEntity.class, id);
 	}
 
@@ -71,7 +66,7 @@ public class EventoRepository {
 
 		for (EventoEntity eventoEntity : eventosEntity) {
 			eventoModel = new EventoModel();
-			
+
 			eventoModel.setId(eventoEntity.getId());
 			eventoModel.setTitulo(eventoEntity.getTitulo());
 			eventoModel.setDescricao(eventoEntity.getDescricao());
@@ -82,7 +77,7 @@ public class EventoRepository {
 			eventoModel.setBanner(eventoEntity.getBanner());
 
 			eventoModel.setBanner(eventoEntity.getBanner());
-			
+
 			/*
 			 * String[] stockArr = new String[vagaEntity.getCausas().size()];
 			 * stockArr = vagaEntity.getCausas().toArray(stockArr);

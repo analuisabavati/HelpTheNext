@@ -26,15 +26,13 @@ public class EventoImagem {
         FacesContext context = FacesContext.getCurrentInstance();
 
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-            // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.
             return new DefaultStreamedContent();
         }
         else {
-            // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
             String eventoId = context.getExternalContext().getRequestParameterMap().get("eventoId");
             if (eventoId != null) {
             	EventoEntity evento = eventoRepository.getEvento(new Long(eventoId));
-            	if (evento != null || evento.getBanner() != null ) {
+            	if (evento != null && evento.getBanner() != null ) {
             		return new DefaultStreamedContent(new ByteArrayInputStream(evento.getBanner()));
             	}
             }

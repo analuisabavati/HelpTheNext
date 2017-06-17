@@ -29,13 +29,6 @@ public class UsuarioController implements Serializable {
 	@Inject
 	private UsuarioEntity usuarioEntity;
 	 
-	public UsuarioModel getUsuarioModel() {
-		return usuarioModel;
-	}
-	public void setUsuarioModel(UsuarioModel usuarioModel) {
-		this.usuarioModel = usuarioModel;
-	}
- 
 	public UsuarioModel GetUsuarioSession(){
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		return (UsuarioModel)facesContext.getExternalContext().getSessionMap().get("usuarioAutenticado");
@@ -77,5 +70,13 @@ public class UsuarioController implements Serializable {
 			}
 		}
 	}
+	
+	public UsuarioModel getUsuarioModel() {
+		return usuarioModel;
+	}
+	public void setUsuarioModel(UsuarioModel usuarioModel) {
+		this.usuarioModel = usuarioModel;
+	}
+ 
  
 }

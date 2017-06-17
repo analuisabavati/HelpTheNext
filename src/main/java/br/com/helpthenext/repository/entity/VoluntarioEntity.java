@@ -14,6 +14,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,6 +27,10 @@ import br.com.helpthenext.enums.Periodos;
 
 @Entity
 @Table(name = "tb_voluntario")
+@NamedQueries({
+	
+	@NamedQuery(name = "VoluntarioEntity.findByUsuario", query= "SELECT v FROM VoluntarioEntity v where v.usuarioEntity = :usuario")
+})
 public class VoluntarioEntity {
 
 	@Id

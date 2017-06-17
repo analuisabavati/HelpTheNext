@@ -23,6 +23,12 @@ public class VagaRepository {
 	VagaEntity vagaEntity;
 
 	EntityManager entityManager;
+	
+	
+	public VagaEntity getVaga(Long id) {
+		entityManager = Uteis.JpaEntityManager();
+		return entityManager.find(VagaEntity.class, id);
+	}
 
 	// Cadastra nova vaga
 	public void salvarNovoRegistro(VagaModel vagaModel) {

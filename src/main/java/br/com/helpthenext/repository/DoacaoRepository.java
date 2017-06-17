@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.model.DoacaoModel;
@@ -19,8 +20,16 @@ public class DoacaoRepository {
 
 	@Inject
 	DoacaoEntity doacaoEntity;
+	
+	@Inject
+	UsuarioController usuarioControoler;
 
 	EntityManager entityManager;
+	
+	public DoacaoEntity getDoacao(Long id) {
+		entityManager = Uteis.JpaEntityManager();
+		return entityManager.find(DoacaoEntity.class, id);
+	}
 
 	// Cadastra novo Voluntario
 	public void salvarNovoRegistro(DoacaoModel doacaoModel) {

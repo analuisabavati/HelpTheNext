@@ -22,18 +22,16 @@
 
 				<p:panel header="#{evento.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%">
-					
-					<p:commandLink update=":form:eventoDetail"
-						oncomplete="PF('eventoDialog').show()">
-						<f:setPropertyActionListener value="#{evento}"
-							target="#{consultaEventosView.selectedEvento}" />
-					<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
-							<f:param name="eventoId" value="#{evento.id}" />
-						</p:graphicImage>
-					</p:commandLink>
-						
-						<h:outputText value="Data/Hora:" />
-						<h:outputText value="#{evento.dataHora}" />
+
+						<p:commandLink update=":form:eventoDetail" actionListener="#{consultaEventosView.ativarBotoes}"
+							oncomplete="PF('eventoDialog').show()">
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{consultaEventosView.selectedEvento}" />
+							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
+								<f:param name="eventoId" value="#{evento.id}" />
+							</p:graphicImage>
+						</p:commandLink>
+
 					</h:panelGrid>
 				</p:panel>
 
@@ -45,15 +43,24 @@
 					<p:panelGrid columns="2"
 						rendered="#{not empty consultaEventosView.selectedEvento}"
 						columnClasses="label,value">
-						
+
 						<h:outputText value="Titulo:" />
-						<h:outputText value="#{consultaEventosView.selectedEvento.titulo}" style="font-weight: bold" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.titulo}"
+							style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
-						<h:outputText value="#{consultaEventosView.selectedEvento.descricao}"
+						<h:outputText
+							value="#{consultaEventosView.selectedEvento.descricao}"
 							style="font-weight: bold" />
 						<h:outputText value="Nome do Responsavel:" />
-						<h:outputText value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
+						<h:outputText
+							value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
 							style="font-weight: bold" />
+
+						<p:button value="Curtir" icon="ui-icon-like" disabled="#{!(consultaEventosView.botaoCurtir)}">
+						</p:button>
+
+						<p:button value="Editar" disabled="#{!(consultaEventosView.botaoEditar)}">
+						</p:button>
 
 					</p:panelGrid>
 				</p:outputPanel>
