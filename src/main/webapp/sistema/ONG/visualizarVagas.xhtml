@@ -20,7 +20,7 @@
 				<f:facet name="header"> vagas </f:facet>
 
 				<p:panel>
-					<h:panelGrid columns="1" style="width:100%">
+					<h:panelGrid columns="1" style="width:100%;">
 
 						<p:commandLink update=":form:vagaDetail"
 							actionListener="#{consultaVagasView.ativarBotoes}"
@@ -36,17 +36,17 @@
 						<h:panelGrid columns="2" style="width:100%">
 							<h:outputText value="Titulo:" style="font-weight: bold" />
 							<h:outputText value="#{vaga.titulo}" />
-							
+
 							<h:outputText value="Local:" style="font-weight: bold" />
 							<h:outputText value="#{vaga.titulo}" />
-							
+
 						</h:panelGrid>
 					</h:panelGrid>
 				</p:panel>
 
 			</p:dataGrid>
 
-			<p:dialog header="vaga Info" widgetVar="vagaDialog" modal="true"
+			<p:dialog header="Informações" widgetVar="vagaDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="vagaDetail" style="text-align:center;">
 					<p:panelGrid columns="2"
@@ -62,6 +62,22 @@
 						<h:outputText
 							value="#{consultaVagasView.selectedVaga.nomeResponsavel}"
 							style="font-weight: bold" />
+						<h:outputText value="Email para contato:" />
+						<h:outputText value="#{consultaVagasView.selectedVaga.email}"
+							style="font-weight: bold" />
+						<h:outputText value="Causas:" />
+						<h:outputText value="#{consultaVagasView.selectedVaga.causas}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Habilidades Necessarias:" />
+						<h:outputText value="#{consultaVagasView.selectedVaga.habilidades}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Horario:" />
+						<h:outputText value="#{consultaVagasView.selectedVaga.d}"
+							style="font-weight: bold" />
+
+
 
 						<p:button value="Editar"
 							disabled="#{!(consultaVagasView.botaoEditar)}">

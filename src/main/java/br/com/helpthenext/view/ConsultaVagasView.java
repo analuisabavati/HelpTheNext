@@ -31,6 +31,8 @@ public class ConsultaVagasView implements Serializable {
  
 	private VagaModel selectedVaga;
 	
+	private boolean botaoEditar = false;
+	
 	@PostConstruct // executado na inicialização da classe
 	public void init(){
 		this.vagas = vagaRepository.getVagas();
@@ -59,5 +61,15 @@ public class ConsultaVagasView implements Serializable {
 	public void setSelectedVaga(VagaModel selectedVaga) {
 		this.selectedVaga = selectedVaga;
 	}
+
+	public boolean isBotaoEditar() {
+		return botaoEditar;
+	}
+
+	public void setBotaoEditar(boolean botaoEditar) {
+		this.botaoEditar = botaoEditar;
+	}
+	
+	
 
 }
