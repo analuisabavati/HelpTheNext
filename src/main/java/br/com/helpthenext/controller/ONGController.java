@@ -1,5 +1,6 @@
 package br.com.helpthenext.controller;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,6 +11,7 @@ import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.ONGModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.UsuarioRepository;
+import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 @RequestScoped
@@ -28,7 +30,19 @@ public class ONGController {
 	@Inject
 	UsuarioRepository usuarioRepository;
 	
+	@Inject
+	ONGEntity ong;
+	
 	private UploadedFile uploadedFile;
+	
+	@PostConstruct // executado na inicialização da classe
+	public void init() {
+		this.ong = ongRepository.getONGByUsuarioSessao();
+	}
+	
+	public void atualizarONG() {	
+		ongRepository.atualizarONG(ong);
+	}
 	
 	public void salvarNovaONG() {
 		if (usuarioRepository.validaUsuarioCadastrado(this.ongModel.getUsuarioEntity().getUsuario()) != null) {

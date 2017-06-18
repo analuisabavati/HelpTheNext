@@ -29,10 +29,10 @@ public class ConsultaDoacoesView implements Serializable {
 	transient DoacaoRepository doacaoRepository;
 
 	@Inject
-	UsuarioController usuarioController;
+	transient VoluntarioRepository voluntarioRepository;
 
 	@Inject
-	VoluntarioRepository voluntarioRepository;
+	UsuarioController usuarioController;
 
 	@Produces
 	private List<DoacaoModel> doacoes;

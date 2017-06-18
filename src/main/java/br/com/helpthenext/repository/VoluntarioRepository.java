@@ -92,7 +92,7 @@ public class VoluntarioRepository {
 		entityManager.persist(voluntarioEntity);
 	}
 
-	private VoluntarioEntity getVoluntario(Long id) {
+	public VoluntarioEntity getVoluntario(Long id) {
 		entityManager = Uteis.JpaEntityManager();
 		return entityManager.find(VoluntarioEntity.class, id);
 	}
@@ -167,6 +167,11 @@ public class VoluntarioRepository {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public void atualizarVoluntario(VoluntarioEntity voluntarioEntity) {
+		entityManager = Uteis.JpaEntityManager();
+		entityManager.merge(voluntarioEntity);
 	}
 
 }

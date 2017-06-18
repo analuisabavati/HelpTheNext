@@ -32,7 +32,6 @@ public class VoluntarioModel {
 	private String[] disponibilidadePeriodos;
 	private String trabalhoDistancia;
 	
-	
 	public String getTrabalhoDistancia() {
 		return trabalhoDistancia;
 	}

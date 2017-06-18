@@ -28,7 +28,7 @@ public class ConsultaVagasView implements Serializable {
 	transient private VagaRepository vagaRepository;
 
 	@Inject
-	ONGRepository ongRepository;
+	transient private ONGRepository ongRepository;
 
 	@Produces
 	private List<VagaModel> vagas;

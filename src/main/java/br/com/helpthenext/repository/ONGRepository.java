@@ -119,5 +119,10 @@ public class ONGRepository {
 
 		entityManager.merge(ongEntity);
 	}
+	
+	public void atualizarONG(ONGEntity ongEntity) {
+		entityManager = Uteis.JpaEntityManager();
+		entityManager.merge(ongEntity);
+	}
 
 }

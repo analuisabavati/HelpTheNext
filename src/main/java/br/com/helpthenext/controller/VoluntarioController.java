@@ -1,5 +1,6 @@
 package br.com.helpthenext.controller;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,6 +11,7 @@ import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.UsuarioRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 @RequestScoped
@@ -28,7 +30,15 @@ public class VoluntarioController {
 	@Inject
 	UsuarioRepository usuarioRepository;
 	
+	@Inject
+	VoluntarioEntity voluntario;
+	
 	private UploadedFile uploadedFile;
+	
+	@PostConstruct // executado na inicialização da classe
+	public void init() {
+		this.voluntario = voluntarioRepository.getVoluntarioByUsuarioSessao();
+	}
 
 	public void salvarNovoVoluntario() {
 		if (usuarioRepository.validaUsuarioCadastrado(this.voluntarioModel.getUsuarioEntity().getUsuario()) != null) {
@@ -42,6 +52,11 @@ public class VoluntarioController {
 			this.voluntarioModel = null;
 			Uteis.MensagemInfo(" Voluntario cadastrado com sucesso!");
 		}
+	}
+	
+	public void atualizarVoluntario() {	
+		voluntarioRepository.atualizarVoluntario(this.voluntario);
+		voluntarioModel = null;
 	}
 
 	public UploadedFile getUploadedFile() {

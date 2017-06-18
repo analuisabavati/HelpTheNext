@@ -10,9 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.controller.UsuarioController;
-import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.EventoModel;
-import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.repository.EventoRepository;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
@@ -36,10 +34,10 @@ public class ConsultaEventosView implements Serializable {
 	UsuarioController usuarioController;
 
 	@Inject
-	ONGRepository ongRepository;
+	transient ONGRepository ongRepository;
 
 	@Inject
-	VoluntarioRepository voluntarioRepository;
+	transient VoluntarioRepository voluntarioRepository;
 
 	@Produces
 	private List<EventoModel> eventos;
