@@ -122,6 +122,18 @@ public class VoluntarioEntity {
 	
 	@OneToMany(mappedBy = "voluntarioEntity", cascade = CascadeType.ALL)
 	private List<EventoEntity> eventos;
+	
+	@Column(name = "trabalho_distancia")
+	private String trabalhoDistancia;
+	
+	
+	public String getTrabalhoDistancia() {
+		return trabalhoDistancia;
+	}
+
+	public void setTrabalhoDistancia(String trabalhoDistancia) {
+		this.trabalhoDistancia = trabalhoDistancia;
+	}
 
 	public String getNome() {
 		return nome;

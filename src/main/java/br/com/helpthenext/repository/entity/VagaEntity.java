@@ -84,6 +84,18 @@ public class VagaEntity implements Serializable {
 	
 	@Column(name = "dt_cadastro")
 	private LocalDateTime dataCadastro;
+	
+	@Column(name = "trabalho_distancia")
+	private String trabalhoDistancia;
+	
+	
+	public String getTrabalhoDistancia() {
+		return trabalhoDistancia;
+	}
+
+	public void setTrabalhoDistancia(String trabalhoDistancia) {
+		this.trabalhoDistancia = trabalhoDistancia;
+	}
 
 	public Long getId() {
 		return id;

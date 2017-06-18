@@ -44,6 +44,7 @@ public class VagaRepository {
 		vagaEntity.setEmail(vagaModel.getEmail());
 		vagaEntity.setBanner(vagaModel.getBanner());
 		vagaEntity.setDataCadastro(LocalDateTime.now());
+		vagaEntity.setTrabalhoDistancia(vagaModel.getTrabalhoDistancia());
 
 		List<Causas> causas = new ArrayList<>();
 		for (String p4 : vagaModel.getCausas()) {
@@ -97,7 +98,8 @@ public class VagaRepository {
 			vagaModel.setEmail(vagaEntity.getEmail());
 			vagaModel.setBanner(vagaEntity.getBanner());
 			vagaModel.setDataCadastro(vagaEntity.getDataCadastro());
-
+			vagaModel.setTrabalhoDistancia(vagaEntity.getTrabalhoDistancia());
+			
 			vagaModel.setCausas(vagaModel.toStringArrayCausas(vagaEntity.getCausas()));
 			vagaModel.setHabilidades(vagaModel.toStringArrayHabilidades(vagaEntity.getHabilidades()));
 			vagaModel.setPeriodos(vagaModel.toStringArrayPeriodos(vagaEntity.getPeriodos()));
@@ -107,5 +109,47 @@ public class VagaRepository {
 		}
 
 		return vagasModel;
+	}
+	
+	public void atualizaVaga(VagaModel vagaModel) {
+
+		entityManager = Uteis.JpaEntityManager();
+
+		vagaEntity = getVaga(vagaModel.getId());
+				
+		vagaEntity.setTitulo(vagaModel.getTitulo());
+		vagaEntity.setDescricao(vagaModel.getDescricao());
+		vagaEntity.setNomeResponsavel(vagaModel.getDescricao());
+		vagaEntity.setEmail(vagaModel.getEmail());
+		vagaEntity.setBanner(vagaModel.getBanner());
+		vagaEntity.setDataCadastro(LocalDateTime.now());
+		vagaEntity.setTrabalhoDistancia(vagaModel.getTrabalhoDistancia());
+
+		List<Causas> causas = new ArrayList<>();
+		for (String p4 : vagaModel.getCausas()) {
+			causas.add(Causas.values()[new Integer(p4)]);
+		}
+		vagaEntity.setCausas(causas);
+
+		List<Habilidades> hab = new ArrayList<>();
+		for (String p3 : vagaModel.getHabilidades()) {
+			hab.add(Habilidades.values()[new Integer(p3)]);
+		}
+		vagaEntity.setHabilidades(hab);
+
+		List<DiasSemana> dias = new ArrayList<>();
+		for (String p1 : vagaModel.getDias()) {
+			dias.add(DiasSemana.values()[new Integer(p1)]);
+		}
+		vagaEntity.setDias(dias);
+
+		List<Periodos> periodos = new ArrayList<>();
+		for (String p : vagaModel.getPeriodos()) {
+			periodos.add(Periodos.values()[new Integer(p)]);
+		}
+
+		vagaEntity.setPeriodos(periodos);
+
+		entityManager.merge(vagaEntity);
 	}
 }

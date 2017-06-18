@@ -93,4 +93,27 @@ public class EventoRepository {
 
 		return eventosModel;
 	}
+	
+	public void atualizarEvento(EventoModel eventoModel) {
+
+		entityManager = Uteis.JpaEntityManager();
+
+		eventoEntity = getEvento(eventoModel.getId());
+		eventoEntity.setTitulo(eventoModel.getTitulo());
+		eventoEntity.setDescricao(eventoModel.getDescricao());
+		eventoEntity.setNomeResponsavel(eventoModel.getDescricao());
+		eventoEntity.setDataHora(eventoModel.getDataHora());
+		eventoEntity.setLocal(eventoModel.getLocal());
+		eventoEntity.setEmail(eventoModel.getEmail());
+		eventoEntity.setBanner(eventoModel.getBanner());
+		eventoEntity.setDataCadastro(LocalDateTime.now());
+
+		List<Causas> causas = new ArrayList<>();
+		for (String p4 : eventoModel.getCausas()) {
+			causas.add(Causas.values()[new Integer(p4)]);
+		}
+		eventoEntity.setCausas(causas);
+
+		entityManager.merge(eventoEntity);
+	}
 }

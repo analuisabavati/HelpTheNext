@@ -16,22 +16,22 @@ import br.com.helpthenext.repository.entity.UsuarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 public class ONGRepository {
-	
+
 	@Inject
 	ONGEntity ongEntity;
-	
+
 	@Inject
 	UsuarioEntity usuarioEntity;
-	
+
 	@Inject
 	UsuarioController usuarioController;
- 
+
 	EntityManager entityManager;
- 
-	public void salvarNovoRegistro(ONGModel ongModel){
-		
-		entityManager =  Uteis.JpaEntityManager();
- 
+
+	public void salvarNovoRegistro(ONGModel ongModel) {
+
+		entityManager = Uteis.JpaEntityManager();
+
 		ongEntity = new ONGEntity();
 		ongEntity.setDataCadastro(LocalDateTime.now());
 		ongEntity.setEmail(ongModel.getEmail());
@@ -39,13 +39,13 @@ public class ONGRepository {
 		ongEntity.setNomeResponsavel(ongModel.getNomeResponsavel());
 		ongEntity.setTelefone(ongModel.getTelefone());
 		ongEntity.setDescricao(ongModel.getDescricao());
-		
+
 		List<Causas> causas = new ArrayList<>();
-		for(String p4 : ongModel.getCausas()){
+		for (String p4 : ongModel.getCausas()) {
 			causas.add(Causas.values()[new Integer(p4)]);
 		}
 		ongEntity.setCausas(causas);
-		
+
 		ongEntity.setWebsite(ongModel.getWebsite());
 		ongEntity.setFacebook(ongModel.getFacebook());
 		ongEntity.setNumero(ongModel.getNumero());
@@ -54,16 +54,15 @@ public class ONGRepository {
 		ongEntity.setCidade(ongModel.getCidade());
 		ongEntity.setPais(ongModel.getPais());
 		ongEntity.setFoto(ongModel.getFoto());
-		
+
 		UsuarioEntity usuarioEntity = ongModel.getUsuarioEntity();
-		
+
 		entityManager.persist(usuarioEntity);
 
 		ongEntity.setUsuarioEntity(usuarioEntity);
-		
+
 		entityManager.persist(ongEntity);
 	}
-	
 
 	public ONGEntity getONGByUsuarioSessao() {
 
@@ -80,5 +79,39 @@ public class ONGRepository {
 		}
 	}
 
+	public ONGEntity getONG(Long id) {
+		entityManager = Uteis.JpaEntityManager();
+		return entityManager.find(ONGEntity.class, id);
+	}
+
+	public void atualizarOng(ONGModel ongModel) {
+
+		entityManager = Uteis.JpaEntityManager();
+
+		ongEntity = getONG(ongModel.getId());
+		ongEntity.setDataCadastro(LocalDateTime.now());
+		ongEntity.setEmail(ongModel.getEmail());
+		ongEntity.setNomeONG(ongModel.getNomeONG());
+		ongEntity.setNomeResponsavel(ongModel.getNomeResponsavel());
+		ongEntity.setTelefone(ongModel.getTelefone());
+		ongEntity.setDescricao(ongModel.getDescricao());
+
+		List<Causas> causas = new ArrayList<>();
+		for (String p4 : ongModel.getCausas()) {
+			causas.add(Causas.values()[new Integer(p4)]);
+		}
+		ongEntity.setCausas(causas);
+
+		ongEntity.setWebsite(ongModel.getWebsite());
+		ongEntity.setFacebook(ongModel.getFacebook());
+		ongEntity.setNumero(ongModel.getNumero());
+		ongEntity.setComplemento(ongModel.getComplemento());
+		ongEntity.setCep(ongModel.getCep());
+		ongEntity.setCidade(ongModel.getCidade());
+		ongEntity.setPais(ongModel.getPais());
+		ongEntity.setFoto(ongModel.getFoto());
+
+		entityManager.merge(ongEntity);
+	}
 
 }

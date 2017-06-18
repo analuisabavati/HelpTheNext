@@ -96,25 +96,33 @@
 							value="#{vagaController.vagaModel.dias}" layout="grid"
 							columns="1" required="true"
 							requiredMessage="O campo Disponibilidade é de preenchimento obrigatório">
-							<f:selectItem itemLabel="Segunda-Feira" itemValue="0" />
-							<f:selectItem itemLabel="Terça-Feira" itemValue="1" />
-							<f:selectItem itemLabel="Quarta-Feira" itemValue="2" />
-							<f:selectItem itemLabel="Quinta-Feira" itemValue="3" />
-							<f:selectItem itemLabel="Sexta-Feira" itemValue="4" />
-							<f:selectItem itemLabel="Sabado" itemValue="5" />
-							<f:selectItem itemLabel="Domingo" itemValue="5" />
+							<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
+							<f:selectItem itemLabel="Terça-Feira" itemValue="2" />
+							<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
+							<f:selectItem itemLabel="Quinta-Feira" itemValue="4" />
+							<f:selectItem itemLabel="Sexta-Feira" itemValue="5" />
+							<f:selectItem itemLabel="Sabado" itemValue="6" />
+							<f:selectItem itemLabel="Domingo" itemValue="0" />
 						</p:selectManyCheckbox>
 
 
 						<p:outputLabel value="Periodo" />
 						<p:selectManyCheckbox id="periodo"
 							value="#{vagaController.vagaModel.periodos}" layout="grid"
-							columns="3" required="true"
-							requiredMessage="O campo Periodo é de preenchimento obrigatório">
+							columns="3">
 							<f:selectItem itemLabel="Manha" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
+						
+						<p:outputLabel for="selectOneRadio-trabalho" value="Trabalho à distancia:" />
+						<p:selectOneRadio id="selectOneRadio-trabalho"
+							value="#{voluntarioController.voluntarioModel.trabalhoDistancia}"
+							required="true"
+							requiredMessage="O campo trabalho à distancia é de preenchimento obrigatório">
+							<f:selectItem itemLabel="Sim" itemValue="S" />
+							<f:selectItem itemLabel="Não" itemValue="N" />
+						</p:selectOneRadio>
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear" action="#{vagaController.salvarNovaVaga}"

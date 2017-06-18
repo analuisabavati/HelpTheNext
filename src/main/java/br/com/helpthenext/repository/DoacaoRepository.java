@@ -91,4 +91,32 @@ public class DoacaoRepository {
 
 		return doacoesModel;
 	}
+
+	public void ataulizarDoacao(DoacaoModel doacaoModel) {
+
+		entityManager = Uteis.JpaEntityManager();
+
+		doacaoEntity = getDoacao(doacaoModel.getId());
+		doacaoEntity.setTitulo(doacaoModel.getTitulo());
+		doacaoEntity.setDescricao(doacaoModel.getDescricao());
+		doacaoEntity.setFoto(doacaoModel.getFoto());
+		doacaoEntity.setVoluntarioEntity(doacaoModel.getVoluntarioEntity());
+		doacaoEntity.setDataCadastro(LocalDateTime.now());
+		
+		List<DiasSemana> dias = new ArrayList<>();
+		for(String p1 : doacaoModel.getDias()){
+			dias.add(DiasSemana.values()[new Integer(p1)]);
+		}
+		doacaoEntity.setDias(dias);
+		
+		List<Periodos> periodos = new ArrayList<>();
+		for(String p : doacaoModel.getPeriodos()){
+			periodos.add(Periodos.values()[new Integer(p)]);
+		}
+		doacaoEntity.setPeriodos(periodos);
+			
+		entityManager.persist(doacaoEntity);
+	}
+
 }
+

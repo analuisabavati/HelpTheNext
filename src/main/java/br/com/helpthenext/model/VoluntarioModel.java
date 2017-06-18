@@ -30,6 +30,16 @@ public class VoluntarioModel {
 	private String[] causas;
 	private String[] disponibilidadeDias;
 	private String[] disponibilidadePeriodos;
+	private String trabalhoDistancia;
+	
+	
+	public String getTrabalhoDistancia() {
+		return trabalhoDistancia;
+	}
+
+	public void setTrabalhoDistancia(String trabalhoDistancia) {
+		this.trabalhoDistancia = trabalhoDistancia;
+	}
 
 	public String[] getHabilidades() {
 		return habilidades;

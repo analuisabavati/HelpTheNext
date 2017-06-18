@@ -17,7 +17,7 @@
 		<p:tabView style="width:50% ;margin:auto;">
 			<p:tab title="Cadastro de Voluntário">
 
-				<h:form id="form-cadastro" enctype="multipart/form-data">
+				<h:form id="form-cadastro" enctype="multipart/form-data" autocomplete="false">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
@@ -209,6 +209,7 @@
 							<f:selectItem itemLabel="Sexta-Feira" itemValue="5" />
 							<f:selectItem itemLabel="Sabado" itemValue="6" />
 							<f:selectItem itemLabel="Domingo" itemValue="0" />
+							<f:selectItem itemLabel="Trabalho à distancia" itemValue="7" />
 						</p:selectManyCheckbox>
 
 						<p:selectManyCheckbox id="periodos" layout="grid" columns="1"
@@ -217,6 +218,15 @@
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
+						
+						<p:outputLabel for="selectOneRadio-trabalho" value="Trabalho à distancia:" />
+						<p:selectOneRadio id="selectOneRadio-trabalho"
+							value="#{voluntarioController.voluntarioModel.trabalhoDistancia}"
+							required="true"
+							requiredMessage="O campo trabalho à distancia é de preenchimento obrigatório">
+							<f:selectItem itemLabel="Sim" itemValue="S" />
+							<f:selectItem itemLabel="Não" itemValue="N" />
+						</p:selectOneRadio>
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear"

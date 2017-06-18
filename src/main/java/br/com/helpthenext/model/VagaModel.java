@@ -24,6 +24,15 @@ public class VagaModel {
 	private String[] dias;
 	private String[] periodos;
 	private LocalDateTime dataCadastro;
+	private String trabalhoDistancia;
+
+	public String getTrabalhoDistancia() {
+		return trabalhoDistancia;
+	}
+
+	public void setTrabalhoDistancia(String trabalhoDistancia) {
+		this.trabalhoDistancia = trabalhoDistancia;
+	}
 
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;

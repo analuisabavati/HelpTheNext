@@ -54,6 +54,8 @@ public class VoluntarioRepository {
 		voluntarioEntity.setRg(voluntarioModel.getRg());
 		voluntarioEntity.setCpf(voluntarioModel.getCpf());
 		voluntarioEntity.setSobrenome(voluntarioModel.getSobrenome());
+		voluntarioEntity.setTrabalhoDistancia(voluntarioModel.getTrabalhoDistancia());
+
 
 		List<Causas> causas = new ArrayList<>();
 		for (String p4 : voluntarioModel.getCausas()) {
@@ -101,7 +103,6 @@ public class VoluntarioRepository {
 
 		VoluntarioEntity voluntarioEntity = getVoluntario(voluntarioModel.getId());
 
-		voluntarioEntity.setDataCadastro(LocalDateTime.now());
 		voluntarioEntity.setEmail(voluntarioModel.getEmail());
 		voluntarioEntity.setNome(voluntarioModel.getNome());
 		voluntarioEntity.setSexo(voluntarioModel.getSexo());
@@ -118,6 +119,7 @@ public class VoluntarioRepository {
 		voluntarioEntity.setRg(voluntarioModel.getRg());
 		voluntarioEntity.setCpf(voluntarioModel.getCpf());
 		voluntarioEntity.setSobrenome(voluntarioModel.getSobrenome());
+		voluntarioEntity.setTrabalhoDistancia(voluntarioModel.getTrabalhoDistancia());
 
 		List<Causas> causas = new ArrayList<>();
 		for (String p4 : voluntarioModel.getCausas()) {

@@ -17,7 +17,7 @@
 			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
 				layout="grid" rows="5" paginator="true" style="margin-top:20px">
 
-				<f:facet name="header"> vagas </f:facet>
+				<f:facet name="header"> Vagas </f:facet>
 
 				<p:panel>
 					<h:panelGrid columns="1" style="width:100%;">
@@ -27,7 +27,7 @@
 							oncomplete="PF('vagaDialog').show()">
 							<f:setPropertyActionListener value="#{vaga}"
 								target="#{consultaVagasView.selectedVaga}" />
-							<p:graphicImage value="#{vagaImagem.imagem}" style="width:100%;">
+							<p:graphicImage value="#{vagaImagem.imagem}" style="width:100%; hight:10px">
 								<f:param name="vagaId" value="#{vaga.id}" />
 							</p:graphicImage>
 
