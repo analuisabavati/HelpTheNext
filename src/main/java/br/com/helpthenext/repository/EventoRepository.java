@@ -116,4 +116,15 @@ public class EventoRepository {
 
 		entityManager.merge(eventoEntity);
 	}
+	
+	public void removeEvento(EventoModel evento) {
+		entityManager = Uteis.JpaEntityManager();
+		eventoEntity = getEvento(evento.getId());
+		entityManager.remove(eventoEntity);
+	}
+
+	public void removeEvento(EventoEntity evento) {
+		entityManager = Uteis.JpaEntityManager();
+		entityManager.remove(evento);
+	}
 }

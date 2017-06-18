@@ -110,6 +110,12 @@ public class ONGRepository {
 		ongEntity.setCidade(ongModel.getCidade());
 		ongEntity.setPais(ongModel.getPais());
 		ongEntity.setFoto(ongModel.getFoto());
+		
+		UsuarioEntity usuarioEntity = ongEntity.getUsuarioEntity();
+		usuarioEntity.setSenha(ongModel.getUsuarioEntity().getSenha());
+		entityManager.merge(usuarioEntity);
+
+		ongEntity.setUsuarioEntity(usuarioEntity);
 
 		entityManager.merge(ongEntity);
 	}

@@ -144,6 +144,12 @@ public class VoluntarioRepository {
 			periodos.add(Periodos.values()[new Integer(p)]);
 		}
 		voluntarioEntity.setPeriodosDisponiveis(periodos);
+		
+		UsuarioEntity usuarioEntity = voluntarioEntity.getUsuarioEntity();
+		usuarioEntity.setSenha(voluntarioModel.getUsuarioEntity().getSenha());
+		entityManager.merge(usuarioEntity);
+
+		voluntarioEntity.setUsuarioEntity(usuarioEntity);
 
 		entityManager.merge(voluntarioEntity);
 	}

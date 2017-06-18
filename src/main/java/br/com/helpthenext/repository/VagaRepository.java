@@ -99,7 +99,7 @@ public class VagaRepository {
 			vagaModel.setBanner(vagaEntity.getBanner());
 			vagaModel.setDataCadastro(vagaEntity.getDataCadastro());
 			vagaModel.setTrabalhoDistancia(vagaEntity.getTrabalhoDistancia());
-			
+
 			vagaModel.setCausas(vagaModel.toStringArrayCausas(vagaEntity.getCausas()));
 			vagaModel.setHabilidades(vagaModel.toStringArrayHabilidades(vagaEntity.getHabilidades()));
 			vagaModel.setPeriodos(vagaModel.toStringArrayPeriodos(vagaEntity.getPeriodos()));
@@ -110,13 +110,13 @@ public class VagaRepository {
 
 		return vagasModel;
 	}
-	
+
 	public void atualizaVaga(VagaModel vagaModel) {
 
 		entityManager = Uteis.JpaEntityManager();
 
 		vagaEntity = getVaga(vagaModel.getId());
-				
+
 		vagaEntity.setTitulo(vagaModel.getTitulo());
 		vagaEntity.setDescricao(vagaModel.getDescricao());
 		vagaEntity.setNomeResponsavel(vagaModel.getDescricao());
@@ -151,5 +151,16 @@ public class VagaRepository {
 		vagaEntity.setPeriodos(periodos);
 
 		entityManager.merge(vagaEntity);
+	}
+
+	public void removeVaga(VagaModel vagaModel) {
+		entityManager = Uteis.JpaEntityManager();
+		vagaEntity = getVaga(vagaModel.getId());
+		entityManager.remove(vagaEntity);
+	}
+
+	public void removeVaga(VagaEntity vaga) {
+		entityManager = Uteis.JpaEntityManager();
+		entityManager.remove(vaga);
 	}
 }
