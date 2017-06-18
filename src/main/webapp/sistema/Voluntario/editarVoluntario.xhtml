@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<ui:composition template="/template/Voluntario/layoutBase.xhtml">
+	<ui:define name="content">
+
+		<p:tabView style="width:50% ;margin:auto;">
+			<p:tab title="Cadastro de Voluntário">
+
+				<h:form id="form-cadastro" enctype="multipart/form-data">
+
+					<h:panelGrid id="panelGrid-campos-form" columns="2"
+						cellpadding="10">
+
+						<p:outputLabel value="Nome" for="inputText-nome" />
+						<p:inplace id="inputText-nome">
+							<p:inputText value="#{voluntarioController.voluntarioModel.nome}"/>
+						</p:inplace>
+						<p:outputLabel />
+
+						<p:outputLabel value="Sobrenome" for="inputText-sobrenome" />
+						<p:inplace id="inputText-sobrenome">
+							<p:inputText value="#{voluntarioController.voluntarioModel.sobrenome}"/>
+						</p:inplace>
+				
+
+						<p:outputLabel for="selectOneRadio-sexo" value="Sexo:" />
+						<p:selectOneRadio id="selectOneRadio-sexo"
+							value="#{voluntarioController.voluntarioModel.sexo}"
+							required="true"
+							requiredMessage="O campo sexo é de preenchimento obrigatório">
+
+							<f:selectItem itemLabel="Masculino" itemValue="M" />
+							<f:selectItem itemLabel="Feminino" itemValue="F" />
+							<f:selectItem itemLabel="Outro" itemValue="O" />
+						</p:selectOneRadio>
+
+						<p:outputLabel value="RG" for="inputText-rg" />
+						<p:inputMask id="inputText-rg" style="width:100%" maxlength="80"
+							mask="99.999.999-9"
+							value="#{voluntarioController.voluntarioModel.rg}" />
+
+						<p:outputLabel value="CPF" for="inputText-cpf" />
+						<p:inputMask id="inputText-cpf" style="width:100%" maxlength="80"
+							value="#{voluntarioController.voluntarioModel.cpf}"
+							mask="999.999.999-99" />
+
+						<p:outputLabel value="Data de Nascimento"
+							for="inputText-nascimento" />
+						<p:calendar id="inputText-nascimento" style="width:100%"
+							maxlength="80"
+							value="#{voluntarioController.voluntarioModel.dataNascimento}"
+							required="true"
+							requiredMessage="O campo data de Nascimento é de preenchimento obrigatório" />
+
+						<p:outputLabel value="E-mail" for="inputText-email" />
+						<p:inputText id="inputText-email" style="width:100%"
+							maxlength="80"
+							value="#{voluntarioController.voluntarioModel.email}"
+							required="true"
+							requiredMessage="O campo email é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Telefone" for="inputText-telefone" />
+						<p:inputMask id="inputText-telefone" style="width:100%"
+							maxlength="80"
+							value="#{voluntarioController.voluntarioModel.telefone}"
+							required="true" mask="(99) 99999-9999"
+							requiredMessage="O campo Telefone é de preenchimento obrigatório" />
+
+						<p:separator />
+						<br />
+
+						<p:outputLabel value="Rua" for="inputText-rua" />
+						<p:inputText id="inputText-rua" style="width:100%" maxlength="200"
+							value="#{voluntarioController.voluntarioModel.rua}"
+							required="true"
+							requiredMessage="O campo rua é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Numero" for="inputText-numero" />
+						<p:inputText id="inputText-numero" style="width:50px"
+							maxlength="200"
+							value="#{voluntarioController.voluntarioModel.numero}"
+							required="true"
+							requiredMessage="O  campo numero é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Complemento" for="inputText-complemento" />
+						<p:inputText id="inputText-complemento" style="width:100%"
+							maxlength="200"
+							value="#{voluntarioController.voluntarioModel.complemento}" />
+
+						<p:outputLabel value="CEP" for="inputText-cep" />
+						<p:inputMask id="inputText-cep" style="width:100%" maxlength="200"
+							value="#{voluntarioController.voluntarioModel.cep}"
+							required="true" mask="99999-999"
+							requiredMessage="O campo CEP é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Cidade" for="inputText-cidade" />
+						<p:inputText id="inputText-cidade" style="width:100%"
+							maxlength="200"
+							value="#{voluntarioController.voluntarioModel.cidade}"
+							required="true"
+							requiredMessage="O campo cidade é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Estado" for="inputText-estado" />
+						<p:inputText id="inputText-estado" style="width:100%"
+							maxlength="200"
+							value="#{voluntarioController.voluntarioModel.estado}"
+							required="true"
+							requiredMessage="O campo estado  é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Pais" for="inputText-pais" />
+						<p:inputText id="inputText-pais" style="width:100%"
+							maxlength="200"
+							value="#{voluntarioController.voluntarioModel.pais}"
+							required="true"
+							requiredMessage="O campo pais é de preenchimento obrigatório" />
+
+						<p:separator />
+						<br />
+
+						<p:outputLabel value="Foto de Perfil" for="foto" />
+						<p:fileUpload id="foto" mode="simple"
+							value="#{voluntarioController.uploadedFile}" />
+						<p:separator />
+						<br />
+
+						<p:outputLabel value="Causas" for="causas" />
+						<p:selectManyCheckbox id="causas"
+							value="#{voluntarioController.voluntarioModel.causas}"
+							layout="grid" columns="2">
+							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
+							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+							<f:selectItem itemLabel="Idosos" itemValue="5" />
+							<f:selectItem itemLabel="Educação" itemValue="6" />
+							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+								itemValue="8" />
+							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+							<f:selectItem itemLabel="Outras" itemValue="13" />
+						</p:selectManyCheckbox>
+						<p:separator />
+						<br />
+
+						<p:outputLabel value="Habilidades" for="habilidades" />
+						<p:selectManyCheckbox id="habilidades"
+							value="#{voluntarioController.voluntarioModel.habilidades}"
+							layout="grid" columns="2">
+							<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
+							<f:selectItem itemLabel="Comunicação" itemValue="1" />
+							<f:selectItem itemLabel="Dança/Musica" itemValue="2" />
+							<f:selectItem itemLabel="Direito" itemValue="3" />
+							<f:selectItem itemLabel="Educação" itemValue="4" />
+							<f:selectItem itemLabel="Esportes" itemValue="5" />
+							<f:selectItem itemLabel="Gastronomia" itemValue="6" />
+							<f:selectItem itemLabel="Gestão" itemValue="7" />
+							<f:selectItem itemLabel="Idiomas" itemValue="8" />
+							<f:selectItem itemLabel="Informatica/Eletronica" itemValue="9" />
+							<f:selectItem itemLabel="Saude/Psicologia" itemValue="10" />
+							<f:selectItem itemLabel="Outras" itemValue="11" />
+						</p:selectManyCheckbox>
+
+						<p:separator />
+						<br />
+
+						<p:outputLabel value="Disponibilidade:" />
+						<br />
+						<p:selectManyCheckbox id="dias" layout="grid" columns="1"
+							value="#{voluntarioController.voluntarioModel.disponibilidadeDias}">
+							<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
+							<f:selectItem itemLabel="Terça-Feira" itemValue="2" />
+							<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
+							<f:selectItem itemLabel="Quinta-Feira" itemValue="4" />
+							<f:selectItem itemLabel="Sexta-Feira" itemValue="5" />
+							<f:selectItem itemLabel="Sabado" itemValue="6" />
+							<f:selectItem itemLabel="Domingo" itemValue="0" />
+						</p:selectManyCheckbox>
+
+						<p:selectManyCheckbox id="periodos" layout="grid" columns="1"
+							value="#{voluntarioController.voluntarioModel.disponibilidadePeriodos}">
+							<f:selectItem itemLabel="Manha" itemValue="0" />
+							<f:selectItem itemLabel="Tarde" itemValue="1" />
+							<f:selectItem itemLabel="Noite" itemValue="2" />
+						</p:selectManyCheckbox>
+
+						<p:commandButton value="Salvar" id="commandButton-salvar"
+							icon="ui-icon-gear"
+							action="#{voluntarioController.salvarNovoVoluntario}"
+							update="panelGrid-campos-form" ajax="false" />
+
+					</h:panelGrid>
+
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="warn" />
+					<p:messages autoUpdate="true" closable="true" severity="error" />
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="info" />
+
+				</h:form>
+
+			</p:tab>
+
+		</p:tabView>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
+
+

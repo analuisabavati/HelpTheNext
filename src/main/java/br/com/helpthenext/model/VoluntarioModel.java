@@ -7,7 +7,7 @@ import br.com.helpthenext.repository.entity.UsuarioEntity;
 
 public class VoluntarioModel {
 
-	private Integer id;
+	private Long id;
 	private String nome;
 	private String sobrenome;
 	private String sexo;
@@ -47,11 +47,11 @@ public class VoluntarioModel {
 		this.causas = causas;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

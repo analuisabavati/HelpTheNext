@@ -14,21 +14,21 @@
 	<ui:define name="content">
 		<h:form id="form">
 
-			<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
+			<p:dataGrid value="#{consultaDoacoesView.doacoes}" var="doacao"
 				columns="3" layout="grid" rows="5" paginator="true"
 				style="margin-top:20px; margin-right:20px; margin-left:20px">
 
-				<f:facet name="header"> Eventos </f:facet>
+				<f:facet name="header"> doacoes </f:facet>
 
-				<p:panel header="#{evento.titulo}" style="text-align:center">
+				<p:panel header="#{doacao.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
 
-						<p:commandLink update=":form:eventoDetail" actionListener="#{consultaEventosView.ativarBotoes}"
-							oncomplete="PF('eventoDialog').show()">
-							<f:setPropertyActionListener value="#{evento}"
-								target="#{consultaEventosView.selectedEvento}" />
-							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
-								<f:param name="eventoId" value="#{evento.id}" />
+						<p:commandLink update=":form:doacaoDetail" actionListener="#{consultaDoacoesView.ativarBotoes}"
+							oncomplete="PF('doacaoDialog').show()">
+							<f:setPropertyActionListener value="#{doacao}"
+								target="#{consultaDoacoesView.selectedDoacao}" />
+							<p:graphicImage value="#{doacaoImagem.imagem}" style="width:100%">
+								<f:param name="doacaoId" value="#{doacao.id}" />
 							</p:graphicImage>
 						</p:commandLink>
 
@@ -37,26 +37,22 @@
 
 			</p:dataGrid>
 
-			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
+			<p:dialog header="Informações" widgetVar="doacaoDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
-				<p:outputPanel id="eventoDetail" style="text-align:center;">
+				<p:outputPanel id="doacaoDetail" style="text-align:center;">
 					<p:panelGrid columns="2"
-						rendered="#{not empty consultaEventosView.selectedEvento}"
+						rendered="#{not empty consultaDoacoesView.selectedDoacao}"
 						columnClasses="label,value">
 
 						<h:outputText value="Titulo:" />
-						<h:outputText value="#{consultaEventosView.selectedEvento.titulo}"
+						<h:outputText value="#{consultaDoacoesView.selectedDoacao.titulo}"
 							style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
 						<h:outputText
-							value="#{consultaEventosView.selectedEvento.descricao}"
-							style="font-weight: bold" />
-						<h:outputText value="Nome do Responsavel:" />
-						<h:outputText
-							value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
+							value="#{consultaDoacoesView.selectedDoacao.descricao}"
 							style="font-weight: bold" />
 
-						<p:button value="Editar" disabled="#{!(consultaEventosView.botaoEditar)}">
+						<p:button value="Tenho Interesse!" icon="ui-icon-like" disabled="#{!(consultaDoacoesView.botaoEditar)}">
 						</p:button>
 
 					</p:panelGrid>

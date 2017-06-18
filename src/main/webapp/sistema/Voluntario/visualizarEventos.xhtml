@@ -10,7 +10,7 @@
 <h:head>
 </h:head>
 
-<ui:composition template="/template/ONG/layoutBase.xhtml">
+<ui:composition template="/template/Voluntario/layoutBase.xhtml">
 	<ui:define name="content">
 		<h:form id="form">
 
@@ -55,6 +55,9 @@
 						<h:outputText
 							value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
 							style="font-weight: bold" />
+
+						<p:button value="Curtir" icon="ui-icon-like" disabled="#{!(consultaEventosView.botaoCurtir)}">
+						</p:button>
 
 						<p:button value="Editar" disabled="#{!(consultaEventosView.botaoEditar)}">
 						</p:button>

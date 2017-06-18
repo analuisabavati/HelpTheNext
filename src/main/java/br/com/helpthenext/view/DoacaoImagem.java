@@ -29,7 +29,7 @@ public class DoacaoImagem {
             return new DefaultStreamedContent();
         }
         else {
-            String doaocaoId = context.getExternalContext().getRequestParameterMap().get("doaocaoId");
+            String doaocaoId = context.getExternalContext().getRequestParameterMap().get("doacaoId");
             if (doaocaoId != null) {
             	DoacaoEntity doaocao = DoacaoRepository.getDoacao(new Long(doaocaoId));
             	if (doaocao != null && doaocao.getFoto() != null ) {

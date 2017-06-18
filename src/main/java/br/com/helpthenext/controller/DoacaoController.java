@@ -22,14 +22,6 @@ public class DoacaoController {
 	
 	private UploadedFile uploadedFile;
 
-	public UploadedFile getUploadedFile() {
-		return uploadedFile;
-	}
-
-	public void setUploadedFile(UploadedFile uploadedFile) {
-		this.uploadedFile = uploadedFile;
-	}
-		
 	public void salvarNovaDoacao() {
 		if (uploadedFile != null) {
 			doacaoModel.setFoto(uploadedFile.getContents());
@@ -39,16 +31,6 @@ public class DoacaoController {
 		Uteis.MensagemInfo("Doação cadastrada com sucesso!");
 	}
  
-	private String[] selectedConsoles;
-  
-    public String[] getSelectedConsoles() {
-        return selectedConsoles;
-    }
- 
-    public void setSelectedConsoles(String[] selectedConsoles) {
-        this.selectedConsoles = selectedConsoles;
-    }
-
 	public DoacaoModel getDoacaoModel() {
 		return doacaoModel;
 	}
@@ -57,4 +39,12 @@ public class DoacaoController {
 		this.doacaoModel = eventoModel;
 	}
     
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+		
 }

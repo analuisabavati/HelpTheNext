@@ -61,7 +61,6 @@ public class DoacaoEntity  implements Serializable {
 	@Column(name = "dt_cadastro")
 	private LocalDateTime dataCadastro;
 	
-
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
 	}

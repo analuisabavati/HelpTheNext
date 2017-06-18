@@ -31,7 +31,7 @@ public class ConsultaVagasView implements Serializable {
  
 	private VagaModel selectedVaga;
 	
-	private boolean botaoEditar = false;
+	private boolean botaoEditar;
 	
 	@PostConstruct // executado na inicialização da classe
 	public void init(){
