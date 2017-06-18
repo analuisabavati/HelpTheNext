@@ -30,7 +30,7 @@
 							requiredMessage="O campo usuario é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Senha" for="inputText-senha" />
-						<p:inputText id="inputText-senha" style="width:90%" maxlength="70"
+						<p:password id="inputText-senha" style="width:90%" maxlength="70"
 							value="#{voluntarioController.voluntarioModel.usuarioEntity.senha}"
 							required="true"
 							requiredMessage="O campo senha é de preenchimento obrigatório" />
@@ -62,13 +62,15 @@
 						</p:selectOneRadio>
 
 						<p:outputLabel value="RG" for="inputText-rg" />
-						<p:inputText id="inputText-rg" style="width:100%" maxlength="80"
+						<p:inputMask id="inputText-rg" style="width:100%" maxlength="80"
+						 mask="99.999.999-9"
 							value="#{voluntarioController.voluntarioModel.rg}" />
 
 						<p:outputLabel value="CPF" for="inputText-cpf" />
-						<p:inputText id="inputText-cpf" style="width:100%" maxlength="80"
+						<p:inputMask id="inputText-cpf" style="width:100%" maxlength="80"
 							value="#{voluntarioController.voluntarioModel.cpf}"
 							required="true"
+							 mask="999.999.999-99"
 							requiredMessage="O campo CPF é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Data de Nascimento"
@@ -87,10 +89,11 @@
 							requiredMessage="O campo email é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Telefone" for="inputText-telefone" />
-						<p:inputText id="inputText-telefone" style="width:100%"
+						<p:inputMask id="inputText-telefone" style="width:100%"
 							maxlength="80"
 							value="#{voluntarioController.voluntarioModel.telefone}"
 							required="true"
+							 mask="(99) 99999-9999"
 							requiredMessage="O campo Telefone é de preenchimento obrigatório" />
 
 						<p:separator />
@@ -115,9 +118,10 @@
 							value="#{voluntarioController.voluntarioModel.complemento}" />
 
 						<p:outputLabel value="CEP" for="inputText-cep" />
-						<p:inputText id="inputText-cep" style="width:100%" maxlength="200"
+						<p:inputMask id="inputText-cep" style="width:100%" maxlength="200"
 							value="#{voluntarioController.voluntarioModel.cep}"
 							required="true"
+							mask="99999-999"
 							requiredMessage="O campo CEP é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Cidade" for="inputText-cidade" />
@@ -228,7 +232,7 @@
 						severity="info" />
 
 				</h:form>
-
+				
 			</p:tab>
 
 		</p:tabView>
@@ -238,3 +242,5 @@
 </ui:composition>
 
 </html>
+
+
