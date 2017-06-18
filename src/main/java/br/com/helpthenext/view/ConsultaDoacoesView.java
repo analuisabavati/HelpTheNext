@@ -12,36 +12,60 @@ import javax.inject.Named;
 import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.DoacaoRepository;
+import br.com.helpthenext.repository.VoluntarioRepository;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.Uteis;
 
 @ViewScoped
-@Named(value="consultaDoacoesView")
+@Named(value = "consultaDoacoesView")
 public class ConsultaDoacoesView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Inject transient
-	DoacaoModel doacaoModel;
-	
-	@Inject transient
-	DoacaoRepository doacaoRepository;
-	
+
+	@Inject
+	transient DoacaoModel doacaoModel;
+
+	@Inject
+	transient DoacaoRepository doacaoRepository;
+
 	@Inject
 	UsuarioController usuarioController;
-	
-	@Produces 
+
+	@Inject
+	VoluntarioRepository voluntarioRepository;
+
+	@Produces
 	private List<DoacaoModel> doacoes;
-	
+
 	private DoacaoModel selectedDoacao;
-	
+
 	private boolean botaoEditar;
-	
-	@PostConstruct 
-	public void init(){
+
+	@PostConstruct
+	public void init() {
 		this.doacoes = doacaoRepository.getDoacaos();
 	}
-	
+
 	public void ativarBotoes() {
-	
+		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		if (vol != null && selectedDoacao != null && selectedDoacao.getVoluntarioEntity() != null
+				&& selectedDoacao.getVoluntarioEntity().getId() != null) {
+			if (selectedDoacao.getVoluntarioEntity().getId().equals(vol.getId())) {
+				botaoEditar = true;
+			} else {
+				botaoEditar = false;
+			}
+		}
+	}
+
+	public void editarDoacao() {
+		doacaoRepository.ataulizarDoacao(selectedDoacao);
+		Uteis.MensagemInfo("Doacao atualizada com sucesso!");
+	}
+
+	public void removerDoacao() {
+		doacaoRepository.removerDoacao(selectedDoacao);
+		Uteis.MensagemInfo("Doacao removida com sucesso!");
 	}
 
 	public DoacaoModel getDoacaoModel() {

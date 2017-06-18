@@ -14,47 +14,79 @@ import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.repository.EventoRepository;
+import br.com.helpthenext.repository.ONGRepository;
+import br.com.helpthenext.repository.VoluntarioRepository;
+import br.com.helpthenext.repository.entity.ONGEntity;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.Uteis;
 
 @ViewScoped
-@Named(value="consultaEventosView")
+@Named(value = "consultaEventosView")
 public class ConsultaEventosView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Inject transient
-	EventoModel eventoModel;
-	
-	@Inject transient
-	EventoRepository eventoRepository;
-	
+
+	@Inject
+	transient EventoModel eventoModel;
+
+	@Inject
+	transient EventoRepository eventoRepository;
+
 	@Inject
 	UsuarioController usuarioController;
-	
-	@Produces 
+
+	@Inject
+	ONGRepository ongRepository;
+
+	@Inject
+	VoluntarioRepository voluntarioRepository;
+
+	@Produces
 	private List<EventoModel> eventos;
-	
+
 	private EventoModel selectedEvento;
-	
+
 	private boolean botaoCurtir;
 
 	private boolean botaoEditar;
-	
+
 	@PostConstruct // executado na inicialização da classe
-	public void init(){
+	public void init() {
 		this.eventos = eventoRepository.getEventos();
 	}
-	
+
 	public void ativarBotoes() {
-		
-		UsuarioModel usuario = usuarioController.GetUsuarioSession();
-		
-		if (usuario != null && usuario.getTipoUsuario().equals(TipoUsuario.VOLUNTARIO)) {
-			botaoCurtir = true;
-		} else {
-			botaoCurtir = false;
+		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
+		if (ong != null && selectedEvento != null && selectedEvento.getOngEntity() != null
+				&& selectedEvento.getOngEntity().getId() != null) {
+			if (selectedEvento.getOngEntity().getId().equals(ong.getId())) {
+				botaoEditar = true;
+			} else {
+				botaoEditar = false;
+			}
+		}
+
+		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		if (vol != null && selectedEvento != null && selectedEvento.getOngEntity() != null
+				&& selectedEvento.getOngEntity().getId() != null) {
+			if (selectedEvento.getVoluntarioEntity().getId().equals(vol.getId())) {
+				botaoEditar = true;
+			} else {
+				botaoEditar = false;
+			}
 		}
 	}
-	
+
+	public void editarVaga() {
+		eventoRepository.atualizarEvento(selectedEvento);
+		Uteis.MensagemInfo("Vaga atualizada com sucesso!");
+	}
+
+	public void removerVaga() {
+		eventoRepository.removeEvento(selectedEvento);
+		Uteis.MensagemInfo("Vaga removida com sucesso!");
+	}
+
 	public boolean isBotaoCurtir() {
 		return botaoCurtir;
 	}

@@ -30,7 +30,7 @@ public class EventoController {
 		this.eventoModel = null;
 		Uteis.MensagemInfo("Evento cadastrado com sucesso!");
 	}
-
+	
 	public UploadedFile getUploadedFile() {
 		return uploadedFile;
 	}

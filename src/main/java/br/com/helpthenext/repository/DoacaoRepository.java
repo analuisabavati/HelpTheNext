@@ -13,7 +13,6 @@ import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.model.DoacaoModel;
-import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.entity.DoacaoEntity;
 import br.com.helpthenext.uteis.Uteis;
 
@@ -119,13 +118,13 @@ public class DoacaoRepository {
 		entityManager.merge(doacaoEntity);
 	}
 	
-	public void removeDoacao(EventoModel doacao) {
+	public void removerDoacao(DoacaoModel doacao) {
 		entityManager = Uteis.JpaEntityManager();
 		doacaoEntity = getDoacao(doacao.getId());
 		entityManager.remove(doacaoEntity);
 	}
 
-	public void removeDoacao(DoacaoEntity doacao) {
+	public void removerDoacao(DoacaoEntity doacao) {
 		entityManager = Uteis.JpaEntityManager();
 		entityManager.remove(doacao);
 	}
