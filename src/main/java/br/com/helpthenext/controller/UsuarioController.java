@@ -51,8 +51,8 @@ public class UsuarioController implements Serializable {
 		else{	
 			usuarioEntity = usuarioRepository.ValidaUsuario(usuarioModel);
 			if(usuarioEntity != null){
-				usuarioModel.setSenha(null);
-				usuarioModel.setCodigo(usuarioEntity.getId());
+
+				usuarioModel.setId(usuarioEntity.getId());
 				usuarioModel.setTipoUsuario(usuarioEntity.getTipoUsuario());
  
 				FacesContext facesContext = FacesContext.getCurrentInstance();

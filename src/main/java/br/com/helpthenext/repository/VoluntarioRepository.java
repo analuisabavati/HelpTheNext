@@ -2,7 +2,6 @@ package br.com.helpthenext.repository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,10 +13,8 @@ import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.enums.Periodos;
-import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
-import br.com.helpthenext.repository.entity.VagaEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
@@ -25,7 +22,10 @@ public class VoluntarioRepository {
 
 	@Inject
 	VoluntarioEntity voluntarioEntity;
-	
+
+	@Inject
+	UsuarioEntity usuarioEntity;
+
 	@Inject
 	UsuarioController usuarioController;
 
@@ -145,5 +145,20 @@ public class VoluntarioRepository {
 
 		entityManager.merge(voluntarioEntity);
 	}
-	
+
+	public VoluntarioEntity getVoluntarioByUsuarioSessao() {
+
+		UsuarioEntity usuario = usuarioEntity.fromUsuarioModel(usuarioController.GetUsuarioSession());
+
+		entityManager = Uteis.JpaEntityManager();
+		Query query = entityManager.createNamedQuery("VoluntarioEntity.findByUsuario");
+		query.setParameter("usuario", usuario);
+
+		try {
+			return (VoluntarioEntity) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }

@@ -75,7 +75,7 @@ public class VoluntarioEntity {
 	private String complemento;
 
 	@Column(name = "cep")
-	private Long cep;
+	private String cep;
 
 	@Column(name = "cidade")
 	private String cidade;
@@ -227,11 +227,11 @@ public class VoluntarioEntity {
 		this.complemento = complemento;
 	}
 
-	public Long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 

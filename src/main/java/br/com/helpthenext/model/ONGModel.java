@@ -19,7 +19,7 @@ public class ONGModel {
 	private String  rua;
 	private Long  numero;
 	private String  complemento;
-	private Long  cep;
+	private String  cep;
 	private String  cidade;
 	private String  estado;
 	private String  pais;
@@ -110,10 +110,10 @@ public class ONGModel {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	public Long getCep() {
+	public String getCep() {
 		return cep;
 	}
-	public void setCep(Long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 	public String getCidade() {

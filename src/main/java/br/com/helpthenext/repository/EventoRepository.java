@@ -19,6 +19,12 @@ public class EventoRepository {
 	@Inject
 	EventoEntity eventoEntity;
 
+	@Inject
+	ONGRepository ongRepository;
+
+	@Inject
+	VoluntarioRepository voluntarioRepository;
+
 	EntityManager entityManager;
 
 	public EventoEntity getEvento(Long id) {
@@ -47,8 +53,8 @@ public class EventoRepository {
 		}
 		eventoEntity.setCausas(causas);
 
-		eventoEntity.setOngEntity(eventoModel.getOngEntity());
-		eventoEntity.setVoluntarioEntity(eventoModel.getVoluntarioEntity());
+		eventoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
+		eventoEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
 
 		entityManager.persist(eventoEntity);
 	}
@@ -75,15 +81,10 @@ public class EventoRepository {
 			eventoModel.setLocal(eventoEntity.getLocal());
 			eventoModel.setEmail(eventoEntity.getEmail());
 			eventoModel.setBanner(eventoEntity.getBanner());
+			eventoModel.setDataCadastro(eventoEntity.getDataCadastro());
 
-			eventoModel.setBanner(eventoEntity.getBanner());
+			eventoModel.setCausas(eventoModel.toStringArray(eventoEntity.getCausas()));
 
-			/*
-			 * String[] stockArr = new String[vagaEntity.getCausas().size()];
-			 * stockArr = vagaEntity.getCausas().toArray(stockArr);
-			 * 
-			 * eventoModel.setCausas(stockArr);
-			 */
 			eventoModel.setOngEntity(eventoEntity.getOngEntity());
 			eventoModel.setVoluntarioEntity(eventoEntity.getVoluntarioEntity());
 

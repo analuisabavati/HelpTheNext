@@ -22,9 +22,11 @@ public class VagaRepository {
 	@Inject
 	VagaEntity vagaEntity;
 
+	@Inject
+	ONGRepository ongRepository;
+
 	EntityManager entityManager;
-	
-	
+
 	public VagaEntity getVaga(Long id) {
 		entityManager = Uteis.JpaEntityManager();
 		return entityManager.find(VagaEntity.class, id);
@@ -32,7 +34,7 @@ public class VagaRepository {
 
 	// Cadastra nova vaga
 	public void salvarNovoRegistro(VagaModel vagaModel) {
-		
+
 		entityManager = Uteis.JpaEntityManager();
 
 		vagaEntity = new VagaEntity();
@@ -44,35 +46,36 @@ public class VagaRepository {
 		vagaEntity.setDataCadastro(LocalDateTime.now());
 
 		List<Causas> causas = new ArrayList<>();
-		for(String p4 : vagaModel.getCausas()) {
+		for (String p4 : vagaModel.getCausas()) {
 			causas.add(Causas.values()[new Integer(p4)]);
 		}
 		vagaEntity.setCausas(causas);
-		
+
 		List<Habilidades> hab = new ArrayList<>();
-		for(String p3 : vagaModel.getHabilidades()) {
+		for (String p3 : vagaModel.getHabilidades()) {
 			hab.add(Habilidades.values()[new Integer(p3)]);
 		}
 		vagaEntity.setHabilidades(hab);
-		
+
 		List<DiasSemana> dias = new ArrayList<>();
-		for(String p1 : vagaModel.getDias()){
+		for (String p1 : vagaModel.getDias()) {
 			dias.add(DiasSemana.values()[new Integer(p1)]);
 		}
 		vagaEntity.setDias(dias);
-		
+
 		List<Periodos> periodos = new ArrayList<>();
-		for(String p : vagaModel.getPeriodos()){
+		for (String p : vagaModel.getPeriodos()) {
 			periodos.add(Periodos.values()[new Integer(p)]);
 		}
+
 		vagaEntity.setPeriodos(periodos);
-		
-		vagaEntity.setOngEntity(vagaModel.getOngEntity());
+
+		vagaEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
 
 		entityManager.persist(vagaEntity);
 	}
 
-	//busca todas vagas no bd
+	// busca todas vagas no bd
 	public List<VagaModel> getVagas() {
 
 		entityManager = Uteis.JpaEntityManager();
@@ -86,12 +89,19 @@ public class VagaRepository {
 
 		for (VagaEntity vagaEntity : vagasEntity) {
 			vagaModel = new VagaModel();
-		
+
 			vagaModel.setId(vagaEntity.getId());
 			vagaModel.setTitulo(vagaEntity.getTitulo());
 			vagaModel.setDescricao(vagaEntity.getDescricao());
 			vagaModel.setNomeResponsavel(vagaEntity.getNomeResponsavel());
 			vagaModel.setEmail(vagaEntity.getEmail());
+			vagaModel.setBanner(vagaEntity.getBanner());
+			vagaModel.setDataCadastro(vagaEntity.getDataCadastro());
+
+			vagaModel.setCausas(vagaModel.toStringArrayCausas(vagaEntity.getCausas()));
+			vagaModel.setHabilidades(vagaModel.toStringArrayHabilidades(vagaEntity.getHabilidades()));
+			vagaModel.setPeriodos(vagaModel.toStringArrayPeriodos(vagaEntity.getPeriodos()));
+			vagaModel.setDias(vagaModel.toStringArrayDias(vagaEntity.getDias()));
 
 			vagasModel.add(vagaModel);
 		}

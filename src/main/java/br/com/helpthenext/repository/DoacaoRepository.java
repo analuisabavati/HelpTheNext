@@ -23,6 +23,9 @@ public class DoacaoRepository {
 	
 	@Inject
 	UsuarioController usuarioControoler;
+	
+	@Inject
+	VoluntarioRepository voluntarioRepository;
 
 	EntityManager entityManager;
 	
@@ -54,7 +57,7 @@ public class DoacaoRepository {
 		}
 		doacaoEntity.setPeriodos(periodos);
 		
-		doacaoEntity.setVoluntarioEntity(doacaoModel.getVoluntarioEntity());
+		doacaoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
 	
 		entityManager.persist(doacaoEntity);
 	}
@@ -70,17 +73,18 @@ public class DoacaoRepository {
 		List<DoacaoModel> doacoesModel = new ArrayList<DoacaoModel>();
 		DoacaoModel doacaoModel = null;
 
-		for (DoacaoEntity vagaEntity : eventosEntity) {
+		for (DoacaoEntity doacaoEntity : eventosEntity) {
 			doacaoModel = new DoacaoModel();
 		
-			doacaoModel.setId(vagaEntity.getId());
-			doacaoModel.setTitulo(vagaEntity.getTitulo());
-			doacaoModel.setDescricao(vagaEntity.getDescricao());
-			doacaoModel.setDescricao(vagaEntity.getDescricao());
-			doacaoModel.setVoluntarioEntity(vagaEntity.getVoluntarioEntity());
-	
-			//	doacaoModel.setDias(dias);
-			//	doacaoModel.setPeriodos(periodos);
+			doacaoModel.setId(doacaoEntity.getId());
+			doacaoModel.setTitulo(doacaoEntity.getTitulo());
+			doacaoModel.setDescricao(doacaoEntity.getDescricao());
+			doacaoModel.setDescricao(doacaoEntity.getDescricao());
+			doacaoModel.setVoluntarioEntity(doacaoEntity.getVoluntarioEntity());
+			doacaoModel.setDataCadastro(doacaoEntity.getDataCadastro());
+			
+			doacaoModel.setPeriodos(doacaoModel.toStringArrayPeriodos(doacaoEntity.getPeriodos()));
+			doacaoModel.setDias(doacaoModel.toStringArrayDias(doacaoEntity.getDias()));
 			
 			doacoesModel.add(doacaoModel);
 		}

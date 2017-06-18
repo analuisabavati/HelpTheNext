@@ -22,15 +22,15 @@
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
-						<p:outputLabel value="Usuario" for="inputText-usuario" />
-						<p:inputText id="inputText-usuario" style="width:90%"
+						<p:outputLabel value="Usuario" for="inputText-usuario-cadastro" />
+						<p:inputText id="inputText-usuario-cadastro" style="width:90%"
 							maxlength="70"
 							value="#{voluntarioController.voluntarioModel.usuarioEntity.usuario}"
 							required="true"
 							requiredMessage="O campo usuario é de preenchimento obrigatório" />
 
-						<p:outputLabel value="Senha" for="inputText-senha" />
-						<p:password id="inputText-senha" style="width:90%" maxlength="70"
+						<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
+						<p:password id="inputText-senha-cadastro" style="width:90%" maxlength="70"
 							value="#{voluntarioController.voluntarioModel.usuarioEntity.senha}"
 							required="true"
 							requiredMessage="O campo senha é de preenchimento obrigatório" />

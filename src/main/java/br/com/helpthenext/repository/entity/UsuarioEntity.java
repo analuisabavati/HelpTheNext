@@ -11,6 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import br.com.helpthenext.enums.TipoUsuario;
+import br.com.helpthenext.model.UsuarioModel;
 
 @Table(name="tb_usuario")
 @Entity	
@@ -64,5 +65,18 @@ public class UsuarioEntity implements Serializable {
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
-
+	
+	public UsuarioEntity fromUsuarioModel(UsuarioModel u) {
+		
+		if (u == null) {
+			return null;
+		}
+		
+		UsuarioEntity usuario = new UsuarioEntity();
+		usuario.setId(u.getId());
+		usuario.setSenha(u.getSenha());
+		usuario.setUsuario(u.getUsuario());
+		usuario.setTipoUsuario(u.getTipoUsuario());
+		return usuario;
+	}
 }

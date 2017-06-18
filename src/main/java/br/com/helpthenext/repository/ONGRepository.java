@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
+import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.ONGModel;
 import br.com.helpthenext.repository.entity.ONGEntity;
@@ -17,6 +19,12 @@ public class ONGRepository {
 	
 	@Inject
 	ONGEntity ongEntity;
+	
+	@Inject
+	UsuarioEntity usuarioEntity;
+	
+	@Inject
+	UsuarioController usuarioController;
  
 	EntityManager entityManager;
  
@@ -55,5 +63,22 @@ public class ONGRepository {
 		
 		entityManager.persist(ongEntity);
 	}
+	
+
+	public ONGEntity getONGByUsuarioSessao() {
+
+		UsuarioEntity usuario = usuarioEntity.fromUsuarioModel(usuarioController.GetUsuarioSession());
+
+		entityManager = Uteis.JpaEntityManager();
+		Query query = entityManager.createNamedQuery("ONGEntity.findByUsuario");
+		query.setParameter("usuario", usuario);
+
+		try {
+			return (ONGEntity) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 
 }

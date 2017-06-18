@@ -1,7 +1,7 @@
 package br.com.helpthenext.view;
 
-import java.util.List;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Produces;
@@ -9,8 +9,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.helpthenext.enums.TipoUsuario;
-import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.VagaRepository;
  

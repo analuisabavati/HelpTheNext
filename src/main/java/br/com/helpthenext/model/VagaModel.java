@@ -1,5 +1,13 @@
 package br.com.helpthenext.model;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.helpthenext.enums.Causas;
+import br.com.helpthenext.enums.DiasSemana;
+import br.com.helpthenext.enums.Habilidades;
+import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.repository.entity.ONGEntity;
 
 public class VagaModel {
@@ -15,6 +23,15 @@ public class VagaModel {
 	private ONGEntity ongEntity;
 	private String[] dias;
 	private String[] periodos;
+	private LocalDateTime dataCadastro;
+
+	public LocalDateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
 	public Long getId() {
 		return id;
@@ -103,5 +120,61 @@ public class VagaModel {
 	public String[] getPeriodos() {
 		return periodos;
 	}
-	
+
+	public String[] toStringArrayCausas(List<Causas> causas) {
+
+		if (causas == null || causas.isEmpty()) {
+			return null;
+		}
+
+		List<String> stringCausas = new ArrayList<>();
+		for (Causas causa : causas) {
+			stringCausas.add(causa.toString());
+		}
+
+		return stringCausas.toArray(new String[stringCausas.size()]);
+	}
+
+	public String[] toStringArrayHabilidades(List<Habilidades> list) {
+
+		if (list == null || list.isEmpty()) {
+			return null;
+		}
+
+		List<String> stringCausas = new ArrayList<>();
+		for (Habilidades x : list) {
+			stringCausas.add(x.toString());
+		}
+
+		return stringCausas.toArray(new String[stringCausas.size()]);
+	}
+
+	public String[] toStringArrayPeriodos(List<Periodos> list) {
+
+		if (list == null || list.isEmpty()) {
+			return null;
+		}
+
+		List<String> stringCausas = new ArrayList<>();
+		for (Periodos x : list) {
+			stringCausas.add(x.toString());
+		}
+
+		return stringCausas.toArray(new String[stringCausas.size()]);
+	}
+
+	public String[] toStringArrayDias(List<DiasSemana> list) {
+
+		if (list == null || list.isEmpty()) {
+			return null;
+		}
+
+		List<String> stringCausas = new ArrayList<>();
+		for (DiasSemana x : list) {
+			stringCausas.add(x.toString());
+		}
+
+		return stringCausas.toArray(new String[stringCausas.size()]);
+	}
+
 }

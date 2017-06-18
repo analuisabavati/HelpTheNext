@@ -14,6 +14,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,6 +24,9 @@ import br.com.helpthenext.enums.Causas;
 
 @Entity
 @Table(name = "tb_ong")
+@NamedQueries({
+	@NamedQuery(name = "ONGEntity.findByUsuario", query= "SELECT v FROM ONGEntity v where v.usuarioEntity = :usuario")
+})
 public class ONGEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -53,7 +58,7 @@ public class ONGEntity implements Serializable {
 	private String  complemento;
 	
 	@Column(name = "cep")
-	private Long  cep;
+	private String  cep;
 	
 	@Column(name = "cidade")
 	private String  cidade;
@@ -143,11 +148,11 @@ public class ONGEntity implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public Long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 

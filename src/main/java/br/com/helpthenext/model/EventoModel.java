@@ -1,7 +1,11 @@
 package br.com.helpthenext.model;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 
@@ -18,6 +22,15 @@ public class EventoModel {
 	private String[] causas;
 	private ONGEntity ongEntity;
 	private VoluntarioEntity voluntarioEntity;
+	private LocalDateTime dataCadastro;
+
+	public LocalDateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
 	public ONGEntity getOngEntity() {
 		return ongEntity;
@@ -105,6 +118,20 @@ public class EventoModel {
 
 	public void setDataHora(Date dataHora) {
 		this.dataHora = dataHora;
+	}
+	
+	public String[] toStringArray(List<Causas> causas) {
+		
+		if (causas == null || causas.isEmpty()) {
+			return null;
+		}
+		
+		List<String> stringCausas = new ArrayList<>();
+		for(Causas causa: causas) {
+			stringCausas.add(causa.toString());
+		}
+		
+		return stringCausas.toArray(new String[stringCausas.size()]);
 	}
 
 	
