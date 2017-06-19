@@ -36,6 +36,7 @@ public class VagaController {
 		}
 		vagaRepository.salvarNovoRegistro(this.vagaModel);
 		this.vagaModel = null;
+		this.uploadedFile = null;
 		Uteis.MensagemInfo("Vaga cadastrada com sucesso!");
 	}
 

@@ -90,7 +90,7 @@ public class VoluntarioEntity {
 	@JoinColumn(name = "id_usuario")
 	private UsuarioEntity usuarioEntity;
 
-	@Column(name = "ft_perfil", length=100000)
+	@Column(name = "ft_perfil", length=10000000)
 	private byte[] foto;
 
 	@ElementCollection(targetClass = Causas.class)

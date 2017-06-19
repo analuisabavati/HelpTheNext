@@ -1,5 +1,9 @@
 package br.com.helpthenext.uteis;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -30,4 +34,10 @@ public class Uteis {
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", mensagem));
 	}
  
+	public static Date asDate(LocalDateTime localDateTime) {
+		if (localDateTime != null) {
+			return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+		}
+		return null;
+	}
 }

@@ -1,8 +1,11 @@
 package br.com.helpthenext.repository;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -40,7 +43,7 @@ public class EventoRepository {
 		eventoEntity = new EventoEntity();
 		eventoEntity.setTitulo(eventoModel.getTitulo());
 		eventoEntity.setDescricao(eventoModel.getDescricao());
-		eventoEntity.setNomeResponsavel(eventoModel.getDescricao());
+		eventoEntity.setNomeResponsavel(eventoModel.getNomeResponsavel());
 		eventoEntity.setDataHora(eventoModel.getDataHora());
 		eventoEntity.setLocal(eventoModel.getLocal());
 		eventoEntity.setEmail(eventoModel.getEmail());
@@ -76,7 +79,7 @@ public class EventoRepository {
 			eventoModel.setId(eventoEntity.getId());
 			eventoModel.setTitulo(eventoEntity.getTitulo());
 			eventoModel.setDescricao(eventoEntity.getDescricao());
-			eventoModel.setNomeResponsavel(eventoEntity.getDescricao());
+			eventoModel.setNomeResponsavel(eventoEntity.getNomeResponsavel());
 			eventoModel.setDataHora(eventoEntity.getDataHora());
 			eventoModel.setLocal(eventoEntity.getLocal());
 			eventoModel.setEmail(eventoEntity.getEmail());
@@ -84,6 +87,9 @@ public class EventoRepository {
 			eventoModel.setDataCadastro(eventoEntity.getDataCadastro());
 
 			eventoModel.setCausas(eventoModel.toStringArray(eventoEntity.getCausas()));
+			
+			eventoModel.setCausasString(eventoModel.getCausas() == null ? null : Arrays.toString(eventoModel.getCausas()));
+			eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
 			eventoModel.setOngEntity(eventoEntity.getOngEntity());
 			eventoModel.setVoluntarioEntity(eventoEntity.getVoluntarioEntity());
@@ -92,6 +98,14 @@ public class EventoRepository {
 		}
 
 		return eventosModel;
+	}
+	
+
+	public Date asDate(LocalDateTime localDateTime) {
+		if (localDateTime != null) {
+			return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+		}
+		return null;
 	}
 	
 	public void atualizarEvento(EventoModel eventoModel) {

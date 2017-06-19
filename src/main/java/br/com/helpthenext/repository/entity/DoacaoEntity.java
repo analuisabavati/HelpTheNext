@@ -43,7 +43,7 @@ public class DoacaoEntity  implements Serializable {
 	@Column(name = "descricao")
 	private String descricao;
 
-	@Column(name = "foto")
+	@Column(name = "foto", length=10000000)
 	private byte[] foto;
 	
 	@ElementCollection(targetClass = DiasSemana.class)

@@ -48,7 +48,7 @@ public class VagaEntity implements Serializable {
 	@Column(name = "nome_responsavel")
 	private String nomeResponsavel;
 
-	@Column(name = "banner")
+	@Column(name = "banner", length=10000000)
 	private byte[] banner;
 	
 	@Column(name = "email")

@@ -15,7 +15,7 @@
 		<h:form id="form">
 
 			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
-				layout="grid" rows="5" paginator="true" style="margin-top:20px">
+				layout="grid" rows="6" paginator="true" style="margin-top:20px">
 
 				<f:facet name="header"> Vagas </f:facet>
 
@@ -27,7 +27,7 @@
 							oncomplete="PF('vagaDialog').show()">
 							<f:setPropertyActionListener value="#{vaga}"
 								target="#{consultaVagasView.selectedVaga}" />
-							<p:graphicImage value="#{vagaImagem.imagem}" style="width:100%; hight:10px">
+							<p:graphicImage value="#{vagaImagem.imagem}" style="width:100%;">
 								<f:param name="vagaId" value="#{vaga.id}" />
 							</p:graphicImage>
 
@@ -38,7 +38,11 @@
 							<h:outputText value="#{vaga.titulo}" />
 
 							<h:outputText value="Local:" style="font-weight: bold" />
-							<h:outputText value="#{vaga.titulo}" />
+							<h:outputText value="#{vaga.ongEntity.cidade}" />
+
+							<h:outputText value="Trabalho à distancia"
+								style="font-weight: bold" />
+							<h:outputText value="#{vaga.trabalhoDistancia}" />
 
 						</h:panelGrid>
 					</h:panelGrid>
@@ -66,18 +70,31 @@
 						<h:outputText value="#{consultaVagasView.selectedVaga.email}"
 							style="font-weight: bold" />
 						<h:outputText value="Causas:" />
-						<h:outputText value="#{consultaVagasView.selectedVaga.causas}"
+						<h:outputText
+							value="#{consultaVagasView.selectedVaga.causasString}"
 							style="font-weight: bold" />
 
 						<h:outputText value="Habilidades Necessarias:" />
-						<h:outputText value="#{consultaVagasView.selectedVaga.habilidades}"
+						<h:outputText
+							value="#{consultaVagasView.selectedVaga.habilidadesString}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Horario:" />
-						<h:outputText value="#{consultaVagasView.selectedVaga.d}"
+						<h:outputText value="Dias: " />
+						<h:outputText value="#{consultaVagasView.selectedVaga.diasString}"
 							style="font-weight: bold" />
 
-						<p:button value="Tenho Interesse">
+						<h:outputText value="Periodo: " />
+						<h:outputText
+							value="#{consultaVagasView.selectedVaga.periodoString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Vaga Cadastrada pela ONG " />
+						<h:outputText
+							value="#{consultaVagasView.selectedVaga.ongEntity.nomeONG}"
+							style="font-weight: bold" />
+
+						<p:button value="Tenho Interesse!">
+							
 						</p:button>
 
 					</p:panelGrid>

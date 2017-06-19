@@ -35,7 +35,6 @@ public class VagaImagem {
             	if (vaga != null && vaga.getBanner() != null ) {
             		return new DefaultStreamedContent(new ByteArrayInputStream(vaga.getBanner()));
             	}
-            	
             }
         }
         return null;

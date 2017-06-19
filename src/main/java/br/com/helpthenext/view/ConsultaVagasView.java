@@ -39,6 +39,7 @@ public class ConsultaVagasView implements Serializable {
 
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
+		this.vagas = null;
 		this.vagas = vagaRepository.getVagas();
 	}
 

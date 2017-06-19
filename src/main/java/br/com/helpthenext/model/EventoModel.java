@@ -23,6 +23,17 @@ public class EventoModel {
 	private ONGEntity ongEntity;
 	private VoluntarioEntity voluntarioEntity;
 	private LocalDateTime dataCadastro;
+	private String causasString;
+	private Date dataCadastroDate;
+	
+	public Date getDataCadastroDate() {
+		return dataCadastroDate;
+	}
+
+	public void setDataCadastroDate(Date dataCadastroDate) {
+		this.dataCadastroDate = dataCadastroDate;
+	}
+
 
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
@@ -134,5 +145,14 @@ public class EventoModel {
 		return stringCausas.toArray(new String[stringCausas.size()]);
 	}
 
+	public String getCausasString() {
+		return causasString;
+	}
+
+	public void setCausasString(String causasString) {
+		this.causasString = causasString;
+	}
+
+	
 	
 }

@@ -1,8 +1,11 @@
 package br.com.helpthenext.repository;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -40,7 +43,7 @@ public class VagaRepository {
 		vagaEntity = new VagaEntity();
 		vagaEntity.setTitulo(vagaModel.getTitulo());
 		vagaEntity.setDescricao(vagaModel.getDescricao());
-		vagaEntity.setNomeResponsavel(vagaModel.getDescricao());
+		vagaEntity.setNomeResponsavel(vagaModel.getNomeResponsavel());
 		vagaEntity.setEmail(vagaModel.getEmail());
 		vagaEntity.setBanner(vagaModel.getBanner());
 		vagaEntity.setDataCadastro(LocalDateTime.now());
@@ -104,11 +107,26 @@ public class VagaRepository {
 			vagaModel.setHabilidades(vagaModel.toStringArrayHabilidades(vagaEntity.getHabilidades()));
 			vagaModel.setPeriodos(vagaModel.toStringArrayPeriodos(vagaEntity.getPeriodos()));
 			vagaModel.setDias(vagaModel.toStringArrayDias(vagaEntity.getDias()));
-
+			vagaModel.setOngEntity(vagaEntity.getOngEntity());
+			
+			vagaModel.setCausasString(vagaModel.getCausas() == null ? null : Arrays.toString(vagaModel.getCausas()));
+			vagaModel.setHabilidadesString(vagaModel.getHabilidades()  == null ? null : Arrays.toString(vagaModel.getHabilidades()));
+			vagaModel.setDiasString(vagaModel.getDias() == null ? null : Arrays.toString(vagaModel.getDias()));
+			vagaModel.setPeriodoString(vagaModel.getPeriodos() == null ? null : Arrays.toString(vagaModel.getPeriodos()));
+			vagaModel.setDataCadastroDate(asDate(vagaModel.getDataCadastro()));
+			
 			vagasModel.add(vagaModel);
 		}
 
 		return vagasModel;
+	}
+	
+
+	public Date asDate(LocalDateTime localDateTime) {
+		if (localDateTime != null) {
+			return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+		}
+		return null;
 	}
 
 	public void atualizaVaga(VagaModel vagaModel) {

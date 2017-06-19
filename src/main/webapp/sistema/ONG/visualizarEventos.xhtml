@@ -23,7 +23,8 @@
 				<p:panel header="#{evento.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
 
-						<p:commandLink update=":form:eventoDetail" actionListener="#{consultaEventosView.ativarBotoes}"
+						<p:commandLink update=":form:eventoDetail"
+							actionListener="#{consultaEventosView.ativarBotoes}"
 							oncomplete="PF('eventoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{consultaEventosView.selectedEvento}" />
@@ -56,7 +57,26 @@
 							value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
 							style="font-weight: bold" />
 
-						<p:button value="Editar" disabled="#{!(consultaEventosView.botaoEditar)}">
+						<h:outputText value="Email para contato" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.email}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Data e Hora: " />
+						<h:outputText
+							value="#{consultaEventosView.selectedEvento.dataHora}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Local:" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.local}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Local:" />
+						<h:outputText
+							value="#{consultaEventosView.selectedEvento.causasString}"
+							style="font-weight: bold" />
+
+						<p:button value="Editar"
+							disabled="#{!(consultaEventosView.botaoEditar)}">
 						</p:button>
 
 					</p:panelGrid>

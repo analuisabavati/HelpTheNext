@@ -2,6 +2,7 @@ package br.com.helpthenext.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.helpthenext.enums.Causas;
@@ -25,6 +26,54 @@ public class VagaModel {
 	private String[] periodos;
 	private LocalDateTime dataCadastro;
 	private String trabalhoDistancia;
+
+	private String causasString;
+	private String habilidadesString;
+	private String diasString;
+	private String periodoString;
+	private Date dataCadastroDate;
+	
+	public Date getDataCadastroDate() {
+		return dataCadastroDate;
+	}
+
+	public void setDataCadastroDate(Date dataCadastroDate) {
+		this.dataCadastroDate = dataCadastroDate;
+	}
+
+
+	public String getCausasString() {
+		return causasString;
+	}
+
+	public void setCausasString(String causasString) {
+		this.causasString = causasString;
+	}
+
+	public String getHabilidadesString() {
+		return habilidadesString;
+	}
+
+	public void setHabilidadesString(String habilidadesString) {
+		this.habilidadesString = habilidadesString;
+	}
+
+	public String getDiasString() {
+		return diasString;
+	}
+
+	public void setDiasString(String diasString) {
+		this.diasString = diasString;
+	}
+
+	public String getPeriodoString() {
+		return periodoString;
+	}
+
+	public void setPeriodoString(String periodoString) {
+		this.periodoString = periodoString;
+	}
+
 
 	public String getTrabalhoDistancia() {
 		return trabalhoDistancia;
@@ -186,4 +235,5 @@ public class VagaModel {
 		return stringCausas.toArray(new String[stringCausas.size()]);
 	}
 
+	
 }

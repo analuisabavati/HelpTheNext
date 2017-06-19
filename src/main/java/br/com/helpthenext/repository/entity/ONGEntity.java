@@ -73,7 +73,7 @@ public class ONGEntity implements Serializable {
 	@JoinColumn(name = "id_usuario")
 	private UsuarioEntity usuarioEntity;
 
-	@Column(name = "ft_logo")
+	@Column(name = "ft_logo", length=10000000)
 	private byte[] foto;
 
 	@Column(name = "nome_responsavel")

@@ -117,11 +117,11 @@
 						
 						<p:outputLabel for="selectOneRadio-trabalho" value="Trabalho à distancia:" />
 						<p:selectOneRadio id="selectOneRadio-trabalho"
-							value="#{voluntarioController.voluntarioModel.trabalhoDistancia}"
+							value="#{vagaController.vagaModel.trabalhoDistancia}"
 							required="true"
 							requiredMessage="O campo trabalho à distancia é de preenchimento obrigatório">
-							<f:selectItem itemLabel="Sim" itemValue="S" />
-							<f:selectItem itemLabel="Não" itemValue="N" />
+							<f:selectItem itemLabel="Sim" itemValue="Sim" />
+							<f:selectItem itemLabel="Não" itemValue="Não" />
 						</p:selectOneRadio>
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"
