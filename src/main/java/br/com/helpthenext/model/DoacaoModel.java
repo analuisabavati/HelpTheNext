@@ -18,6 +18,26 @@ public class DoacaoModel {
 	private String[] dias;
 	private String[] periodos;
 	private LocalDateTime dataCadastro;
+	
+	private String diasString;
+	private String periodoString;
+	
+	public String getDiasString() {
+		return diasString;
+	}
+
+	public void setDiasString(String diasString) {
+		this.diasString = diasString;
+	}
+
+	public String getPeriodoString() {
+		return periodoString;
+	}
+
+	public void setPeriodoString(String periodoString) {
+		this.periodoString = periodoString;
+	}
+
 
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;

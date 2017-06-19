@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<ui:composition template="/template/ONG/layoutBase.xhtml">
+	<ui:define name="content">
+		<p:tabView style="width:50% ;margin:auto;">
+			<p:tab title="Editar de Vaga de Voluntariado"
+				enctype="multipart/form-data">
+
+				<h:form id="form-cadastro" enctype="multipart/form-data">
+
+					<h:panelGrid id="panelGrid-campos-form" columns="2"
+						cellpadding="10">
+
+						<p:outputLabel value="Titulo" for="inputText-titulo" />
+						<p:inputText id="inputText-titulo" style="width:100%"
+							maxlength="80" value="#{vagaController.vagaModel.titulo}"
+							required="true"
+							requiredMessage="O campo titulo é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Descrição" for="inputText-descricao" />
+						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
+							style="width:100%" maxlength="80"
+							value="#{vagaController.vagaModel.descricao}" required="true"
+							requiredMessage="O campo descrição é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Responsavel pela Vaga"
+							for="inputText-responsavel" />
+						<p:inputText id="inputText-responsavel" style="width:100%"
+							maxlength="80"
+							value="#{vagaController.vagaModel.nomeResponsavel}" />
+
+						<p:outputLabel value="Email" for="inputText-email" />
+						<p:inputText id="inputText-email" style="width:100%"
+							maxlength="80" value="#{vagaController.vagaModel.email}" />
+
+						<p:outputLabel value="Banner da Vaga" for="foto" />
+						<p:fileUpload id="foto" mode="simple" value="#{vagaController.uploadedFile}" />
+
+						<p:outputLabel value="Causas" />
+						<p:selectManyCheckbox id="causas"
+							value="#{vagaController.vagaModel.causas}" layout="grid"
+							columns="2" required="true"
+							requiredMessage="O campo Causas é de preenchimento obrigatório">
+							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
+							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+							<f:selectItem itemLabel="Idosos" itemValue="5" />
+							<f:selectItem itemLabel="Educação" itemValue="6" />
+							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+								itemValue="8" />
+							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+							<f:selectItem itemLabel="Outras" itemValue="13" />
+						</p:selectManyCheckbox>
+
+
+						<p:outputLabel value="Habilidades  Necessárias" />
+
+						<p:selectManyCheckbox id="habilidades"
+							value="#{vagaController.vagaModel.habilidades}" layout="grid"
+							columns="2" required="true"
+							requiredMessage="O campo Habilidades é de preenchimento obrigatório">
+							<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
+							<f:selectItem itemLabel="Comunicação" itemValue="1" />
+							<f:selectItem itemLabel="Dança/Musica" itemValue="2" />
+							<f:selectItem itemLabel="Direito" itemValue="3" />
+							<f:selectItem itemLabel="Educação" itemValue="4" />
+							<f:selectItem itemLabel="Esportes" itemValue="5" />
+							<f:selectItem itemLabel="Gastronomia" itemValue="6" />
+							<f:selectItem itemLabel="Gestão" itemValue="7" />
+							<f:selectItem itemLabel="Idiomas" itemValue="8" />
+							<f:selectItem itemLabel="Informatica/Eletronica" itemValue="9" />
+							<f:selectItem itemLabel="Saude/Psicologia" itemValue="10" />
+							<f:selectItem itemLabel="Outras" itemValue="11" />
+						</p:selectManyCheckbox>
+
+
+						<p:outputLabel value="Disponibilidade:" />
+
+						<p:selectManyCheckbox id="dia"
+							value="#{vagaController.vagaModel.dias}" layout="grid"
+							columns="1" required="true"
+							requiredMessage="O campo Disponibilidade é de preenchimento obrigatório">
+							<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
+							<f:selectItem itemLabel="Terça-Feira" itemValue="2" />
+							<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
+							<f:selectItem itemLabel="Quinta-Feira" itemValue="4" />
+							<f:selectItem itemLabel="Sexta-Feira" itemValue="5" />
+							<f:selectItem itemLabel="Sabado" itemValue="6" />
+							<f:selectItem itemLabel="Domingo" itemValue="0" />
+						</p:selectManyCheckbox>
+
+
+						<p:outputLabel value="Periodo" />
+						<p:selectManyCheckbox id="periodo"
+							value="#{vagaController.vagaModel.periodos}" layout="grid"
+							columns="3">
+							<f:selectItem itemLabel="Manha" itemValue="0" />
+							<f:selectItem itemLabel="Tarde" itemValue="1" />
+							<f:selectItem itemLabel="Noite" itemValue="2" />
+						</p:selectManyCheckbox>
+						
+						<p:outputLabel for="selectOneRadio-trabalho" value="Trabalho à distancia:" />
+						<p:selectOneRadio id="selectOneRadio-trabalho"
+							value="#{vagaController.vagaModel.trabalhoDistancia}"
+							required="true"
+							requiredMessage="O campo trabalho à distancia é de preenchimento obrigatório">
+							<f:selectItem itemLabel="Sim" itemValue="Sim" />
+							<f:selectItem itemLabel="Não" itemValue="Não" />
+						</p:selectOneRadio>
+
+						<p:commandButton value="Salvar alterações" id="commandButton-salvar"
+							icon="ui-icon-gear" action="#{vagaController.salvarNovaVaga}"
+							update="panelGrid-campos-form" ajax="false" />
+							
+								<p:commandButton value="Excluir vaga" id="commandButton-excluir"
+							icon="ui-icon-gear" action="#{vagaController.salvarNovaVaga}"
+							update="panelGrid-campos-form" ajax="false" />
+
+					</h:panelGrid>
+
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="warn" />
+					<p:messages autoUpdate="true" closable="true" severity="error" />
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="info" />
+
+
+				</h:form>
+
+			</p:tab>
+
+		</p:tabView>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

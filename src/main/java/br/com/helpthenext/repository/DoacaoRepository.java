@@ -2,6 +2,7 @@ package br.com.helpthenext.repository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -79,12 +80,14 @@ public class DoacaoRepository {
 			doacaoModel.setId(doacaoEntity.getId());
 			doacaoModel.setTitulo(doacaoEntity.getTitulo());
 			doacaoModel.setDescricao(doacaoEntity.getDescricao());
-			doacaoModel.setDescricao(doacaoEntity.getDescricao());
 			doacaoModel.setVoluntarioEntity(doacaoEntity.getVoluntarioEntity());
 			doacaoModel.setDataCadastro(doacaoEntity.getDataCadastro());
 			
 			doacaoModel.setPeriodos(doacaoModel.toStringArrayPeriodos(doacaoEntity.getPeriodos()));
 			doacaoModel.setDias(doacaoModel.toStringArrayDias(doacaoEntity.getDias()));
+			
+			doacaoModel.setDiasString(doacaoModel.getDias() == null ? null : Arrays.toString(doacaoModel.getDias()));
+			doacaoModel.setPeriodoString(doacaoModel.getPeriodos() == null ? null : Arrays.toString(doacaoModel.getPeriodos()));
 			
 			doacoesModel.add(doacaoModel);
 		}

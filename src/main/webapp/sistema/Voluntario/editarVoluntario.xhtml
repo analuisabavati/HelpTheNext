@@ -14,24 +14,36 @@
 	<ui:define name="content">
 
 		<p:tabView style="width:50% ;margin:auto;">
-			<p:tab title="Cadastro de Voluntário">
+			<p:tab title="Editar Cadastro de Voluntario">
 
 				<h:form id="form-cadastro" enctype="multipart/form-data">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
+	<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
+						<p:password id="inputText-senha-cadastro" style="width:90%" maxlength="70"
+							value="#{voluntarioController.voluntarioModel.usuarioEntity.senha}"
+							required="true"
+							requiredMessage="O campo senha é de preenchimento obrigatório" />
+						<p:separator />
+						<br />
+
 						<p:outputLabel value="Nome" for="inputText-nome" />
-						<p:inplace id="inputText-nome">
-							<p:inputText value="#{voluntarioController.voluntarioModel.nome}" />
-						</p:inplace>
-						<p:outputLabel />
+						<p:inputText id="inputText-nome" style="width:90%"
+							maxlength="70"
+							value="#{voluntarioController.voluntarioModel.usuarioEntity.usuario}"
+							required="true"
+							requiredMessage="O campo usuario é de preenchimento obrigatório" />
+
 
 						<p:outputLabel value="Sobrenome" for="inputText-sobrenome" />
-						<p:inplace id="inputText-sobrenome">
-							<p:inputText
-								value="#{voluntarioController.voluntarioModel.sobrenome}" />
-						</p:inplace>
+						<p:inputText id="inputText-sobrenome" style="width:90%"
+							maxlength="70"
+							value="#{voluntarioController.voluntarioModel.sobrenome}"
+							required="true"
+							requiredMessage="O campo sobrenome é de preenchimento obrigatório" />
+
 
 						<p:outputLabel for="selectOneRadio-sexo" value="Sexo:" />
 						<p:selectOneRadio id="selectOneRadio-sexo"
@@ -197,7 +209,12 @@
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
 
-						<p:commandButton value="Salvar" id="commandButton-salvar"
+						<p:commandButton value="Salvar alterações" id="commandButton-salvar"
+							icon="ui-icon-gear"
+							action="#{voluntarioController.salvarNovoVoluntario}"
+							update="panelGrid-campos-form" ajax="false" />
+							
+							<p:commandButton value="Excluir cadastro" id="commandButton-excluir"
 							icon="ui-icon-gear"
 							action="#{voluntarioController.salvarNovoVoluntario}"
 							update="panelGrid-campos-form" ajax="false" />

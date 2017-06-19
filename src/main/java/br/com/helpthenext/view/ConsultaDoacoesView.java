@@ -47,6 +47,11 @@ public class ConsultaDoacoesView implements Serializable {
 	}
 
 	public void ativarBotoes() {
+		botaoEditar = true;
+	}
+	
+	/*
+	public void ativarBotoes() {
 		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
 		if (vol != null && selectedDoacao != null && selectedDoacao.getVoluntarioEntity() != null
 				&& selectedDoacao.getVoluntarioEntity().getId() != null) {
@@ -57,6 +62,8 @@ public class ConsultaDoacoesView implements Serializable {
 			}
 		}
 	}
+	
+	*/
 
 	public void editarDoacao() {
 		doacaoRepository.ataulizarDoacao(selectedDoacao);

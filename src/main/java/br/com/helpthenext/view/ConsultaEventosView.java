@@ -52,7 +52,12 @@ public class ConsultaEventosView implements Serializable {
 	public void init() {
 		this.eventos = eventoRepository.getEventos();
 	}
+	
+	public void ativarBotoes() {
+		botaoEditar = true;
+	}
 
+	/*
 	public void ativarBotoes() {
 		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
 		if (ong != null && selectedEvento != null && selectedEvento.getOngEntity() != null
@@ -74,7 +79,7 @@ public class ConsultaEventosView implements Serializable {
 			}
 		}
 	}
-
+*/
 	public void editarVaga() {
 		eventoRepository.atualizarEvento(selectedEvento);
 		Uteis.MensagemInfo("Vaga atualizada com sucesso!");

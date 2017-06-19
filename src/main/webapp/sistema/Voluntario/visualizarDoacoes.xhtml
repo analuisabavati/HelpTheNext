@@ -12,7 +12,7 @@
 
 <ui:composition template="/template/Voluntario/layoutBase.xhtml">
 	<ui:define name="content">
-		<h:form id="form" >
+		<h:form id="form">
 
 			<p:dataGrid value="#{consultaDoacoesView.doacoes}" var="doacao"
 				columns="3" layout="grid" rows="5" paginator="true"
@@ -23,7 +23,8 @@
 				<p:panel header="#{doacao.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
 
-						<p:commandLink update=":form:doacaoDetail" actionListener="#{consultaDoacoesView.ativarBotoes}"
+						<p:commandLink update=":form:doacaoDetail"
+							actionListener="#{consultaDoacoesView.ativarBotoes}"
 							oncomplete="PF('doacaoDialog').show()">
 							<f:setPropertyActionListener value="#{doacao}"
 								target="#{consultaDoacoesView.selectedDoacao}" />
@@ -52,7 +53,29 @@
 							value="#{consultaDoacoesView.selectedDoacao.descricao}"
 							style="font-weight: bold" />
 
-						<p:button value="Editar" icon="ui-icon-like" disabled="#{!(consultaDoacoesView.botaoEditar)}">
+						<h:outputText value="Nome do Voluntario: " />
+						<h:outputText
+							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.nome}"
+							style="font-weight: bold" />
+
+
+						<h:outputText value="Retirada as:  " />
+						<h:outputText
+							value="#{consultaDoacoesView.selectedDoacao.diasString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Periodos:  " />
+						<h:outputText
+							value="#{consultaDoacoesView.selectedDoacao.periodoString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Cidade:  " />
+						<h:outputText
+							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.cidade}"
+							style="font-weight: bold" />
+
+						<p:button value="Editar" outcome="editarDoacao.xhtml"
+							disabled="#{!(consultaDoacoesView.botaoEditar)}">
 						</p:button>
 
 					</p:panelGrid>

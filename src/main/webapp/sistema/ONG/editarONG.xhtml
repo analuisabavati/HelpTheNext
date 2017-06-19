@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<ui:composition template="/template/ONG/layoutBase.xhtml">
+	<ui:define name="content">
+
+		<p:tabView style="width:50% ;margin:auto;">
+			<p:tab title="Editar cadastro de ONG">
+
+				<h:form id="form-cadastro" enctype="multipart/form-data">
+
+					<h:panelGrid id="panelGrid-campos-form" columns="2"
+						cellpadding="10">
+
+						<p:outputLabel value="Usuario" for="inputText-usuario" />
+						<p:inputText id="inputText-usuario" style="width:90%"
+							maxlength="70"
+							value="#{ongController.ongModel.usuarioEntity.usuario}"
+							required="true"
+							requiredMessage="O campo usuario é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Senha" for="inputText-senha" />
+						<p:password id="inputText-senha" style="width:90%" maxlength="70"
+							value="#{ongController.ongModel.usuarioEntity.senha}"
+							required="true"
+							requiredMessage="O campo senha é de preenchimento obrigatório" />
+
+						<p:separator />
+						<br />
+
+						<p:outputLabel value="Nome da ONG" for="inputText-nomeONG" />
+						<p:inputText id="inputText-nomeONG" style="width:90%"
+							maxlength="70" value="#{ongController.ongModel.nomeONG}"
+							required="true"
+							requiredMessage="O campo nome da ONG é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Nome do responsavel"
+							for="inputText-nomeResponsavel" />
+						<p:inputText id="inputText-nomeResponsavel" style="width:90%"
+							maxlength="70" value="#{ongController.ongModel.nomeResponsavel}"
+							required="true"
+							requiredMessage="O campo nome do responsavel é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Descrição da ONG" for="inputText-descricao" />
+						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
+							style="width:100%" maxlength="80"
+							value="#{ongController.ongModel.descricao}" required="true"
+							requiredMessage="O campo descrição é de preenchimento obrigatório" />
+
+						<p:outputLabel value="E-mail" for="inputText-email" />
+						<p:inputText id="inputText-email" style="width:100%"
+							maxlength="80" value="#{ongController.ongModel.email}"
+							required="true"
+							requiredMessage="O email é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Telefone" for="inputText-telefone" />
+						<p:inputMask id="inputText-telefone" style="width:100%"
+							maxlength="80" value="#{ongController.ongModel.telefone}"
+							required="true"
+							 mask="(99) 99999-9999"
+							requiredMessage="O campo telefone é de preenchimento obrigatório" />
+
+						<p:separator />
+						<br />
+
+						<p:outputLabel value="Rua" for="inputText-rua" />
+						<p:inputText id="inputText-rua" style="width:100%" maxlength="200"
+							value="#{ongController.ongModel.rua}" required="true"
+							requiredMessage="O campo rua é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Numero" for="inputText-numero" />
+						<p:inputText id="inputText-numero" style="width:50px"
+							maxlength="200" value="#{ongController.ongModel.numero}"
+							required="true"
+							requiredMessage="O campo numero é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Complemento" for="inputText-complemento" />
+						<p:inputText id="inputText-complemento" style="width:100%"
+							maxlength="200" value="#{ongController.ongModel.complemento}" />
+
+						<p:outputLabel value="CEP" for="inputText-cep" />
+						<p:inputMask id="inputText-cep" style="width:100%" maxlength="200"
+							value="#{ongController.ongModel.cep}" required="true"
+							mask="99999-999"
+							requiredMessage="O campo cep é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Cidade" for="inputText-cidade" />
+						<p:inputText id="inputText-cidade" style="width:100%"
+							maxlength="200" value="#{ongController.ongModel.cidade}"
+							required="true"
+							requiredMessage="O campo cidade é de preenchimento obrigatório" />
+
+
+						<p:outputLabel value="Estado" for="inputText-estado" />
+						<p:inputText id="inputText-estado" style="width:100%"
+							maxlength="200" value="#{ongController.ongModel.estado}"
+							required="true"
+							requiredMessage="O campo estado  é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Pais" for="inputText-pais" />
+						<p:inputText id="inputText-pais" style="width:100%"
+							maxlength="200" value="#{ongController.ongModel.pais}"
+							required="true"
+							requiredMessage="O campo pais é de preenchimento obrigatório" />
+
+						<p:separator />
+						<br />
+
+						<p:outputLabel value="Logo da ONG" />
+						<p:fileUpload id="foto" mode="simple"
+							value="#{ongController.uploadedFile}" />
+						<p:separator />
+						<br />
+
+						<p:outputLabel value="Causas" />
+						<p:selectManyCheckbox id="basic"
+							value="#{ongController.ongModel.causas}" layout="grid"
+							columns="2">
+							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
+							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+							<f:selectItem itemLabel="Idosos" itemValue="5" />
+							<f:selectItem itemLabel="Educação" itemValue="6" />
+							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+								itemValue="8" />
+							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+							<f:selectItem itemLabel="Outras" itemValue="13" />
+						</p:selectManyCheckbox>
+
+
+						<p:commandButton value="Salvar alterações" id="commandButton-salvar"
+							icon="ui-icon-gear" action="#{ongController.salvarNovaONG}"
+							update="panelGrid-campos-form" ajax="false" />
+							
+							<p:commandButton value="Excluir cadastro" id="commandButton-excluir"
+							icon="ui-icon-gear" action="#{ongController.salvarNovaONG}"
+							update="panelGrid-campos-form" ajax="false" />
+
+					</h:panelGrid>
+
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="warn" />
+					<p:messages autoUpdate="true" closable="true" severity="error" />
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="info" />
+
+				</h:form>
+
+			</p:tab>
+
+		</p:tabView>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

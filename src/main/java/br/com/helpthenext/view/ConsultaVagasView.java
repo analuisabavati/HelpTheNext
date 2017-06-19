@@ -42,7 +42,12 @@ public class ConsultaVagasView implements Serializable {
 		this.vagas = null;
 		this.vagas = vagaRepository.getVagas();
 	}
+	
+	public void ativarBotoes() {
+		botaoEditar = true;
+	}
 
+	/*
 	public void ativarBotoes() {
 		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
 		if (ong != null && selectedVaga != null && selectedVaga.getOngEntity() != null
@@ -54,7 +59,7 @@ public class ConsultaVagasView implements Serializable {
 			}
 		}
 	}
-
+*/
 	public void editarVaga() {
 		vagaRepository.atualizaVaga(selectedVaga);
 		Uteis.MensagemInfo("Vaga atualizada com sucesso!");

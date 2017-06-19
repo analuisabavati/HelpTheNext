@@ -13,7 +13,7 @@
 <ui:composition template="/template/Voluntario/layoutBase.xhtml">
 	<ui:define name="content">
 		<p:tabView style="width:50% ;margin:auto;">
-			<p:tab title="Cadastro de Objeto para Doação">
+			<p:tab title="Editar Cadastro de Objeto para Doação">
 
 				<h:form enctype="multipart/form-data">
 
@@ -60,7 +60,12 @@
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
 
-						<p:commandButton value="Salvar" id="commandButton-salvar"
+						<p:commandButton value="Salvar alterações"
+							id="commandButton-salvar" icon="ui-icon-gear"
+							action="#{doacaoController.salvarNovaDoacao}"
+							update="panelGrid-campos-form" ajax="false" />
+
+						<p:commandButton value="Excluir objeto" id="commandButton-excluir"
 							icon="ui-icon-gear" action="#{doacaoController.salvarNovaDoacao}"
 							update="panelGrid-campos-form" ajax="false" />
 
