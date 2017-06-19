@@ -36,8 +36,7 @@
 				</p:panel>
 
 			</p:dataGrid>
-
-			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
+<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="eventoDetail" style="text-align:center;">
 					<p:panelGrid columns="2"
@@ -55,6 +54,25 @@
 						<h:outputText
 							value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
 							style="font-weight: bold" />
+
+						<h:outputText value="Email para contato" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.email}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Data e Hora: " />
+						<h:outputText
+							value="#{consultaEventosView.selectedEvento.dataHora}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Local:" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.local}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Causas" />
+						<h:outputText
+							value="#{consultaEventosView.selectedEvento.causasString}"
+							style="font-weight: bold" />
+
 
 						<p:button value="Curtir" icon="ui-icon-like" disabled="#{!(consultaEventosView.botaoCurtir)}">
 						</p:button>
