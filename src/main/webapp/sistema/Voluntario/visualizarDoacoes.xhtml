@@ -15,7 +15,7 @@
 		<h:form id="form">
 
 			<p:dataGrid value="#{consultaDoacoesView.doacoes}" var="doacao"
-				columns="3" layout="grid" rows="5" paginator="true"
+				columns="3" layout="grid" rows="9" paginator="true"
 				style="margin-top:20px; margin-right:20px; margin-left:20px">
 
 				<f:facet name="header"> doacoes </f:facet>
@@ -59,7 +59,7 @@
 							style="font-weight: bold" />
 
 
-						<h:outputText value="Retirada as:  " />
+						<h:outputText value="Retirada:  " />
 						<h:outputText
 							value="#{consultaDoacoesView.selectedDoacao.diasString}"
 							style="font-weight: bold" />
