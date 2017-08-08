@@ -75,14 +75,12 @@
 
 						<p:outputLabel value="Rua" for="inputText-rua" />
 						<p:inputText id="inputText-rua" style="width:100%" maxlength="200"
-							value="#{ongController.ongModel.rua}" required="true"
-							requiredMessage="O campo rua é de preenchimento obrigatório" />
+							value="#{ongController.ongModel.rua}"  />
 
 						<p:outputLabel value="Numero" for="inputText-numero" />
 						<p:inputText id="inputText-numero" style="width:50px"
 							maxlength="200" value="#{ongController.ongModel.numero}"
-							required="true"
-							requiredMessage="O campo numero é de preenchimento obrigatório" />
+							 />
 
 						<p:outputLabel value="Complemento" for="inputText-complemento" />
 						<p:inputText id="inputText-complemento" style="width:100%"
@@ -90,7 +88,7 @@
 
 						<p:outputLabel value="CEP" for="inputText-cep" />
 						<p:inputMask id="inputText-cep" style="width:100%" maxlength="200"
-							value="#{ongController.ongModel.cep}" required="true"
+							value="#{ongController.ongModel.cep}" required="false"
 							mask="99999-999"
 							requiredMessage="O campo cep é de preenchimento obrigatório" />
 
@@ -105,13 +103,7 @@
 						<p:inputText id="inputText-estado" style="width:100%"
 							maxlength="200" value="#{ongController.ongModel.estado}"
 							required="true"
-							requiredMessage="O campo estado  é de preenchimento obrigatório" />
-
-						<p:outputLabel value="Pais" for="inputText-pais" />
-						<p:inputText id="inputText-pais" style="width:100%"
-							maxlength="200" value="#{ongController.ongModel.pais}"
-							required="true"
-							requiredMessage="O campo pais é de preenchimento obrigatório" />
+							requiredMessage="O campo estado  é de preenchimento obrigatório" />	
 
 						<p:separator />
 						<br />
