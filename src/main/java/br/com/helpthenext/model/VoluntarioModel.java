@@ -1,8 +1,14 @@
 package br.com.helpthenext.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import br.com.helpthenext.enums.Causas;
+import br.com.helpthenext.enums.DiasSemana;
+import br.com.helpthenext.enums.Habilidades;
+import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
 
 public class VoluntarioModel {
@@ -31,7 +37,7 @@ public class VoluntarioModel {
 	private String[] disponibilidadeDias;
 	private String[] disponibilidadePeriodos;
 	private String trabalhoDistancia;
-	
+
 	public String getTrabalhoDistancia() {
 		return trabalhoDistancia;
 	}
@@ -223,4 +229,62 @@ public class VoluntarioModel {
 	public void setDisponibilidadePeriodos(String[] disponibilidadePeriodos) {
 		this.disponibilidadePeriodos = disponibilidadePeriodos;
 	}
+
+	public String[] toStringArray(List<Causas> causas) {
+
+		if (causas == null || causas.isEmpty()) {
+			return null;
+		}
+
+		List<String> stringCausas = new ArrayList<>();
+		for (Causas causa : causas) {
+			stringCausas.add(causa.toString());
+		}
+
+		return stringCausas.toArray(new String[stringCausas.size()]);
+	}
+
+	public String[] toStringArray(List<Habilidades> habilidades) {
+
+		if (habilidades == null || habilidades.isEmpty()) {
+			return null;
+		}
+
+		List<String> stringVetor = new ArrayList<>();
+		for (Habilidades habilidade : habilidades) {
+			stringVetor.add(habilidade.toString());
+		}
+
+		return stringVetor.toArray(new String[stringVetor.size()]);
+	}
+
+	public String[] toStringArray(List<DiasSemana> disponibilidadeDias) {
+
+		if (disponibilidadeDias == null || disponibilidadeDias.isEmpty()) {
+			return null;
+		}
+
+		List<String> stringVetor = new ArrayList<>();
+		for (DiasSemana dias : disponibilidadeDias) {
+			stringVetor.add(dias.toString());
+		}
+
+		return stringVetor.toArray(new String[stringVetor.size()]);
+	}
+
+	public String[] toStringArray(List<Periodos> disponibilidadePeriodos) {
+
+		if (disponibilidadePeriodos == null || disponibilidadePeriodos.isEmpty()) {
+			return null;
+		}
+
+		List<String> stringVetor = new ArrayList<>();
+		for (Periodos p : disponibilidadePeriodos) {
+			stringVetor.add(p.toString());
+		}
+
+		return stringVetor.toArray(new String[stringVetor.size()]);
+	}
+
+
 }

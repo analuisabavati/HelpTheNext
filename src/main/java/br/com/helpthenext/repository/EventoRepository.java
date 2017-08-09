@@ -141,4 +141,51 @@ public class EventoRepository {
 		entityManager = Uteis.JpaEntityManager();
 		entityManager.remove(evento);
 	}
+	
+	public EventoEntity toEventoEntity(EventoModel eventoModel) {
+
+		EventoEntity eventoEntity = getEvento(eventoModel.getId());
+		eventoEntity.setTitulo(eventoModel.getTitulo());
+		eventoEntity.setDescricao(eventoModel.getDescricao());
+		eventoEntity.setNomeResponsavel(eventoModel.getNomeResponsavel());
+		eventoEntity.setDataHora(eventoModel.getDataHora());
+		eventoEntity.setLocal(eventoModel.getLocal());
+		eventoEntity.setEmail(eventoModel.getEmail());
+		eventoEntity.setBanner(eventoModel.getBanner());
+
+		List<Causas> causas = eventoEntity.getCausas();
+		for (String p4 : eventoModel.getCausas()) {
+			causas.add(Causas.values()[new Integer(p4)]);
+		}
+		eventoEntity.setCausas(causas);
+
+		eventoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
+		eventoEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
+
+		return eventoEntity;
+	}
+	
+	public EventoModel toEventoModel(EventoEntity eventoEntity) {
+
+		EventoModel eventoModel = new EventoModel();
+		eventoModel.setId(eventoEntity.getId());
+		eventoModel.setTitulo(eventoEntity.getTitulo());
+		eventoModel.setDescricao(eventoEntity.getDescricao());
+		eventoModel.setNomeResponsavel(eventoEntity.getNomeResponsavel());
+		eventoModel.setDataHora(eventoEntity.getDataHora());
+		eventoModel.setLocal(eventoEntity.getLocal());
+		eventoModel.setEmail(eventoEntity.getEmail());
+		eventoModel.setBanner(eventoEntity.getBanner());
+	
+		eventoModel.setCausas(eventoModel.toStringArray(eventoEntity.getCausas()));
+		
+		eventoModel.setCausasString(eventoModel.getCausas() == null ? null : Arrays.toString(eventoModel.getCausas()));
+		eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
+	
+		eventoModel.setOngEntity(eventoEntity.getOngEntity());
+		eventoModel.setVoluntarioEntity(eventoEntity.getVoluntarioEntity());
+		
+		return eventoModel;
+	}
+	
 }

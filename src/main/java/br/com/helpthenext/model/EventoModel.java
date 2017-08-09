@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.helpthenext.enums.Causas;
+import br.com.helpthenext.repository.entity.EventoEntity;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.Uteis;
 
 public class EventoModel {
 
@@ -153,6 +155,5 @@ public class EventoModel {
 		this.causasString = causasString;
 	}
 
-	
 	
 }

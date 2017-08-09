@@ -172,5 +172,93 @@ public class VoluntarioRepository {
 		entityManager.merge(voluntarioEntity);
 		entityManager.flush();
 	}
+	
+	public VoluntarioEntity toVoluntarioEntity(VoluntarioModel voluntarioModel) {
+		
+		voluntarioEntity = getVoluntario(voluntarioModel.getId());
+		voluntarioEntity.setEmail(voluntarioModel.getEmail());
+		voluntarioEntity.setNome(voluntarioModel.getNome());
+		voluntarioEntity.setSexo(voluntarioModel.getSexo());
+		voluntarioEntity.setDataNascimento(voluntarioModel.getDataNascimento());
+		voluntarioEntity.setFoto(voluntarioModel.getFotoPerfil());
+		voluntarioEntity.setEstado(voluntarioModel.getEstado());
+		voluntarioEntity.setCidade(voluntarioModel.getCidade());
+		voluntarioEntity.setCep(voluntarioModel.getCep());
+		voluntarioEntity.setComplemento(voluntarioModel.getComplemento());
+		voluntarioEntity.setNumero(voluntarioModel.getNumero());
+		voluntarioEntity.setRua(voluntarioModel.getRua());
+		voluntarioEntity.setTelefone(voluntarioModel.getTelefone());
+		voluntarioEntity.setRg(voluntarioModel.getRg());
+		voluntarioEntity.setCpf(voluntarioModel.getCpf());
+		voluntarioEntity.setSobrenome(voluntarioModel.getSobrenome());
+		voluntarioEntity.setTrabalhoDistancia(voluntarioModel.getTrabalhoDistancia());
 
+		List<Causas> causas = new ArrayList<>();
+		for (String p4 : voluntarioModel.getCausas()) {
+			causas.add(Causas.values()[new Integer(p4)]);
+		}
+		voluntarioEntity.setCausas(causas);
+
+		List<Habilidades> hab = new ArrayList<>();
+		for (String p3 : voluntarioModel.getHabilidades()) {
+			hab.add(Habilidades.values()[new Integer(p3)]);
+		}
+		voluntarioEntity.setHabilidades(hab);
+
+		List<DiasSemana> dias = new ArrayList<>();
+		for (String p1 : voluntarioModel.getDisponibilidadeDias()) {
+			dias.add(DiasSemana.values()[new Integer(p1)]);
+		}
+		voluntarioEntity.setDiasDisponiveis(dias);
+
+		List<Periodos> periodos = new ArrayList<>();
+		for (String p : voluntarioModel.getDisponibilidadePeriodos()) {
+			periodos.add(Periodos.values()[new Integer(p)]);
+		}
+		voluntarioEntity.setPeriodosDisponiveis(periodos);
+
+		UsuarioEntity usuarioEntity = voluntarioEntity.getUsuarioEntity();
+		usuarioEntity.setSenha(voluntarioModel.getUsuarioEntity().getSenha());
+		usuarioEntity.setTipoUsuario(voluntarioModel.getUsuarioEntity().getTipoUsuario());
+		usuarioEntity.setUsuario(voluntarioModel.getUsuarioEntity().getUsuario());
+		voluntarioEntity.setUsuarioEntity(usuarioEntity);
+
+		return voluntarioEntity;
+	}
+
+	
+	public VoluntarioEntity toVoluntarioModel(VoluntarioEntity voluntarioEntity) {
+
+		entityManager = Uteis.JpaEntityManager();
+
+		VoluntarioModel voluntarioModel = new VoluntarioModel();
+		voluntarioEntity.setEmail(voluntarioModel.getEmail());
+		voluntarioEntity.setNome(voluntarioModel.getNome());
+		voluntarioEntity.setSexo(voluntarioModel.getSexo());
+		voluntarioEntity.setDataNascimento(voluntarioModel.getDataNascimento());
+		voluntarioEntity.setFoto(voluntarioModel.getFotoPerfil());
+		voluntarioEntity.setEstado(voluntarioModel.getEstado());
+		voluntarioEntity.setCidade(voluntarioModel.getCidade());
+		voluntarioEntity.setCep(voluntarioModel.getCep());
+		voluntarioEntity.setComplemento(voluntarioModel.getComplemento());
+		voluntarioEntity.setNumero(voluntarioModel.getNumero());
+		voluntarioEntity.setRua(voluntarioModel.getRua());
+		voluntarioEntity.setTelefone(voluntarioModel.getTelefone());
+		voluntarioEntity.setRg(voluntarioModel.getRg());
+		voluntarioEntity.setCpf(voluntarioModel.getCpf());
+		voluntarioEntity.setSobrenome(voluntarioModel.getSobrenome());
+		voluntarioEntity.setTrabalhoDistancia(voluntarioModel.getTrabalhoDistancia());
+
+		voluntarioModel.setCausas(voluntarioModel.toStringArray(voluntarioEntity.getCausas()));
+		voluntarioEntity.setHabilidades(voluntarioModel.toStringArray(voluntarioEntity.getHabilidades()));
+		voluntarioEntity.setDiasDisponiveis(voluntarioModel.toStringArray(voluntarioEntity.getDiasDisponiveis());
+		voluntarioEntity.setPeriodosDisponiveis(voluntarioModel.toStringArray(voluntarioEntity.getPeriodosDisponiveis())));
+		
+		UsuarioEntity usuarioEntity = voluntarioEntity.getUsuarioEntity();
+		usuarioEntity.setSenha(voluntarioModel.getUsuarioEntity().getSenha());
+		
+		voluntarioEntity.setUsuarioEntity(usuarioEntity);
+
+		return voluntarioEntity;
+	}
 }
