@@ -66,9 +66,6 @@ public class ONGEntity implements Serializable {
 	@Column(name = "estado")
 	private String  estado;
 	
-	@Column(name = "pais")
-	private String  pais;
-	
 	@OneToOne
 	@JoinColumn(name = "id_usuario")
 	private UsuarioEntity usuarioEntity;
@@ -170,14 +167,6 @@ public class ONGEntity implements Serializable {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
-
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
 	}
 
 	public static long getSerialversionuid() {

@@ -17,7 +17,8 @@
 		<p:tabView style="width:50% ;margin:auto;">
 			<p:tab title="Cadastro de Voluntário">
 
-				<h:form id="form-cadastro" enctype="multipart/form-data" autocomplete="false">
+				<h:form id="form-cadastro" enctype="multipart/form-data"
+					autocomplete="false">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
@@ -30,7 +31,8 @@
 							requiredMessage="O campo usuario é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
-						<p:password id="inputText-senha-cadastro" style="width:90%" maxlength="70"
+						<p:password id="inputText-senha-cadastro" style="width:90%"
+							maxlength="70"
 							value="#{voluntarioController.voluntarioModel.usuarioEntity.senha}"
 							required="true"
 							requiredMessage="O campo senha é de preenchimento obrigatório" />
@@ -63,14 +65,13 @@
 
 						<p:outputLabel value="RG" for="inputText-rg" />
 						<p:inputMask id="inputText-rg" style="width:100%" maxlength="80"
-						 mask="99.999.999-9"
+							mask="99.999.999-9"
 							value="#{voluntarioController.voluntarioModel.rg}" />
 
 						<p:outputLabel value="CPF" for="inputText-cpf" />
 						<p:inputMask id="inputText-cpf" style="width:100%" maxlength="80"
 							value="#{voluntarioController.voluntarioModel.cpf}"
-							required="true"
-							 mask="999.999.999-99"
+							required="true" mask="999.999.999-99"
 							requiredMessage="O campo CPF é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Data de Nascimento"
@@ -92,8 +93,7 @@
 						<p:inputMask id="inputText-telefone" style="width:100%"
 							maxlength="80"
 							value="#{voluntarioController.voluntarioModel.telefone}"
-							required="true"
-							 mask="(99) 99999-9999"
+							required="true" mask="(99) 99999-9999"
 							requiredMessage="O campo Telefone é de preenchimento obrigatório" />
 
 						<p:separator />
@@ -101,14 +101,12 @@
 
 						<p:outputLabel value="Rua" for="inputText-rua" />
 						<p:inputText id="inputText-rua" style="width:100%" maxlength="200"
-							value="#{voluntarioController.voluntarioModel.rua}"
-						 />
+							value="#{voluntarioController.voluntarioModel.rua}" />
 
 						<p:outputLabel value="Numero" for="inputText-numero" />
 						<p:inputText id="inputText-numero" style="width:50px"
 							maxlength="200"
-							value="#{voluntarioController.voluntarioModel.numero}"
-						 />
+							value="#{voluntarioController.voluntarioModel.numero}" />
 
 						<p:outputLabel value="Complemento" for="inputText-complemento" />
 						<p:inputText id="inputText-complemento" style="width:100%"
@@ -118,9 +116,7 @@
 						<p:outputLabel value="CEP" for="inputText-cep" />
 						<p:inputMask id="inputText-cep" style="width:100%" maxlength="200"
 							value="#{voluntarioController.voluntarioModel.cep}"
-							required="false"
-							mask="99999-999"
-							requiredMessage="O campo CEP é de preenchimento obrigatório" />
+							mask="99999-999" />
 
 						<p:outputLabel value="Cidade" for="inputText-cidade" />
 						<p:inputText id="inputText-cidade" style="width:100%"
@@ -208,8 +204,9 @@
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
-						
-						<p:outputLabel for="selectOneRadio-trabalho" value="Trabalho à distancia:" />
+
+						<p:outputLabel for="selectOneRadio-trabalho"
+							value="Trabalho à distancia:" />
 						<p:selectOneRadio id="selectOneRadio-trabalho"
 							value="#{voluntarioController.voluntarioModel.trabalhoDistancia}"
 							required="true"
@@ -232,7 +229,7 @@
 						severity="info" />
 
 				</h:form>
-				
+
 			</p:tab>
 
 		</p:tabView>

@@ -21,120 +21,110 @@
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
-	<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
-						<p:password id="inputText-senha-cadastro" style="width:90%" maxlength="70"
-							value="#{voluntarioController.voluntarioModel.usuarioEntity.senha}"
-							required="true"
-							requiredMessage="O campo senha é de preenchimento obrigatório" />
+						<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
+						<p:inplace id="inputText-senha-cadastro" editor="true">
+							<p:password style="width:90%" maxlength="70"
+								value="#{editarVoluntario.voluntario.usuarioEntity.senha}"
+								required="true"
+								requiredMessage="O campo senha é de preenchimento obrigatório" />
+						</p:inplace>
+
 						<p:separator />
 						<br />
 
 						<p:outputLabel value="Nome" for="inputText-nome" />
-						<p:inputText id="inputText-nome" style="width:90%"
-							maxlength="70"
-							value="#{voluntarioController.voluntarioModel.usuarioEntity.usuario}"
-							required="true"
-							requiredMessage="O campo usuario é de preenchimento obrigatório" />
+						<p:inplace id="inputText-nome" editor="true">
+							<p:inputText value="#{editarVoluntario.voluntario.nome}"
+								label="text" />
+						</p:inplace>
 
 
 						<p:outputLabel value="Sobrenome" for="inputText-sobrenome" />
-						<p:inputText id="inputText-sobrenome" style="width:90%"
-							maxlength="70"
-							value="#{voluntarioController.voluntarioModel.sobrenome}"
-							required="true"
-							requiredMessage="O campo sobrenome é de preenchimento obrigatório" />
-
-
-						<p:outputLabel for="selectOneRadio-sexo" value="Sexo:" />
-						<p:selectOneRadio id="selectOneRadio-sexo"
-							value="#{voluntarioController.voluntarioModel.sexo}"
-							required="true"
-							requiredMessage="O campo sexo é de preenchimento obrigatório">
-
-							<f:selectItem itemLabel="Masculino" itemValue="M" />
-							<f:selectItem itemLabel="Feminino" itemValue="F" />
-							<f:selectItem itemLabel="Outro" itemValue="O" />
-						</p:selectOneRadio>
+						<p:inplace id="inputText-sobrenome" editor="true">
+							<p:inputText style="width:90%" maxlength="70"
+								value="#{editarVoluntario.voluntario.sobrenome}" required="true"
+								requiredMessage="O campo sobrenome é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="RG" for="inputText-rg" />
-						<p:inputMask id="inputText-rg" style="width:100%" maxlength="80"
-							mask="99.999.999-9"
-							value="#{voluntarioController.voluntarioModel.rg}" />
+						<p:inplace id="inputText-rg" editor="true">
+							<p:inputMask style="width:100%" maxlength="80"
+								mask="99.999.999-9" value="#{editarVoluntario.voluntario.rg}" />
+						</p:inplace>
 
 						<p:outputLabel value="CPF" for="inputText-cpf" />
-						<p:inputMask id="inputText-cpf" style="width:100%" maxlength="80"
-							value="#{voluntarioController.voluntarioModel.cpf}"
-							mask="999.999.999-99" />
+						<p:inplace id="inputText-cpf" editor="true">
+							<p:inputMask style="width:100%" maxlength="80"
+								value="#{editarVoluntario.voluntario.cpf}" mask="999.999.999-99" />
+						</p:inplace>
 
 						<p:outputLabel value="Data de Nascimento"
 							for="inputText-nascimento" />
-						<p:calendar id="inputText-nascimento" style="width:100%"
-							maxlength="80"
-							value="#{voluntarioController.voluntarioModel.dataNascimento}"
-							required="true"
-							requiredMessage="O campo data de Nascimento é de preenchimento obrigatório" />
+						<p:inplace id="inputText-nascimento" editor="true">
+							<p:calendar style="width:100%" maxlength="80"
+								value="#{editarVoluntario.voluntario.dataNascimento}" />
+						</p:inplace>
 
 						<p:outputLabel value="E-mail" for="inputText-email" />
-						<p:inputText id="inputText-email" style="width:100%"
-							maxlength="80"
-							value="#{voluntarioController.voluntarioModel.email}"
-							required="true"
-							requiredMessage="O campo email é de preenchimento obrigatório" />
+						<p:inplace id="inputText-email" editor="true">
+							<p:inputText  style="width:100%"
+								maxlength="80" value="#{editarVoluntario.voluntario.email}"
+								required="true"
+								requiredMessage="O campo email é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Telefone" for="inputText-telefone" />
-						<p:inputMask id="inputText-telefone" style="width:100%"
-							maxlength="80"
-							value="#{voluntarioController.voluntarioModel.telefone}"
-							required="true" mask="(99) 99999-9999"
-							requiredMessage="O campo Telefone é de preenchimento obrigatório" />
+						<p:inplace id="inputText-telefone" editor="true">
+							<p:inputMask  style="width:100%"
+								maxlength="80" value="#{editarVoluntario.voluntario.telefone}"
+								required="true" mask="(99) 99999-9999"
+								requiredMessage="O campo Telefone é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:separator />
 						<br />
 
 						<p:outputLabel value="Rua" for="inputText-rua" />
-						<p:inputText id="inputText-rua" style="width:100%" maxlength="200"
-							value="#{voluntarioController.voluntarioModel.rua}"
-							required="true"
-							requiredMessage="O campo rua é de preenchimento obrigatório" />
+						<p:inplace  id="inputText-rua" editor="true">
+							<p:inputText style="width:100%"
+								maxlength="200" value="#{editarVoluntario.voluntario.rua}" />
+						</p:inplace>
 
 						<p:outputLabel value="Numero" for="inputText-numero" />
-						<p:inputText id="inputText-numero" style="width:50px"
-							maxlength="200"
-							value="#{voluntarioController.voluntarioModel.numero}"
-							required="true"
-							requiredMessage="O  campo numero é de preenchimento obrigatório" />
+						<p:inplace id="inputText-numero"  editor="true">
+							<p:inputText style="width:50px"
+								maxlength="200" value="#{editarVoluntario.voluntario.numero}" />
+						</p:inplace>
 
 						<p:outputLabel value="Complemento" for="inputText-complemento" />
-						<p:inputText id="inputText-complemento" style="width:100%"
-							maxlength="200"
-							value="#{voluntarioController.voluntarioModel.complemento}" />
+						<p:inplace id="inputText-complemento" editor="true">
+							<p:inputText  style="width:100%"
+								maxlength="200"
+								value="#{editarVoluntario.voluntario.complemento}" />
+						</p:inplace>
 
 						<p:outputLabel value="CEP" for="inputText-cep" />
-						<p:inputMask id="inputText-cep" style="width:100%" maxlength="200"
-							value="#{voluntarioController.voluntarioModel.cep}"
-							required="true" mask="99999-999"
-							requiredMessage="O campo CEP é de preenchimento obrigatório" />
+						<p:inplace id="inputText-cep" editor="true">
+							<p:inputMask  style="width:100%"
+								maxlength="200" value="#{editarVoluntario.voluntario.cep}"
+								mask="99999-999" />
+						</p:inplace>
 
 						<p:outputLabel value="Cidade" for="inputText-cidade" />
-						<p:inputText id="inputText-cidade" style="width:100%"
-							maxlength="200"
-							value="#{voluntarioController.voluntarioModel.cidade}"
-							required="true"
-							requiredMessage="O campo cidade é de preenchimento obrigatório" />
+						<p:inplace id="inputText-cidade" editor="true">
+							<p:inputText  style="width:100%"
+								maxlength="200" value="#{editarVoluntario.voluntario.cidade}"
+								required="true"
+								requiredMessage="O campo cidade é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Estado" for="inputText-estado" />
-						<p:inputText id="inputText-estado" style="width:100%"
-							maxlength="200"
-							value="#{voluntarioController.voluntarioModel.estado}"
-							required="true"
-							requiredMessage="O campo estado  é de preenchimento obrigatório" />
-
-						<p:outputLabel value="Pais" for="inputText-pais" />
-						<p:inputText id="inputText-pais" style="width:100%"
-							maxlength="200"
-							value="#{voluntarioController.voluntarioModel.pais}"
-							required="true"
-							requiredMessage="O campo pais é de preenchimento obrigatório" />
+						<p:inplace id="inputText-estado"  editor="true">
+							<p:inputText style="width:100%"
+								maxlength="200" value="#{editarVoluntario.voluntario.estado}"
+								required="true"
+								requiredMessage="O campo estado  é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:separator />
 						<br />
@@ -147,8 +137,8 @@
 
 						<p:outputLabel value="Causas" for="causas" />
 						<p:selectManyCheckbox id="causas"
-							value="#{voluntarioController.voluntarioModel.causas}"
-							layout="grid" columns="2">
+							value="#{editarVoluntario.voluntario.causas}" layout="grid"
+							columns="2">
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
 							<f:selectItem itemLabel="Saude" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
@@ -170,8 +160,8 @@
 
 						<p:outputLabel value="Habilidades" for="habilidades" />
 						<p:selectManyCheckbox id="habilidades"
-							value="#{voluntarioController.voluntarioModel.habilidades}"
-							layout="grid" columns="2">
+							value="#{editarVoluntario.voluntario.habilidades}" layout="grid"
+							columns="2">
 							<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
 							<f:selectItem itemLabel="Comunicação" itemValue="1" />
 							<f:selectItem itemLabel="Dança/Musica" itemValue="2" />
@@ -192,7 +182,7 @@
 						<p:outputLabel value="Disponibilidade:" />
 						<br />
 						<p:selectManyCheckbox id="dias" layout="grid" columns="1"
-							value="#{voluntarioController.voluntarioModel.disponibilidadeDias}">
+							value="#{editarVoluntario.voluntario.diasDisponiveis}">
 							<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
 							<f:selectItem itemLabel="Terça-Feira" itemValue="2" />
 							<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
@@ -203,19 +193,20 @@
 						</p:selectManyCheckbox>
 
 						<p:selectManyCheckbox id="periodos" layout="grid" columns="1"
-							value="#{voluntarioController.voluntarioModel.disponibilidadePeriodos}">
+							value="#{editarVoluntario.voluntario.periodosDisponiveis}">
 							<f:selectItem itemLabel="Manha" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
 
-						<p:commandButton value="Salvar alterações" id="commandButton-salvar"
-							icon="ui-icon-gear"
+
+						<p:commandButton value="Salvar alterações"
+							id="commandButton-salvar" icon="ui-icon-gear"
 							action="#{voluntarioController.salvarNovoVoluntario}"
 							update="panelGrid-campos-form" ajax="false" />
-							
-							<p:commandButton value="Excluir cadastro" id="commandButton-excluir"
-							icon="ui-icon-gear"
+
+						<p:commandButton value="Excluir cadastro"
+							id="commandButton-excluir" icon="ui-icon-gear"
 							action="#{voluntarioController.salvarNovoVoluntario}"
 							update="panelGrid-campos-form" ajax="false" />
 

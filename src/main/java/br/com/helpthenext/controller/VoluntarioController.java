@@ -35,10 +35,6 @@ public class VoluntarioController {
 	
 	private UploadedFile uploadedFile;
 	
-	@PostConstruct // executado na inicialização da classe
-	public void init() {
-		this.voluntario = voluntarioRepository.getVoluntarioByUsuarioSessao();
-	}
 
 	public void salvarNovoVoluntario() {
 		if (usuarioRepository.validaUsuarioCadastrado(this.voluntarioModel.getUsuarioEntity().getUsuario()) != null) {
@@ -54,11 +50,6 @@ public class VoluntarioController {
 		}
 	}
 	
-	public void atualizarVoluntario() {	
-		voluntarioRepository.atualizarVoluntario(this.voluntario);
-		voluntarioModel = null;
-	}
-
 	public UploadedFile getUploadedFile() {
 		return uploadedFile;
 	}

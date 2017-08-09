@@ -7,6 +7,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
+
+import org.hibernate.Hibernate;
 
 import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.enums.Causas;
@@ -43,7 +46,6 @@ public class VoluntarioRepository {
 		voluntarioEntity.setSexo(voluntarioModel.getSexo());
 		voluntarioEntity.setDataNascimento(voluntarioModel.getDataNascimento());
 		voluntarioEntity.setFoto(voluntarioModel.getFotoPerfil());
-		voluntarioEntity.setPais(voluntarioModel.getPais());
 		voluntarioEntity.setEstado(voluntarioModel.getEstado());
 		voluntarioEntity.setCidade(voluntarioModel.getCidade());
 		voluntarioEntity.setCep(voluntarioModel.getCep());
@@ -108,7 +110,6 @@ public class VoluntarioRepository {
 		voluntarioEntity.setSexo(voluntarioModel.getSexo());
 		voluntarioEntity.setDataNascimento(voluntarioModel.getDataNascimento());
 		voluntarioEntity.setFoto(voluntarioModel.getFotoPerfil());
-		voluntarioEntity.setPais(voluntarioModel.getPais());
 		voluntarioEntity.setEstado(voluntarioModel.getEstado());
 		voluntarioEntity.setCidade(voluntarioModel.getCidade());
 		voluntarioEntity.setCep(voluntarioModel.getCep());

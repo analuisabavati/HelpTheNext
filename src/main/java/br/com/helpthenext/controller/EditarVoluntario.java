@@ -1,0 +1,53 @@
+package br.com.helpthenext.controller;
+
+import java.io.Serializable;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import br.com.helpthenext.repository.VoluntarioRepository;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
+
+@SessionScoped
+@Named(value = "editarVoluntario")
+public class EditarVoluntario implements Serializable {
+
+	private static final long serialVersionUID = 1L;	
+	
+	@Inject
+	transient VoluntarioRepository voluntarioRepository;
+	
+	VoluntarioEntity voluntario;
+	
+	@PostConstruct // executado na inicialização da classe
+	public void init() {
+		this.voluntario = voluntarioRepository.getVoluntarioByUsuarioSessao();
+	}
+	
+	public void atualizarVoluntario() {	
+		voluntarioRepository.atualizarVoluntario(this.voluntario);	
+	}
+	
+	private String teste = "teste";
+
+	public String getTeste() {
+		return teste;
+	}
+
+	public void setTeste(String teste) {
+		this.teste = teste;
+	}
+
+	public VoluntarioEntity getVoluntario() {
+		return voluntario;
+	}
+
+	public void setVoluntario(VoluntarioEntity voluntario) {
+		this.voluntario = voluntario;
+	}
+	
+	
+	
+}

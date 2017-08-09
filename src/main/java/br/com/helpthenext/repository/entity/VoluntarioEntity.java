@@ -11,6 +11,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,6 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Habilidades;
@@ -28,9 +32,8 @@ import br.com.helpthenext.enums.Periodos;
 @Entity
 @Table(name = "tb_voluntario")
 @NamedQueries({
-	
-	@NamedQuery(name = "VoluntarioEntity.findByUsuario", query= "SELECT v FROM VoluntarioEntity v where v.usuarioEntity = :usuario")
-})
+
+		@NamedQuery(name = "VoluntarioEntity.findByUsuario", query = "SELECT v FROM VoluntarioEntity v where v.usuarioEntity = :usuario") })
 public class VoluntarioEntity {
 
 	@Id
@@ -83,17 +86,15 @@ public class VoluntarioEntity {
 	@Column(name = "estado")
 	private String estado;
 
-	@Column(name = "pais")
-	private String pais;
-
 	@OneToOne
 	@JoinColumn(name = "id_usuario")
 	private UsuarioEntity usuarioEntity;
 
-	@Column(name = "ft_perfil", length=10000000)
+	@Column(name = "ft_perfil", length = 10000000)
 	private byte[] foto;
 
 	@ElementCollection(targetClass = Causas.class)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@Enumerated(EnumType.ORDINAL)
 	@CollectionTable(name = "voluntario_causas")
 	@Column(name = "causas")
@@ -101,32 +102,34 @@ public class VoluntarioEntity {
 
 	@ElementCollection(targetClass = Habilidades.class)
 	@Enumerated(EnumType.ORDINAL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name = "voluntario_habilidades")
 	@Column(name = "habilidades")
 	private List<Habilidades> habilidades;
 
 	@ElementCollection(targetClass = DiasSemana.class)
 	@Enumerated(EnumType.ORDINAL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name = "voluntario_dias_disponiveis")
 	@Column(name = "dias_disponiveis")
 	private List<DiasSemana> diasDisponiveis;
 
 	@ElementCollection(targetClass = Periodos.class)
 	@Enumerated(EnumType.ORDINAL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name = "voluntario_periodos_disponiveis")
 	@Column(name = "periodos_disponiveis")
 	private List<Periodos> periodosDisponiveis;
 
-	@OneToMany(mappedBy = "voluntarioEntity", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "voluntarioEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<DoacaoEntity> doacoes;
-	
-	@OneToMany(mappedBy = "voluntarioEntity", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "voluntarioEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<EventoEntity> eventos;
-	
+
 	@Column(name = "trabalho_distancia")
 	private String trabalhoDistancia;
-	
-	
+
 	public String getTrabalhoDistancia() {
 		return trabalhoDistancia;
 	}
@@ -263,14 +266,6 @@ public class VoluntarioEntity {
 		this.estado = estado;
 	}
 
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-
 	public byte[] getFoto() {
 		return foto;
 	}
@@ -335,5 +330,4 @@ public class VoluntarioEntity {
 		this.eventos = eventos;
 	}
 
-	
 }

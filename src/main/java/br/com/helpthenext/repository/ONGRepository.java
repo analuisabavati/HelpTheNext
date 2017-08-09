@@ -52,7 +52,6 @@ public class ONGRepository {
 		ongEntity.setComplemento(ongModel.getComplemento());
 		ongEntity.setCep(ongModel.getCep());
 		ongEntity.setCidade(ongModel.getCidade());
-		ongEntity.setPais(ongModel.getPais());
 		ongEntity.setFoto(ongModel.getFoto());
 
 		UsuarioEntity usuarioEntity = ongModel.getUsuarioEntity();
@@ -108,7 +107,6 @@ public class ONGRepository {
 		ongEntity.setComplemento(ongModel.getComplemento());
 		ongEntity.setCep(ongModel.getCep());
 		ongEntity.setCidade(ongModel.getCidade());
-		ongEntity.setPais(ongModel.getPais());
 		ongEntity.setFoto(ongModel.getFoto());
 		
 		UsuarioEntity usuarioEntity = ongEntity.getUsuarioEntity();
