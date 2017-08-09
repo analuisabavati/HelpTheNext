@@ -7,9 +7,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
-
-import org.hibernate.Hibernate;
 
 import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.enums.Causas;
@@ -173,6 +170,7 @@ public class VoluntarioRepository {
 	public void atualizarVoluntario(VoluntarioEntity voluntarioEntity) {
 		entityManager = Uteis.JpaEntityManager();
 		entityManager.merge(voluntarioEntity);
+		entityManager.flush();
 	}
 
 }

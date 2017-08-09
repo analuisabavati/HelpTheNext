@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -40,6 +41,14 @@ public class EditarVoluntario implements Serializable {
 		this.teste = teste;
 	}
 
+	public VoluntarioRepository getVoluntarioRepository() {
+		return voluntarioRepository;
+	}
+
+	public void setVoluntarioRepository(VoluntarioRepository voluntarioRepository) {
+		this.voluntarioRepository = voluntarioRepository;
+	}
+
 	public VoluntarioEntity getVoluntario() {
 		return voluntario;
 	}
@@ -47,6 +56,7 @@ public class EditarVoluntario implements Serializable {
 	public void setVoluntario(VoluntarioEntity voluntario) {
 		this.voluntario = voluntario;
 	}
+	
 	
 	
 	
