@@ -21,17 +21,24 @@
 						cellpadding="10">
 
 						<p:outputLabel value="Titulo da doação" for="inputText-titulo" />
-						<p:inputText id="inputText-titulo" style="width:100%"
-							maxlength="80" value="#{doacaoController.doacaoModel.titulo}"
-							required="true"
-							requiredMessage="O titulo da vaga é de preenchimento obrigatório" />
+						<p:inplace  id="inputText-titulo" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:100%"
+								maxlength="80" value="#{doacaoController.doacaoModel.titulo}"
+								required="true"
+								requiredMessage="O titulo da vaga é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Descrição da doação"
 							for="inputText-descricao" />
-						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
-							style="width:100%" maxlength="80"
-							value="#{doacaoController.doacaoModel.descricao}" required="true"
-							requiredMessage="O campo descrição é de preenchimento obrigatório" />
+						<p:inplace id="inputText-descricao" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputTextarea rows="6" cols="33" 
+								style="width:100%" maxlength="80"
+								value="#{doacaoController.doacaoModel.descricao}"
+								required="true"
+								requiredMessage="O campo descrição é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Foto do objeto para doação" for="foto" />
 						<p:fileUpload id="foto" mode="simple"
