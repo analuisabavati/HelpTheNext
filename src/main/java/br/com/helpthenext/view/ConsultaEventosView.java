@@ -9,7 +9,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.EventoRepository;
 import br.com.helpthenext.repository.ONGRepository;
@@ -29,9 +28,6 @@ public class ConsultaEventosView implements Serializable {
 
 	@Inject
 	transient EventoRepository eventoRepository;
-
-	@Inject
-	UsuarioController usuarioController;
 
 	@Inject
 	transient ONGRepository ongRepository;
@@ -54,11 +50,6 @@ public class ConsultaEventosView implements Serializable {
 	}
 	
 	public void ativarBotoes() {
-		botaoEditar = true;
-	}
-
-	/*
-	public void ativarBotoes() {
 		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
 		if (ong != null && selectedEvento != null && selectedEvento.getOngEntity() != null
 				&& selectedEvento.getOngEntity().getId() != null) {
@@ -79,7 +70,7 @@ public class ConsultaEventosView implements Serializable {
 			}
 		}
 	}
-*/
+
 	public void editarVaga() {
 		eventoRepository.atualizarEvento(selectedEvento);
 		Uteis.MensagemInfo("Vaga atualizada com sucesso!");

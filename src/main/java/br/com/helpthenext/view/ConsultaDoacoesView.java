@@ -9,7 +9,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.DoacaoRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
@@ -31,9 +30,6 @@ public class ConsultaDoacoesView implements Serializable {
 	@Inject
 	transient VoluntarioRepository voluntarioRepository;
 
-	@Inject
-	UsuarioController usuarioController;
-
 	@Produces
 	private List<DoacaoModel> doacoes;
 
@@ -45,12 +41,7 @@ public class ConsultaDoacoesView implements Serializable {
 	public void init() {
 		this.doacoes = doacaoRepository.getDoacaos();
 	}
-
-	public void ativarBotoes() {
-		botaoEditar = true;
-	}
 	
-	/*
 	public void ativarBotoes() {
 		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
 		if (vol != null && selectedDoacao != null && selectedDoacao.getVoluntarioEntity() != null
@@ -63,8 +54,6 @@ public class ConsultaDoacoesView implements Serializable {
 		}
 	}
 	
-	*/
-
 	public void editarDoacao() {
 		doacaoRepository.ataulizarDoacao(selectedDoacao);
 		Uteis.MensagemInfo("Doacao atualizada com sucesso!");
