@@ -28,7 +28,6 @@ public class ONGModel {
 	private String pais;
 	private byte[] foto;
 	private String[] causas;
-
 	private String senha;
 
 	public String getSenha() {
