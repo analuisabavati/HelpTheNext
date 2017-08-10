@@ -21,55 +21,53 @@
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
-						<p:outputLabel value="Senha" for="inputText-senha" />
-						<p:inplace id="inputText-senha" editor="true"
+						<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
+						<p:inplace id="inputText-senha-cadastro" editor="true"
 							emptyLabel="Clique para editar">
-							<p:password style="width:90%" maxlength="70"
-								value="#{editarONG.ong.senha}" required="true"
-								requiredMessage="O campo senha é de preenchimento obrigatório" />
+							<p:password value="#{editarONG.ong.senha}" required="true" />
 						</p:inplace>
+
 						<p:separator />
 						<br />
 
 						<p:outputLabel value="Nome da ONG" for="inputText-nomeONG" />
 						<p:inplace id="inputText-nomeONG" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText  style="width:90%"
-								maxlength="70" value="#{editarONG.ong.nomeONG}" required="true"
+							<p:inputText style="width:90%" maxlength="70"
+								value="#{editarONG.ong.nomeONG}" required="true"
 								requiredMessage="O campo nome da ONG é de preenchimento obrigatório" />
 						</p:inplace>
 						<p:outputLabel value="Nome do responsavel"
 							for="inputText-nomeResponsavel" />
 						<p:inplace id="inputText-nomeResponsavel" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText style="width:90%"
-								maxlength="70" value="#{editarONG.ong.nomeResponsavel}"
-								required="true"
+							<p:inputText style="width:90%" maxlength="70"
+								value="#{editarONG.ong.nomeResponsavel}" required="true"
 								requiredMessage="O campo nome do responsavel é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="Descrição da ONG" for="inputText-descricao" />
 						<p:inplace id="inputText-descricao" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputTextarea rows="6" cols="33" 
-								style="width:100%" maxlength="80"
-								value="#{editarONG.ong.descricao}" required="true"
+							<p:inputTextarea rows="6" cols="33" style="width:100%"
+								maxlength="80" value="#{editarONG.ong.descricao}"
+								required="true"
 								requiredMessage="O campo descrição é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="E-mail" for="inputText-email" />
 						<p:inplace id="inputText-email" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="80" value="#{editarONG.ong.email}" required="true"
+							<p:inputText style="width:100%" maxlength="80"
+								value="#{editarONG.ong.email}" required="true"
 								requiredMessage="O email é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="Telefone" for="inputText-telefone" />
 						<p:inplace id="inputText-telefone" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputMask  style="width:100%"
-								maxlength="80" value="#{editarONG.ong.telefone}" required="true"
+							<p:inputMask style="width:100%" maxlength="80"
+								value="#{editarONG.ong.telefone}" required="true"
 								mask="(99) 99999-9999"
 								requiredMessage="O campo telefone é de preenchimento obrigatório" />
 						</p:inplace>
@@ -80,41 +78,37 @@
 						<p:outputLabel value="Rua" for="inputText-rua" />
 						<p:inplace id="inputText-rua" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="200" value="#{editarONG.ong.rua}" required="true"
-								requiredMessage="O campo rua é de preenchimento obrigatório" />
+							<p:inputText style="width:100%" maxlength="200"
+								value="#{editarONG.ong.rua}" />
 
 						</p:inplace>
 
 						<p:outputLabel value="Numero" for="inputText-numero" />
-						<p:inplace iid="inputText-numero"  editor="true"
+						<p:inplace id="inputText-numero" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText style="width:50px"
-								maxlength="200" value="#{editarONG.ong.numero}" required="true"
-								requiredMessage="O campo numero é de preenchimento obrigatório" />
+							<p:inputText style="width:50px" maxlength="200"
+								value="#{editarONG.ong.numero}" />
 						</p:inplace>
 
 						<p:outputLabel value="Complemento" for="inputText-complemento" />
 						<p:inplace id="inputText-complemento" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="200" value="#{editarONG.ong.complemento}" />
+							<p:inputText style="width:100%" maxlength="200"
+								value="#{editarONG.ong.complemento}" />
 						</p:inplace>
 
 						<p:outputLabel value="CEP" for="inputText-cep" />
 						<p:inplace id="inputText-cep" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputMask  style="width:100%"
-								maxlength="200" value="#{editarONG.ong.cep}" required="true"
-								mask="99999-999"
-								requiredMessage="O campo cep é de preenchimento obrigatório" />
+							<p:inputMask style="width:100%" maxlength="200"
+								value="#{editarONG.ong.cep}" mask="99999-999" />
 						</p:inplace>
 
 						<p:outputLabel value="Cidade" for="inputText-cidade" />
-						<p:inplace  id="inputText-cidade" editor="true"
+						<p:inplace id="inputText-cidade" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText style="width:100%"
-								maxlength="200" value="#{editarONG.ong.cidade}" required="true"
+							<p:inputText style="width:100%" maxlength="200"
+								value="#{editarONG.ong.cidade}" required="true"
 								requiredMessage="O campo cidade é de preenchimento obrigatório" />
 						</p:inplace>
 
@@ -122,45 +116,35 @@
 						<p:outputLabel value="Estado" for="inputText-estado" />
 						<p:inplace id="inputText-estado" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="200" value="#{editarONG.ong.estado}" required="true"
+							<p:inputText style="width:100%" maxlength="200"
+								value="#{editarONG.ong.estado}" required="true"
 								requiredMessage="O campo estado  é de preenchimento obrigatório" />
-						</p:inplace>
-
-						<p:outputLabel value="Pais" for="inputText-pais" />
-						<p:inplace id="inputText-pais" editor="true"
-							emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="200" value="#{editarONG.ong.pais}" required="true"
-								requiredMessage="O campo pais é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:separator />
 						<br />
 
 						<p:outputLabel value="Causas" />
-						<p:inplace id="basic" editor="true"
-							emptyLabel="Clique para editar">
-							<p:selectManyCheckbox id="basic" value="#{editarONG.ong.causas}"
-								layout="grid" columns="2">
-								<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-								<f:selectItem itemLabel="Saude" itemValue="1" />
-								<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-								<f:selectItem itemLabel="Participação cidada" itemValue="3" />
-								<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
-								<f:selectItem itemLabel="Idosos" itemValue="5" />
-								<f:selectItem itemLabel="Educação" itemValue="6" />
-								<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-								<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
-									itemValue="8" />
-								<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
-								<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
-								<f:selectItem itemLabel="Capacitação Profissional"
-									itemValue="11" />
-								<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
-								<f:selectItem itemLabel="Outras" itemValue="13" />
-							</p:selectManyCheckbox>
-						</p:inplace>
+
+						<p:selectManyCheckbox id="basic" value="#{editarONG.ong.causas}"
+							layout="grid" columns="2">
+							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
+							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+							<f:selectItem itemLabel="Idosos" itemValue="5" />
+							<f:selectItem itemLabel="Educação" itemValue="6" />
+							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+								itemValue="8" />
+							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+							<f:selectItem itemLabel="Outras" itemValue="13" />
+						</p:selectManyCheckbox>
+
 
 
 						<p:commandButton value="Salvar alterações"
@@ -170,8 +154,8 @@
 
 						<p:commandButton value="Excluir cadastro"
 							id="commandButton-excluir" icon="ui-icon-gear"
-							action="#{ongController.salvarNovaONG}"
-							update="panelGrid-campos-form" ajax="false" />
+							action="#{editarONG.atualizarONG}" update="panelGrid-campos-form"
+							ajax="false" />
 					</h:panelGrid>
 
 					<p:messages showDetail="true" autoUpdate="true" closable="true"

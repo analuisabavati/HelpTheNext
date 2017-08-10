@@ -83,12 +83,11 @@ public class ONGRepository {
 		return entityManager.find(ONGEntity.class, id);
 	}
 
-	public void atualizarOng(ONGModel ongModel) {
+	public void atualizarONG(ONGModel ongModel) {
 
 		entityManager = Uteis.JpaEntityManager();
 
 		ongEntity = getONG(ongModel.getId());
-		ongEntity.setDataCadastro(LocalDateTime.now());
 		ongEntity.setEmail(ongModel.getEmail());
 		ongEntity.setNomeONG(ongModel.getNomeONG());
 		ongEntity.setNomeResponsavel(ongModel.getNomeResponsavel());
@@ -107,7 +106,7 @@ public class ONGRepository {
 		ongEntity.setComplemento(ongModel.getComplemento());
 		ongEntity.setCep(ongModel.getCep());
 		ongEntity.setCidade(ongModel.getCidade());
-		ongEntity.setFoto(ongModel.getFoto());
+		ongEntity.setEstado(ongModel.getEstado());
 		
 		UsuarioEntity usuarioEntity = ongEntity.getUsuarioEntity();
 		usuarioEntity.setSenha(ongModel.getSenha());
@@ -141,6 +140,7 @@ public class ONGRepository {
 		model.setComplemento(ongEntity.getComplemento());
 		model.setCep(ongEntity.getCep());
 		model.setCidade(ongEntity.getCidade());
+		model.setEstado(ongEntity.getEstado());
 		model.setFoto(ongEntity.getFoto());
 		
 		model.setUsuarioEntity(ongEntity.getUsuarioEntity());

@@ -27,11 +27,10 @@ public class EditarONG implements Serializable {
 	public void init() {
 		ONGEntity v = ongRepository.getONGByUsuarioSessao();
 		this.ong = ongRepository.toONGModel(v);
-		
 	}
 	
 	public void atualizarONG() {	
-		ongRepository.atualizarOng(this.ong);	
+		ongRepository.atualizarONG(this.ong);	
 		Uteis.MensagemInfo("ONG atualizada com sucesso!");
 	}
 
