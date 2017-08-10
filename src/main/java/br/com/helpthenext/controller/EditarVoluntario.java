@@ -10,6 +10,7 @@ import javax.inject.Named;
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.Uteis;
 
 @SessionScoped
 @Named(value = "editarVoluntario")
@@ -25,11 +26,12 @@ public class EditarVoluntario implements Serializable {
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
 		VoluntarioEntity v = voluntarioRepository.getVoluntarioByUsuarioSessao();
-		this.voluntario = voluntarioRepository.toVoluntarioModel(v);
+		this.voluntario = voluntarioRepository.toVoluntarioModel(v);	
 	}
 	
 	public void atualizarVoluntario() {	
 		voluntarioRepository.atualizarVoluntario(this.voluntario);	
+		Uteis.MensagemInfo("Voluntario atualizado com sucesso!");
 	}
 	
 	public VoluntarioRepository getVoluntarioRepository() {

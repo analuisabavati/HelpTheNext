@@ -12,6 +12,7 @@ import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.Uteis;
 
 @SessionScoped
 @Named(value = "editarONG")
@@ -28,6 +29,12 @@ public class EditarONG implements Serializable {
 	public void init() {
 		ONGEntity v = ongRepository.getONGByUsuarioSessao();
 		this.ong = ongRepository.toONGModel(v);
+		
+	}
+	
+	public void atualizarVoluntario() {	
+		ongRepository.atualizarOng(this.ong);	
+		Uteis.MensagemInfo("ONG atualizada com sucesso!");
 	}
 
 	public ONGRepository getOngRepository() {
