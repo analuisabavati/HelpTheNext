@@ -22,29 +22,42 @@
 						cellpadding="10">
 
 						<p:outputLabel value="Titulo" for="inputText-titulo" />
-						<p:inputText id="inputText-titulo" style="width:100%"
-							maxlength="80" value="#{vagaController.vagaModel.titulo}"
-							required="true"
-							requiredMessage="O campo titulo é de preenchimento obrigatório" />
+						<p:inplace id="inputText-titulo" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText  style="width:100%"
+								maxlength="80" value="#{vagaController.vagaModel.titulo}"
+								required="true"
+								requiredMessage="O campo titulo é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Descrição" for="inputText-descricao" />
-						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
-							style="width:100%" maxlength="80"
-							value="#{vagaController.vagaModel.descricao}" required="true"
-							requiredMessage="O campo descrição é de preenchimento obrigatório" />
+						<p:inplace  id="inputText-descricao" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputTextarea rows="6" cols="33"
+								style="width:100%" maxlength="80"
+								value="#{vagaController.vagaModel.descricao}" required="true"
+								requiredMessage="O campo descrição é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Responsavel pela Vaga"
 							for="inputText-responsavel" />
-						<p:inputText id="inputText-responsavel" style="width:100%"
-							maxlength="80"
-							value="#{vagaController.vagaModel.nomeResponsavel}" />
+						<p:inplace id="inputText-responsavel" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText  style="width:100%"
+								maxlength="80"
+								value="#{vagaController.vagaModel.nomeResponsavel}" />
+						</p:inplace>
 
 						<p:outputLabel value="Email" for="inputText-email" />
-						<p:inputText id="inputText-email" style="width:100%"
-							maxlength="80" value="#{vagaController.vagaModel.email}" />
+						<p:inplace id="inputText-email" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText  style="width:100%"
+								maxlength="80" value="#{vagaController.vagaModel.email}" />
+						</p:inplace>
 
 						<p:outputLabel value="Banner da Vaga" for="foto" />
-						<p:fileUpload id="foto" mode="simple" value="#{vagaController.uploadedFile}" />
+						<p:fileUpload id="foto" mode="simple"
+							value="#{vagaController.uploadedFile}" />
 
 						<p:outputLabel value="Causas" />
 						<p:selectManyCheckbox id="causas"
@@ -114,8 +127,9 @@
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
-						
-						<p:outputLabel for="selectOneRadio-trabalho" value="Trabalho à distancia:" />
+
+						<p:outputLabel for="selectOneRadio-trabalho"
+							value="Trabalho à distancia:" />
 						<p:selectOneRadio id="selectOneRadio-trabalho"
 							value="#{vagaController.vagaModel.trabalhoDistancia}"
 							required="true"
@@ -124,11 +138,12 @@
 							<f:selectItem itemLabel="Não" itemValue="Não" />
 						</p:selectOneRadio>
 
-						<p:commandButton value="Salvar alterações" id="commandButton-salvar"
-							icon="ui-icon-gear" action="#{vagaController.salvarNovaVaga}"
+						<p:commandButton value="Salvar alterações"
+							id="commandButton-salvar" icon="ui-icon-gear"
+							action="#{vagaController.salvarNovaVaga}"
 							update="panelGrid-campos-form" ajax="false" />
-							
-								<p:commandButton value="Excluir vaga" id="commandButton-excluir"
+
+						<p:commandButton value="Excluir vaga" id="commandButton-excluir"
 							icon="ui-icon-gear" action="#{vagaController.salvarNovaVaga}"
 							update="panelGrid-campos-form" ajax="false" />
 
