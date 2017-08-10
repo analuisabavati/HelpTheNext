@@ -21,43 +21,59 @@
 						cellpadding="10">
 
 						<p:outputLabel value="Titulo do evento" for="inputText-titulo" />
-						<p:inputText id="inputText-titulo" style="width:100%"
-							maxlength="80" value="#{eventoController.eventoModel.titulo}"
-							required="true"
-							requiredMessage="O campo titulo é de preenchimento obrigatório" />
+						<p:inplace id="inputText-titulo" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:100%" maxlength="80"
+								value="#{eventoController.eventoModel.titulo}" required="true"
+								requiredMessage="O campo titulo é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Descrição do evento"
 							for="inputText-descricao" />
-						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
-							style="width:100%" maxlength="80"
-							value="#{eventoController.eventoModel.descricao}" required="true"
-							requiredMessage="O campo descrição é de preenchimento obrigatório" />
+						<p:inplace id="inputText-descricao" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputTextarea rows="6" cols="33" style="width:100%"
+								maxlength="80" value="#{eventoController.eventoModel.descricao}"
+								required="true"
+								requiredMessage="O campo descrição é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Responsavel pelo evento"
 							for="inputText-responsavel" />
-						<p:inputText id="inputText-responsavel" style="width:100%"
-							maxlength="80"
-							value="#{eventoController.eventoModel.nomeResponsavel}"
-							required="true"
-							requiredMessage="O campo responsavel é de preenchimento obrigatório" />
+						<p:inplace id="inputText-responsavel" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:100%" maxlength="80"
+								value="#{eventoController.eventoModel.nomeResponsavel}"
+								required="true"
+								requiredMessage="O campo responsavel é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Local do evento" for="inputText-local" />
-						<p:inputText id="inputText-local" style="width:100%"
-							maxlength="80" value="#{eventoController.eventoModel.local}"
-							required="true"
-							requiredMessage="O campo local é de preenchimento obrigatório" />
+						<p:inplace id="inputText-local" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:100%" maxlength="80"
+								value="#{eventoController.eventoModel.local}" required="true"
+								requiredMessage="O campo local é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Data/Hora do evento" for="inputText-horario" />
-						<p:calendar pattern="MM/dd/yyyy HH:mm:ss" id="inputText-horario"
-							style="width:100%" maxlength="80"
-							value="#{eventoController.eventoModel.dataHora}" required="true"
-							requiredMessage="O campo horario é de preenchimento obrigatório" />
+						<p:inplace id="inputText-horario" editor="true"
+							emptyLabel="Clique para editar">
+							<p:calendar pattern="MM/dd/yyyy HH:mm:ss" style="width:100%"
+								maxlength="80" value="#{eventoController.eventoModel.dataHora}"
+								required="true"
+								requiredMessage="O campo horario é de preenchimento obrigatório" />
+						</p:inplace>
 
 						<p:outputLabel value="Email" for="inputText-email" />
-						<p:inputText id="inputText-email" style="width:100%"
-							maxlength="80" value="#{eventoController.eventoModel.email}" />
+						<p:inplace id="inputText-email" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:100%" maxlength="80"
+								value="#{eventoController.eventoModel.email}" />
+						</p:inplace>
 
 						<p:outputLabel value="Banner do evento" for="foto" />
+
 						<p:fileUpload id="foto" mode="simple"
 							value="#{eventoController.uploadedFile}" />
 
@@ -66,30 +82,31 @@
 							value="#{eventoController.eventoModel.causas}" layout="grid"
 							columns="2" required="true"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
-						<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-						<f:selectItem itemLabel="Saude" itemValue="1" />
-						<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-						<f:selectItem itemLabel="Participação cidada" itemValue="3" />
-						<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
-						<f:selectItem itemLabel="Idosos" itemValue="5" />
-						<f:selectItem itemLabel="Educação" itemValue="6" />
-						<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-						<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
-						<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
-						<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
-						<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
-						<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
-						<f:selectItem itemLabel="Outras" itemValue="13" />
+							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
+							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+							<f:selectItem itemLabel="Idosos" itemValue="5" />
+							<f:selectItem itemLabel="Educação" itemValue="6" />
+							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+								itemValue="8" />
+							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+							<f:selectItem itemLabel="Outras" itemValue="13" />
 						</p:selectManyCheckbox>
 
 						<p:commandButton value="Salvar Evento" id="commandButton-salvar"
 							icon="ui-icon-gear" action="#{eventoController.salvarNovoEvento}"
 							update="panelGrid-campos-form" ajax="false" />
-							
-							<p:commandButton value="Excluir Evento" id="commandButton-excluir"
+
+						<p:commandButton value="Excluir Evento" id="commandButton-excluir"
 							icon="ui-icon-gear" action="#{eventoController.salvarNovoEvento}"
 							update="panelGrid-campos-form" ajax="false" />
-							
+
 
 
 					</h:panelGrid>
