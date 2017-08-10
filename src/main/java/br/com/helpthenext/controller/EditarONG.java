@@ -8,10 +8,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.model.ONGModel;
-import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
-import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 @SessionScoped
@@ -32,7 +30,7 @@ public class EditarONG implements Serializable {
 		
 	}
 	
-	public void atualizarVoluntario() {	
+	public void atualizarONG() {	
 		ongRepository.atualizarOng(this.ong);	
 		Uteis.MensagemInfo("ONG atualizada com sucesso!");
 	}
