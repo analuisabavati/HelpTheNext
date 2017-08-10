@@ -32,16 +32,6 @@ public class EditarVoluntario implements Serializable {
 		voluntarioRepository.atualizarVoluntario(this.voluntario);	
 	}
 	
-	private String teste = "teste";
-
-	public String getTeste() {
-		return teste;
-	}
-
-	public void setTeste(String teste) {
-		this.teste = teste;
-	}
-
 	public VoluntarioRepository getVoluntarioRepository() {
 		return voluntarioRepository;
 	}
@@ -57,8 +47,6 @@ public class EditarVoluntario implements Serializable {
 	public void setVoluntario(VoluntarioModel voluntario) {
 		this.voluntario = voluntario;
 	}
-	
-	
-	
+
 	
 }

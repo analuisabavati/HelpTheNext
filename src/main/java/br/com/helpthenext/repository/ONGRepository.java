@@ -110,10 +110,8 @@ public class ONGRepository {
 		ongEntity.setFoto(ongModel.getFoto());
 		
 		UsuarioEntity usuarioEntity = ongEntity.getUsuarioEntity();
-		usuarioEntity.setSenha(ongModel.getUsuarioEntity().getSenha());
+		usuarioEntity.setSenha(ongModel.getSenha());
 		entityManager.merge(usuarioEntity);
-
-		ongEntity.setUsuarioEntity(usuarioEntity);
 
 		entityManager.merge(ongEntity);
 	}
@@ -121,6 +119,35 @@ public class ONGRepository {
 	public void atualizarONG(ONGEntity ongEntity) {
 		entityManager = Uteis.JpaEntityManager();
 		entityManager.merge(ongEntity);
+	}
+	
+	public ONGModel toONGModel(ONGEntity ongEntity) {
+		entityManager = Uteis.JpaEntityManager();
+
+		ONGModel model = new ONGModel();
+		
+		model.setId(ongEntity.getId());
+		model.setEmail(ongEntity.getEmail());
+		model.setNomeONG(ongEntity.getNomeONG());
+		model.setNomeResponsavel(ongEntity.getNomeResponsavel());
+		model.setTelefone(ongEntity.getTelefone());
+		model.setDescricao(ongEntity.getDescricao());
+
+		model.setCausas(model.toStringArrayCausas(ongEntity.getCausas()));
+
+		model.setWebsite(ongEntity.getWebsite());
+		model.setFacebook(ongEntity.getFacebook());
+		model.setNumero(ongEntity.getNumero());
+		model.setComplemento(ongEntity.getComplemento());
+		model.setCep(ongEntity.getCep());
+		model.setCidade(ongEntity.getCidade());
+		model.setFoto(ongEntity.getFoto());
+		
+		model.setUsuarioEntity(ongEntity.getUsuarioEntity());
+
+		model.setSenha(ongEntity.getUsuarioEntity().getSenha());
+		
+		return model;
 	}
 
 }
