@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 
@@ -20,11 +20,12 @@ public class EditarVoluntario implements Serializable {
 	@Inject
 	transient VoluntarioRepository voluntarioRepository;
 	
-	VoluntarioEntity voluntario;
+	VoluntarioModel voluntario;
 	
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
-		this.voluntario = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		VoluntarioEntity v = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		this.voluntario = voluntarioRepository.toVoluntarioModel(v);
 	}
 	
 	public void atualizarVoluntario() {	
@@ -49,11 +50,11 @@ public class EditarVoluntario implements Serializable {
 		this.voluntarioRepository = voluntarioRepository;
 	}
 
-	public VoluntarioEntity getVoluntario() {
+	public VoluntarioModel getVoluntario() {
 		return voluntario;
 	}
 
-	public void setVoluntario(VoluntarioEntity voluntario) {
+	public void setVoluntario(VoluntarioModel voluntario) {
 		this.voluntario = voluntario;
 	}
 	

@@ -37,6 +37,18 @@ public class VoluntarioModel {
 	private String[] disponibilidadeDias;
 	private String[] disponibilidadePeriodos;
 	private String trabalhoDistancia;
+	
+	private String senha;
+	
+	
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
 	public String getTrabalhoDistancia() {
 		return trabalhoDistancia;
@@ -230,7 +242,8 @@ public class VoluntarioModel {
 		this.disponibilidadePeriodos = disponibilidadePeriodos;
 	}
 
-	public String[] toStringArray(List<Causas> causas) {
+	
+	public String[] toStringArrayCausas(List<Causas> causas) {
 
 		if (causas == null || causas.isEmpty()) {
 			return null;
@@ -244,7 +257,7 @@ public class VoluntarioModel {
 		return stringCausas.toArray(new String[stringCausas.size()]);
 	}
 
-	public String[] toStringArray(List<Habilidades> habilidades) {
+	public String[] toStringArrayHabilidades(List<Habilidades> habilidades) {
 
 		if (habilidades == null || habilidades.isEmpty()) {
 			return null;
@@ -258,7 +271,7 @@ public class VoluntarioModel {
 		return stringVetor.toArray(new String[stringVetor.size()]);
 	}
 
-	public String[] toStringArray(List<DiasSemana> disponibilidadeDias) {
+	public String[] toStringArrayDiasSemana(List<DiasSemana> disponibilidadeDias) {
 
 		if (disponibilidadeDias == null || disponibilidadeDias.isEmpty()) {
 			return null;
@@ -272,7 +285,7 @@ public class VoluntarioModel {
 		return stringVetor.toArray(new String[stringVetor.size()]);
 	}
 
-	public String[] toStringArray(List<Periodos> disponibilidadePeriodos) {
+	public String[] toStringArrayPeriodos(List<Periodos> disponibilidadePeriodos) {
 
 		if (disponibilidadePeriodos == null || disponibilidadePeriodos.isEmpty()) {
 			return null;

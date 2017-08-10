@@ -144,7 +144,7 @@ public class VoluntarioRepository {
 		voluntarioEntity.setPeriodosDisponiveis(periodos);
 		
 		UsuarioEntity usuarioEntity = voluntarioEntity.getUsuarioEntity();
-		usuarioEntity.setSenha(voluntarioModel.getUsuarioEntity().getSenha());
+		usuarioEntity.setSenha(voluntarioModel.getSenha());
 		entityManager.merge(usuarioEntity);
 
 		voluntarioEntity.setUsuarioEntity(usuarioEntity);
@@ -227,38 +227,38 @@ public class VoluntarioRepository {
 	}
 
 	
-	public VoluntarioEntity toVoluntarioModel(VoluntarioEntity voluntarioEntity) {
+	public VoluntarioModel toVoluntarioModel(VoluntarioEntity voluntarioEntity) {
 
 		entityManager = Uteis.JpaEntityManager();
 
 		VoluntarioModel voluntarioModel = new VoluntarioModel();
-		voluntarioEntity.setEmail(voluntarioModel.getEmail());
-		voluntarioEntity.setNome(voluntarioModel.getNome());
-		voluntarioEntity.setSexo(voluntarioModel.getSexo());
-		voluntarioEntity.setDataNascimento(voluntarioModel.getDataNascimento());
-		voluntarioEntity.setFoto(voluntarioModel.getFotoPerfil());
-		voluntarioEntity.setEstado(voluntarioModel.getEstado());
-		voluntarioEntity.setCidade(voluntarioModel.getCidade());
-		voluntarioEntity.setCep(voluntarioModel.getCep());
-		voluntarioEntity.setComplemento(voluntarioModel.getComplemento());
-		voluntarioEntity.setNumero(voluntarioModel.getNumero());
-		voluntarioEntity.setRua(voluntarioModel.getRua());
-		voluntarioEntity.setTelefone(voluntarioModel.getTelefone());
-		voluntarioEntity.setRg(voluntarioModel.getRg());
-		voluntarioEntity.setCpf(voluntarioModel.getCpf());
-		voluntarioEntity.setSobrenome(voluntarioModel.getSobrenome());
-		voluntarioEntity.setTrabalhoDistancia(voluntarioModel.getTrabalhoDistancia());
+		voluntarioModel.setId(voluntarioEntity.getId());
+		voluntarioModel.setEmail(voluntarioEntity.getEmail());
+		voluntarioModel.setNome(voluntarioEntity.getNome());
+		voluntarioModel.setSexo(voluntarioEntity.getSexo());
+		voluntarioModel.setDataNascimento(voluntarioEntity.getDataNascimento());
+		voluntarioModel.setEstado(voluntarioEntity.getEstado());
+		voluntarioModel.setCidade(voluntarioEntity.getCidade());
+		voluntarioModel.setCep(voluntarioEntity.getCep());
+		voluntarioModel.setComplemento(voluntarioEntity.getComplemento());
+		voluntarioModel.setNumero(voluntarioEntity.getNumero());
+		voluntarioModel.setRua(voluntarioEntity.getRua());
+		voluntarioModel.setTelefone(voluntarioEntity.getTelefone());
+		voluntarioModel.setRg(voluntarioEntity.getRg());
+		voluntarioModel.setCpf(voluntarioEntity.getCpf());
+		voluntarioModel.setSobrenome(voluntarioEntity.getSobrenome());
+		voluntarioModel.setTrabalhoDistancia(voluntarioEntity.getTrabalhoDistancia());
 
-		voluntarioModel.setCausas(voluntarioModel.toStringArray(voluntarioEntity.getCausas()));
-		voluntarioEntity.setHabilidades(voluntarioModel.toStringArray(voluntarioEntity.getHabilidades()));
-		voluntarioEntity.setDiasDisponiveis(voluntarioModel.toStringArray(voluntarioEntity.getDiasDisponiveis());
-		voluntarioEntity.setPeriodosDisponiveis(voluntarioModel.toStringArray(voluntarioEntity.getPeriodosDisponiveis())));
+		voluntarioModel.setCausas(voluntarioModel.toStringArrayCausas(voluntarioEntity.getCausas()));
+		voluntarioModel.setHabilidades(voluntarioModel.toStringArrayHabilidades(voluntarioEntity.getHabilidades()));
+		voluntarioModel.setDisponibilidadeDias(voluntarioModel.toStringArrayDiasSemana(voluntarioEntity.getDiasDisponiveis()));
+		voluntarioModel.setDisponibilidadePeriodos(voluntarioModel.toStringArrayPeriodos(voluntarioEntity.getPeriodosDisponiveis()));
 		
 		UsuarioEntity usuarioEntity = voluntarioEntity.getUsuarioEntity();
-		usuarioEntity.setSenha(voluntarioModel.getUsuarioEntity().getSenha());
+		voluntarioModel.setUsuarioEntity(usuarioEntity);
 		
-		voluntarioEntity.setUsuarioEntity(usuarioEntity);
+		voluntarioModel.setSenha(usuarioEntity.getSenha());
 
-		return voluntarioEntity;
+		return voluntarioModel;
 	}
 }

@@ -22,51 +22,51 @@
 						cellpadding="10">
 
 						<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
-						<p:inplace id="inputText-senha-cadastro" editor="true">
-							<p:password style="width:90%" maxlength="70"
-								value="#{editarVoluntario.voluntario.usuarioEntity.senha}"
+						<p:inplace id="inputText-senha-cadastro" editor="true" emptyLabel="Clique para editar">
+							<p:password 
+								value="#{editarVoluntario.voluntario.senha}"
 								required="true"
-								requiredMessage="O campo senha é de preenchimento obrigatório" />
+								 />
 						</p:inplace>
 
 						<p:separator />
 						<br />
 
 						<p:outputLabel value="Nome" for="inputText-nome" />
-						<p:inplace id="inputText-nome" editor="true">
+						<p:inplace id="inputText-nome" editor="true" emptyLabel="Clique para editar">
 							<p:inputText value="#{editarVoluntario.voluntario.nome}"
 								label="text" />
 						</p:inplace>
 
 
 						<p:outputLabel value="Sobrenome" for="inputText-sobrenome" />
-						<p:inplace id="inputText-sobrenome" editor="true">
+						<p:inplace id="inputText-sobrenome" editor="true" emptyLabel="Clique para editar">
 							<p:inputText style="width:90%" maxlength="70"
 								value="#{editarVoluntario.voluntario.sobrenome}" required="true"
 								requiredMessage="O campo sobrenome é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="RG" for="inputText-rg" />
-						<p:inplace id="inputText-rg" editor="true">
+						<p:inplace id="inputText-rg" editor="true" emptyLabel="Clique para editar">
 							<p:inputMask style="width:100%" maxlength="80"
 								mask="99.999.999-9" value="#{editarVoluntario.voluntario.rg}" />
 						</p:inplace>
 
 						<p:outputLabel value="CPF" for="inputText-cpf" />
-						<p:inplace id="inputText-cpf" editor="true">
+						<p:inplace id="inputText-cpf" editor="true" emptyLabel="Clique para editar">
 							<p:inputMask style="width:100%" maxlength="80"
 								value="#{editarVoluntario.voluntario.cpf}" mask="999.999.999-99" />
 						</p:inplace>
 
 						<p:outputLabel value="Data de Nascimento"
 							for="inputText-nascimento" />
-						<p:inplace id="inputText-nascimento" editor="true">
+						<p:inplace id="inputText-nascimento" editor="true" emptyLabel="Clique para editar">
 							<p:calendar style="width:100%" maxlength="80"
 								value="#{editarVoluntario.voluntario.dataNascimento}" />
 						</p:inplace>
 
 						<p:outputLabel value="E-mail" for="inputText-email" />
-						<p:inplace id="inputText-email" editor="true">
+						<p:inplace id="inputText-email" editor="true" emptyLabel="Clique para editar">
 							<p:inputText  style="width:100%"
 								maxlength="80" value="#{editarVoluntario.voluntario.email}"
 								required="true"
@@ -74,7 +74,7 @@
 						</p:inplace>
 
 						<p:outputLabel value="Telefone" for="inputText-telefone" />
-						<p:inplace id="inputText-telefone" editor="true">
+						<p:inplace id="inputText-telefone" editor="true" emptyLabel="Clique para editar">
 							<p:inputMask  style="width:100%"
 								maxlength="80" value="#{editarVoluntario.voluntario.telefone}"
 								required="true" mask="(99) 99999-9999"
@@ -85,33 +85,33 @@
 						<br />
 
 						<p:outputLabel value="Rua" for="inputText-rua" />
-						<p:inplace  id="inputText-rua" editor="true">
-							<p:inputText style="width:100%"
+						<p:inplace  id="inputText-rua" editor="true" emptyLabel="Clique para editar">
+							<p:inputText style="width:100%" emptyLabel="informe senha"
 								maxlength="200" value="#{editarVoluntario.voluntario.rua}" />
 						</p:inplace>
 
 						<p:outputLabel value="Numero" for="inputText-numero" />
-						<p:inplace id="inputText-numero"  editor="true">
+						<p:inplace id="inputText-numero"  editor="true" emptyLabel="Clique para editar">
 							<p:inputText style="width:50px"
 								maxlength="200" value="#{editarVoluntario.voluntario.numero}" />
 						</p:inplace>
 
 						<p:outputLabel value="Complemento" for="inputText-complemento" />
-						<p:inplace id="inputText-complemento" editor="true">
+						<p:inplace id="inputText-complemento" editor="true" emptyLabel="Clique para editar">
 							<p:inputText  style="width:100%"
 								maxlength="200"
 								value="#{editarVoluntario.voluntario.complemento}" />
 						</p:inplace>
 
 						<p:outputLabel value="CEP" for="inputText-cep" />
-						<p:inplace id="inputText-cep" editor="true">
+						<p:inplace id="inputText-cep" editor="true" emptyLabel="Clique para editar">
 							<p:inputMask  style="width:100%"
 								maxlength="200" value="#{editarVoluntario.voluntario.cep}"
 								mask="99999-999" />
 						</p:inplace>
 
 						<p:outputLabel value="Cidade" for="inputText-cidade" />
-						<p:inplace id="inputText-cidade" editor="true">
+						<p:inplace id="inputText-cidade" editor="true" emptyLabel="Clique para editar">
 							<p:inputText  style="width:100%"
 								maxlength="200" value="#{editarVoluntario.voluntario.cidade}"
 								required="true"
@@ -119,7 +119,7 @@
 						</p:inplace>
 
 						<p:outputLabel value="Estado" for="inputText-estado" />
-						<p:inplace id="inputText-estado"  editor="true">
+						<p:inplace id="inputText-estado"  editor="true" emptyLabel="Clique para editar">
 							<p:inputText style="width:100%"
 								maxlength="200" value="#{editarVoluntario.voluntario.estado}"
 								required="true"
@@ -182,7 +182,7 @@
 						<p:outputLabel value="Disponibilidade:" />
 						<br />
 						<p:selectManyCheckbox id="dias" layout="grid" columns="1"
-							value="#{editarVoluntario.voluntario.diasDisponiveis}">
+							value="#{editarVoluntario.voluntario.disponibilidadeDias}">
 							<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
 							<f:selectItem itemLabel="Terça-Feira" itemValue="2" />
 							<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
@@ -193,12 +193,11 @@
 						</p:selectManyCheckbox>
 
 						<p:selectManyCheckbox id="periodos" layout="grid" columns="1"
-							value="#{editarVoluntario.voluntario.periodosDisponiveis}">
+							value="#{editarVoluntario.voluntario.disponibilidadePeriodos}">
 							<f:selectItem itemLabel="Manha" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
-
 
 						<p:commandButton value="Salvar alterações"
 							id="commandButton-salvar" icon="ui-icon-gear"
