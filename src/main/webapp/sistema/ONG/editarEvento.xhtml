@@ -24,7 +24,7 @@
 						<p:inplace id="inputText-titulo" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" maxlength="80"
-								value="#{eventoController.eventoModel.titulo}" required="true"
+								value="#{editarEvento.evento.titulo}" required="true"
 								requiredMessage="O campo titulo é de preenchimento obrigatório" />
 						</p:inplace>
 
@@ -33,7 +33,7 @@
 						<p:inplace id="inputText-descricao" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputTextarea rows="6" cols="33" style="width:100%"
-								maxlength="80" value="#{eventoController.eventoModel.descricao}"
+								maxlength="80" value="#{editarEvento.evento.descricao}"
 								required="true"
 								requiredMessage="O campo descrição é de preenchimento obrigatório" />
 						</p:inplace>
@@ -43,7 +43,7 @@
 						<p:inplace id="inputText-responsavel" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" maxlength="80"
-								value="#{eventoController.eventoModel.nomeResponsavel}"
+								value="#{editarEvento.evento.nomeResponsavel}"
 								required="true"
 								requiredMessage="O campo responsavel é de preenchimento obrigatório" />
 						</p:inplace>
@@ -52,7 +52,7 @@
 						<p:inplace id="inputText-local" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" maxlength="80"
-								value="#{eventoController.eventoModel.local}" required="true"
+								value="#{editarEvento.evento.local}" required="true"
 								requiredMessage="O campo local é de preenchimento obrigatório" />
 						</p:inplace>
 
@@ -60,7 +60,7 @@
 						<p:inplace id="inputText-horario" editor="true"
 							emptyLabel="Clique para editar">
 							<p:calendar pattern="MM/dd/yyyy HH:mm:ss" style="width:100%"
-								maxlength="80" value="#{eventoController.eventoModel.dataHora}"
+								maxlength="80" value="#{editarEvento.evento.dataHora}"
 								required="true"
 								requiredMessage="O campo horario é de preenchimento obrigatório" />
 						</p:inplace>
@@ -69,7 +69,7 @@
 						<p:inplace id="inputText-email" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" maxlength="80"
-								value="#{eventoController.eventoModel.email}" />
+								value="#{editarEvento.evento.email}" />
 						</p:inplace>
 
 						<p:outputLabel value="Banner do evento" for="foto" />
@@ -79,7 +79,7 @@
 
 						<p:outputLabel value="Causas" />
 						<p:selectManyCheckbox id="basic"
-							value="#{eventoController.eventoModel.causas}" layout="grid"
+							value="#{editarEvento.evento.causas}" layout="grid"
 							columns="2" required="true"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
@@ -100,14 +100,12 @@
 						</p:selectManyCheckbox>
 
 						<p:commandButton value="Salvar Evento" id="commandButton-salvar"
-							icon="ui-icon-gear" action="#{eventoController.salvarNovoEvento}"
+							icon="ui-icon-gear" action="#{eventoController.editarEvento}"
 							update="panelGrid-campos-form" ajax="false" />
 
 						<p:commandButton value="Excluir Evento" id="commandButton-excluir"
-							icon="ui-icon-gear" action="#{eventoController.salvarNovoEvento}"
+							icon="ui-icon-gear" action="#{eventoController.removerEvento}"
 							update="panelGrid-campos-form" ajax="false" />
-
-
 
 					</h:panelGrid>
 

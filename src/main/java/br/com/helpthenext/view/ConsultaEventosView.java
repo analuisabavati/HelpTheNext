@@ -71,16 +71,6 @@ public class ConsultaEventosView implements Serializable {
 		}
 	}
 
-	public void editarVaga() {
-		eventoRepository.atualizarEvento(selectedEvento);
-		Uteis.MensagemInfo("Vaga atualizada com sucesso!");
-	}
-
-	public void removerVaga() {
-		eventoRepository.removeEvento(selectedEvento);
-		Uteis.MensagemInfo("Vaga removida com sucesso!");
-	}
-
 	public boolean isBotaoCurtir() {
 		return botaoCurtir;
 	}

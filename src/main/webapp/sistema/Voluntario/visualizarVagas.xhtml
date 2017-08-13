@@ -27,9 +27,12 @@
 							oncomplete="PF('vagaDialog').show()">
 							<f:setPropertyActionListener value="#{vaga}"
 								target="#{consultaVagasView.selectedVaga}" />
+							<f:setPropertyActionListener value="#{vaga}"
+								target="#{editarVaga.vaga}" />
 							<p:graphicImage value="#{vagaImagem.imagem}" style="width:100%;">
 								<f:param name="vagaId" value="#{vaga.id}" />
 							</p:graphicImage>
+
 
 						</p:commandLink>
 
@@ -50,8 +53,10 @@
 								oncomplete="PF('vagaDialog').show()">
 								<f:setPropertyActionListener value="#{vaga}"
 									target="#{consultaVagasView.selectedVaga}" />
-							</p:commandButton>
+								<f:setPropertyActionListener value="#{vaga}"
+									target="#{editarVaga.vaga}" />
 
+							</p:commandButton>
 
 						</h:panelGrid>
 					</h:panelGrid>
@@ -102,8 +107,8 @@
 							value="#{consultaVagasView.selectedVaga.ongEntity.nomeONG}"
 							style="font-weight: bold" />
 
-						<p:button value="Tenho Interesse!">
-
+						<p:button value="Editar" outcome="editarVaga.xhtml"
+							disabled="#{!(consultaVagasView.botaoEditar)}">
 						</p:button>
 
 					</p:panelGrid>

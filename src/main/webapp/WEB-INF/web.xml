@@ -31,5 +31,10 @@
   <session-config>
       <session-timeout>30</session-timeout>
   </session-config>
+  
+  <context-param>
+    <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+    <param-value>0</param-value> <!-- cache desligado -->
+  </context-param>
  
 </web-app>

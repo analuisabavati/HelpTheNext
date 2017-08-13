@@ -28,6 +28,8 @@
 							oncomplete="PF('eventoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{consultaEventosView.selectedEvento}" />
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{editarEvento.evento}" />
 							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
 								<f:param name="eventoId" value="#{evento.id}" />
 							</p:graphicImage>
@@ -38,12 +40,15 @@
 							oncomplete="PF('eventoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{consultaEventosView.selectedEvento}" />
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{editarEvento.evento}" />
 						</p:commandButton>
 
 					</h:panelGrid>
 				</p:panel>
 
 			</p:dataGrid>
+
 			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="eventoDetail" style="text-align:center;">
@@ -80,11 +85,6 @@
 						<h:outputText
 							value="#{consultaEventosView.selectedEvento.causasString}"
 							style="font-weight: bold" />
-
-
-						<p:button value="Curtir" icon="ui-icon-like"
-							disabled="#{!(consultaEventosView.botaoCurtir)}">
-						</p:button>
 
 						<p:button value="Editar" outcome="editarEvento.xhtml"
 							disabled="#{!(consultaEventosView.botaoEditar)}">

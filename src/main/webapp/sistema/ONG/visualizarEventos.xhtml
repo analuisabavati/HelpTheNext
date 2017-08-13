@@ -28,6 +28,8 @@
 							oncomplete="PF('eventoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{consultaEventosView.selectedEvento}" />
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{editarEvento.evento}" />
 							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
 								<f:param name="eventoId" value="#{evento.id}" />
 							</p:graphicImage>
@@ -38,6 +40,8 @@
 							oncomplete="PF('eventoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{consultaEventosView.selectedEvento}" />
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{editarEvento.evento}" />
 						</p:commandButton>
 
 					</h:panelGrid>

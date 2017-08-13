@@ -25,7 +25,7 @@
 						<p:inplace id="inputText-titulo" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText  style="width:100%"
-								maxlength="80" value="#{vagaController.vagaModel.titulo}"
+								maxlength="80" value="#{editarVaga.vaga.titulo}"
 								required="true"
 								requiredMessage="O campo titulo é de preenchimento obrigatório" />
 						</p:inplace>
@@ -35,7 +35,7 @@
 							emptyLabel="Clique para editar">
 							<p:inputTextarea rows="6" cols="33"
 								style="width:100%" maxlength="80"
-								value="#{vagaController.vagaModel.descricao}" required="true"
+								value="#{editarVaga.vaga.descricao}" required="true"
 								requiredMessage="O campo descrição é de preenchimento obrigatório" />
 						</p:inplace>
 
@@ -45,23 +45,19 @@
 							emptyLabel="Clique para editar">
 							<p:inputText  style="width:100%"
 								maxlength="80"
-								value="#{vagaController.vagaModel.nomeResponsavel}" />
+								value="#{editarVaga.vaga.nomeResponsavel}" />
 						</p:inplace>
 
 						<p:outputLabel value="Email" for="inputText-email" />
 						<p:inplace id="inputText-email" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText  style="width:100%"
-								maxlength="80" value="#{vagaController.vagaModel.email}" />
+								maxlength="80" value="#{editarVaga.vaga.email}" />
 						</p:inplace>
-
-						<p:outputLabel value="Banner da Vaga" for="foto" />
-						<p:fileUpload id="foto" mode="simple"
-							value="#{vagaController.uploadedFile}" />
 
 						<p:outputLabel value="Causas" />
 						<p:selectManyCheckbox id="causas"
-							value="#{vagaController.vagaModel.causas}" layout="grid"
+							value="#{editarVaga.vaga.causas}" layout="grid"
 							columns="2" required="true"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
@@ -85,7 +81,7 @@
 						<p:outputLabel value="Habilidades  Necessárias" />
 
 						<p:selectManyCheckbox id="habilidades"
-							value="#{vagaController.vagaModel.habilidades}" layout="grid"
+							value="#{editarVaga.vaga.habilidades}" layout="grid"
 							columns="2" required="true"
 							requiredMessage="O campo Habilidades é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
@@ -106,7 +102,7 @@
 						<p:outputLabel value="Disponibilidade:" />
 
 						<p:selectManyCheckbox id="dia"
-							value="#{vagaController.vagaModel.dias}" layout="grid"
+							value="#{editarVaga.vaga.dias}" layout="grid"
 							columns="1" required="true"
 							requiredMessage="O campo Disponibilidade é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
@@ -121,7 +117,7 @@
 
 						<p:outputLabel value="Periodo" />
 						<p:selectManyCheckbox id="periodo"
-							value="#{vagaController.vagaModel.periodos}" layout="grid"
+							value="#{editarVaga.vaga.periodos}" layout="grid"
 							columns="3">
 							<f:selectItem itemLabel="Manha" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
@@ -131,7 +127,7 @@
 						<p:outputLabel for="selectOneRadio-trabalho"
 							value="Trabalho à distancia:" />
 						<p:selectOneRadio id="selectOneRadio-trabalho"
-							value="#{vagaController.vagaModel.trabalhoDistancia}"
+							value="#{editarVaga.vaga.trabalhoDistancia}"
 							required="true"
 							requiredMessage="O campo trabalho à distancia é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Sim" itemValue="Sim" />
@@ -140,11 +136,11 @@
 
 						<p:commandButton value="Salvar alterações"
 							id="commandButton-salvar" icon="ui-icon-gear"
-							action="#{vagaController.salvarNovaVaga}"
+							action="#{editarVaga.editarVaga}"
 							update="panelGrid-campos-form" ajax="false" />
 
 						<p:commandButton value="Excluir vaga" id="commandButton-excluir"
-							icon="ui-icon-gear" action="#{vagaController.salvarNovaVaga}"
+							icon="ui-icon-gear" action="#{editarVaga.removerVaga}"
 							update="panelGrid-campos-form" ajax="false" />
 
 					</h:panelGrid>
