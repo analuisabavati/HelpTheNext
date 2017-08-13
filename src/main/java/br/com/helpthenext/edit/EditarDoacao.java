@@ -1,4 +1,4 @@
-package br.com.helpthenext.controller;
+package br.com.helpthenext.edit;
 
 public class EditarDoacao {
 
