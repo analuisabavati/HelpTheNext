@@ -1,6 +1,5 @@
 package br.com.helpthenext.controller;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
