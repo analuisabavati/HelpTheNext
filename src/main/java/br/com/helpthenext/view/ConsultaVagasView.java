@@ -42,12 +42,12 @@ public class ConsultaVagasView implements Serializable {
 		this.vagas = null;
 		this.vagas = vagaRepository.getVagas();
 	}
-	
+
 	public void ativarBotoes() {
 		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
 		if (ong != null && selectedVaga != null && selectedVaga.getOngEntity() != null
 				&& selectedVaga.getOngEntity().getId() != null) {
-			if (selectedVaga.getOngEntity().getId().equals(ong.getId())) {
+			if (selectedVaga.getOngEntity() != null && selectedVaga.getOngEntity().getId().equals(ong.getId())) {
 				botaoEditar = true;
 			} else {
 				botaoEditar = false;

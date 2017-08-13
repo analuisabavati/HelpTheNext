@@ -15,7 +15,6 @@ import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.Uteis;
 
 @ViewScoped
 @Named(value = "consultaEventosView")
@@ -48,12 +47,12 @@ public class ConsultaEventosView implements Serializable {
 	public void init() {
 		this.eventos = eventoRepository.getEventos();
 	}
-	
+
 	public void ativarBotoes() {
 		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
 		if (ong != null && selectedEvento != null && selectedEvento.getOngEntity() != null
 				&& selectedEvento.getOngEntity().getId() != null) {
-			if (selectedEvento.getOngEntity().getId().equals(ong.getId())) {
+			if (selectedEvento.getOngEntity() != null && selectedEvento.getOngEntity().getId().equals(ong.getId())) {
 				botaoEditar = true;
 			} else {
 				botaoEditar = false;
@@ -63,7 +62,8 @@ public class ConsultaEventosView implements Serializable {
 		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
 		if (vol != null && selectedEvento != null && selectedEvento.getOngEntity() != null
 				&& selectedEvento.getOngEntity().getId() != null) {
-			if (selectedEvento.getVoluntarioEntity().getId().equals(vol.getId())) {
+			if (selectedEvento.getVoluntarioEntity() != null
+					&& selectedEvento.getVoluntarioEntity().getId().equals(vol.getId())) {
 				botaoEditar = true;
 			} else {
 				botaoEditar = false;

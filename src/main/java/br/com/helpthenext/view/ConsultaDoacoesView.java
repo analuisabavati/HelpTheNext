@@ -40,20 +40,19 @@ public class ConsultaDoacoesView implements Serializable {
 	public void init() {
 		this.doacoes = doacaoRepository.getDoacaos();
 	}
-	
+
 	public void ativarBotoes() {
 		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
 		if (vol != null && selectedDoacao != null && selectedDoacao.getVoluntarioEntity() != null
 				&& selectedDoacao.getVoluntarioEntity().getId() != null) {
-			if (selectedDoacao.getVoluntarioEntity().getId().equals(vol.getId())) {
+			if (selectedDoacao.getVoluntarioEntity() != null
+					&& selectedDoacao.getVoluntarioEntity().getId().equals(vol.getId())) {
 				botaoEditar = true;
 			} else {
 				botaoEditar = false;
 			}
 		}
 	}
-	
-
 
 	public DoacaoModel getDoacaoModel() {
 		return doacaoModel;
