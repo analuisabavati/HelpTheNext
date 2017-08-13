@@ -23,7 +23,7 @@
 					<h:panelGrid columns="1" style="width:100%;">
 
 						<p:commandLink update=":form:vagaDetail"
-							actionListener="#{consultaVagasView.ativarBotoes}"
+							action="#{consultaVagasView.ativarBotoes}"
 							oncomplete="PF('vagaDialog').show()">
 							<f:setPropertyActionListener value="#{vaga}"
 								target="#{consultaVagasView.selectedVaga}" />
@@ -46,7 +46,7 @@
 
 							<p:commandButton value="Mais informações"
 								update=":form:vagaDetail"
-								actionListener="#{consultaVagasView.ativarBotoes}"
+								action="#{consultaVagasView.ativarBotoes}"
 								oncomplete="PF('vagaDialog').show()">
 								<f:setPropertyActionListener value="#{vaga}"
 									target="#{consultaVagasView.selectedVaga}" />

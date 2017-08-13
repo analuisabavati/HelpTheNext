@@ -23,13 +23,14 @@
 					<h:panelGrid columns="1" style="width:100%;">
 
 						<p:commandLink update=":form:vagaDetail"
-							actionListener="#{consultaVagasView.ativarBotoes}"
+							action="#{consultaVagasView.ativarBotoes}"
 							oncomplete="PF('vagaDialog').show()">
 							<f:setPropertyActionListener value="#{vaga}"
 								target="#{consultaVagasView.selectedVaga}" />
 							<p:graphicImage value="#{vagaImagem.imagem}" style="width:100%;">
 								<f:param name="vagaId" value="#{vaga.id}" />
 							</p:graphicImage>
+							
 
 						</p:commandLink>
 
@@ -45,10 +46,11 @@
 							<h:outputText value="#{vaga.trabalhoDistancia}" />
 
 							<p:commandButton value="Mais informações" update=":form:vagaDetail"
-								actionListener="#{consultaVagasView.ativarBotoes}"
+								action="#{consultaVagasView.ativarBotoes}"
 								oncomplete="PF('vagaDialog').show()">
 								<f:setPropertyActionListener value="#{vaga}"
 									target="#{consultaVagasView.selectedVaga}" />
+						
 							</p:commandButton>
 
 						</h:panelGrid>

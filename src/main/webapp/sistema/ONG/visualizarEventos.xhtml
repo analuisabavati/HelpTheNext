@@ -24,7 +24,7 @@
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
 
 						<p:commandLink update=":form:eventoDetail"
-							actionListener="#{consultaEventosView.ativarBotoes}"
+							action="#{consultaEventosView.ativarBotoes}"
 							oncomplete="PF('eventoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{consultaEventosView.selectedEvento}" />
@@ -34,7 +34,7 @@
 						</p:commandLink>
 
 						<p:commandButton update=":form:eventoDetail"
-							actionListener="#{consultaEventosView.ativarBotoes}"
+							action="#{consultaEventosView.ativarBotoes}"
 							oncomplete="PF('eventoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{consultaEventosView.selectedEvento}" />

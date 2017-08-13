@@ -24,7 +24,7 @@
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
 
 						<p:commandLink update=":form:doacaoDetail"
-							actionListener="#{consultaDoacoesView.ativarBotoes}"
+							action="#{consultaDoacoesView.ativarBotoes}"
 							oncomplete="PF('doacaoDialog').show()">
 							<f:setPropertyActionListener value="#{doacao}"
 								target="#{consultaDoacoesView.selectedDoacao}" />
@@ -34,7 +34,7 @@
 						</p:commandLink>
 
 						<p:commandButton update=":form:doacaoDetail"
-							actionListener="#{consultaDoacoesView.ativarBotoes}"
+							action="#{consultaDoacoesView.ativarBotoes}"
 							oncomplete="PF('doacaoDialog').show()">
 							<f:setPropertyActionListener value="#{doacao}"
 								target="#{consultaDoacoesView.selectedDoacao}" />
