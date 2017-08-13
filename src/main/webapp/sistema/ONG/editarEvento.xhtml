@@ -43,8 +43,7 @@
 						<p:inplace id="inputText-responsavel" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" maxlength="80"
-								value="#{editarEvento.evento.nomeResponsavel}"
-								required="true"
+								value="#{editarEvento.evento.nomeResponsavel}" required="true"
 								requiredMessage="O campo responsavel é de preenchimento obrigatório" />
 						</p:inplace>
 
@@ -78,9 +77,9 @@
 							value="#{eventoController.uploadedFile}" />
 
 						<p:outputLabel value="Causas" />
-						<p:selectManyCheckbox id="basic"
-							value="#{editarEvento.evento.causas}" layout="grid"
-							columns="2" required="true"
+
+						<p:selectManyCheckbox value="#{editarEvento.evento.causas}"
+							layout="grid" columns="2" required="false"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
 							<f:selectItem itemLabel="Saude" itemValue="1" />
@@ -99,12 +98,14 @@
 							<f:selectItem itemLabel="Outras" itemValue="13" />
 						</p:selectManyCheckbox>
 
+
+
 						<p:commandButton value="Salvar Evento" id="commandButton-salvar"
-							icon="ui-icon-gear" action="#{eventoController.editarEvento}"
+							icon="ui-icon-gear" action="#{editarEvento.editarEvento}"
 							update="panelGrid-campos-form" ajax="false" />
 
 						<p:commandButton value="Excluir Evento" id="commandButton-excluir"
-							icon="ui-icon-gear" action="#{eventoController.removerEvento}"
+							icon="ui-icon-gear" action="#{editarEvento.removerEvento}"
 							update="panelGrid-campos-form" ajax="false" />
 
 					</h:panelGrid>

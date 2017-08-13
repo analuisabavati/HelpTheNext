@@ -22,12 +22,12 @@ public class EditarEvento implements Serializable {
 	
 	private EventoModel evento;
 
-	public void editarVaga() {
+	public void editarEvento() {
 		eventoRepository.atualizarEvento(evento);
 		Uteis.MensagemInfo("Vaga atualizada com sucesso!");
 	}
 
-	public void removerVaga() {
+	public void removerEvento() {
 		eventoRepository.removeEvento(evento);
 		Uteis.MensagemInfo("Vaga removida com sucesso!");
 	}
