@@ -35,7 +35,7 @@
 							</p:graphicImage>
 						</p:commandLink>
 
-						<p:commandButton update=":form:doacaoDetail"
+						<p:commandButton value="Mais Informações" update=":form:doacaoDetail"
 							action="#{consultaDoacoesView.ativarBotoes}"
 							oncomplete="PF('doacaoDialog').show()">
 							<f:setPropertyActionListener value="#{doacao}"
@@ -70,7 +70,6 @@
 							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.nome}"
 							style="font-weight: bold" />
 
-
 						<h:outputText value="Retirada:  " />
 						<h:outputText
 							value="#{consultaDoacoesView.selectedDoacao.diasString}"
@@ -86,7 +85,7 @@
 							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.cidade}"
 							style="font-weight: bold" />
 
-						<p:button value="Tenho Interesse!" icon="ui-icon-like"
+						<p:button value="Editar" outcome="editarDoacao.xhtml"
 							disabled="#{!(consultaDoacoesView.botaoEditar)}">
 						</p:button>
 

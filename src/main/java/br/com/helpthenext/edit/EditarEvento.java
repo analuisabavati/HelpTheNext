@@ -3,7 +3,6 @@ package br.com.helpthenext.edit;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -24,12 +23,12 @@ public class EditarEvento implements Serializable {
 
 	public void editarEvento() {
 		eventoRepository.atualizarEvento(evento);
-		Uteis.MensagemInfo("Vaga atualizada com sucesso!");
+		Uteis.MensagemInfo("Evento atualizado com sucesso!");
 	}
 
 	public void removerEvento() {
 		eventoRepository.removeEvento(evento);
-		Uteis.MensagemInfo("Vaga removida com sucesso!");
+		Uteis.MensagemInfo("Evento removido com sucesso!");
 	}
 
 	public EventoRepository getEventoRepository() {

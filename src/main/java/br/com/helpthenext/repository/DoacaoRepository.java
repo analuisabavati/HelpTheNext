@@ -95,7 +95,7 @@ public class DoacaoRepository {
 		return doacoesModel;
 	}
 
-	public void ataulizarDoacao(DoacaoModel doacaoModel) {
+	public void atualizarDoacao(DoacaoModel doacaoModel) {
 
 		entityManager = Uteis.JpaEntityManager();
 

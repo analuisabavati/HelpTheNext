@@ -22,7 +22,7 @@ public class EditarDoacao implements Serializable {
 	private DoacaoModel doacao;
 	
 	public void editarDoacao() {
-		doacaoRepository.ataulizarDoacao(doacao);
+		doacaoRepository.atualizarDoacao(doacao);
 		Uteis.MensagemInfo("Doacao atualizada com sucesso!");
 	}
 
