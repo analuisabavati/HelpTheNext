@@ -21,10 +21,10 @@
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
-						<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
-						<p:inplace id="inputText-senha-cadastro" editor="true"
+						<p:outputLabel value="Senha" for="senha" />
+						<p:inplace id="senha" editor="true"
 							emptyLabel="Clique para editar">
-							<p:password value="#{editarONG.ong.senha}" required="true" />
+							<p:inputText value="#{editarONG.ong.senhaONG}" required="true"/>
 						</p:inplace>
 
 						<p:separator />

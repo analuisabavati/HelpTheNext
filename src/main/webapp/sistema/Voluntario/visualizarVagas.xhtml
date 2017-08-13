@@ -44,6 +44,15 @@
 								style="font-weight: bold" />
 							<h:outputText value="#{vaga.trabalhoDistancia}" />
 
+							<p:commandButton value="Mais informações"
+								update=":form:vagaDetail"
+								actionListener="#{consultaVagasView.ativarBotoes}"
+								oncomplete="PF('vagaDialog').show()">
+								<f:setPropertyActionListener value="#{vaga}"
+									target="#{consultaVagasView.selectedVaga}" />
+							</p:commandButton>
+
+
 						</h:panelGrid>
 					</h:panelGrid>
 				</p:panel>
@@ -94,7 +103,7 @@
 							style="font-weight: bold" />
 
 						<p:button value="Tenho Interesse!">
-							
+
 						</p:button>
 
 					</p:panelGrid>

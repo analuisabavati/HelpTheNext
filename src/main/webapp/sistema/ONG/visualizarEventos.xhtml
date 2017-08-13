@@ -33,6 +33,13 @@
 							</p:graphicImage>
 						</p:commandLink>
 
+						<p:commandButton update=":form:eventoDetail"
+							actionListener="#{consultaEventosView.ativarBotoes}"
+							oncomplete="PF('eventoDialog').show()">
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{consultaEventosView.selectedEvento}" />
+						</p:commandButton>
+
 					</h:panelGrid>
 				</p:panel>
 

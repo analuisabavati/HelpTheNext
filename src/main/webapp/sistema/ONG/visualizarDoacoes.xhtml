@@ -33,6 +33,14 @@
 							</p:graphicImage>
 						</p:commandLink>
 
+						<p:commandButton update=":form:doacaoDetail"
+							actionListener="#{consultaDoacoesView.ativarBotoes}"
+							oncomplete="PF('doacaoDialog').show()">
+							<f:setPropertyActionListener value="#{doacao}"
+								target="#{consultaDoacoesView.selectedDoacao}" />
+						</p:commandButton>
+
+
 					</h:panelGrid>
 				</p:panel>
 
@@ -69,7 +77,7 @@
 							value="#{consultaDoacoesView.selectedDoacao.periodoString}"
 							style="font-weight: bold" />
 						<h:outputText value="Cidade:  " />
-						
+
 						<h:outputText
 							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.cidade}"
 							style="font-weight: bold" />

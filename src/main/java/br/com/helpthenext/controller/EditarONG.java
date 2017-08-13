@@ -16,7 +16,7 @@ import br.com.helpthenext.uteis.Uteis;
 @Named(value = "editarONG")
 public class EditarONG implements Serializable {
 
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 22L;	
 	
 	@Inject
 	transient ONGRepository ongRepository;

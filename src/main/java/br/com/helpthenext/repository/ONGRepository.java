@@ -109,7 +109,7 @@ public class ONGRepository {
 		ongEntity.setEstado(ongModel.getEstado());
 		
 		UsuarioEntity usuarioEntity = ongEntity.getUsuarioEntity();
-		usuarioEntity.setSenha(ongModel.getSenha());
+		usuarioEntity.setSenha(ongModel.getSenhaONG());
 		entityManager.merge(usuarioEntity);
 
 		entityManager.merge(ongEntity);
@@ -145,7 +145,7 @@ public class ONGRepository {
 		
 		model.setUsuarioEntity(ongEntity.getUsuarioEntity());
 
-		model.setSenha(ongEntity.getUsuarioEntity().getSenha());
+		model.setSenhaONG(ongEntity.getUsuarioEntity().getSenha());
 		
 		return model;
 	}

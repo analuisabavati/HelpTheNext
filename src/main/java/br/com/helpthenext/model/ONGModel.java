@@ -28,14 +28,14 @@ public class ONGModel {
 	private String pais;
 	private byte[] foto;
 	private String[] causas;
-	private String senha;
+	private String senhaONG;
 
-	public String getSenha() {
-		return senha;
+	public String getSenhaONG() {
+		return senhaONG;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setSenhaONG(String senhaONG) {
+		this.senhaONG = senhaONG;
 	}
 
 	public String[] getCausas() {

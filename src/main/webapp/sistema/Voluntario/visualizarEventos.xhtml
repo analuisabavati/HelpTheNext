@@ -23,7 +23,8 @@
 				<p:panel header="#{evento.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
 
-						<p:commandLink update=":form:eventoDetail" actionListener="#{consultaEventosView.ativarBotoes}"
+						<p:commandLink update=":form:eventoDetail"
+							actionListener="#{consultaEventosView.ativarBotoes}"
 							oncomplete="PF('eventoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{consultaEventosView.selectedEvento}" />
@@ -32,11 +33,18 @@
 							</p:graphicImage>
 						</p:commandLink>
 
+						<p:commandButton update=":form:eventoDetail"
+							actionListener="#{consultaEventosView.ativarBotoes}"
+							oncomplete="PF('eventoDialog').show()">
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{consultaEventosView.selectedEvento}" />
+						</p:commandButton>
+
 					</h:panelGrid>
 				</p:panel>
 
 			</p:dataGrid>
-<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
+			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="eventoDetail" style="text-align:center;">
 					<p:panelGrid columns="2"
@@ -74,10 +82,12 @@
 							style="font-weight: bold" />
 
 
-						<p:button value="Curtir" icon="ui-icon-like" disabled="#{!(consultaEventosView.botaoCurtir)}">
+						<p:button value="Curtir" icon="ui-icon-like"
+							disabled="#{!(consultaEventosView.botaoCurtir)}">
 						</p:button>
 
-						<p:button value="Editar" outcome="editarEvento.xhtml" disabled="#{!(consultaEventosView.botaoEditar)}">
+						<p:button value="Editar" outcome="editarEvento.xhtml"
+							disabled="#{!(consultaEventosView.botaoEditar)}">
 						</p:button>
 
 					</p:panelGrid>
