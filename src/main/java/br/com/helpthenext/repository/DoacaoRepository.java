@@ -104,8 +104,7 @@ public class DoacaoRepository {
 		doacaoEntity.setDescricao(doacaoModel.getDescricao());
 		doacaoEntity.setFoto(doacaoModel.getFoto());
 		doacaoEntity.setVoluntarioEntity(doacaoModel.getVoluntarioEntity());
-		doacaoEntity.setDataCadastro(LocalDateTime.now());
-		
+	
 		List<DiasSemana> dias = new ArrayList<>();
 		for(String p1 : doacaoModel.getDias()){
 			dias.add(DiasSemana.values()[new Integer(p1)]);

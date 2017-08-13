@@ -115,12 +115,11 @@ public class EventoRepository {
 		eventoEntity = getEvento(eventoModel.getId());
 		eventoEntity.setTitulo(eventoModel.getTitulo());
 		eventoEntity.setDescricao(eventoModel.getDescricao());
-		eventoEntity.setNomeResponsavel(eventoModel.getDescricao());
+		eventoEntity.setNomeResponsavel(eventoModel.getNomeResponsavel());
 		eventoEntity.setDataHora(eventoModel.getDataHora());
 		eventoEntity.setLocal(eventoModel.getLocal());
 		eventoEntity.setEmail(eventoModel.getEmail());
 		eventoEntity.setBanner(eventoModel.getBanner());
-		eventoEntity.setDataCadastro(LocalDateTime.now());
 
 		List<Causas> causas = new ArrayList<>();
 		for (String p4 : eventoModel.getCausas()) {
