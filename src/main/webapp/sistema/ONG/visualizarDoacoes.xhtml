@@ -28,6 +28,8 @@
 							oncomplete="PF('doacaoDialog').show()">
 							<f:setPropertyActionListener value="#{doacao}"
 								target="#{consultaDoacoesView.selectedDoacao}" />
+							<f:setPropertyActionListener value="#{doacao}"
+								target="#{editarDoacao.doacao}" />
 							<p:graphicImage value="#{doacaoImagem.imagem}" style="width:100%">
 								<f:param name="doacaoId" value="#{doacao.id}" />
 							</p:graphicImage>
@@ -38,6 +40,8 @@
 							oncomplete="PF('doacaoDialog').show()">
 							<f:setPropertyActionListener value="#{doacao}"
 								target="#{consultaDoacoesView.selectedDoacao}" />
+							<f:setPropertyActionListener value="#{doacao}"
+								target="#{editarDoacao.doacao}" />
 						</p:commandButton>
 
 

@@ -13,7 +13,6 @@ import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.DoacaoRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.Uteis;
 
 @ViewScoped
 @Named(value = "consultaDoacoesView")
@@ -54,15 +53,7 @@ public class ConsultaDoacoesView implements Serializable {
 		}
 	}
 	
-	public void editarDoacao() {
-		doacaoRepository.ataulizarDoacao(selectedDoacao);
-		Uteis.MensagemInfo("Doacao atualizada com sucesso!");
-	}
 
-	public void removerDoacao() {
-		doacaoRepository.removerDoacao(selectedDoacao);
-		Uteis.MensagemInfo("Doacao removida com sucesso!");
-	}
 
 	public DoacaoModel getDoacaoModel() {
 		return doacaoModel;

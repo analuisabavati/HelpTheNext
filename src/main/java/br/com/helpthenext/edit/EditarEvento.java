@@ -2,6 +2,7 @@ package br.com.helpthenext.edit;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,7 +11,7 @@ import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.EventoRepository;
 import br.com.helpthenext.uteis.Uteis;
 
-@ViewScoped
+@SessionScoped
 @Named(value = "editarEvento")
 public class EditarEvento implements Serializable {
 

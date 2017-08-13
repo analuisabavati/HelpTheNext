@@ -24,7 +24,7 @@
 						<p:inplace  id="inputText-titulo" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%"
-								maxlength="80" value="#{doacaoController.doacaoModel.titulo}"
+								maxlength="80" value="#{editarDoacao.doacao.titulo}"
 								required="true"
 								requiredMessage="O titulo da vaga é de preenchimento obrigatório" />
 						</p:inplace>
@@ -35,7 +35,7 @@
 							emptyLabel="Clique para editar">
 							<p:inputTextarea rows="6" cols="33" 
 								style="width:100%" maxlength="80"
-								value="#{doacaoController.doacaoModel.descricao}"
+								value="#{editarDoacao.doacao.descricao}"
 								required="true"
 								requiredMessage="O campo descrição é de preenchimento obrigatório" />
 						</p:inplace>
@@ -46,7 +46,7 @@
 
 						<p:outputLabel value="Disponibilidade para retirada:" />
 						<p:selectManyCheckbox id="dias"
-							value="#{doacaoController.doacaoModel.dias}" layout="grid"
+							value="#{editarDoacao.doacao.dias}" layout="grid"
 							columns="2">
 							<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
 							<f:selectItem itemLabel="Terça-Feira" itemValue="2" />
@@ -60,7 +60,7 @@
 						<p:outputLabel value="Periodo" />
 
 						<p:selectManyCheckbox id="periodos"
-							value="#{doacaoController.doacaoModel.periodos}" layout="grid"
+							value="#{editarDoacao.doacao.periodos}" layout="grid"
 							columns="3">
 							<f:selectItem itemLabel="Manha" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
@@ -69,11 +69,11 @@
 
 						<p:commandButton value="Salvar alterações"
 							id="commandButton-salvar" icon="ui-icon-gear"
-							action="#{doacaoController.salvarNovaDoacao}"
+							action="#{editarDoacao.editarDoacao}"
 							update="panelGrid-campos-form" ajax="false" />
 
 						<p:commandButton value="Excluir objeto" id="commandButton-excluir"
-							icon="ui-icon-gear" action="#{doacaoController.salvarNovaDoacao}"
+							icon="ui-icon-gear" action="#{editarDoacao.removerDoacao}"
 							update="panelGrid-campos-form" ajax="false" />
 
 					</h:panelGrid>
