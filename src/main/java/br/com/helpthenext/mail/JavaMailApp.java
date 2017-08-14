@@ -12,9 +12,13 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaMailApp
 {
-      public static void main(String[] args) {
+	
+	private String remetente = "";
+	private String senha = "";
+	
+      public void enviarEmail(String destinatario, String mensagem, String assunto) {
             Properties props = new Properties();
-            /** Parâmetros de conexão com servidor Gmail */
+          
             props.put("mail.smtp.host", "smtp.gmail.com");
             props.put("mail.smtp.socketFactory.port", "465");
             props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -25,24 +29,25 @@ public class JavaMailApp
                         new javax.mail.Authenticator() {
                              protected PasswordAuthentication getPasswordAuthentication() 
                              {
-                                   return new PasswordAuthentication("seuemail@gmail.com", "suasenha123");
+                                   return new PasswordAuthentication(remetente, senha);
                              }
                         });
-            /** Ativa Debug para sessão */
+          
             session.setDebug(true);
             try {
 
                   Message message = new MimeMessage(session);
-                  message.setFrom(new InternetAddress("seuemail@gmail.com")); //Remetente
+                  message.setFrom(new InternetAddress(remetente)); //Remetente
 
-                  Address[] toUser = InternetAddress //Destinatário(s)
-                             .parse("seuamigo@gmail.com, seucolega@hotmail.com, seuparente@yahoo.com.br");  
+                  Address[] toUser = InternetAddress.parse(destinatario);  
+                  
                   message.setRecipients(Message.RecipientType.TO, toUser);
-                  message.setSubject("Enviando email com JavaMail");//Assunto
-                  message.setText("Enviei este email utilizando JavaMail com minha conta GMail!");
-                  /**Método para enviar a mensagem criada*/
+                  message.setSubject(assunto);
+                  message.setText(mensagem);
+                 
                   Transport.send(message);
-                  System.out.println("Feito!!!");
+                 // System.out.println("Email enviado");
+                  
              } catch (MessagingException e) {
                   throw new RuntimeException(e);
             }
