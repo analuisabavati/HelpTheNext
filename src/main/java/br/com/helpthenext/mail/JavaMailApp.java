@@ -13,8 +13,8 @@ import javax.mail.internet.MimeMessage;
 public class JavaMailApp
 {
 	
-	private String remetente = "";
-	private String senha = "";
+	private String remetente = "helpthenext.info@gmail.com";
+	private String senha = "helpthenext";
 	
       public void enviarEmail(String destinatario, String mensagem, String assunto) {
             Properties props = new Properties();
