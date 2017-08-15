@@ -6,6 +6,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.VagaRepository;
 import br.com.helpthenext.uteis.Uteis;
@@ -21,7 +23,12 @@ public class EditarVaga implements Serializable {
 	
 	private VagaModel vaga;
 	
+	private UploadedFile uploadedFile;
+	
 	public void editarVaga() {
+		if (uploadedFile != null) {
+			vaga.setBanner(uploadedFile.getContents());
+		}
 		vagaRepository.atualizaVaga(vaga);
 		Uteis.MensagemInfo("Vaga atualizada com sucesso!");
 	}
@@ -46,4 +53,18 @@ public class EditarVaga implements Serializable {
 	public void setVaga(VagaModel vaga) {
 		this.vaga = vaga;
 	}
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 }

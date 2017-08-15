@@ -54,6 +54,10 @@
 							<p:inputText  style="width:100%"
 								maxlength="80" value="#{editarVaga.vaga.email}" />
 						</p:inplace>
+						
+							<p:outputLabel value="Banner da Vaga" for="foto" />
+						<p:fileUpload id="foto" mode="simple"
+							value="#{editarVaga.uploadedFile}" />
 
 						<p:outputLabel value="Causas" />
 						<p:selectManyCheckbox id="causas"
