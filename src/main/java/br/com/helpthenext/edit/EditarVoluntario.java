@@ -31,7 +31,7 @@ public class EditarVoluntario implements Serializable {
 	
 	public void atualizarVoluntario() {	
 		voluntarioRepository.atualizarVoluntario(this.voluntario);	
-		Uteis.MensagemInfo("Voluntario atualizado com sucesso!");
+		Uteis.Mensagem("Voluntario atualizado com sucesso!");
 	}
 	
 	public VoluntarioRepository getVoluntarioRepository() {

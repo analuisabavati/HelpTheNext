@@ -18,6 +18,8 @@ public class JavaMailApp
 	
       public void enviarEmail(String destinatario, String mensagem, String assunto) {
             Properties props = new Properties();
+            
+           // destinatario = "ana_bavati@hotmail.com";
           
             props.put("mail.smtp.host", "smtp.gmail.com");
             props.put("mail.smtp.socketFactory.port", "465");

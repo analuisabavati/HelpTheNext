@@ -9,10 +9,13 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.helpthenext.mail.JavaMailApp;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VagaRepository;
+import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 @ViewScoped
@@ -29,6 +32,12 @@ public class ConsultaVagasView implements Serializable {
 
 	@Inject
 	transient private ONGRepository ongRepository;
+	
+	@Inject
+	transient JavaMailApp javaMailApp;
+	
+	@Inject
+	transient VoluntarioRepository voluntarioRepository;
 
 	@Produces
 	private List<VagaModel> vagas;
@@ -67,6 +76,41 @@ public class ConsultaVagasView implements Serializable {
 		init();
 	}
 
+	public void enviarEmailInteresse() {
+
+		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
+
+		StringBuilder msg = new StringBuilder();
+		msg.append("--------------------------- HelpTheNext -------------------------");
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("Olá " + selectedVaga.getOngEntity().getNomeONG());
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("O voluntario " + vol.getNome() + " tem interesse na sua vaga intitulada como + "
+				+ selectedVaga.getTitulo() + ".");
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("Segue abaixo o contado do voluntario:");
+		msg.append("\n");
+		msg.append("Telefone: " + vol.getTelefone());
+		msg.append("\n");
+		msg.append("Email: " + vol.getEmail());
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("--------------------------- HelpTheNext -------------------------");
+		msg.append("\n");
+		msg.append("\n");
+		msg.append(
+				"Por favor, não responda a este e-mail - que foi gerada a partir de uma conta que envia mensagens automaticamente e não pode receber respostas de volta.");
+
+		String assunto = "[HelpTheNext] Um voluntario está interessado na sua vaga!!";
+
+		javaMailApp.enviarEmail(selectedVaga.getOngEntity().getEmail(), msg.toString(), assunto);
+	}
+	
+	
 	public List<VagaModel> getVagas() {
 		return vagas;
 	}

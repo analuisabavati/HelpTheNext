@@ -23,12 +23,12 @@ public class EditarEvento implements Serializable {
 
 	public void editarEvento() {
 		eventoRepository.atualizarEvento(evento);
-		Uteis.MensagemInfo("Evento atualizado com sucesso!");
+		Uteis.Mensagem("Evento atualizado com sucesso!");
 	}
 
 	public void removerEvento() {
 		eventoRepository.removeEvento(evento);
-		Uteis.MensagemInfo("Evento removido com sucesso!");
+		Uteis.Mensagem("Evento removido com sucesso!");
 	}
 
 	public EventoRepository getEventoRepository() {
