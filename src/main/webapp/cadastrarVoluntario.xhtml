@@ -87,7 +87,10 @@
 							maxlength="80"
 							value="#{voluntarioController.voluntarioModel.email}"
 							required="true"
-							requiredMessage="O campo email é de preenchimento obrigatório" />
+							requiredMessage="O campo email é de preenchimento obrigatório">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
 
 						<p:outputLabel value="Telefone" for="inputText-telefone" />
 						<p:inputMask id="inputText-telefone" style="width:100%"

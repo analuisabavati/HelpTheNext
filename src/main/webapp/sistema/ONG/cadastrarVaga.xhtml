@@ -41,10 +41,14 @@
 
 						<p:outputLabel value="Email" for="inputText-email" />
 						<p:inputText id="inputText-email" style="width:100%"
-							maxlength="80" value="#{vagaController.vagaModel.email}" />
+							maxlength="80" value="#{vagaController.vagaModel.email}">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
 
 						<p:outputLabel value="Banner da Vaga" for="foto" />
-						<p:fileUpload id="foto" mode="simple" value="#{vagaController.uploadedFile}" />
+						<p:fileUpload id="foto" mode="simple"
+							value="#{vagaController.uploadedFile}" />
 
 						<p:outputLabel value="Causas" />
 						<p:selectManyCheckbox id="causas"
@@ -114,8 +118,9 @@
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
-						
-						<p:outputLabel for="selectOneRadio-trabalho" value="Trabalho à distancia:" />
+
+						<p:outputLabel for="selectOneRadio-trabalho"
+							value="Trabalho à distancia:" />
 						<p:selectOneRadio id="selectOneRadio-trabalho"
 							value="#{vagaController.vagaModel.trabalhoDistancia}"
 							required="true"

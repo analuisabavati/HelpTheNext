@@ -55,7 +55,9 @@
 
 						<p:outputLabel value="Email" for="inputText-email" />
 						<p:inputText id="inputText-email" style="width:100%"
-							maxlength="80" value="#{eventoController.eventoModel.email}" />
+							maxlength="80" value="#{eventoController.eventoModel.email}">
+							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
 
 						<p:outputLabel value="Banner do evento" for="foto" />
 						<p:fileUpload id="foto" mode="simple"
@@ -66,20 +68,21 @@
 							value="#{eventoController.eventoModel.causas}" layout="grid"
 							columns="2" required="true"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
-						<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-						<f:selectItem itemLabel="Saude" itemValue="1" />
-						<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-						<f:selectItem itemLabel="Participação cidada" itemValue="3" />
-						<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
-						<f:selectItem itemLabel="Idosos" itemValue="5" />
-						<f:selectItem itemLabel="Educação" itemValue="6" />
-						<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-						<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
-						<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
-						<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
-						<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
-						<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
-						<f:selectItem itemLabel="Outras" itemValue="13" />
+							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
+							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+							<f:selectItem itemLabel="Idosos" itemValue="5" />
+							<f:selectItem itemLabel="Educação" itemValue="6" />
+							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+								itemValue="8" />
+							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+							<f:selectItem itemLabel="Outras" itemValue="13" />
 						</p:selectManyCheckbox>
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"
