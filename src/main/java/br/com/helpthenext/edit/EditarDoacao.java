@@ -6,6 +6,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.DoacaoRepository;
 import br.com.helpthenext.uteis.Uteis;
@@ -21,7 +23,12 @@ public class EditarDoacao implements Serializable {
 
 	private DoacaoModel doacao;
 	
+	private UploadedFile uploadedFile;
+	
 	public void editarDoacao() {
+		if (uploadedFile != null) {
+			doacao.setFoto(uploadedFile.getContents());
+		}
 		doacaoRepository.atualizarDoacao(doacao);
 		Uteis.Mensagem("Doacao atualizada com sucesso!");
 	}
@@ -50,4 +57,14 @@ public class EditarDoacao implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+	
+	
 }
