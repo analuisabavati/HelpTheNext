@@ -6,6 +6,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.EventoRepository;
 import br.com.helpthenext.uteis.Uteis;
@@ -20,8 +22,13 @@ public class EditarEvento implements Serializable {
 	transient EventoRepository eventoRepository;
 	
 	private EventoModel evento;
+	
+	private UploadedFile uploadedFile;
 
 	public void editarEvento() {
+		if (uploadedFile != null) {
+			evento.setBanner(uploadedFile.getContents());
+		}
 		eventoRepository.atualizarEvento(evento);
 		Uteis.MensagemInfo("Evento atualizado com sucesso!");
 	}
@@ -50,5 +57,15 @@ public class EditarEvento implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+	
+	
 	
 }
