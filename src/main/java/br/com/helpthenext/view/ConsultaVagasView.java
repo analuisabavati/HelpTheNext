@@ -88,7 +88,7 @@ public class ConsultaVagasView implements Serializable {
 		msg.append("Olá " + selectedVaga.getOngEntity().getNomeONG());
 		msg.append("\n");
 		msg.append("\n");
-		msg.append("O voluntario " + vol.getNome() + " tem interesse na sua vaga intitulada como + "
+		msg.append("O voluntario " + vol.getNome() + " tem interesse na sua vaga intitulada como "
 				+ selectedVaga.getTitulo() + ".");
 		msg.append("\n");
 		msg.append("\n");

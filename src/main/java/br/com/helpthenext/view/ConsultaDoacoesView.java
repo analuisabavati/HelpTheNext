@@ -75,7 +75,7 @@ public class ConsultaDoacoesView implements Serializable {
 		msg.append("Olá " + selectedDoacao.getVoluntarioEntity().getNome());
 		msg.append("\n");
 		msg.append("\n");
-		msg.append("A ONG " + ong.getNomeONG() + " tem interesse na sua doação intitulada como + "
+		msg.append("A ONG " + ong.getNomeONG() + " tem interesse na sua doação intitulada como "
 				+ selectedDoacao.getTitulo() + ".");
 		msg.append("\n");
 		msg.append("\n");
