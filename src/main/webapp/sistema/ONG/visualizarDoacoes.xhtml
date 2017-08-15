@@ -35,7 +35,8 @@
 							</p:graphicImage>
 						</p:commandLink>
 
-						<p:commandButton value="Mais Informações" update=":form:doacaoDetail"
+						<p:commandButton value="Mais Informações"
+							update=":form:doacaoDetail"
 							action="#{consultaDoacoesView.ativarBotoes}"
 							oncomplete="PF('doacaoDialog').show()">
 							<f:setPropertyActionListener value="#{doacao}"
@@ -86,13 +87,21 @@
 							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.cidade}"
 							style="font-weight: bold" />
 
-						<p:button value="Tenho Interesse!" icon="ui-icon-like"
-							disabled="#{!(consultaDoacoesView.botaoEditar)}">
-						</p:button>
+
+						<p:commandButton value="Tenho Interesse!"
+							id="commandButton-salvar" icon="ui-icon-like"
+							action="#{consultaDoacoesView.enviarEmailInteresse}" />
 
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
+			
+			<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="warn" />
+					<p:messages autoUpdate="true" closable="true" severity="error" />
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="info" />
+			
 		</h:form>
 	</ui:define>
 </ui:composition>

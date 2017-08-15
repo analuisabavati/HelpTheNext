@@ -10,6 +10,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import br.com.helpthenext.uteis.Uteis;
+
 public class JavaMailApp
 {
 	
@@ -18,6 +20,8 @@ public class JavaMailApp
 	
       public void enviarEmail(String destinatario, String mensagem, String assunto) {
             Properties props = new Properties();
+            
+           destinatario = "ana_bavati@hotmail.com";
           
             props.put("mail.smtp.host", "smtp.gmail.com");
             props.put("mail.smtp.socketFactory.port", "465");
@@ -46,10 +50,12 @@ public class JavaMailApp
                   message.setText(mensagem);
                  
                   Transport.send(message);
-                 // System.out.println("Email enviado");
+                 
+                  Uteis.Mensagem("E-mail enviado com sucesso!");
                   
              } catch (MessagingException e) {
-                  throw new RuntimeException(e);
+            	 System.err.println(e);
+                 Uteis.Mensagem("Ocorreu um erro ao enviar o e-mail!");
             }
       }
 }

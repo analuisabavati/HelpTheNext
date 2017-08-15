@@ -23,12 +23,12 @@ public class EditarDoacao implements Serializable {
 	
 	public void editarDoacao() {
 		doacaoRepository.atualizarDoacao(doacao);
-		Uteis.MensagemInfo("Doacao atualizada com sucesso!");
+		Uteis.Mensagem("Doacao atualizada com sucesso!");
 	}
 
 	public void removerDoacao() {
 		doacaoRepository.removerDoacao(doacao);
-		Uteis.MensagemInfo("Doacao removida com sucesso!");
+		Uteis.Mensagem("Doacao removida com sucesso!");
 	}
 
 	public DoacaoRepository getDoacaoRepository() {

@@ -30,12 +30,12 @@ public class EditarVaga implements Serializable {
 			vaga.setBanner(uploadedFile.getContents());
 		}
 		vagaRepository.atualizaVaga(vaga);
-		Uteis.MensagemInfo("Vaga atualizada com sucesso!");
+		Uteis.Mensagem("Vaga atualizada com sucesso!");
 	}
 
 	public void removerVaga() {
 		vagaRepository.removeVaga(vaga);
-		Uteis.MensagemInfo("Vaga removida com sucesso!");
+		Uteis.Mensagem("Vaga removida com sucesso!");
 	}
 
 	public VagaRepository getVagaRepository() {

@@ -107,13 +107,20 @@
 							value="#{consultaVagasView.selectedVaga.ongEntity.nomeONG}"
 							style="font-weight: bold" />
 
-						<p:button value="Editar" outcome="editarVaga.xhtml"
-							disabled="#{!(consultaVagasView.botaoEditar)}">
-						</p:button>
+						<p:commandButton value="Tenho Interesse!"
+							id="commandButton-salvar" icon="ui-icon-like"
+							action="#{consultaVagasView.enviarEmailInteresse}" />
 
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
+
+			<p:messages showDetail="true" autoUpdate="true" closable="true"
+				severity="warn" />
+			<p:messages autoUpdate="true" closable="true" severity="error" />
+			<p:messages showDetail="true" autoUpdate="true" closable="true"
+				severity="info" />
+
 		</h:form>
 	</ui:define>
 </ui:composition>
