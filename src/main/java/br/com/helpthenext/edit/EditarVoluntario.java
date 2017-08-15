@@ -7,6 +7,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
@@ -23,6 +25,8 @@ public class EditarVoluntario implements Serializable {
 	
 	VoluntarioModel voluntario;
 	
+	private UploadedFile uploadedFile;
+	
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
 		VoluntarioEntity v = voluntarioRepository.getVoluntarioByUsuarioSessao();
@@ -30,6 +34,9 @@ public class EditarVoluntario implements Serializable {
 	}
 	
 	public void atualizarVoluntario() {	
+		if (uploadedFile != null) {
+			voluntario.setFotoPerfil(uploadedFile.getContents());
+		}
 		voluntarioRepository.atualizarVoluntario(this.voluntario);	
 		Uteis.MensagemInfo("Voluntario atualizado com sucesso!");
 	}
@@ -50,5 +57,18 @@ public class EditarVoluntario implements Serializable {
 		this.voluntario = voluntario;
 	}
 
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 	
 }
