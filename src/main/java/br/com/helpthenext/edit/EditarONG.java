@@ -7,6 +7,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.helpthenext.model.ONGModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
@@ -22,6 +24,8 @@ public class EditarONG implements Serializable {
 	transient ONGRepository ongRepository;
 	
 	ONGModel ong;
+	
+	private UploadedFile uploadedFile;
 
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
@@ -30,6 +34,9 @@ public class EditarONG implements Serializable {
 	}
 	
 	public void atualizarONG() {	
+		if (uploadedFile != null) {
+			ong.setFoto(uploadedFile.getContents());
+		}
 		ongRepository.atualizarONG(this.ong);	
 		Uteis.MensagemInfo("ONG atualizada com sucesso!");
 	}
@@ -49,5 +56,19 @@ public class EditarONG implements Serializable {
 	public void setOng(ONGModel ong) {
 		this.ong = ong;
 	}
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 
 }

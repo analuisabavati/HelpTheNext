@@ -124,6 +124,12 @@
 						<p:separator />
 						<br />
 
+						<p:outputLabel value="Logo da ONG" />
+						<p:fileUpload id="foto" mode="simple"
+							value="#{editarONG.uploadedFile}" />
+						<p:separator />
+						<br />
+
 						<p:outputLabel value="Causas" />
 
 						<p:selectManyCheckbox id="basic" value="#{editarONG.ong.causas}"
