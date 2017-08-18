@@ -61,15 +61,15 @@
 						<p:inputText id="inputText-email" style="width:100%"
 							maxlength="80" value="#{ongController.ongModel.email}"
 							required="true"
-							requiredMessage="O email é de preenchimento obrigatório" >
-							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							requiredMessage="O email é de preenchimento obrigatório">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 						</p:inputText>
 
 						<p:outputLabel value="Telefone" for="inputText-telefone" />
 						<p:inputMask id="inputText-telefone" style="width:100%"
 							maxlength="80" value="#{ongController.ongModel.telefone}"
-							required="true"
-							 mask="(99) 99999-9999"
+							required="true" mask="(99) 99999-9999"
 							requiredMessage="O campo telefone é de preenchimento obrigatório" />
 
 						<p:separator />
@@ -77,12 +77,11 @@
 
 						<p:outputLabel value="Rua" for="inputText-rua" />
 						<p:inputText id="inputText-rua" style="width:100%" maxlength="200"
-							value="#{ongController.ongModel.rua}"  />
+							value="#{ongController.ongModel.rua}" />
 
 						<p:outputLabel value="Numero" for="inputText-numero" />
 						<p:inputText id="inputText-numero" style="width:50px"
-							maxlength="200" value="#{ongController.ongModel.numero}"
-							 />
+							maxlength="200" value="#{ongController.ongModel.numero}" />
 
 						<p:outputLabel value="Complemento" for="inputText-complemento" />
 						<p:inputText id="inputText-complemento" style="width:100%"
@@ -102,13 +101,38 @@
 
 
 						<p:outputLabel value="Estado" for="inputText-estado" />
-						<p:inputText id="inputText-estado" style="width:100%"
-							maxlength="200" value="#{ongController.ongModel.estado}"
-							required="true"
-							requiredMessage="O campo estado  é de preenchimento obrigatório" />	
-
-						<p:separator />
-						<br />
+						<p:selectOneMenu id="inputText-estado" required="true"
+							requiredMessage="O campo estado  é de preenchimento obrigatório"
+							value="#{ongController.ongModel.estado}" style="width:100%">
+							<f:selectItem itemLabel="Escolha um estado" itemValue="" />
+							<f:selectItem itemLabel="AC" itemValue="AC" />
+							<f:selectItem itemLabel="AL" itemValue="AL" />
+							<f:selectItem itemLabel="AP" itemValue="AP" />
+							<f:selectItem itemLabel="AM" itemValue="AM" />
+							<f:selectItem itemLabel="BA" itemValue="BA" />
+							<f:selectItem itemLabel="CE" itemValue="CE" />
+							<f:selectItem itemLabel="DF" itemValue="DF" />
+							<f:selectItem itemLabel="ES" itemValue="ES" />
+							<f:selectItem itemLabel="GO" itemValue="GO" />
+							<f:selectItem itemLabel="MA" itemValue="NA" />
+							<f:selectItem itemLabel="MT" itemValue="MT" />
+							<f:selectItem itemLabel="MS" itemValue="MS" />
+							<f:selectItem itemLabel="MG" itemValue="MG" />
+							<f:selectItem itemLabel="PA" itemValue="PA" />
+							<f:selectItem itemLabel="PB" itemValue="PB" />
+							<f:selectItem itemLabel="PR" itemValue="PR" />
+							<f:selectItem itemLabel="PE" itemValue="PE" />
+							<f:selectItem itemLabel="PI" itemValue="PI" />
+							<f:selectItem itemLabel="RJ" itemValue="RJ" />
+							<f:selectItem itemLabel="RN" itemValue="RN" />
+							<f:selectItem itemLabel="RS" itemValue="RS" />
+							<f:selectItem itemLabel="RO" itemValue="RO" />
+							<f:selectItem itemLabel="RR" itemValue="RR" />
+							<f:selectItem itemLabel="SC" itemValue="SC" />
+							<f:selectItem itemLabel="SP" itemValue="SP" />
+							<f:selectItem itemLabel="SE" itemValue="SE" />
+							<f:selectItem itemLabel="TO" itemValue="TO" />
+						</p:selectOneMenu>
 
 						<p:outputLabel value="Logo da ONG" />
 						<p:fileUpload id="foto" mode="simple"
