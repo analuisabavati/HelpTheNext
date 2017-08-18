@@ -261,4 +261,45 @@ public class VoluntarioRepository {
 
 		return voluntarioModel;
 	}
+	
+	public List<VoluntarioModel> getVoluntariosCidadeEstado(String cidade, String estado) {
+		try {
+			
+			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByCidadeEstado");
+ 
+			query.setParameter("estado", estado);
+			query.setParameter("cidade", cidade);
+			
+			List<VoluntarioEntity> list = query.getResultList();
+			
+			List<VoluntarioModel> model = new ArrayList<>();
+			for (VoluntarioEntity voluntarioEntity : list) {
+				model.add(toVoluntarioModel(voluntarioEntity));
+			}
+ 
+			return model;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public List<VoluntarioModel> getVoluntariosTrabalhoDistancia() {
+		try {
+			
+			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByTrabalhoDistancia");
+ 
+			query.setParameter("trabalhoDistancia", "Sim");
+			
+			List<VoluntarioEntity> list = query.getResultList();
+			
+			List<VoluntarioModel> model = new ArrayList<>();
+			for (VoluntarioEntity voluntarioEntity : list) {
+				model.add(toVoluntarioModel(voluntarioEntity));
+			}
+ 
+			return model;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

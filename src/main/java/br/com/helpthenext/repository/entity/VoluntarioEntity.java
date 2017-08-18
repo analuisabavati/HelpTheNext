@@ -32,8 +32,10 @@ import br.com.helpthenext.enums.Periodos;
 @Entity
 @Table(name = "tb_voluntario")
 @NamedQueries({
-
-		@NamedQuery(name = "VoluntarioEntity.findByUsuario", query = "SELECT v FROM VoluntarioEntity v where v.usuarioEntity = :usuario") })
+		@NamedQuery(name = "VoluntarioEntity.findByUsuario", query = "SELECT v FROM VoluntarioEntity v where v.usuarioEntity = :usuario"),
+		@NamedQuery(name = "VoluntarioEntity.findByCidadeEstado", query = "SELECT v FROM VoluntarioEntity v where v.estado = :estado and v.cidade = :cidade"), 
+		@NamedQuery(name = "VoluntarioEntity.findByTrabalhoDistancia", query = "SELECT v FROM VoluntarioEntity v where v.trabalhoDistancia = :trabalhoDistancia") 
+})
 public class VoluntarioEntity {
 
 	@Id

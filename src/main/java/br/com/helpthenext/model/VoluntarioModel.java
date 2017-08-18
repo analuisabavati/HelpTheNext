@@ -40,7 +40,15 @@ public class VoluntarioModel {
 	
 	private String senha;
 	
-	
+	private Integer pontos;
+
+	public Integer getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(Integer pontos) {
+		this.pontos = pontos;
+	}
 
 	public String getSenha() {
 		return senha;
