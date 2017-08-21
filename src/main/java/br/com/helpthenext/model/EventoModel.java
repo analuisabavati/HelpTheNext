@@ -115,7 +115,7 @@ public class EventoModel {
 		this.email = email;
 	}
 
-	public String getCausas() {
+	public String getCausa() {
 		return causa;
 	}
 

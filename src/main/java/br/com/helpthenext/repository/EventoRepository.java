@@ -50,7 +50,7 @@ public class EventoRepository {
 		eventoEntity.setBanner(eventoModel.getBanner());
 		eventoEntity.setDataCadastro(LocalDateTime.now());
 
-		eventoEntity.setCausas(Causas.valueOf(eventoModel.getCausas()));
+		eventoEntity.setCausa(Causas.valueOf(eventoModel.getCausa()));
 
 		eventoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
 		eventoEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
@@ -84,7 +84,7 @@ public class EventoRepository {
 
 			eventoModel.setCausa(eventoEntity.getCausa().toString());
 
-			eventoModel.setCausasString(eventoModel.getCausas());
+			eventoModel.setCausasString(eventoModel.getCausa());
 			eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
 			eventoModel.setOngEntity(eventoEntity.getOngEntity());
@@ -116,7 +116,7 @@ public class EventoRepository {
 		eventoEntity.setEmail(eventoModel.getEmail());
 		eventoEntity.setBanner(eventoModel.getBanner());
 
-		eventoEntity.setCausas(Causas.valueOf(eventoModel.getCausas()));
+		eventoEntity.setCausa(Causas.valueOf(eventoModel.getCausa()));
 
 		entityManager.merge(eventoEntity);
 	}
@@ -143,7 +143,7 @@ public class EventoRepository {
 		eventoEntity.setEmail(eventoModel.getEmail());
 		eventoEntity.setBanner(eventoModel.getBanner());
 
-		eventoEntity.setCausas(Causas.valueOf(eventoModel.getCausas()));
+		eventoEntity.setCausa(Causas.valueOf(eventoModel.getCausa()));
 
 		eventoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
 		eventoEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
@@ -165,7 +165,7 @@ public class EventoRepository {
 
 		eventoModel.setCausa(eventoEntity.getCausa().toString());
 
-		eventoModel.setCausasString(eventoModel.getCausas());
+		eventoModel.setCausasString(eventoModel.getCausa());
 		eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
 		eventoModel.setOngEntity(eventoEntity.getOngEntity());

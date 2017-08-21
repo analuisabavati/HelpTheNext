@@ -3,11 +3,8 @@ package br.com.helpthenext.repository.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -168,8 +165,8 @@ public class EventoEntity implements Serializable {
 		return causa;
 	}
 
-	public void setCausas(Causas causas) {
-		this.causa = causas;
+	public void setCausa(Causas causa) {
+		this.causa = causa;
 	}
 
 	
