@@ -63,11 +63,12 @@
 						<p:fileUpload id="foto" mode="simple"
 							value="#{eventoController.uploadedFile}" />
 
-						<p:outputLabel value="Causas" />
-						<p:selectManyCheckbox id="basic"
-							value="#{eventoController.eventoModel.causas}" layout="grid"
+						<p:outputLabel value="Causa" />
+						<p:selectOneMenu id="basic"
+							value="#{eventoController.eventoModel.causa}" layout="grid"
 							columns="2" required="true"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
+							<f:selectItem itemLabel="Escolha uma causa" itemValue="0" />
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
 							<f:selectItem itemLabel="Saude" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
@@ -83,7 +84,7 @@
 							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
 							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
 							<f:selectItem itemLabel="Outras" itemValue="13" />
-						</p:selectManyCheckbox>
+						</p:selectOneMenu>
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-gear" action="#{eventoController.salvarNovoEvento}"

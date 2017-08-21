@@ -23,27 +23,86 @@
 				<p:panel header="#{evento.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
 
-						<p:outputLabel value="Descrição da doação"
-							for="inputText-descricao" />
-						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
-							style="width:100%" maxlength="80"
-							value="#{doacaoController.doacaoModel.descricao}" required="true"
-							requiredMessage="O campo descrição é de preenchimento obrigatório" />
+						<p:commandLink update=":form:eventoDetail"
+							action="#{consultaEventosView.ativarBotoes}"
+							oncomplete="PF('eventoDialog').show()">
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{consultaEventosView.selectedEvento}" />
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{editarEvento.evento}" />
+							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
+								<f:param name="eventoId" value="#{evento.id}" />
+							</p:graphicImage>
+						</p:commandLink>
+
+						<p:commandButton value="Mais Informações"
+							update=":form:eventoDetail"
+							action="#{consultaEventosView.ativarBotoes}"
+							oncomplete="PF('eventoDialog').show()">
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{consultaEventosView.selectedEvento}" />
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{editarEvento.evento}" />
+						</p:commandButton>
 
 					</h:panelGrid>
 				</p:panel>
 
 			</p:dataGrid>
-			</p:outputPanel>
-			</p:dialog>
 
-			<p:messages showDetail="true" autoUpdate="true" closable="true"
-				severity="warn" />
-			<p:messages autoUpdate="true" closable="true" severity="error" />
-			<p:messages showDetail="true" autoUpdate="true" closable="true"
-				severity="info" />
+			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
+				showEffect="blind" hideEffect="explode" resizable="false">
+				<p:outputPanel id="eventoDetail" style="text-align:center;">
+					<p:panelGrid columns="2"
+						rendered="#{not empty consultaEventosView.selectedEvento}"
+						columnClasses="label,value">
 
+						<h:outputText value="Titulo:" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.titulo}"
+							style="font-weight: bold" />
+						<h:outputText value="Descrição: " />
+						<h:outputText
+							value="#{consultaEventosView.selectedEvento.descricao}"
+							style="font-weight: bold" />
+						<h:outputText value="Nome do Responsavel:" />
+						<h:outputText
+							value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Email para contato" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.email}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Data e Hora: " />
+						<h:outputText
+							value="#{consultaEventosView.selectedEvento.dataHora}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Local:" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.local}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Causas" />
+						<h:outputText value="#{consultaEventosView.selectedEvento.causa}"
+							style="font-weight: bold" />
+
+						<p:button value="Editar" outcome="editarEvento.xhtml"
+							disabled="#{!(consultaEventosView.botaoEditar)}">
+						</p:button>
+
+						<p:messages showDetail="true" autoUpdate="true" closable="true"
+							severity="warn" />
+						<p:messages autoUpdate="true" closable="true" severity="error" />
+						<p:messages showDetail="true" autoUpdate="true" closable="true"
+							severity="info" />
 		</h:form>
+
+		</p:tab>
+
+		</p:tabView>
+
 	</ui:define>
+
 </ui:composition>
+
 </html>
