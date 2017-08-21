@@ -60,9 +60,9 @@
 						<p:outputLabel value="E-mail" for="inputText-email" />
 						<p:inputText id="inputText-email" style="width:100%"
 							maxlength="80" value="#{ongController.ongModel.email}"
-							required="true"
+							required="true"  validatorMessage="Email incorreto"
 							requiredMessage="O email é de preenchimento obrigatório">
-							<f:validateRegex
+							<f:validateRegex 
 								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 						</p:inputText>
 
@@ -141,9 +141,10 @@
 						<br />
 
 						<p:outputLabel value="Causas" />
-						<p:selectManyCheckbox id="basic"
+						<p:selectOneMenu id="basic"
 							value="#{ongController.ongModel.causas}" layout="grid"
 							columns="2">
+							<f:selectItem itemLabel="Escolha uma causa" itemValue="" />
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
 							<f:selectItem itemLabel="Saude" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
@@ -159,7 +160,7 @@
 							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
 							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
 							<f:selectItem itemLabel="Outras" itemValue="13" />
-						</p:selectManyCheckbox>
+						</p:selectOneMenu>
 
 
 						<p:commandButton value="Salvar" id="commandButton-salvar"

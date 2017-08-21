@@ -50,11 +50,7 @@ public class EventoRepository {
 		eventoEntity.setBanner(eventoModel.getBanner());
 		eventoEntity.setDataCadastro(LocalDateTime.now());
 
-		List<Causas> causas = new ArrayList<>();
-		for (String p4 : eventoModel.getCausas()) {
-			causas.add(Causas.values()[new Integer(p4)]);
-		}
-		eventoEntity.setCausas(causas);
+		eventoEntity.setCausas(Causas.valueOf(eventoModel.getCausas()));
 
 		eventoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
 		eventoEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
@@ -86,9 +82,9 @@ public class EventoRepository {
 			eventoModel.setBanner(eventoEntity.getBanner());
 			eventoModel.setDataCadastro(eventoEntity.getDataCadastro());
 
-			eventoModel.setCausas(eventoModel.toStringArray(eventoEntity.getCausas()));
-			
-			eventoModel.setCausasString(eventoModel.getCausas() == null ? null : Arrays.toString(eventoModel.getCausas()));
+			eventoModel.setCausa(eventoEntity.getCausa().toString());
+
+			eventoModel.setCausasString(eventoModel.getCausas());
 			eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
 			eventoModel.setOngEntity(eventoEntity.getOngEntity());
@@ -99,7 +95,6 @@ public class EventoRepository {
 
 		return eventosModel;
 	}
-	
 
 	public Date asDate(LocalDateTime localDateTime) {
 		if (localDateTime != null) {
@@ -107,7 +102,7 @@ public class EventoRepository {
 		}
 		return null;
 	}
-	
+
 	public void atualizarEvento(EventoModel eventoModel) {
 
 		entityManager = Uteis.JpaEntityManager();
@@ -121,15 +116,11 @@ public class EventoRepository {
 		eventoEntity.setEmail(eventoModel.getEmail());
 		eventoEntity.setBanner(eventoModel.getBanner());
 
-		List<Causas> causas = new ArrayList<>();
-		for (String p4 : eventoModel.getCausas()) {
-			causas.add(Causas.values()[new Integer(p4)]);
-		}
-		eventoEntity.setCausas(causas);
+		eventoEntity.setCausas(Causas.valueOf(eventoModel.getCausas()));
 
 		entityManager.merge(eventoEntity);
 	}
-	
+
 	public void removeEvento(EventoModel evento) {
 		entityManager = Uteis.JpaEntityManager();
 		eventoEntity = getEvento(evento.getId());
@@ -140,7 +131,7 @@ public class EventoRepository {
 		entityManager = Uteis.JpaEntityManager();
 		entityManager.remove(evento);
 	}
-	
+
 	public EventoEntity toEventoEntity(EventoModel eventoModel) {
 
 		EventoEntity eventoEntity = getEvento(eventoModel.getId());
@@ -152,18 +143,14 @@ public class EventoRepository {
 		eventoEntity.setEmail(eventoModel.getEmail());
 		eventoEntity.setBanner(eventoModel.getBanner());
 
-		List<Causas> causas = eventoEntity.getCausas();
-		for (String p4 : eventoModel.getCausas()) {
-			causas.add(Causas.values()[new Integer(p4)]);
-		}
-		eventoEntity.setCausas(causas);
+		eventoEntity.setCausas(Causas.valueOf(eventoModel.getCausas()));
 
 		eventoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
 		eventoEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
 
 		return eventoEntity;
 	}
-	
+
 	public EventoModel toEventoModel(EventoEntity eventoEntity) {
 
 		EventoModel eventoModel = new EventoModel();
@@ -175,16 +162,16 @@ public class EventoRepository {
 		eventoModel.setLocal(eventoEntity.getLocal());
 		eventoModel.setEmail(eventoEntity.getEmail());
 		eventoModel.setBanner(eventoEntity.getBanner());
-	
-		eventoModel.setCausas(eventoModel.toStringArray(eventoEntity.getCausas()));
-		
-		eventoModel.setCausasString(eventoModel.getCausas() == null ? null : Arrays.toString(eventoModel.getCausas()));
+
+		eventoModel.setCausa(eventoEntity.getCausa().toString());
+
+		eventoModel.setCausasString(eventoModel.getCausas());
 		eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
-	
+
 		eventoModel.setOngEntity(eventoEntity.getOngEntity());
 		eventoModel.setVoluntarioEntity(eventoEntity.getVoluntarioEntity());
-		
+
 		return eventoModel;
 	}
-	
+
 }

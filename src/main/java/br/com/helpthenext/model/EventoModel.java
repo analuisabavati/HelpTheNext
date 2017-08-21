@@ -19,7 +19,7 @@ public class EventoModel {
 	private String local;
 	private String email;
 	private Date dataHora;
-	private String[] causas;
+	private String causa;
 	private ONGEntity ongEntity;
 	private VoluntarioEntity voluntarioEntity;
 	private LocalDateTime dataCadastro;
@@ -115,12 +115,12 @@ public class EventoModel {
 		this.email = email;
 	}
 
-	public String[] getCausas() {
-		return causas;
+	public String getCausas() {
+		return causa;
 	}
 
-	public void setCausas(String[] causas) {
-		this.causas = causas;
+	public void setCausa(String causa) {
+		this.causa = causa;
 	}
 
 	public Date getDataHora() {

@@ -56,11 +56,9 @@ public class EventoEntity implements Serializable {
 	@Column(name = "horario")
 	private Date dataHora;
 
-	@ElementCollection(targetClass=Causas.class)
     @Enumerated(EnumType.ORDINAL)
-    @CollectionTable(name="evento_causas")
-    @Column(name="causas") 
-	private List<Causas> causas;
+    @Column(name="causa") 
+	private Causas causa;
 	
 	@ManyToOne
 	@JoinColumn(name="id_ong")
@@ -138,14 +136,6 @@ public class EventoEntity implements Serializable {
 		this.email = email;
 	}
 
-	public List<Causas> getCausas() {
-		return causas;
-	}
-
-	public void setCausas(List<Causas> causas) {
-		this.causas = causas;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -174,5 +164,14 @@ public class EventoEntity implements Serializable {
 		this.voluntarioEntity = voluntarioEntity;
 	}
 
+	public Causas getCausa() {
+		return causa;
+	}
+
+	public void setCausas(Causas causas) {
+		this.causa = causas;
+	}
+
+	
 	
 }

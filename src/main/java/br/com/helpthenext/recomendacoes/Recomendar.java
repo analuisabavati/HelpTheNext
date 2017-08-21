@@ -11,11 +11,10 @@ import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.VoluntarioRepository;
 
-@SessionScoped
-@Named(value = "recomendar")
+
 public class Recomendar {
 
-	@Inject
+
 	transient VoluntarioRepository voluntarioRepository;
 	
 	private VagaModel vaga;
