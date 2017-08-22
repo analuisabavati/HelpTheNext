@@ -41,7 +41,7 @@ public class JavaMailApp
             try {
 
                   Message message = new MimeMessage(session);
-                  message.setFrom(new InternetAddress(remetente)); //Remetente
+                  message.setFrom(new InternetAddress(remetente));
 
                   Address[] toUser = InternetAddress.parse(destinatario);  
                   

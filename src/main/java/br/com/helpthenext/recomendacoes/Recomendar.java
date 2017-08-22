@@ -1,21 +1,29 @@
 package br.com.helpthenext.recomendacoes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.VoluntarioRepository;
 
+@SessionScoped
+@Named(value = "recomendar")
+public class Recomendar implements Serializable {
 
-public class Recomendar {
-
-
+	private static final long serialVersionUID = 1L;
+	
+	@Inject
 	transient VoluntarioRepository voluntarioRepository;
 	
-	private VagaModel vaga;
-
-	public List<VoluntarioModel> recomendarVoluntarios() {
+	List<VoluntarioModel> voluntariosRecomendados;
+	
+	public void recomendarVoluntarios(VagaModel vaga) {
 
 		List<VoluntarioModel> voluntariosEncontrados = new ArrayList<>();
 
@@ -72,6 +80,6 @@ public class Recomendar {
 
 		// ordenar 
 		
-		return voluntariosRecomendados;
+		 this.voluntariosRecomendados = voluntariosRecomendados;
 	}
 }
