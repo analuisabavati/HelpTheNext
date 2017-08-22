@@ -60,8 +60,8 @@ public class ConsultaEventosView implements Serializable {
 		}
 
 		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
-		if (vol != null && selectedEvento != null && selectedEvento.getOngEntity() != null
-				&& selectedEvento.getOngEntity().getId() != null) {
+		if (vol != null && selectedEvento != null && selectedEvento.getVoluntarioEntity() != null
+				&& selectedEvento.getVoluntarioEntity().getId() != null) {
 			if (selectedEvento.getVoluntarioEntity() != null
 					&& selectedEvento.getVoluntarioEntity().getId().equals(vol.getId())) {
 				botaoEditar = true;

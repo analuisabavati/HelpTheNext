@@ -3,10 +3,6 @@ package br.com.helpthenext.recomendacoes;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.VoluntarioRepository;

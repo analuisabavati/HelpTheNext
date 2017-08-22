@@ -83,27 +83,24 @@
 							style="font-weight: bold" />
 
 						<h:outputText value="Causas" />
-						<h:outputText
-							value="#{consultaEventosView.selectedEvento.causa}"
+						<h:outputText value="#{consultaEventosView.selectedEvento.causasString}"
 							style="font-weight: bold" />
 
 						<p:button value="Editar" outcome="editarEvento.xhtml"
 							disabled="#{!(consultaEventosView.botaoEditar)}">
 						</p:button>
 
-						<p:messages showDetail="true" autoUpdate="true" closable="true"
-							severity="warn" />
-						<p:messages autoUpdate="true" closable="true" severity="error" />
-						<p:messages showDetail="true" autoUpdate="true" closable="true"
-							severity="info" />
+			</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+			
+			<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="warn" />
+					<p:messages autoUpdate="true" closable="true" severity="error" />
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="info" />
+			
 		</h:form>
-
-		</p:tab>
-
-		</p:tabView>
-
 	</ui:define>
-
 </ui:composition>
-
 </html>

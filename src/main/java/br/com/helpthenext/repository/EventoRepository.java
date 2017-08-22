@@ -3,7 +3,6 @@ package br.com.helpthenext.repository;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -82,9 +81,11 @@ public class EventoRepository {
 			eventoModel.setBanner(eventoEntity.getBanner());
 			eventoModel.setDataCadastro(eventoEntity.getDataCadastro());
 
-			eventoModel.setCausa(eventoEntity.getCausa().toString());
-
-			eventoModel.setCausasString(eventoModel.getCausa());
+			Integer c = eventoEntity.getCausa().ordinal();
+			eventoModel.setCausa(c.toString());
+			
+			eventoModel.setCausasString(eventoEntity.getCausa().toString());
+			
 			eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
 			eventoModel.setOngEntity(eventoEntity.getOngEntity());
@@ -163,7 +164,9 @@ public class EventoRepository {
 		eventoModel.setEmail(eventoEntity.getEmail());
 		eventoModel.setBanner(eventoEntity.getBanner());
 
-		eventoModel.setCausa(eventoEntity.getCausa().toString());
+		
+		Integer c = eventoEntity.getCausa().ordinal();
+		eventoModel.setCausa(c.toString());
 
 		eventoModel.setCausasString(eventoModel.getCausa());
 		eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
