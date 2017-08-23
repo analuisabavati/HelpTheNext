@@ -14,6 +14,7 @@ import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
+import br.com.helpthenext.uteis.Uteis;
 
 @SessionScoped
 @Named(value = "recomendarVoluntarios")
@@ -108,7 +109,7 @@ public class RecomendarVoluntarios implements Serializable {
 		this.voluntariosRecomendados = voluntariosRecomendados;
 	}
 	
-	public void enviarEmailInteresse() {
+	public void enviarEmail() {
 
 		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
 
@@ -139,6 +140,8 @@ public class RecomendarVoluntarios implements Serializable {
 		String assunto = "[HelpTheNext] Há uma nova vaga compativel com seu perfil!!";
 
 		javaMailApp.enviarEmail(selectedVoluntario.getEmail(), msg.toString(), assunto);
+		
+		Uteis.Mensagem("Email enviado com sucesso!");
 	}
 
 	public VoluntarioRepository getVoluntarioRepository() {

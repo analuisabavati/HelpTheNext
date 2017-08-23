@@ -12,29 +12,52 @@
 
 <ui:composition template="/template/ONG/layoutBase.xhtml">
 	<ui:define name="content">
+		<h:form id="form">
 
-		<p:tabView style="width:50% ;margin:auto;">
-			<p:tab title="Editar cadastro de ONG">
+			<p:dataGrid value="#{recomendarVoluntarios.voluntariosRecomendados}"
+				var="vol" columns="3" layout="grid" rows="9" paginator="true"
+				style="margin-top:20px">
 
-				<h:form id="form-cadastro" enctype="multipart/form-data">
+				<f:facet name="header"> Voluntarios Recomendados </f:facet>
 
-					<p:panel id="basic" header="Basic" footer="Movie Details"
-						style="margin-bottom:20px">
-						<h:panelGrid columns="2" cellpadding="10">
-							<p:graphicImage name="demo/images/godfather/godfather1.jpg" />
-							<h:outputText value="The story begins as Don Vito Corleone..." />
-							<h:outputText value="#{recomendarVoluntarios.voluntariosRecomendados.get(0).nome}" />
+				<p:panel>
+					<h:panelGrid columns="1" style="width:100%;">
+
+						<h:panelGrid columns="2" style="width:100%">
+							<h:outputText value="Nome:" style="font-weight: bold" />
+							<h:outputText value="#{vol.nome}" />
+
+							<h:outputText value="Cidade:" style="font-weight: bold" />
+							<h:outputText value="#{vol.cidade}" />
+
+							<h:outputText value="Estado:" style="font-weight: bold" />
+							<h:outputText value="#{vol.estado}" />
+
+							<h:outputText value="Trabalho à distancia"
+								style="font-weight: bold" />
+							<h:outputText value="#{vaga.trabalhoDistancia}" />
+
+							<p:commandButton value="Enviar E-mail!"
+								action="#{recomendarVoluntario.enviarEmail}">
+
+								<f:setPropertyActionListener value="#{vol}"
+									target="#{recomendarVoluntario.selectedVoluntario}" />
+
+							</p:commandButton>
+
 						</h:panelGrid>
-					</p:panel>
+					</h:panelGrid>
+				</p:panel>
 
-				</h:form>
+			</p:dataGrid>
 
-			</p:tab>
+			<p:messages showDetail="true" autoUpdate="true" closable="true"
+				severity="warn" />
+			<p:messages autoUpdate="true" closable="true" severity="error" />
+			<p:messages showDetail="true" autoUpdate="true" closable="true"
+				severity="info" />
 
-		</p:tabView>
-
+		</h:form>
 	</ui:define>
-
 </ui:composition>
-
 </html>
