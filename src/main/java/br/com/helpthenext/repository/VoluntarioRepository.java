@@ -262,6 +262,7 @@ public class VoluntarioRepository {
 		return voluntarioModel;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<VoluntarioModel> getVoluntariosCidadeEstado(String cidade, String estado) {
 		try {
 			
@@ -283,12 +284,11 @@ public class VoluntarioRepository {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<VoluntarioModel> getVoluntariosTrabalhoDistancia() {
 		try {
 			
 			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByTrabalhoDistancia");
- 
-			query.setParameter("trabalhoDistancia", "Sim");
 			
 			List<VoluntarioEntity> list = query.getResultList();
 			

@@ -7,7 +7,7 @@ import javax.inject.Named;
 import org.primefaces.model.UploadedFile;
 
 import br.com.helpthenext.model.VagaModel;
-import br.com.helpthenext.recomendacoes.Recomendar;
+import br.com.helpthenext.recomendacoes.RecomendarVoluntarios;
 import br.com.helpthenext.repository.VagaRepository;
 import br.com.helpthenext.uteis.Uteis;
 
@@ -22,7 +22,7 @@ public class VagaController {
 	VagaRepository vagaRepository;
 	
 	@Inject
-	Recomendar recomendar;
+	RecomendarVoluntarios recomendarVoluntarios;
 	
 	private UploadedFile uploadedFile;
 
@@ -41,7 +41,7 @@ public class VagaController {
 		vagaRepository.salvarNovoRegistro(this.vagaModel);
 		Uteis.MensagemInfo("Vaga cadastrada com sucesso!");
 	
-		recomendar.recomendarVoluntarios(vagaModel);
+		recomendarVoluntarios.recomendarVoluntarios(vagaModel);
 		
 		this.vagaModel = null;
 		this.uploadedFile = null;
