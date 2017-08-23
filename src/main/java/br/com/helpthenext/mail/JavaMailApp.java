@@ -1,6 +1,7 @@
 package br.com.helpthenext.mail;
 
 import java.util.Properties;
+
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;

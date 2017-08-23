@@ -151,8 +151,6 @@ public class RecomendarVoluntarios implements Serializable {
 		String assunto = "[HelpTheNext] Há uma nova vaga compativel com seu perfil!!";
 
 		javaMailApp.enviarEmail(selectedVoluntario.getEmail(), msg.toString(), assunto);
-
-		Uteis.Mensagem("Email enviado com sucesso!");
 	}
 
 	public VoluntarioRepository getVoluntarioRepository() {
