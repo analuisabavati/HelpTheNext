@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.helpthenext.mail.JavaMailApp;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.ONGRepository;
@@ -25,10 +26,19 @@ public class RecomendarVoluntarios implements Serializable {
 
 	@Inject
 	transient ONGRepository ongRepository;
+	
+	@Inject
+	transient JavaMailApp javaMailApp;
 
 	List<VoluntarioModel> voluntariosRecomendados;
+	
+	private VoluntarioModel selectedVoluntario;
+	
+	private VagaModel vaga;
 
 	public void recomendarVoluntarios(VagaModel vaga) {
+		
+		this.vaga = vaga;
 
 		List<VoluntarioModel> voluntariosEncontrados = new ArrayList<>();
 
@@ -97,6 +107,39 @@ public class RecomendarVoluntarios implements Serializable {
 
 		this.voluntariosRecomendados = voluntariosRecomendados;
 	}
+	
+	public void enviarEmailInteresse() {
+
+		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
+
+		StringBuilder msg = new StringBuilder();
+		msg.append("--------------------------- HelpTheNext -------------------------");
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("Olá " + selectedVoluntario.getNome());
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("A ONG " + ong.getNomeONG() + "cadastrou uma vaga de voluntariado intitulada como "+vaga.getTitulo()+ " compativel com o seu perfil no site.");
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("Segue abaixo o contato da ONG:");
+		msg.append("\n");
+		msg.append("Telefone: " + ong.getTelefone());
+		msg.append("\n");
+		msg.append("Email: " + ong.getEmail());
+		msg.append("\n");
+		msg.append("\n");
+		msg.append("--------------------------- HelpTheNext -------------------------");
+		msg.append("\n");
+		msg.append("\n");
+		msg.append(
+				"Por favor, não responda a este e-mail - que foi gerada a partir de uma conta que envia mensagens automaticamente e não pode receber respostas de volta.");
+
+		String assunto = "[HelpTheNext] Há uma nova vaga compativel com seu perfil!!";
+
+		javaMailApp.enviarEmail(selectedVoluntario.getEmail(), msg.toString(), assunto);
+	}
 
 	public VoluntarioRepository getVoluntarioRepository() {
 		return voluntarioRepository;
@@ -106,12 +149,44 @@ public class RecomendarVoluntarios implements Serializable {
 		this.voluntarioRepository = voluntarioRepository;
 	}
 
+	public ONGRepository getOngRepository() {
+		return ongRepository;
+	}
+
+	public void setOngRepository(ONGRepository ongRepository) {
+		this.ongRepository = ongRepository;
+	}
+
+	public JavaMailApp getJavaMailApp() {
+		return javaMailApp;
+	}
+
+	public void setJavaMailApp(JavaMailApp javaMailApp) {
+		this.javaMailApp = javaMailApp;
+	}
+
 	public List<VoluntarioModel> getVoluntariosRecomendados() {
 		return voluntariosRecomendados;
 	}
 
 	public void setVoluntariosRecomendados(List<VoluntarioModel> voluntariosRecomendados) {
 		this.voluntariosRecomendados = voluntariosRecomendados;
+	}
+
+	public VoluntarioModel getSelectedVoluntario() {
+		return selectedVoluntario;
+	}
+
+	public void setSelectedVoluntario(VoluntarioModel selectedVoluntario) {
+		this.selectedVoluntario = selectedVoluntario;
+	}
+
+	public VagaModel getVaga() {
+		return vaga;
+	}
+
+	public void setVaga(VagaModel vaga) {
+		this.vaga = vaga;
 	}
 
 	public static long getSerialversionuid() {
