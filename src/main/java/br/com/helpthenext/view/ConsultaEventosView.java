@@ -15,6 +15,7 @@ import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.Uteis;
 
 @ViewScoped
 @Named(value = "consultaEventosView")
@@ -71,6 +72,11 @@ public class ConsultaEventosView implements Serializable {
 		}
 	}
 
+	public void curtirEvento() {
+		eventoRepository.adicionarCurtida(selectedEvento.getId());
+		Uteis.MensagemInfo("Evento curtido!");
+	}
+	
 	public boolean isBotaoCurtir() {
 		return botaoCurtir;
 	}

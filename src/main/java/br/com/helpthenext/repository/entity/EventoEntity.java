@@ -2,7 +2,9 @@ package br.com.helpthenext.repository.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,9 +24,7 @@ import br.com.helpthenext.enums.Causas;
 
 @Table(name = "tb_evento")
 @Entity
-@NamedQueries({
-	@NamedQuery(name = "EventoEntity.findAll", query= "SELECT p FROM EventoEntity p")
-})
+@NamedQueries({ @NamedQuery(name = "EventoEntity.findAll", query = "SELECT p FROM EventoEntity p") })
 public class EventoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,7 +43,7 @@ public class EventoEntity implements Serializable {
 	@Column(name = "nome_responsavel")
 	private String nomeResponsavel;
 
-	@Column(name = "banner", length=10000000)
+	@Column(name = "banner", length = 10000000)
 	private byte[] banner;
 
 	@Column(name = "local")
@@ -49,26 +51,30 @@ public class EventoEntity implements Serializable {
 
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "horario")
 	private Date dataHora;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name="causa") 
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "causa")
 	private Causas causa;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_ong")
+	@JoinColumn(name = "id_ong")
 	private ONGEntity ongEntity;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_voluntario")
+	@JoinColumn(name = "id_voluntario")
 	private VoluntarioEntity voluntarioEntity;
-	
+
 	@Column(name = "dt_cadastro")
 	private LocalDateTime dataCadastro;
-	
-	
+
+	@ManyToMany
+	@JoinTable(name = "evento_vol_curtidas", joinColumns = { @JoinColumn(name = "id_evento") }, inverseJoinColumns = {
+			@JoinColumn(name = "id_voluntario") })
+	private List<VoluntarioEntity> voluntariosQueCurtiram;
+
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
 	}
@@ -169,6 +175,20 @@ public class EventoEntity implements Serializable {
 		this.causa = causa;
 	}
 
+	public List<VoluntarioEntity> getVoluntariosQueCurtiram() {
+		return voluntariosQueCurtiram;
+	}
+
+	public void setVoluntariosQueCurtiram(List<VoluntarioEntity> voluntariosQueCurtiram) {
+		this.voluntariosQueCurtiram = voluntariosQueCurtiram;
+	}
 	
-	
+	public void setCurtida(VoluntarioEntity vol) {
+		if (this.voluntariosQueCurtiram == null) {
+			this.voluntariosQueCurtiram = new ArrayList<>();
+		}
+		
+		this.voluntariosQueCurtiram.add(vol);
+	}
+
 }
