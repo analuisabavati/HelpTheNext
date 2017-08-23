@@ -37,10 +37,15 @@ public class VoluntarioModel {
 	private String[] disponibilidadeDias;
 	private String[] disponibilidadePeriodos;
 	private String trabalhoDistancia;
-	
+
 	private String senha;
-	
+
 	private Integer pontos;
+
+	private String habilidadesString;
+	private String causasString;
+	private String disponibilidadeDiasString;
+	private String disponibilidadePeriodosString;
 
 	public Integer getPontos() {
 		return pontos;
@@ -250,7 +255,6 @@ public class VoluntarioModel {
 		this.disponibilidadePeriodos = disponibilidadePeriodos;
 	}
 
-	
 	public String[] toStringArrayCausas(List<Causas> causas) {
 
 		if (causas == null || causas.isEmpty()) {
@@ -307,5 +311,37 @@ public class VoluntarioModel {
 		return stringVetor.toArray(new String[stringVetor.size()]);
 	}
 
+	public String getHabilidadesString() {
+		return habilidadesString;
+	}
 
+	public void setHabilidadesString(String habilidadesString) {
+		this.habilidadesString = habilidadesString;
+	}
+
+	public String getCausasString() {
+		return causasString;
+	}
+
+	public void setCausasString(String causasString) {
+		this.causasString = causasString;
+	}
+
+	public String getDisponibilidadeDiasString() {
+		return disponibilidadeDiasString;
+	}
+
+	public void setDisponibilidadeDiasString(String disponibilidadeDiasString) {
+		this.disponibilidadeDiasString = disponibilidadeDiasString;
+	}
+
+	public String getDisponibilidadePeriodosString() {
+		return disponibilidadePeriodosString;
+	}
+
+	public void setDisponibilidadePeriodosString(String disponibilidadePeriodosString) {
+		this.disponibilidadePeriodosString = disponibilidadePeriodosString;
+	}
+
+	
 }

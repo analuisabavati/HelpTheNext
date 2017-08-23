@@ -55,7 +55,6 @@ public class VoluntarioRepository {
 		voluntarioEntity.setSobrenome(voluntarioModel.getSobrenome());
 		voluntarioEntity.setTrabalhoDistancia(voluntarioModel.getTrabalhoDistancia());
 
-
 		List<Causas> causas = new ArrayList<>();
 		for (String p4 : voluntarioModel.getCausas()) {
 			causas.add(Causas.values()[new Integer(p4)]);
@@ -142,7 +141,7 @@ public class VoluntarioRepository {
 			periodos.add(Periodos.values()[new Integer(p)]);
 		}
 		voluntarioEntity.setPeriodosDisponiveis(periodos);
-		
+
 		UsuarioEntity usuarioEntity = voluntarioEntity.getUsuarioEntity();
 		usuarioEntity.setSenha(voluntarioModel.getSenha());
 		entityManager.merge(usuarioEntity);
@@ -166,15 +165,15 @@ public class VoluntarioRepository {
 			return null;
 		}
 	}
-	
+
 	public void atualizarVoluntario(VoluntarioEntity voluntarioEntity) {
 		entityManager = Uteis.JpaEntityManager();
 		entityManager.merge(voluntarioEntity);
 		entityManager.flush();
 	}
-	
+
 	public VoluntarioEntity toVoluntarioEntity(VoluntarioModel voluntarioModel) {
-		
+
 		voluntarioEntity = getVoluntario(voluntarioModel.getId());
 		voluntarioEntity.setEmail(voluntarioModel.getEmail());
 		voluntarioEntity.setNome(voluntarioModel.getNome());
@@ -226,7 +225,6 @@ public class VoluntarioRepository {
 		return voluntarioEntity;
 	}
 
-	
 	public VoluntarioModel toVoluntarioModel(VoluntarioEntity voluntarioEntity) {
 
 		entityManager = Uteis.JpaEntityManager();
@@ -251,52 +249,59 @@ public class VoluntarioRepository {
 
 		voluntarioModel.setCausas(voluntarioModel.toStringArrayCausas(voluntarioEntity.getCausas()));
 		voluntarioModel.setHabilidades(voluntarioModel.toStringArrayHabilidades(voluntarioEntity.getHabilidades()));
-		voluntarioModel.setDisponibilidadeDias(voluntarioModel.toStringArrayDiasSemana(voluntarioEntity.getDiasDisponiveis()));
-		voluntarioModel.setDisponibilidadePeriodos(voluntarioModel.toStringArrayPeriodos(voluntarioEntity.getPeriodosDisponiveis()));
-		
+		voluntarioModel
+				.setDisponibilidadeDias(voluntarioModel.toStringArrayDiasSemana(voluntarioEntity.getDiasDisponiveis()));
+		voluntarioModel.setDisponibilidadePeriodos(
+				voluntarioModel.toStringArrayPeriodos(voluntarioEntity.getPeriodosDisponiveis()));
+
+		voluntarioModel.setCausasString(voluntarioEntity.getCausas().toString());
+		voluntarioModel.setHabilidadesString(voluntarioEntity.getHabilidades().toString());
+		voluntarioModel.setDisponibilidadeDiasString(voluntarioEntity.getDiasDisponiveis().toString());
+		voluntarioModel.setDisponibilidadePeriodosString(voluntarioEntity.getPeriodosDisponiveis().toString());
+
 		UsuarioEntity usuarioEntity = voluntarioEntity.getUsuarioEntity();
 		voluntarioModel.setUsuarioEntity(usuarioEntity);
-		
+
 		voluntarioModel.setSenha(usuarioEntity.getSenha());
 
 		return voluntarioModel;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<VoluntarioModel> getVoluntariosCidadeEstado(String cidade, String estado) {
 		try {
-			
+
 			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByCidadeEstado");
- 
+
 			query.setParameter("estado", estado);
 			query.setParameter("cidade", cidade);
-			
+
 			List<VoluntarioEntity> list = query.getResultList();
-			
+
 			List<VoluntarioModel> model = new ArrayList<>();
 			for (VoluntarioEntity voluntarioEntity : list) {
 				model.add(toVoluntarioModel(voluntarioEntity));
 			}
- 
+
 			return model;
 		} catch (Exception e) {
 			return null;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<VoluntarioModel> getVoluntariosTrabalhoDistancia() {
 		try {
-			
+
 			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByTrabalhoDistancia");
-			
+
 			List<VoluntarioEntity> list = query.getResultList();
-			
+
 			List<VoluntarioModel> model = new ArrayList<>();
 			for (VoluntarioEntity voluntarioEntity : list) {
 				model.add(toVoluntarioModel(voluntarioEntity));
 			}
- 
+
 			return model;
 		} catch (Exception e) {
 			return null;

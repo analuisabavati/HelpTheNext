@@ -35,14 +35,25 @@
 
 							<h:outputText value="Trabalho à distancia"
 								style="font-weight: bold" />
-							<h:outputText value="#{vaga.trabalhoDistancia}" />
+							<h:outputText value="#{vol.trabalhoDistancia}" />
+
+							<h:outputText value="Dias disponiveis" style="font-weight: bold" />
+							<h:outputText value="#{vol.disponibilidadeDiasString}" />
+
+							<h:outputText value="Periodos disponiveis"
+								style="font-weight: bold" />
+							<h:outputText value="#{vol.disponibilidadePeriodosString}" />
+
+							<h:outputText value="Habilidades" style="font-weight: bold" />
+							<h:outputText value="#{vol.habilidadesString}" />
+
+							<h:outputText value="Causas" style="font-weight: bold" />
+							<h:outputText value="#{vol.causasString}" />
 
 							<p:commandButton value="Enviar E-mail!"
-								action="#{recomendarVoluntario.enviarEmail}">
-
+								action="#{recomendarVoluntarios.enviarEmail}">
 								<f:setPropertyActionListener value="#{vol}"
-									target="#{recomendarVoluntario.selectedVoluntario}" />
-
+									target="#{recomendarVoluntarios.selectedVoluntario}" />
 							</p:commandButton>
 
 						</h:panelGrid>
