@@ -2,6 +2,7 @@ package br.com.helpthenext.recomendacoes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -14,6 +15,7 @@ import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
+import br.com.helpthenext.uteis.ComparadorVoluntarios;
 import br.com.helpthenext.uteis.Uteis;
 
 @SessionScoped
@@ -27,18 +29,18 @@ public class RecomendarVoluntarios implements Serializable {
 
 	@Inject
 	transient ONGRepository ongRepository;
-	
+
 	@Inject
 	transient JavaMailApp javaMailApp;
 
 	List<VoluntarioModel> voluntariosRecomendados;
-	
+
 	private VoluntarioModel selectedVoluntario;
-	
+
 	private VagaModel vaga;
 
 	public void recomendarVoluntarios(VagaModel vaga) {
-		
+
 		this.vaga = vaga;
 
 		List<VoluntarioModel> voluntariosEncontrados = new ArrayList<>();
@@ -104,11 +106,19 @@ public class RecomendarVoluntarios implements Serializable {
 			somatorio = 0;
 		}
 
-		// ordenar
+		Collections.sort(voluntariosRecomendados, new ComparadorVoluntarios());
+
+		int i = 0;
+		for (VoluntarioModel x : voluntariosRecomendados) {
+			if (i > 6) {
+				voluntariosRecomendados.remove(x);
+			}
+			i++;
+		}
 
 		this.voluntariosRecomendados = voluntariosRecomendados;
 	}
-	
+
 	public void enviarEmail() {
 
 		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
@@ -121,7 +131,8 @@ public class RecomendarVoluntarios implements Serializable {
 		msg.append("Olá " + selectedVoluntario.getNome());
 		msg.append("\n");
 		msg.append("\n");
-		msg.append("A ONG " + ong.getNomeONG() + "cadastrou uma vaga de voluntariado intitulada como "+vaga.getTitulo()+ " compativel com o seu perfil no site.");
+		msg.append("A ONG " + ong.getNomeONG() + " cadastrou uma nova vaga de voluntariado intitulada "
+				+ vaga.getTitulo() + ", compativel com o seu perfil no site.");
 		msg.append("\n");
 		msg.append("\n");
 		msg.append("Segue abaixo o contato da ONG:");
@@ -140,7 +151,7 @@ public class RecomendarVoluntarios implements Serializable {
 		String assunto = "[HelpTheNext] Há uma nova vaga compativel com seu perfil!!";
 
 		javaMailApp.enviarEmail(selectedVoluntario.getEmail(), msg.toString(), assunto);
-		
+
 		Uteis.Mensagem("Email enviado com sucesso!");
 	}
 
