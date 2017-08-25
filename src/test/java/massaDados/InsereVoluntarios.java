@@ -66,8 +66,8 @@ public class InsereVoluntarios {
 		voluntarioEntity.setDataCadastro(LocalDateTime.now());
 		voluntarioEntity.setEmail("ana_bavati@hotmail.com");
 
-		voluntarioEntity.setEstado(voluntarioModel.getEstado());
-		voluntarioEntity.setCidade(voluntarioModel.getCidade());
+		voluntarioEntity.setEstado("SP");
+		voluntarioEntity.setCidade("Campinas");
 		voluntarioEntity.setCep(gerador.gerarCEP());
 		voluntarioEntity.setComplemento("-");
 		voluntarioEntity.setNumero(new Long(i.toString()));
