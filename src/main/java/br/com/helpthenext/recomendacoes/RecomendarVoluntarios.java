@@ -16,7 +16,6 @@ import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.uteis.ComparadorVoluntarios;
-import br.com.helpthenext.uteis.Uteis;
 
 @SessionScoped
 @Named(value = "recomendarVoluntarios")

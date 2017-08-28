@@ -1,19 +1,17 @@
 package massaDados;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.enums.TipoUsuario;
-import br.com.helpthenext.repository.ArrayList;
-import br.com.helpthenext.repository.Integer;
-import br.com.helpthenext.repository.List;
 import br.com.helpthenext.repository.ONGRepository;
-import br.com.helpthenext.repository.String;
-import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
-import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 public class InsereONGs {
@@ -46,10 +44,6 @@ public class InsereONGs {
 		
 		ongEntity.setCausas(getCausas());
 
-		ongEntity.setWebsite(ongModel.getWebsite());
-		ongEntity.setFacebook(ongModel.getFacebook());
-		ongEntity.setNumero(ongModel.getNumero());
-		ongEntity.setComplemento(ongModel.getComplemento());
 		ongEntity.setCep(gerador.gerarCEP());
 		ongEntity.setCidade("Campinas");
 		ongEntity.setEstado("SP");
@@ -73,7 +67,7 @@ public class InsereONGs {
 		return usuario;
 	}
 	
-	private List<Causas> getCausas() {
+	private java.util.List<Causas> getCausas() {
 
 		int qnt = gerador.numAleatorio(1, 3);
 
