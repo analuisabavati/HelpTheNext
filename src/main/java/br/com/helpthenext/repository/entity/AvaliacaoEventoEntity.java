@@ -28,7 +28,7 @@ public class AvaliacaoEventoEntity  implements Serializable {
 	@Column(name = "id_voluntario")
 	private VoluntarioEntity voluntario;
 	
-	@Column(name = "id_avaliacao_evento")
+	@Column(name = "avaliacao")
 	private Integer avaliacao;
 
 	public Long getId() {
