@@ -182,7 +182,6 @@ public class EventoRepository {
 		entityManager = Uteis.JpaEntityManager();
 
 		EventoEntity eventoCurtida = getEvento(idEvento);
-		eventoCurtida.setCurtida(voluntarioRepository.getVoluntarioByUsuarioSessao());
 		
 		entityManager.merge(eventoCurtida);	
 	}

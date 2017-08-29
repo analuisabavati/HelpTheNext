@@ -2,22 +2,22 @@ package br.com.helpthenext.repository.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.helpthenext.enums.Causas;
@@ -70,10 +70,8 @@ public class EventoEntity implements Serializable {
 	@Column(name = "dt_cadastro")
 	private LocalDateTime dataCadastro;
 
-	@ManyToMany
-	@JoinTable(name = "evento_vol_curtidas", joinColumns = { @JoinColumn(name = "id_evento") }, inverseJoinColumns = {
-			@JoinColumn(name = "id_voluntario") })
-	private List<VoluntarioEntity> voluntariosQueCurtiram;
+	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<AvaliacaoEventoEntity> avaliacaoEventoList;
 
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
@@ -175,20 +173,12 @@ public class EventoEntity implements Serializable {
 		this.causa = causa;
 	}
 
-	public List<VoluntarioEntity> getVoluntariosQueCurtiram() {
-		return voluntariosQueCurtiram;
+	public List<AvaliacaoEventoEntity> getAvaliacaoEventoList() {
+		return avaliacaoEventoList;
 	}
 
-	public void setVoluntariosQueCurtiram(List<VoluntarioEntity> voluntariosQueCurtiram) {
-		this.voluntariosQueCurtiram = voluntariosQueCurtiram;
-	}
-	
-	public void setCurtida(VoluntarioEntity vol) {
-		if (this.voluntariosQueCurtiram == null) {
-			this.voluntariosQueCurtiram = new ArrayList<>();
-		}
-		
-		this.voluntariosQueCurtiram.add(vol);
+	public void setAvaliacaoEventoList(List<AvaliacaoEventoEntity> avaliacaoEventoList) {
+		this.avaliacaoEventoList = avaliacaoEventoList;
 	}
 
 }
