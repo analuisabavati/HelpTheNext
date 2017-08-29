@@ -39,6 +39,8 @@ public class ConsultaEventosView implements Serializable {
 	private List<EventoModel> eventos;
 
 	private EventoModel selectedEvento;
+	
+	private Integer avaliacao;
 
 	private boolean botaoCurtir;
 
@@ -73,7 +75,7 @@ public class ConsultaEventosView implements Serializable {
 	}
 
 	public void curtirEvento() {
-		eventoRepository.adicionarCurtida(selectedEvento.getId());
+		eventoRepository.adicionarAvaliacao(selectedEvento.getId(),avaliacao);
 		Uteis.MensagemInfo("Evento curtido!");
 	}
 	
@@ -119,6 +121,14 @@ public class ConsultaEventosView implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Integer getAvaliacao() {
+		return avaliacao;
+	}
+
+	public void setAvaliacao(Integer avaliacao) {
+		this.avaliacao = avaliacao;
 	}
 
 }

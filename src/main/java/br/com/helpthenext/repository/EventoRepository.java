@@ -177,7 +177,7 @@ public class EventoRepository {
 		return eventoModel;
 	}
 	
-	public void adicionarCurtida(Long idEvento) {
+	public void adicionarAvaliacao(Long idEvento,  Integer avaliacao) {
 		
 		entityManager = Uteis.JpaEntityManager();
 
