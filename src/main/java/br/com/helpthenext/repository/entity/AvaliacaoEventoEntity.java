@@ -4,40 +4,31 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Table(name = "tb_avaliacao_evento")
 @Entity
-public class AvaliacaoEventoEntity  implements Serializable {
+@IdClass(AvaliacaoEventoPk.class)
+public class AvaliacaoEventoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
-	@Column(name = "id_avaliacao_evento")
-	private Long id;
-
-	@ManyToOne
-	@Column(name = "id_evento")
+    @ManyToOne
+    @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")
 	private EventoEntity evento;
 
+	@Id
 	@ManyToOne
-	@Column(name = "id_voluntario")
+	@JoinColumn(name = "id_voluntario", referencedColumnName = "id_voluntario")
 	private VoluntarioEntity voluntario;
-	
+
 	@Column(name = "avaliacao")
 	private Integer avaliacao;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public EventoEntity getEvento() {
 		return evento;
