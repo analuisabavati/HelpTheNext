@@ -14,8 +14,9 @@ import javax.persistence.Query;
 import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.EventoModel;
-import br.com.helpthenext.model.UsuarioModel;
+import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.EventoEntity;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 public class EventoRepository {
@@ -28,10 +29,10 @@ public class EventoRepository {
 
 	@Inject
 	VoluntarioRepository voluntarioRepository;
-	
+
 	@Inject
 	UsuarioController usuarioController;
-	
+
 	@Inject
 	AvaliacaoEventoRepository avaliacaoEventoRepository;
 
@@ -80,7 +81,7 @@ public class EventoRepository {
 			eventoModel = new EventoModel();
 
 			Long idEvento = eventoEntity.getId();
-			
+
 			eventoModel.setId(idEvento);
 			eventoModel.setTitulo(eventoEntity.getTitulo());
 			eventoModel.setDescricao(eventoEntity.getDescricao());
@@ -93,21 +94,33 @@ public class EventoRepository {
 
 			Integer c = eventoEntity.getCausa().ordinal();
 			eventoModel.setCausa(c.toString());
-			
+
 			eventoModel.setCausasString(eventoEntity.getCausa().toString());
-			
+
 			eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
 			eventoModel.setOngEntity(eventoEntity.getOngEntity());
 			eventoModel.setVoluntarioEntity(eventoEntity.getVoluntarioEntity());
+			eventoModel.setAvaliacaoEvento(getAvaliacaoEvento(eventoEntity, idEvento));
 
 			eventosModel.add(eventoModel);
-			
-			UsuarioModel usuario = usuarioController.GetUsuarioSession();
-			eventoModel.setAvaliacaoEvento(avaliacaoEventoRepository.getByIdVoluntarioIdEvento(usuario.getId(), idEvento));
 		}
 
 		return eventosModel;
+	}
+
+	private AvaliacaoEventoEntity getAvaliacaoEvento(EventoEntity eventoEntity, Long idEvento) {		
+		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
+
+		AvaliacaoEventoEntity avaliacao = avaliacaoEventoRepository.findByVoluntarioEvento(voluntarioByUsuarioSessao,
+				eventoEntity);
+		if (avaliacao == null) {
+			avaliacao = new AvaliacaoEventoEntity();
+			avaliacao.setAvaliacao(0);
+			avaliacao.setEvento(eventoEntity);
+			avaliacao.setVoluntario(voluntarioByUsuarioSessao);
+		}
+		return avaliacao;
 	}
 
 	public Date asDate(LocalDateTime localDateTime) {
@@ -177,7 +190,6 @@ public class EventoRepository {
 		eventoModel.setEmail(eventoEntity.getEmail());
 		eventoModel.setBanner(eventoEntity.getBanner());
 
-		
 		Integer c = eventoEntity.getCausa().ordinal();
 		eventoModel.setCausa(c.toString());
 
@@ -189,14 +201,14 @@ public class EventoRepository {
 
 		return eventoModel;
 	}
-	
-	public void adicionarAvaliacao(Long idEvento,  Integer avaliacao) {
-		
+
+	public void adicionarAvaliacao(Long idEvento, Integer avaliacao) {
+
 		entityManager = Uteis.JpaEntityManager();
 
 		EventoEntity eventoCurtida = getEvento(idEvento);
-		
-		entityManager.merge(eventoCurtida);	
+
+		entityManager.merge(eventoCurtida);
 	}
 
 }

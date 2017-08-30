@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @IdClass(AvaliacaoEventoPk.class)
 @NamedQueries({
-	@NamedQuery(name = "AvaliacaoEventoEntity.findByIdVoluntarioIdEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.voluntario.id = :idVoluntario and v.evento.id = :idEvento"),
+	@NamedQuery(name = "AvaliacaoEventoEntity.findByVoluntarioEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.voluntario = :idVoluntario and v.evento = :idEvento"),
 	@NamedQuery(name = "AvaliacaoEventoEntity.findByIdVoluntario", query = "SELECT v FROM AvaliacaoEventoEntity v where v.voluntario.id = :id"),
 	@NamedQuery(name = "AvaliacaoEventoEntity.findByIdEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.evento.id = :id")
 })

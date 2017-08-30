@@ -9,6 +9,7 @@ import javax.inject.Named;
 import org.primefaces.model.UploadedFile;
 
 import br.com.helpthenext.model.EventoModel;
+import br.com.helpthenext.repository.AvaliacaoEventoRepository;
 import br.com.helpthenext.repository.EventoRepository;
 import br.com.helpthenext.uteis.Uteis;
 
@@ -21,9 +22,17 @@ public class EditarEvento implements Serializable {
 	@Inject
 	transient EventoRepository eventoRepository;
 	
+	@Inject
+	transient AvaliacaoEventoRepository avaliacaoEventoRepository;
+	
 	private EventoModel evento;
 	
 	private UploadedFile uploadedFile;
+	
+	public void avaliarEvento() {
+		avaliacaoEventoRepository.salvarAtualizarAvaliacaoEvento(evento.getAvaliacaoEvento());
+		Uteis.MensagemInfo("Evento avaliado!");
+	}
 
 	public void editarEvento() {
 		if (uploadedFile != null) {

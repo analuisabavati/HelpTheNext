@@ -70,7 +70,7 @@ public class EventoEntity implements Serializable {
 	@Column(name = "dt_cadastro")
 	private LocalDateTime dataCadastro;
 
-	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "evento", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private List<AvaliacaoEventoEntity> avaliacaoEventoList;
 
 	public LocalDateTime getDataCadastro() {

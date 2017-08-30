@@ -36,9 +36,7 @@ public class ConsultaEventosView implements Serializable {
 	@Inject
 	transient VoluntarioRepository voluntarioRepository;
 	
-	@Inject
-	transient AvaliacaoEventoRepository avaliacaoEventoRepository;
-
+	
 	@Produces
 	private List<EventoModel> eventos;
 
@@ -78,10 +76,6 @@ public class ConsultaEventosView implements Serializable {
 		}
 	}
 
-	public void curtirEvento() {
-		avaliacaoEventoRepository.salvarAtualizarAvaliacaoEvento(selectedEvento.getAvaliacaoEvento());
-		Uteis.MensagemInfo("Evento curtido!");
-	}
 	
 	public boolean isBotaoCurtir() {
 		return botaoCurtir;

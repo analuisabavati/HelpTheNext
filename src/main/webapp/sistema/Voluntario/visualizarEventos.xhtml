@@ -91,13 +91,11 @@
 							disabled="#{!(consultaEventosView.botaoEditar)}">
 						</p:button>
 
-						<br />
-
-						<p:rating
-							value="#{consultaEventosView.selectedEvento.avaliacaoEvento}" />
+						<h:outputText value=" " />
+						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
 
 						<p:commandButton value="Avaliar Evento" id="commandButton-curtir"
-							icon="ui-icon-like" action="#{consultaEventosView.curtirEvento}" />
+							icon="ui-icon-like" action="#{editarEvento.avaliarEvento}" />
 
 
 

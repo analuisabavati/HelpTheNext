@@ -132,7 +132,7 @@ public class VoluntarioEntity {
 	@Column(name = "trabalho_distancia")
 	private String trabalhoDistancia;
 	
-	@OneToMany(mappedBy = "voluntario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "voluntario", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private List<AvaliacaoEventoEntity> avaliacaoEventoList;
 
 	public String getTrabalhoDistancia() {
