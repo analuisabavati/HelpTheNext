@@ -8,11 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Table(name = "tb_avaliacao_evento")
 @Entity
 @IdClass(AvaliacaoEventoPk.class)
+@NamedQueries({
+	@NamedQuery(name = "AvaliacaoEventoEntity.findByIdVoluntarioIdEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.voluntario.id = :idVoluntario and v.evento.id = :idEvento"),
+	@NamedQuery(name = "AvaliacaoEventoEntity.findByIdVoluntario", query = "SELECT v FROM AvaliacaoEventoEntity v where v.voluntario.id = :id"),
+	@NamedQuery(name = "AvaliacaoEventoEntity.findByIdEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.evento.id = :id")
+})
 public class AvaliacaoEventoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

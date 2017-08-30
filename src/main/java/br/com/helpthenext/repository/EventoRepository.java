@@ -11,8 +11,10 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.EventoModel;
+import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.repository.entity.EventoEntity;
 import br.com.helpthenext.uteis.Uteis;
 
@@ -26,6 +28,12 @@ public class EventoRepository {
 
 	@Inject
 	VoluntarioRepository voluntarioRepository;
+	
+	@Inject
+	UsuarioController usuarioController;
+	
+	@Inject
+	AvaliacaoEventoRepository avaliacaoEventoRepository;
 
 	EntityManager entityManager;
 
@@ -71,7 +79,9 @@ public class EventoRepository {
 		for (EventoEntity eventoEntity : eventosEntity) {
 			eventoModel = new EventoModel();
 
-			eventoModel.setId(eventoEntity.getId());
+			Long idEvento = eventoEntity.getId();
+			
+			eventoModel.setId(idEvento);
 			eventoModel.setTitulo(eventoEntity.getTitulo());
 			eventoModel.setDescricao(eventoEntity.getDescricao());
 			eventoModel.setNomeResponsavel(eventoEntity.getNomeResponsavel());
@@ -92,6 +102,9 @@ public class EventoRepository {
 			eventoModel.setVoluntarioEntity(eventoEntity.getVoluntarioEntity());
 
 			eventosModel.add(eventoModel);
+			
+			UsuarioModel usuario = usuarioController.GetUsuarioSession();
+			eventoModel.setAvaliacaoEvento(avaliacaoEventoRepository.getByIdVoluntarioIdEvento(usuario.getId(), idEvento));
 		}
 
 		return eventosModel;

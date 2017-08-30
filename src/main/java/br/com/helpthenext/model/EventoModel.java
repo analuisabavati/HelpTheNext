@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.helpthenext.enums.Causas;
+import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 
@@ -25,6 +26,8 @@ public class EventoModel {
 	private LocalDateTime dataCadastro;
 	private String causasString;
 	private Date dataCadastroDate;
+	
+	private AvaliacaoEventoEntity avaliacaoEvento;
 	
 	public Date getDataCadastroDate() {
 		return dataCadastroDate;
@@ -153,5 +156,13 @@ public class EventoModel {
 		this.causasString = causasString;
 	}
 
+	public AvaliacaoEventoEntity getAvaliacaoEvento() {
+		return avaliacaoEvento;
+	}
+
+	public void setAvaliacaoEvento(AvaliacaoEventoEntity avaliacaoEvento) {
+		this.avaliacaoEvento = avaliacaoEvento;
+	}
+	
 	
 }

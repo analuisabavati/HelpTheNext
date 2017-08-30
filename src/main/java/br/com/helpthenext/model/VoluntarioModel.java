@@ -9,6 +9,7 @@ import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.enums.Periodos;
+import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
 
 public class VoluntarioModel {
@@ -46,6 +47,8 @@ public class VoluntarioModel {
 	private String causasString;
 	private String disponibilidadeDiasString;
 	private String disponibilidadePeriodosString;
+
+	private AvaliacaoEventoEntity avaliacaoEvento;
 
 	public Integer getPontos() {
 		return pontos;
@@ -343,5 +346,12 @@ public class VoluntarioModel {
 		this.disponibilidadePeriodosString = disponibilidadePeriodosString;
 	}
 
-	
+	public AvaliacaoEventoEntity getAvaliacaoEvento() {
+		return avaliacaoEvento;
+	}
+
+	public void setAvaliacaoEvento(AvaliacaoEventoEntity avaliacaoEvento) {
+		this.avaliacaoEvento = avaliacaoEvento;
+	}
+
 }

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.model.EventoModel;
+import br.com.helpthenext.repository.AvaliacaoEventoRepository;
 import br.com.helpthenext.repository.EventoRepository;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
@@ -34,6 +35,9 @@ public class ConsultaEventosView implements Serializable {
 
 	@Inject
 	transient VoluntarioRepository voluntarioRepository;
+	
+	@Inject
+	transient AvaliacaoEventoRepository avaliacaoEventoRepository;
 
 	@Produces
 	private List<EventoModel> eventos;
@@ -75,7 +79,7 @@ public class ConsultaEventosView implements Serializable {
 	}
 
 	public void curtirEvento() {
-		eventoRepository.adicionarAvaliacao(selectedEvento.getId(),avaliacao);
+		avaliacaoEventoRepository.salvarAtualizarAvaliacaoEvento(selectedEvento.getAvaliacaoEvento());
 		Uteis.MensagemInfo("Evento curtido!");
 	}
 	
