@@ -7,12 +7,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 /* Renata Ghisloti Duarte de Souza */
 /* rgduarte@br.ibm.com */
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+
+import javax.inject.Inject;
+
+import br.com.helpthenext.repository.AvaliacaoEventoRepository;
+import br.com.helpthenext.repository.EventoRepository;
+import br.com.helpthenext.repository.VoluntarioRepository;
+import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 
 /* Slope One version
  * ****Simple slope one*****
@@ -20,14 +27,23 @@ import java.util.StringTokenizer;
  * the predction part is in another file
  */
 
-public class SlopeOne {
+public class SlopeOneEventos {
+
+	@Inject
+	private EventoRepository eventoRepository;
+
+	@Inject
+	private VoluntarioRepository voluntarioRepository;
+
+	@Inject
+	private AvaliacaoEventoRepository avaliacaoEventoRepository;
 
 	int maxItemsId = 0;
 	float mRatings[][];
 	int mFreq[][];
 	Map<Integer, Map<Integer, Float>> usersMatrix;
 
-	public SlopeOne() {
+	public void SlopeOne() {
 
 		readInput();
 		buildDiffMatrix();
@@ -169,6 +185,48 @@ public class SlopeOne {
 				}
 			}
 		}
+	}
+	
+
+	@SuppressWarnings("unchecked")
+	public Integer[][] getMatrizTodasAvaliacoes() {
+		List<AvaliacaoEventoEntity> avaliacoes = avaliacaoEventoRepository.findAll();
+
+		List<Long> idsEventos = eventoRepository.getIdsEventos();
+		List<Long> idsVoluntarios = voluntarioRepository.getIdsVoluntarios();
+
+		int qntVoluntarios = idsVoluntarios.size();
+		int qntEventos = idsEventos.size();
+
+		Integer[][] matrizAvaliacoes = new Integer[qntVoluntarios][qntEventos];
+
+		Long idVoluntario;
+		Long idEvento;
+		for (int l = 0; l < qntVoluntarios; l++) {
+
+			idVoluntario = idsVoluntarios.get(l);
+
+			for (int c = 0; c < qntEventos; c++) {
+
+				idEvento = idsEventos.get(c);
+
+				matrizAvaliacoes[l][c] = getAvaliacao(idVoluntario, idEvento, avaliacoes);
+			}
+		}
+
+		return matrizAvaliacoes;
+	}
+
+	
+	private Integer getAvaliacao(Long idVol, Long idEvento, List<AvaliacaoEventoEntity> avaliacoes) {
+		for (AvaliacaoEventoEntity avaliacaoEventoEntity : avaliacoes) {
+			if (avaliacaoEventoEntity.getIdEvento().equals(idEvento)
+					&& avaliacaoEventoEntity.getIdVoluntario().equals(idVol)) {
+				return avaliacaoEventoEntity.getAvaliacao();
+			}
+		}
+
+		return 0;
 	}
 
 }

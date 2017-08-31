@@ -13,13 +13,13 @@ import javax.persistence.Table;
 @Table(name = "tb_avaliacao_evento")
 @Entity
 @NamedQueries({
+		@NamedQuery(name = "AvaliacaoEventoEntity.findAll", query = "SELECT v FROM AvaliacaoEventoEntity v"),
 		@NamedQuery(name = "AvaliacaoEventoEntity.findByVoluntarioEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.idVoluntario = :idVoluntario and v.idEvento = :idEvento"),
 		@NamedQuery(name = "AvaliacaoEventoEntity.findByIdVoluntario", query = "SELECT v FROM AvaliacaoEventoEntity v where v.idEvento = :id"),
 		@NamedQuery(name = "AvaliacaoEventoEntity.findByIdEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.idVoluntario = :id") })
 public class AvaliacaoEventoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 
 	@Id
 	@GeneratedValue
@@ -71,5 +71,4 @@ public class AvaliacaoEventoEntity implements Serializable {
 		this.avaliacao = avaliacao;
 	}
 
-	
 }

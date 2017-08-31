@@ -1,5 +1,6 @@
 package br.com.helpthenext.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,7 +11,7 @@ import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 public class AvaliacaoEventoRepository {
-
+	
 	EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
@@ -64,5 +65,19 @@ public class AvaliacaoEventoRepository {
 
 		entityManager.merge(novo);
 	}
+	
+	@SuppressWarnings({ "unchecked" })
+	public List<AvaliacaoEventoEntity> findAll() {
+		Query query = Uteis.JpaEntityManager().createNamedQuery("AvaliacaoEventoEntity.findAll");
+
+		List<AvaliacaoEventoEntity> avaliacoes;
+		try {
+			avaliacoes = query.getResultList();
+		} catch (Exception e) {
+			avaliacoes = new ArrayList<>();
+		}
+		return avaliacoes;
+	}
+
 
 }

@@ -37,6 +37,18 @@ public class EventoRepository {
 	AvaliacaoEventoRepository avaliacaoEventoRepository;
 
 	EntityManager entityManager;
+	
+	@SuppressWarnings("unchecked")
+	public List<Long> getIdsEventos() {
+		try {
+			entityManager = Uteis.JpaEntityManager();
+			Query query = entityManager.createNamedQuery("EventoEntity.getIds");
+
+			return query.getResultList();
+		} catch (Exception e) {
+			return new ArrayList<>();
+		}
+	}
 
 	public EventoEntity getEvento(Long id) {
 		entityManager = Uteis.JpaEntityManager();

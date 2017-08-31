@@ -30,6 +30,18 @@ public class VoluntarioRepository {
 	UsuarioController usuarioController;
 
 	EntityManager entityManager;
+	
+	@SuppressWarnings("unchecked")
+	public List<Long> getIdsVoluntarios() {
+		try {
+			entityManager = Uteis.JpaEntityManager();
+			Query query = entityManager.createNamedQuery("VoluntarioEntity.getIds");
+
+			return query.getResultList();
+		} catch (Exception e) {
+			return new ArrayList<>();
+		}
+	}
 
 	// Cadastra novo Voluntario
 	public void salvarNovoRegistro(VoluntarioModel voluntarioModel) {
