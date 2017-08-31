@@ -10,13 +10,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.model.EventoModel;
-import br.com.helpthenext.repository.AvaliacaoEventoRepository;
 import br.com.helpthenext.repository.EventoRepository;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.Uteis;
 
 @ViewScoped
 @Named(value = "consultaEventosView")

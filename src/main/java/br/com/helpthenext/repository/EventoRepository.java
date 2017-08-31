@@ -112,8 +112,8 @@ public class EventoRepository {
 	private AvaliacaoEventoEntity getAvaliacaoEvento(EventoEntity eventoEntity, Long idEvento) {
 		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
 
-		AvaliacaoEventoEntity avaliacao = avaliacaoEventoRepository.findByVoluntarioEvento(voluntarioByUsuarioSessao,
-				eventoEntity);
+		AvaliacaoEventoEntity avaliacao = avaliacaoEventoRepository.findByVoluntarioEvento(voluntarioByUsuarioSessao.getId(),
+				eventoEntity.getId());
 		if (avaliacao == null) {
 			avaliacao = new AvaliacaoEventoEntity();
 			avaliacao.setAvaliacao(0);

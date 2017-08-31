@@ -7,8 +7,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
-import br.com.helpthenext.repository.entity.EventoEntity;
-import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 public class AvaliacaoEventoRepository {
@@ -33,13 +31,13 @@ public class AvaliacaoEventoRepository {
 		return query.getResultList();
 	}
 
-	public AvaliacaoEventoEntity findByVoluntarioEvento(VoluntarioEntity voluntarioByUsuarioSessao,
-			EventoEntity eventoEntity) {
+	public AvaliacaoEventoEntity findByVoluntarioEvento(Long idVol,
+			Long idEvento) {
 		try {
 			Query query = Uteis.JpaEntityManager().createNamedQuery("AvaliacaoEventoEntity.findByVoluntarioEvento");
 
-			query.setParameter("idVoluntario", voluntarioByUsuarioSessao);
-			query.setParameter("idEvento", eventoEntity);
+			query.setParameter("idVoluntario", idVol);
+			query.setParameter("idEvento", idEvento);
 
 			return (AvaliacaoEventoEntity) query.getSingleResult();
 
@@ -51,12 +49,18 @@ public class AvaliacaoEventoRepository {
 
 	public void salvarAtualizarAvaliacaoEvento(AvaliacaoEventoEntity avaliacao) {
 		entityManager = Uteis.JpaEntityManager();
-
+		
 		AvaliacaoEventoEntity novo = new AvaliacaoEventoEntity();
-		novo.setId(avaliacao.getId());
 		novo.setIdEvento(avaliacao.getIdEvento());
 		novo.setIdVoluntario(avaliacao.getIdVoluntario());
 		novo.setAvaliacao(avaliacao.getAvaliacao());
+		
+		AvaliacaoEventoEntity existe = findByVoluntarioEvento(avaliacao.getIdEvento(), avaliacao.getIdEvento());
+		if (existe != null) {
+			avaliacao.setId(existe.getId());
+		}
+
+		novo.setId(avaliacao.getId());
 
 		entityManager.merge(novo);
 	}
