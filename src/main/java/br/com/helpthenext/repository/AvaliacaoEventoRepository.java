@@ -51,9 +51,14 @@ public class AvaliacaoEventoRepository {
 
 	public void salvarAtualizarAvaliacaoEvento(AvaliacaoEventoEntity avaliacao) {
 		entityManager = Uteis.JpaEntityManager();
-		
-		
-			entityManager.merge(avaliacao);
 
+		AvaliacaoEventoEntity novo = new AvaliacaoEventoEntity();
+		novo.setId(avaliacao.getId());
+		novo.setIdEvento(avaliacao.getIdEvento());
+		novo.setIdVoluntario(avaliacao.getIdVoluntario());
+		novo.setAvaliacao(avaliacao.getAvaliacao());
+
+		entityManager.merge(novo);
 	}
+
 }

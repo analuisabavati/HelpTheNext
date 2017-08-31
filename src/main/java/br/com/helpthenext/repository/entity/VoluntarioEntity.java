@@ -132,9 +132,6 @@ public class VoluntarioEntity {
 	@Column(name = "trabalho_distancia")
 	private String trabalhoDistancia;
 	
-	@OneToMany(mappedBy = "voluntario", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	private List<AvaliacaoEventoEntity> avaliacaoEventoList;
-
 	public String getTrabalhoDistancia() {
 		return trabalhoDistancia;
 	}
@@ -333,14 +330,6 @@ public class VoluntarioEntity {
 
 	public void setEventos(List<EventoEntity> eventos) {
 		this.eventos = eventos;
-	}
-
-	public List<AvaliacaoEventoEntity> getAvaliacaoEventoList() {
-		return avaliacaoEventoList;
-	}
-
-	public void setAvaliacaoEventoList(List<AvaliacaoEventoEntity> avaliacaoEventoList) {
-		this.avaliacaoEventoList = avaliacaoEventoList;
 	}
 
 }

@@ -4,53 +4,63 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Table(name = "tb_avaliacao_evento")
 @Entity
-@IdClass(AvaliacaoEventoPk.class)
 @NamedQueries({
-	@NamedQuery(name = "AvaliacaoEventoEntity.findByVoluntarioEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.voluntario = :idVoluntario and v.evento = :idEvento"),
-	@NamedQuery(name = "AvaliacaoEventoEntity.findByIdVoluntario", query = "SELECT v FROM AvaliacaoEventoEntity v where v.voluntario.id = :id"),
-	@NamedQuery(name = "AvaliacaoEventoEntity.findByIdEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.evento.id = :id")
-})
+		@NamedQuery(name = "AvaliacaoEventoEntity.findByVoluntarioEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.idVoluntario = :idVoluntario and v.idEvento = :idEvento"),
+		@NamedQuery(name = "AvaliacaoEventoEntity.findByIdVoluntario", query = "SELECT v FROM AvaliacaoEventoEntity v where v.idEvento = :id"),
+		@NamedQuery(name = "AvaliacaoEventoEntity.findByIdEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.idVoluntario = :id") })
 public class AvaliacaoEventoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-    @ManyToOne
-    @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")
-	private EventoEntity evento;
 
 	@Id
-	@ManyToOne
-	@JoinColumn(name = "id_voluntario", referencedColumnName = "id_voluntario")
-	private VoluntarioEntity voluntario;
+	@GeneratedValue
+	@Column(name = "id_avaliacao_evento")
+	private Long id;
+
+	@Column(name = "id_evento")
+	private Long idEvento;
+
+	@Column(name = "id_voluntario")
+	private Long idVoluntario;
 
 	@Column(name = "avaliacao")
 	private Integer avaliacao;
 
-	public EventoEntity getEvento() {
-		return evento;
+	public Long getId() {
+		return id;
 	}
 
-	public void setEvento(EventoEntity evento) {
-		this.evento = evento;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public VoluntarioEntity getVoluntario() {
-		return voluntario;
+	public Long getIdEvento() {
+		return idEvento;
 	}
 
-	public void setVoluntario(VoluntarioEntity voluntario) {
-		this.voluntario = voluntario;
+	public void setIdEvento(Long idEvento) {
+		this.idEvento = idEvento;
+	}
+
+	public Long getIdVoluntario() {
+		return idVoluntario;
+	}
+
+	public void setIdVoluntario(Long idVoluntario) {
+		this.idVoluntario = idVoluntario;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public Integer getAvaliacao() {
@@ -61,7 +71,5 @@ public class AvaliacaoEventoEntity implements Serializable {
 		this.avaliacao = avaliacao;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 }

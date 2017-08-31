@@ -3,21 +3,17 @@ package br.com.helpthenext.repository.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.helpthenext.enums.Causas;
@@ -69,9 +65,6 @@ public class EventoEntity implements Serializable {
 
 	@Column(name = "dt_cadastro")
 	private LocalDateTime dataCadastro;
-
-	@OneToMany(mappedBy = "evento", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	private List<AvaliacaoEventoEntity> avaliacaoEventoList;
 
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
@@ -171,14 +164,6 @@ public class EventoEntity implements Serializable {
 
 	public void setCausa(Causas causa) {
 		this.causa = causa;
-	}
-
-	public List<AvaliacaoEventoEntity> getAvaliacaoEventoList() {
-		return avaliacaoEventoList;
-	}
-
-	public void setAvaliacaoEventoList(List<AvaliacaoEventoEntity> avaliacaoEventoList) {
-		this.avaliacaoEventoList = avaliacaoEventoList;
 	}
 
 }

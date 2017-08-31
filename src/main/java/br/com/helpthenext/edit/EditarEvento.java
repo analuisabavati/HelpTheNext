@@ -32,6 +32,7 @@ public class EditarEvento implements Serializable {
 	public void avaliarEvento() {
 		avaliacaoEventoRepository.salvarAtualizarAvaliacaoEvento(evento.getAvaliacaoEvento());
 		Uteis.MensagemInfo("Evento avaliado!");
+		evento.getAvaliacaoEvento().setAvaliacao(0);
 	}
 
 	public void editarEvento() {

@@ -109,7 +109,7 @@ public class EventoRepository {
 		return eventosModel;
 	}
 
-	private AvaliacaoEventoEntity getAvaliacaoEvento(EventoEntity eventoEntity, Long idEvento) {		
+	private AvaliacaoEventoEntity getAvaliacaoEvento(EventoEntity eventoEntity, Long idEvento) {
 		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
 
 		AvaliacaoEventoEntity avaliacao = avaliacaoEventoRepository.findByVoluntarioEvento(voluntarioByUsuarioSessao,
@@ -117,8 +117,8 @@ public class EventoRepository {
 		if (avaliacao == null) {
 			avaliacao = new AvaliacaoEventoEntity();
 			avaliacao.setAvaliacao(0);
-			avaliacao.setEvento(eventoEntity);
-			avaliacao.setVoluntario(voluntarioByUsuarioSessao);
+			avaliacao.setIdEvento(eventoEntity.getId());
+			avaliacao.setIdVoluntario(voluntarioByUsuarioSessao.getId());
 		}
 		return avaliacao;
 	}
@@ -201,14 +201,4 @@ public class EventoRepository {
 
 		return eventoModel;
 	}
-
-	public void adicionarAvaliacao(Long idEvento, Integer avaliacao) {
-
-		entityManager = Uteis.JpaEntityManager();
-
-		EventoEntity eventoCurtida = getEvento(idEvento);
-
-		entityManager.merge(eventoCurtida);
-	}
-
 }
