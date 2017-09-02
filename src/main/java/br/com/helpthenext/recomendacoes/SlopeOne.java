@@ -56,13 +56,13 @@ public class SlopeOne {
 		this.pathArquivoAvaliacoes = pathArquivoAvaliacoes;
 		this.pathArquivoDiferencas = pathArquivoDiferencas;
 
-		leArquivoCriaMatrizAvaliacoes();
+		leArquivoCriaMatrizVoluntarioItemAvaliacao();
 		calculaMatrizDiferencas();
 		escreveMatrizDiferencas();
 	}
 
 	@SuppressWarnings("deprecation")
-	public void leArquivoCriaMatrizAvaliacoes() {
+	public void leArquivoCriaMatrizVoluntarioItemAvaliacao() {
 
 		File file = new File(pathArquivoAvaliacoes);
 
