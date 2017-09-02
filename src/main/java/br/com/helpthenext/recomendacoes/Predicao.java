@@ -1,4 +1,4 @@
-package br.com.helpthenext.recomendacoes.recomendarEventos;
+package br.com.helpthenext.recomendacoes;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-public class Predict{
+public class Predicao{
 
     Map<Integer,Float> user = new HashMap<Integer, Float>();
     HashMap<Integer,Float> predictions = new HashMap<Integer,Float>();
@@ -23,13 +23,13 @@ public class Predict{
 
     public static void main(String args []){
         long start = System.currentTimeMillis();
-        Predict newPrediction = new Predict();
+        Predicao newPrediction = new Predicao();
         /* Estimates time */
         long end = System.currentTimeMillis();
         System.out.println("\nExecution time was "+(end-start)+" ms.");
     }
 
-    public Predict(){
+    public Predicao(){
 
         getUser(targetUser);
         readDiffs();
@@ -83,7 +83,7 @@ public class Predict{
      */
     public void readDiffs(){
 
-        File foutput = new File("slope-intermidiary-output.txt");
+        File foutput = new File("C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\slope-intermidiary-output.txt");
         FileInputStream fis = null;
         BufferedInputStream bis = null;
         DataInputStream dis = null;
@@ -143,7 +143,7 @@ public class Predict{
      */
     public  void getUser( int userID ){
 
-        File fuser = new File("ratings_set1.dat");
+        File fuser = new File("C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\ratings.dat");
         FileInputStream fis = null;
         BufferedInputStream bis = null;
         DataInputStream dis = null;
