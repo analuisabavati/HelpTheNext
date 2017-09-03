@@ -80,6 +80,11 @@ public class Predicoes {
 		for (int j : predicoes.keySet()) {
 			predicoes.put(j, predicoes.get(j).doubleValue() / (totalFreq[j]));
 		}
+	
+		System.out.println("\n" + "[SlopeOne] -  Predicoes Resultado   - ");
+		for (int j : predicoes.keySet()) {
+			System.out.println(j + " " + predicoes.get(j).doubleValue());
+		}
 		
 		return predicoes;
 	}
