@@ -67,7 +67,7 @@ public class RecomendarVagas implements Serializable {
 	
 	public void calcularMatrizDiferencas() {
 		gerarArquivoAvaliacoesVagas();
-		new SlopeOne(pathArquivoAvaliacoesVagas, pathArquivoDiffVagas);
+		slopeOne.calculaMatrizDiferencas(pathArquivoAvaliacoesVagas, pathArquivoDiffVagas);
 	}
 	
 

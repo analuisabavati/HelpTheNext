@@ -67,10 +67,8 @@ public class RecomendarEventos implements Serializable {
 
 	public void calcularMatrizDiferencas() {
 		gerarArquivoAvaliacoesEventos();
-		new SlopeOne(pathArquivoAvaliacoesEventos, pathArquivoDiffEventos);
+		slopeOne.calculaMatrizDiferencas(pathArquivoAvaliacoesEventos, pathArquivoDiffEventos);
 	}
-
-	
 	
 //-----------------------------------------------------------------------------------------------
 	public EventoRepository getEventoRepository() {
