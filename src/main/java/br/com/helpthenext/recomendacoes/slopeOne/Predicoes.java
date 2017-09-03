@@ -1,4 +1,4 @@
-package br.com.helpthenext.recomendacoes;
+package br.com.helpthenext.recomendacoes.slopeOne;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
