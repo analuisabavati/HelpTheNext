@@ -150,7 +150,6 @@ public class SlopeOne {
 		}
 	}
 
-	@SuppressWarnings("resource")
 	private void escreveMatrizDiferencas() {
 		try {
 			FileOutputStream output = new FileOutputStream(pathArquivoDiferencas);
@@ -178,6 +177,9 @@ public class SlopeOne {
 					}
 				}
 			}
+			
+			output.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

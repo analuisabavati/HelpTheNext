@@ -1,5 +1,8 @@
 package br.com.helpthenext.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -42,6 +45,19 @@ public class AvaliacaoVagaRepository {
 			return null;
 		}
 
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	public List<AvaliacaoVagaEntity> findAll() {
+		Query query = Uteis.JpaEntityManager().createNamedQuery("AvaliacaoVagaEntity.findAll");
+
+		List<AvaliacaoVagaEntity> avaliacoes;
+		try {
+			avaliacoes = query.getResultList();
+		} catch (Exception e) {
+			avaliacoes = new ArrayList<>();
+		}
+		return avaliacoes;
 	}
 	
 }
