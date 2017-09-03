@@ -78,6 +78,9 @@ public class Predicoes {
 			predicoes.put(aux, predicoes.get(aux).doubleValue() / (qntAvaliacoesItem[aux]));
 		}
 
+		
+		// Fazer sort de predicoes pela avaliacao
+		
 		List<Long> idItensRecomendados = new ArrayList<>();
 
 		for (int aux : predicoes.keySet()) {

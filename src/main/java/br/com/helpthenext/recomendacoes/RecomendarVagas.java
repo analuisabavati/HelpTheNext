@@ -2,7 +2,6 @@ package br.com.helpthenext.recomendacoes;
 
 import java.io.FileOutputStream;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -84,7 +83,7 @@ public class RecomendarVagas implements Serializable {
 		Long idVoluntarioSessao = voluntarioRepository.getIdVoluntarioSessao();
 		List<Long> idsVagas = predicoes.calculaPredicoes(idVoluntarioSessao.intValue(), pathArquivoAvaliacoesVagas, pathArquivoDiffVagas);
 		
-		
+		// fazer busca dos itens e tela 
 	}
 
 	// -----------------------------------------------------------------------------------------------
