@@ -17,18 +17,26 @@ import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.model.VagaModel;
+import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
 import br.com.helpthenext.repository.entity.VagaEntity;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 public class VagaRepository {
 
 	@Inject
-	VagaEntity vagaEntity;
+	private VagaEntity vagaEntity;
 
 	@Inject
-	ONGRepository ongRepository;
+	private ONGRepository ongRepository;
+	
+	@Inject
+	private AvaliacaoVagaRepository avaliacaoVagaRepository;
+	
+	@Inject
+	private VoluntarioRepository voluntarioRepository;
 
-	EntityManager entityManager;
+	private EntityManager entityManager;
 
 	public VagaEntity getVaga(Long id) {
 		entityManager = Uteis.JpaEntityManager();
@@ -94,7 +102,8 @@ public class VagaRepository {
 		for (VagaEntity vagaEntity : vagasEntity) {
 			vagaModel = new VagaModel();
 
-			vagaModel.setId(vagaEntity.getId());
+			Long idVaga = vagaEntity.getId();
+			vagaModel.setId(idVaga);
 			vagaModel.setTitulo(vagaEntity.getTitulo());
 			vagaModel.setDescricao(vagaEntity.getDescricao());
 			vagaModel.setNomeResponsavel(vagaEntity.getNomeResponsavel());
@@ -115,6 +124,8 @@ public class VagaRepository {
 			vagaModel.setPeriodoString(vagaModel.getPeriodos() == null ? null : Arrays.toString(vagaModel.getPeriodos()));
 			vagaModel.setDataCadastroDate(asDate(vagaModel.getDataCadastro()));
 			
+			vagaModel.setAvaliacaoVaga(getAvaliacaoEvento(vagaEntity, idVaga));
+
 			vagasModel.add(vagaModel);
 		}
 
@@ -180,5 +191,19 @@ public class VagaRepository {
 	public void removeVaga(VagaEntity vaga) {
 		entityManager = Uteis.JpaEntityManager();
 		entityManager.remove(vaga);
+	}
+	
+	private AvaliacaoVagaEntity getAvaliacaoEvento(VagaEntity VagaEntity, Long idVaga) {
+		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
+
+		AvaliacaoVagaEntity avaliacao = avaliacaoVagaRepository.findByVoluntarioVaga(voluntarioByUsuarioSessao.getId(),
+				VagaEntity.getId());
+		if (avaliacao == null) {
+			avaliacao = new AvaliacaoVagaEntity();
+			avaliacao.setAvaliacao(0);
+			avaliacao.setIdVaga(VagaEntity.getId());
+			avaliacao.setIdVoluntario(voluntarioByUsuarioSessao.getId());
+		}
+		return avaliacao;
 	}
 }

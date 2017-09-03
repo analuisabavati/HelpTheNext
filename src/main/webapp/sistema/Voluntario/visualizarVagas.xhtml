@@ -110,6 +110,12 @@
 						<p:commandButton value="Tenho Interesse!"
 							id="commandButton-salvar" icon="ui-icon-like"
 							action="#{consultaVagasView.enviarEmailInteresse}" />
+							
+						<p:rating value="#{editarVaga.vaga.avaliacaoVaga.avaliacao}" />
+
+						<p:commandButton value="Avaliar Vaga" id="commandButton-curtir"
+							icon="ui-icon-like" action="#{editarVaga.avaliarVaga}" />
+
 
 					</p:panelGrid>
 				</p:outputPanel>

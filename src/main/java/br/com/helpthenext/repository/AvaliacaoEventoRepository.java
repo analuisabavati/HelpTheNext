@@ -56,7 +56,7 @@ public class AvaliacaoEventoRepository {
 		novo.setIdVoluntario(avaliacao.getIdVoluntario());
 		novo.setAvaliacao(avaliacao.getAvaliacao());
 		
-		AvaliacaoEventoEntity existe = findByVoluntarioEvento(avaliacao.getIdEvento(), avaliacao.getIdEvento());
+		AvaliacaoEventoEntity existe = findByVoluntarioEvento(avaliacao.getIdVoluntario(), avaliacao.getIdEvento());
 		if (existe != null) {
 			avaliacao.setId(existe.getId());
 		}

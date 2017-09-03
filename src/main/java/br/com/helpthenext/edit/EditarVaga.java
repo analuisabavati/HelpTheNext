@@ -9,6 +9,7 @@ import javax.inject.Named;
 import org.primefaces.model.UploadedFile;
 
 import br.com.helpthenext.model.VagaModel;
+import br.com.helpthenext.repository.AvaliacaoVagaRepository;
 import br.com.helpthenext.repository.VagaRepository;
 import br.com.helpthenext.uteis.Uteis;
 
@@ -21,9 +22,18 @@ public class EditarVaga implements Serializable {
 	@Inject
 	transient private VagaRepository vagaRepository;
 	
+	@Inject
+	transient private AvaliacaoVagaRepository avaliacaoVagaRepository;
+	
 	private VagaModel vaga;
 	
 	private UploadedFile uploadedFile;
+	
+	public void avaliarVaga() {
+		avaliacaoVagaRepository.salvarAtualizarAvaliacaoVaga(vaga.getAvaliacaoVaga());
+		Uteis.MensagemInfo("Vaga avaliada!");
+		vaga.getAvaliacaoVaga().setAvaliacao(0);
+	}
 	
 	public void editarVaga() {
 		if (uploadedFile != null) {

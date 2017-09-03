@@ -9,6 +9,7 @@ import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.enums.Periodos;
+import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
 import br.com.helpthenext.repository.entity.ONGEntity;
 
 public class VagaModel {
@@ -32,6 +33,8 @@ public class VagaModel {
 	private String diasString;
 	private String periodoString;
 	private Date dataCadastroDate;
+	
+	private AvaliacaoVagaEntity avaliacaoVaga;
 	
 	public Date getDataCadastroDate() {
 		return dataCadastroDate;
@@ -235,5 +238,12 @@ public class VagaModel {
 		return stringCausas.toArray(new String[stringCausas.size()]);
 	}
 
-	
+	public AvaliacaoVagaEntity getAvaliacaoVaga() {
+		return avaliacaoVaga;
+	}
+
+	public void setAvaliacaoVaga(AvaliacaoVagaEntity avaliacaoVaga) {
+		this.avaliacaoVaga = avaliacaoVaga;
+	}
+
 }
