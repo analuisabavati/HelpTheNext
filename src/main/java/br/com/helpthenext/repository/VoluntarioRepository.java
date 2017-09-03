@@ -30,7 +30,7 @@ public class VoluntarioRepository {
 	UsuarioController usuarioController;
 
 	EntityManager entityManager;
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Long> getIdsVoluntarios() {
 		try {
@@ -161,6 +161,22 @@ public class VoluntarioRepository {
 		voluntarioEntity.setUsuarioEntity(usuarioEntity);
 
 		entityManager.merge(voluntarioEntity);
+	}
+
+	public Long getIdVoluntarioSessao() {
+
+		UsuarioEntity usuario = usuarioEntity.fromUsuarioModel(usuarioController.GetUsuarioSession());
+
+		entityManager = Uteis.JpaEntityManager();
+		Query query = entityManager.createNamedQuery("VoluntarioEntity.findByUsuario");
+		query.setParameter("usuario", usuario);
+
+		try {
+			VoluntarioEntity v = (VoluntarioEntity) query.getSingleResult();
+			return v.getId();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	public VoluntarioEntity getVoluntarioByUsuarioSessao() {

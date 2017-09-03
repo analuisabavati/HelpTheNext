@@ -1,7 +1,6 @@
 package br.com.helpthenext.recomendacoes;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -47,20 +46,20 @@ public class RecomendarEventos implements Serializable {
 		List<AvaliacaoEventoEntity> avaliacoes = avaliacaoEventoRepository.findAll();
 
 		try {
-			FileOutputStream output = new FileOutputStream(pathArquivoAvaliacoesEventos);
+			FileOutputStream fileOutputStream = new FileOutputStream(pathArquivoAvaliacoesEventos);
 
 			for (AvaliacaoEventoEntity a : avaliacoes) {
-				output.write(String.valueOf(a.getIdVoluntario()).getBytes());
-				output.write(String.valueOf(",").getBytes());
-				output.write(String.valueOf(a.getIdEvento()).getBytes());
-				output.write(String.valueOf(",").getBytes());
-				output.write(String.valueOf(a.getAvaliacao()).getBytes());
-				output.write(String.valueOf("\n").getBytes());
+				fileOutputStream.write(String.valueOf(a.getIdVoluntario()).getBytes());
+				fileOutputStream.write(String.valueOf(",").getBytes());
+				fileOutputStream.write(String.valueOf(a.getIdEvento()).getBytes());
+				fileOutputStream.write(String.valueOf(",").getBytes());
+				fileOutputStream.write(String.valueOf(a.getAvaliacao()).getBytes());
+				fileOutputStream.write(String.valueOf("\n").getBytes());
 			}
 
-			output.close();
+			fileOutputStream.close();
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

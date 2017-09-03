@@ -28,7 +28,7 @@ public class UsuarioController implements Serializable {
  
 	@Inject
 	private UsuarioEntity usuarioEntity;
-	 
+		 
 	public UsuarioModel GetUsuarioSession(){
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		return (UsuarioModel)facesContext.getExternalContext().getSessionMap().get("usuarioAutenticado");

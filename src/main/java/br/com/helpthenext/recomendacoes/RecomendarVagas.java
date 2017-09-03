@@ -1,8 +1,8 @@
 package br.com.helpthenext.recomendacoes;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,9 +12,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.model.VagaModel;
+import br.com.helpthenext.recomendacoes.slopeOne.Predicoes;
 import br.com.helpthenext.recomendacoes.slopeOne.SlopeOne;
 import br.com.helpthenext.repository.AvaliacaoVagaRepository;
 import br.com.helpthenext.repository.VagaRepository;
+import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
 
 @ViewScoped
@@ -22,7 +24,7 @@ import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
 public class RecomendarVagas implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private static final String pathArquivoAvaliacoesVagas = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avalicaoesVagas.dat";
 	private static final String pathArquivoDiffVagas = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diffVagas.txt";
 
@@ -30,48 +32,64 @@ public class RecomendarVagas implements Serializable {
 	transient private VagaRepository vagaRepository;
 
 	@Inject
-	transient private AvaliacaoVagaRepository avaliacaoVagaRepository;
-	
+	transient private VoluntarioRepository voluntarioRepository;
+
 	@Inject
-	transient private SlopeOne slopeOne;	
+	transient private AvaliacaoVagaRepository avaliacaoVagaRepository;
+
+	@Inject
+	transient private SlopeOne slopeOne;
+
+	@Inject
+	transient private Predicoes predicoes;
 
 	@Produces
 	private List<VagaModel> vagasRecomendadas;
-	
-	@PostConstruct 
+
+	@PostConstruct
 	public void init() {
-		//recomedar vagas
+		gerarArquivoAvaliacoesVagas();
+		calcularMatrizDiferencas();
+		recomendaVagasConformePredicoes();
 	}
 
 	public void gerarArquivoAvaliacoesVagas() {
 		List<AvaliacaoVagaEntity> avaliacoes = avaliacaoVagaRepository.findAll();
 
 		try {
-			FileOutputStream output = new FileOutputStream(pathArquivoAvaliacoesVagas);
+			FileOutputStream fileOutputStream = new FileOutputStream(pathArquivoAvaliacoesVagas);
 
 			for (AvaliacaoVagaEntity avaliacaoVagaEntity : avaliacoes) {
-				output.write(String.valueOf(avaliacaoVagaEntity.getIdVoluntario()).getBytes());
-				output.write(String.valueOf(",").getBytes());
-				output.write(String.valueOf(avaliacaoVagaEntity.getIdVaga()).getBytes());
-				output.write(String.valueOf(",").getBytes());
-				output.write(String.valueOf(avaliacaoVagaEntity.getAvaliacao()).getBytes());
-				output.write(String.valueOf("\n").getBytes());
+				fileOutputStream.write(String.valueOf(avaliacaoVagaEntity.getIdVoluntario()).getBytes());
+				fileOutputStream.write(String.valueOf(",").getBytes());
+				fileOutputStream.write(String.valueOf(avaliacaoVagaEntity.getIdVaga()).getBytes());
+				fileOutputStream.write(String.valueOf(",").getBytes());
+				fileOutputStream.write(String.valueOf(avaliacaoVagaEntity.getAvaliacao()).getBytes());
+				fileOutputStream.write(String.valueOf("\n").getBytes());
 			}
-			
-			output.close();
-			
-		} catch (IOException e) {
+
+			fileOutputStream.close();
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void calcularMatrizDiferencas() {
 		gerarArquivoAvaliacoesVagas();
 		slopeOne.calculaMatrizDiferencas(pathArquivoAvaliacoesVagas, pathArquivoDiffVagas);
 	}
-	
 
-//-----------------------------------------------------------------------------------------------
+	public void recomendaVagasConformePredicoes() {
+		Long idVoluntarioSessao = voluntarioRepository.getIdVoluntarioSessao();
+		HashMap<Integer, Double> vagasPredicoes = predicoes.calculaPredicoes(idVoluntarioSessao.intValue(),
+				pathArquivoAvaliacoesVagas, pathArquivoDiffVagas);
+		
+		
+		
+	}
+
+	// -----------------------------------------------------------------------------------------------
 	public List<VagaModel> getVagasRecomendadas() {
 		return vagasRecomendadas;
 	}
