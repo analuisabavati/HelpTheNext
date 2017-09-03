@@ -4,19 +4,17 @@ import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Predicoes {
 
-	Map<Integer, Float> preferenciasVoluntario = new HashMap<Integer, Float>();
-	HashMap<Integer, Float> predicoes = new HashMap<Integer, Float>();
+	HashMap<Integer, Double> preferenciasVoluntario = new HashMap<Integer, Double>();
+	HashMap<Integer, Double> predicoes = new HashMap<Integer, Double>();
 
-	float mediaDiferencas[][];
-	float quantidadeVoluntarios[][];
+	Double mediaDiferencas[][];
+	Double quantidadeVoluntarios[][];
 
 	int quantidadeItens;
 
@@ -29,87 +27,90 @@ public class Predicoes {
 		String pathArqAvaliacoes1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\ratings.dat";
 
 		long inicio = System.currentTimeMillis();
-		new Predicoes(2, pathArqAvaliacoes1, pathArqDiferencas1);
+		Predicoes p = new Predicoes();
+		p.calculaPredicoes(2, pathArqAvaliacoes1, pathArqDiferencas1);
 		long fim = System.currentTimeMillis();
 
 		System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio) + " ms.");
 	}
 
-	public Predicoes(int idVoluntario, String pathArquivoAvaliacoes, String pathArquivoDiferencas) {
+	public HashMap<Integer, Double> calculaPredicoes(int idVoluntario, String pathArquivoAvaliacoes,
+			String pathArquivoDiferencas) {
 
 		this.pathArquivoAvaliacoes = pathArquivoAvaliacoes;
 		this.pathArquivoDiferencas = pathArquivoDiferencas;
 
 		getPreferenciasVoluntario(idVoluntario);
 		lePrecalculaDiferencasEntreItens();
+		zeraMatrizPredicoes();
 
-		float totalFreq[] = new float[quantidadeItens + 1];
-
-		for (int j = 1; j <= quantidadeItens; j++) {
-			predicoes.put(j, 0.0f);
-		}
+		double totalFreq[] = new double[quantidadeItens + 1];
 
 		for (int j : preferenciasVoluntario.keySet()) {
-			for (int k = 1; k <= quantidadeItens; k++) {
-				if (j != k) {
-					if (!preferenciasVoluntario.containsKey(k)) {
-						
-						float valorPredicao = 0;
-					
-						if (k < j) {
-							valorPredicao = quantidadeVoluntarios[j][k] * (mediaDiferencas[j][k] + preferenciasVoluntario.get(j).floatValue());
+			for (int x = 1; x <= quantidadeItens; x++) {
+				if (j != x) {
+					if (itemNaoAvaliado(x)) {
+
+						double valorPredicao = 0;
+
+						if (x < j) {
+							valorPredicao = quantidadeVoluntarios[j][x]
+									* (mediaDiferencas[j][x] + preferenciasVoluntario.get(j).doubleValue());
 						} else {
-							valorPredicao = quantidadeVoluntarios[j][k] * (-1 * mediaDiferencas[j][k] + preferenciasVoluntario.get(j).floatValue());
+							valorPredicao = quantidadeVoluntarios[j][x]
+									* (-1 * mediaDiferencas[j][x] + preferenciasVoluntario.get(j).doubleValue());
 						}
-						
-						totalFreq[k] = totalFreq[k] + quantidadeVoluntarios[j][k];
-						
-						predicoes.put(k, predicoes.get(k).floatValue() + valorPredicao);
+
+						totalFreq[x] = totalFreq[x] + quantidadeVoluntarios[j][x];
+
+						predicoes.put(x, predicoes.get(x).doubleValue() + valorPredicao);
 					}
 				}
 			}
 		}
 
-		/* Calculate the average */
-		for (int j : predicoes.keySet()) {
-			predicoes.put(j, predicoes.get(j).floatValue() / (totalFreq[j]));
-		}
+		return calculaMedias(totalFreq);
+	}
 
-		/* Fill the predictions vector with the already known rating values */
-		for (int j : preferenciasVoluntario.keySet()) {
-			predicoes.put(j, preferenciasVoluntario.get(j));
-		}
+	private boolean itemNaoAvaliado(int i) {
+		return !preferenciasVoluntario.containsKey(i);
+	}
 
-		/* Print predictions */
-		System.out.println("\n" + "#### Predictions #### ");
+	private HashMap<Integer, Double> calculaMedias(double[] totalFreq) {
 		for (int j : predicoes.keySet()) {
-			System.out.println(j + " " + predicoes.get(j).floatValue());
+			predicoes.put(j, predicoes.get(j).doubleValue() / (totalFreq[j]));
+		}
+		
+		return predicoes;
+	}
+
+	private void zeraMatrizPredicoes() {
+		for (int j = 1; j <= quantidadeItens; j++) {
+			predicoes.put(j, new Double(0.0));
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void getPreferenciasVoluntario(int voluntarioPredicoes) {
 		try {
 
-			File file = new File(pathArquivoAvaliacoes);
-			FileInputStream fileInputStram = new FileInputStream(file);
+			FileInputStream fileInputStram = new FileInputStream(new File(pathArquivoAvaliacoes));
 			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStram);
 			DataInputStream dataInputStram = new DataInputStream(bufferedInputStream);
 
+			StringTokenizer linhaFormatada;
+			int voluntarioTemp;
+
 			while (dataInputStram.available() != 0) {
 
-				String linha = dataInputStram.readLine();
-				StringTokenizer token = new StringTokenizer(linha, ",");
-				int voluntarioTemp = Integer.parseInt(token.nextToken());
+				linhaFormatada = retiraVirgula(getProximaLinha(dataInputStram));
+				voluntarioTemp = getProximoInt(linhaFormatada);
 
 				while (voluntarioTemp == voluntarioPredicoes) {
 
-					preferenciasVoluntario.put(Integer.parseInt(token.nextToken()),
-							Float.parseFloat(token.nextToken()));
+					preferenciasVoluntario.put(getProximoInt(linhaFormatada), getProximoDouble(linhaFormatada));
 
-					linha = dataInputStram.readLine();
-					token = new StringTokenizer(linha, ",");
-					voluntarioTemp = Integer.parseInt(token.nextToken());
+					linhaFormatada = retiraVirgula(getProximaLinha(dataInputStram));
+					voluntarioTemp = getProximoInt(linhaFormatada);
 				}
 			}
 
@@ -117,66 +118,76 @@ public class Predicoes {
 			bufferedInputStream.close();
 			dataInputStram.close();
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-
-	@SuppressWarnings("deprecation")
 	public void lePrecalculaDiferencasEntreItens() {
 		try {
 
-			File file = new File(pathArquivoDiferencas);
-			FileInputStream fileInputStream = new FileInputStream(file);
+			FileInputStream fileInputStream = new FileInputStream(new File(pathArquivoDiferencas));
 			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
 			DataInputStream dataInputStream = new DataInputStream(bufferedInputStream);
 
-			String linha = dataInputStream.readLine();
+			String linha = getProximaLinha(dataInputStream);
 			StringTokenizer token = new StringTokenizer(linha, "\t");
 
-			quantidadeItens = Integer.parseInt(token.nextToken());
+			quantidadeItens = getProximoInt(token);
 
-			mediaDiferencas = new float[quantidadeItens + 1][quantidadeItens + 1];
-			quantidadeVoluntarios = new float[quantidadeItens + 1][quantidadeItens + 1];
+			mediaDiferencas = new Double[quantidadeItens + 1][quantidadeItens + 1];
+			quantidadeVoluntarios = new Double[quantidadeItens + 1][quantidadeItens + 1];
 
 			for (int item1 = 1; item1 <= quantidadeItens; item1++) {
 				for (int item2 = 1; item2 <= quantidadeItens; item2++) {
-					mediaDiferencas[item1][item2] = 0;
-					quantidadeVoluntarios[item1][item2] = 0;
+					mediaDiferencas[item1][item2] = new Double("0");
+					quantidadeVoluntarios[item1][item2] = new Double("0");
 				}
 			}
 
 			while (dataInputStream.available() != 0) {
 
-				linha = dataInputStream.readLine();
+				linha = getProximaLinha(dataInputStream);
 				token = new StringTokenizer(linha, "\t");
-				
-				int item1 = Integer.parseInt(token.nextToken());
-				int item2 = Integer.parseInt(token.nextToken());
 
-				mediaDiferencas[item1][item2] = Float.parseFloat(token.nextToken());
+				int item1 = getProximoInt(token);
+				int item2 = getProximoInt(token);
 
-				linha = dataInputStream.readLine();
+				mediaDiferencas[item1][item2] = getProximoDouble(token);
+
+				linha = getProximaLinha(dataInputStream);
 				token = new StringTokenizer(linha, "\t");
-				
-				item1 = Integer.parseInt(token.nextToken());
-				item2 = Integer.parseInt(token.nextToken());
 
-				quantidadeVoluntarios[item1][item2] = Float.parseFloat(token.nextToken());
+				item1 = getProximoInt(token);
+				item2 = getProximoInt(token);
+
+				quantidadeVoluntarios[item1][item2] = getProximoDouble(token);
 			}
 
 			fileInputStream.close();
 			bufferedInputStream.close();
 			dataInputStream.close();
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private Integer getProximoInt(StringTokenizer token) {
+		return new Integer(token.nextToken());
+	}
+	
+	@SuppressWarnings("deprecation")
+	private String getProximaLinha(DataInputStream dataInputStram) throws IOException {
+		return dataInputStram.readLine();
+	}
+
+	private Double getProximoDouble(StringTokenizer stringTokenizer) {
+		return new Double(stringTokenizer.nextToken());
+	}
+
+	private StringTokenizer retiraVirgula(String linha) {
+		return new StringTokenizer(linha, ",");
 	}
 
 }

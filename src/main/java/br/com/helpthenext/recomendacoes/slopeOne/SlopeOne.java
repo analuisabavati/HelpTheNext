@@ -4,35 +4,17 @@ import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import javax.inject.Inject;
-
-import br.com.helpthenext.repository.AvaliacaoEventoRepository;
-import br.com.helpthenext.repository.EventoRepository;
-import br.com.helpthenext.repository.VoluntarioRepository;
-import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
-
 public class SlopeOne {
 
-	@Inject
-	private EventoRepository eventoRepository;
-
-	@Inject
-	private VoluntarioRepository voluntarioRepository;
-
-	@Inject
-	private AvaliacaoEventoRepository avaliacaoEventoRepository;
-
-	Map<Integer, Map<Integer, Float>> matrizVoluntarioItemAvaliacao;
-	float mediaAvaliacoes[][];
-	int quantidadeAvaliacoes[][];
+	HashMap<Integer, Map<Integer, Double>> matrizVoluntarioItemAvaliacao;
+	double mediaAvaliacoes[][];
+	long quantidadeAvaliacoes[][];
 
 	int quantidadeItens = 0;
 
@@ -44,14 +26,15 @@ public class SlopeOne {
 		String pathArqDiferencas1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\slope-intermidiary-output.txt";
 		String pathArqAvaliacoes1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\ratings.dat";
 
-		long inicio = System.currentTimeMillis();			
-		new SlopeOne(pathArqAvaliacoes1, pathArqDiferencas1);
+		long inicio = System.currentTimeMillis();
+		SlopeOne s = new SlopeOne();
+		s.calculaMatrizDiferencas(pathArqAvaliacoes1, pathArqDiferencas1);
 		long fim = System.currentTimeMillis();
-	
+
 		System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio) + " ms.");
 	}
 
-	public SlopeOne(String pathArquivoAvaliacoes, String pathArquivoDiferencas) {
+	public void calculaMatrizDiferencas(String pathArquivoAvaliacoes, String pathArquivoDiferencas) {
 
 		this.pathArquivoAvaliacoes = pathArquivoAvaliacoes;
 		this.pathArquivoDiferencas = pathArquivoDiferencas;
@@ -61,44 +44,37 @@ public class SlopeOne {
 		escreveMatrizDiferencas();
 	}
 
-	@SuppressWarnings("deprecation")
 	public void leArquivoCriaMatrizVoluntarioItemAvaliacao() {
-
-		File file = new File(pathArquivoAvaliacoes);
-
 		try {
 
-			FileInputStream fileInputStream = new FileInputStream(file);
+			FileInputStream fileInputStream = new FileInputStream(new File(pathArquivoAvaliacoes));
 			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
 			DataInputStream dataInputStream = new DataInputStream(bufferedInputStream);
 
-			String linha = dataInputStream.readLine();
+			matrizVoluntarioItemAvaliacao = new HashMap<Integer, Map<Integer, Double>>();
 
-			matrizVoluntarioItemAvaliacao = new HashMap<Integer, Map<Integer, Float>>();
-
-			StringTokenizer t;
+			StringTokenizer linha;
 			int voluntario;
 			int voluntarioTemp;
 			int item;
 
 			while (dataInputStream.available() != 0) {
 
-				t = new StringTokenizer(linha, ",");
-				voluntario = Integer.parseInt(t.nextToken());
+				linha = removeVirgula(getProximaLinha(dataInputStream));
+				voluntario = getProximoToken(linha);
 				voluntarioTemp = voluntario;
 
-				matrizVoluntarioItemAvaliacao.put(voluntario, new HashMap<Integer, Float>());
+				matrizVoluntarioItemAvaliacao.put(voluntario, new HashMap<Integer, Double>());
 
 				while (voluntario == voluntarioTemp) {
 
-					item = Integer.parseInt(t.nextToken());
+					item = getProximoToken(linha);
 
-					matrizVoluntarioItemAvaliacao.get(voluntario).put(item, Float.parseFloat(t.nextToken()));
+					matrizVoluntarioItemAvaliacao.get(voluntario).put(item, getProximoTokenDouble(linha));
 
 					if (dataInputStream.available() != 0) {
-						linha = dataInputStream.readLine();
-						t = new StringTokenizer(linha, ",");
-						voluntarioTemp = Integer.parseInt(t.nextToken());
+						linha = removeVirgula(getProximaLinha(dataInputStream));
+						voluntarioTemp = getProximoToken(linha);
 					} else {
 						voluntarioTemp = -1;
 					}
@@ -111,17 +87,20 @@ public class SlopeOne {
 			bufferedInputStream.close();
 			dataInputStream.close();
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	@SuppressWarnings("deprecation")
+	private String getProximaLinha(DataInputStream dataInputStream) throws IOException {
+		return dataInputStream.readLine();
+	}
+
 	public void calculaMatrizDiferencas() {
 
-		mediaAvaliacoes = new float[quantidadeItens + 1][quantidadeItens + 1];
-		quantidadeAvaliacoes = new int[quantidadeItens + 1][quantidadeItens + 1];
+		mediaAvaliacoes = new double[quantidadeItens + 1][quantidadeItens + 1];
+		quantidadeAvaliacoes = new long[quantidadeItens + 1][quantidadeItens + 1];
 
 		calculaDiferencas();
 		calculaMedias();
@@ -132,8 +111,8 @@ public class SlopeOne {
 			for (int item1 : matrizVoluntarioItemAvaliacao.get(voluntario).keySet()) {
 				for (int item2 : matrizVoluntarioItemAvaliacao.get(voluntario).keySet()) {
 					mediaAvaliacoes[item1][item2] = mediaAvaliacoes[item1][item2]
-							+ (matrizVoluntarioItemAvaliacao.get(voluntario).get(item1).floatValue()
-									- (matrizVoluntarioItemAvaliacao.get(voluntario).get(item2).floatValue()));
+							+ (matrizVoluntarioItemAvaliacao.get(voluntario).get(item1).doubleValue()
+									- (matrizVoluntarioItemAvaliacao.get(voluntario).get(item2).doubleValue()));
 					quantidadeAvaliacoes[item1][item2] = quantidadeAvaliacoes[item1][item2] + 1;
 				}
 			}
@@ -152,76 +131,48 @@ public class SlopeOne {
 
 	private void escreveMatrizDiferencas() {
 		try {
-			FileOutputStream output = new FileOutputStream(pathArquivoDiferencas);
+			FileOutputStream fileOutputStream = new FileOutputStream(pathArquivoDiferencas);
 
-			output.write(String.valueOf(quantidadeItens).getBytes());
-			output.write(String.valueOf("\n").getBytes());
+			fileOutputStream.write(String.valueOf(quantidadeItens).getBytes());
+			fileOutputStream.write(String.valueOf("\n").getBytes());
 
 			for (int item1 = 1; item1 <= quantidadeItens; item1++) {
 				for (int item2 = item1; item2 <= quantidadeItens; item2++) {
 
-					if (!Float.isNaN(mediaAvaliacoes[item1][item2])) {
-						output.write(String.valueOf(item1).getBytes());
-						output.write(String.valueOf("\t").getBytes());
-						output.write(String.valueOf(item2).getBytes());
-						output.write(String.valueOf("\t").getBytes());
-						output.write(String.valueOf(mediaAvaliacoes[item1][item2]).getBytes());
-						output.write(String.valueOf("\n").getBytes());
+					if (!Double.isNaN(mediaAvaliacoes[item1][item2])) {
+						fileOutputStream.write(String.valueOf(item1).getBytes());
+						fileOutputStream.write(String.valueOf("\t").getBytes());
+						fileOutputStream.write(String.valueOf(item2).getBytes());
+						fileOutputStream.write(String.valueOf("\t").getBytes());
+						fileOutputStream.write(String.valueOf(mediaAvaliacoes[item1][item2]).getBytes());
+						fileOutputStream.write(String.valueOf("\n").getBytes());
 
-						output.write(String.valueOf(item1).getBytes());
-						output.write(String.valueOf("\t").getBytes());
-						output.write(String.valueOf(item2).getBytes());
-						output.write(String.valueOf("\t").getBytes());
-						output.write(String.valueOf(quantidadeAvaliacoes[item1][item2]).getBytes());
-						output.write(String.valueOf("\n").getBytes());
+						fileOutputStream.write(String.valueOf(item1).getBytes());
+						fileOutputStream.write(String.valueOf("\t").getBytes());
+						fileOutputStream.write(String.valueOf(item2).getBytes());
+						fileOutputStream.write(String.valueOf("\t").getBytes());
+						fileOutputStream.write(String.valueOf(quantidadeAvaliacoes[item1][item2]).getBytes());
+						fileOutputStream.write(String.valueOf("\n").getBytes());
 					}
 				}
 			}
-			
-			output.close();
-			
+
+			fileOutputStream.close();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
-	public Integer[][] getMatrizTodasAvaliacoes() {
-		List<AvaliacaoEventoEntity> avaliacoes = avaliacaoEventoRepository.findAll();
-
-		List<Long> idsEventos = eventoRepository.getIdsEventos();
-		List<Long> idsVoluntarios = voluntarioRepository.getIdsVoluntarios();
-
-		int qntVoluntarios = idsVoluntarios.size();
-		int qntEventos = idsEventos.size();
-
-		Integer[][] matrizAvaliacoes = new Integer[qntVoluntarios][qntEventos];
-
-		Long idVoluntario;
-		Long idEvento;
-		for (int l = 0; l < qntVoluntarios; l++) {
-
-			idVoluntario = idsVoluntarios.get(l);
-
-			for (int c = 0; c < qntEventos; c++) {
-
-				idEvento = idsEventos.get(c);
-
-				matrizAvaliacoes[l][c] = getAvaliacao(idVoluntario, idEvento, avaliacoes);
-			}
-		}
-
-		return matrizAvaliacoes;
+	
+	private StringTokenizer removeVirgula(String linha) {
+		return new StringTokenizer(linha, ",");
 	}
 
-	private Integer getAvaliacao(Long idVol, Long idEvento, List<AvaliacaoEventoEntity> avaliacoes) {
-		for (AvaliacaoEventoEntity avaliacaoEventoEntity : avaliacoes) {
-			if (avaliacaoEventoEntity.getIdEvento().equals(idEvento)
-					&& avaliacaoEventoEntity.getIdVoluntario().equals(idVol)) {
-				return avaliacaoEventoEntity.getAvaliacao();
-			}
-		}
-
-		return 0;
+	private Double getProximoTokenDouble(StringTokenizer t) {
+		return new Double(t.nextToken());
 	}
 
+	private Integer getProximoToken(StringTokenizer t) {
+		return new Integer(t.nextToken());
+	}
 }

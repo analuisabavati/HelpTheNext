@@ -40,7 +40,7 @@ public class RecomendarEventos implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		// recomedar vagas
+		// recomedar eventos
 	}
 
 	public void gerarArquivoAvaliacoesEventos() {

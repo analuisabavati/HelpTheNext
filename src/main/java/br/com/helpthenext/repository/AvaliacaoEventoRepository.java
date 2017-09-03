@@ -13,6 +13,15 @@ import br.com.helpthenext.uteis.Uteis;
 public class AvaliacaoEventoRepository {
 	
 	EntityManager entityManager;
+	
+	@SuppressWarnings("unchecked")
+	public List<AvaliacaoEventoEntity> findEventosAvaliados(Long id) {
+		Query query = Uteis.JpaEntityManager().createNamedQuery("AvaliacaoEventoEntity.findEventosAvaliados");
+
+		query.setParameter("idVoluntario", id);
+
+		return query.getResultList();
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<AvaliacaoEventoEntity> getByIdVoluntario(Long id) {

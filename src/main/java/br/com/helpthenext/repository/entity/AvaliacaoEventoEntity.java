@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "tb_avaliacao_evento")
 @Entity
 @NamedQueries({
+		@NamedQuery(name = "AvaliacaoEventoEntity.findEventosAvaliados", query = "SELECT v.idEvento FROM AvaliacaoEventoEntity v where v.idVoluntario = :idVoluntario"),
 		@NamedQuery(name = "AvaliacaoEventoEntity.findAll", query = "SELECT v FROM AvaliacaoEventoEntity v ORDER BY v.idVoluntario"),
 		@NamedQuery(name = "AvaliacaoEventoEntity.findByVoluntarioEvento", query = "SELECT v FROM AvaliacaoEventoEntity v where v.idVoluntario = :idVoluntario and v.idEvento = :idEvento"),
 		@NamedQuery(name = "AvaliacaoEventoEntity.findByIdVoluntario", query = "SELECT v FROM AvaliacaoEventoEntity v where v.idEvento = :id"),
