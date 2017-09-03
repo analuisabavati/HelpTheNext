@@ -82,9 +82,7 @@ public class RecomendarVagas implements Serializable {
 
 	public void recomendaVagasConformePredicoes() {
 		Long idVoluntarioSessao = voluntarioRepository.getIdVoluntarioSessao();
-		HashMap<Integer, Double> vagasPredicoes = predicoes.calculaPredicoes(idVoluntarioSessao.intValue(),
-				pathArquivoAvaliacoesVagas, pathArquivoDiffVagas);
-		
+		List<Long> idsVagas = predicoes.calculaPredicoes(idVoluntarioSessao.intValue(), pathArquivoAvaliacoesVagas, pathArquivoDiffVagas);
 		
 		
 	}

@@ -11,9 +11,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.model.EventoModel;
+import br.com.helpthenext.recomendacoes.slopeOne.Predicoes;
 import br.com.helpthenext.recomendacoes.slopeOne.SlopeOne;
 import br.com.helpthenext.repository.AvaliacaoEventoRepository;
 import br.com.helpthenext.repository.EventoRepository;
+import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 
 @ViewScoped
@@ -32,14 +34,21 @@ public class RecomendarEventos implements Serializable {
 	transient private AvaliacaoEventoRepository avaliacaoEventoRepository;
 
 	@Inject
+	transient private VoluntarioRepository voluntarioRepository;
+
+	@Inject
 	transient private SlopeOne slopeOne;
+
+	@Inject
+	transient private Predicoes predicoes;
 
 	@Produces
 	private List<EventoModel> eventosRecomendados;
 
 	@PostConstruct
 	public void init() {
-		// recomedar eventos
+		gerarArquivoAvaliacoesEventos();
+		calcularMatrizDiferencas();
 	}
 
 	public void gerarArquivoAvaliacoesEventos() {
@@ -68,8 +77,14 @@ public class RecomendarEventos implements Serializable {
 		gerarArquivoAvaliacoesEventos();
 		slopeOne.calculaMatrizDiferencas(pathArquivoAvaliacoesEventos, pathArquivoDiffEventos);
 	}
-	
-//-----------------------------------------------------------------------------------------------
+
+	public void recomendaEventosConformePredicoes() {
+		Long idVoluntarioSessao = voluntarioRepository.getIdVoluntarioSessao();
+		List<Long> idsVagas = predicoes.calculaPredicoes(idVoluntarioSessao.intValue(), pathArquivoAvaliacoesEventos, pathArquivoDiffEventos);
+
+	}
+
+	// -----------------------------------------------------------------------------------------------
 	public EventoRepository getEventoRepository() {
 		return eventoRepository;
 	}
