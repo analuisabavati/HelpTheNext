@@ -48,7 +48,7 @@ public class RecomendarVagas implements Serializable {
 	@PostConstruct
 	public void init() {
 		gerarArquivoAvaliacoesVagas();
-		calcularMatrizDiferencas();
+		calcularMatrizDiferencasMedias();
 		recomendaVagasConformePredicoes();
 	}
 
@@ -74,7 +74,7 @@ public class RecomendarVagas implements Serializable {
 		}
 	}
 
-	public void calcularMatrizDiferencas() {
+	public void calcularMatrizDiferencasMedias() {
 		gerarArquivoAvaliacoesVagas();
 		slopeOne.calculaMatrizDiferencas(pathArquivoAvaliacoesVagas, pathArquivoDiffVagas);
 	}

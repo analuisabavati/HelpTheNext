@@ -48,7 +48,7 @@ public class RecomendarEventos implements Serializable {
 	@PostConstruct
 	public void init() {
 		gerarArquivoAvaliacoesEventos();
-		calcularMatrizDiferencas();
+		calcularMatrizDiferencasMedia();
 	}
 
 	public void gerarArquivoAvaliacoesEventos() {
@@ -73,7 +73,7 @@ public class RecomendarEventos implements Serializable {
 		}
 	}
 
-	public void calcularMatrizDiferencas() {
+	public void calcularMatrizDiferencasMedia() {
 		gerarArquivoAvaliacoesEventos();
 		slopeOne.calculaMatrizDiferencas(pathArquivoAvaliacoesEventos, pathArquivoDiffEventos);
 	}

@@ -12,10 +12,10 @@ import java.util.StringTokenizer;
 
 public class Predicoes {
 
-	HashMap<Integer, Double> preferenciasVoluntario = new HashMap<Integer, Double>();
+	HashMap<Integer, Double> matrizAvaliacaoItemVoluntario = new HashMap<Integer, Double>();
 	HashMap<Integer, Double> predicoes = new HashMap<Integer, Double>();
 
-	Double mediaDiferencas[][];
+	Double diffMediaAvaliacoesItem[][];
 	Double qntVolAvaliaramItem[][];
 
 	int quantidadeItensAvaliados;
@@ -41,62 +41,75 @@ public class Predicoes {
 		this.pathArquivoAvaliacoes = pathArquivoAvaliacoes;
 		this.pathArquivoDiferencas = pathArquivoDiferencas;
 
-		getPreferenciasVoluntario(idVoluntario);
-		lePrecalculaDiferencasEntreItens();
+		getAvaliacoesFeitaPeloVoluntario(idVoluntario);
+		leArquivoDiffMediaAvaliacoes();
 		zeraMatrizPredicoes();
 
 		double qntAvaliacoesItem[] = new double[quantidadeItensAvaliados + 1];
 
-		for (int j : preferenciasVoluntario.keySet()) {
-			for (int k = 1; k <= quantidadeItensAvaliados; k++) {
-				if (j != k) {
-					if (itemNaoAvaliado(k)) {
+		for (int itemAvaliado : matrizAvaliacaoItemVoluntario.keySet()) {
+			
+			for (int itemX = 1; itemX <= quantidadeItensAvaliados; itemX++) {
+				
+				if (itemX != itemAvaliado && isItemNaoAvaliado(itemX)) {
+					double valorPredicao = 0;
+					
+					/*
+					 * Calcula a nota que o voluntario daria ao itemX baseado no itemAvaliado
+					 * 
+					 */
 
-						double valorPredicao = 0;
-
-						if (k >= j) {
-							valorPredicao = qntVolAvaliaramItem[j][k]
-									* (-1 * mediaDiferencas[j][k] + preferenciasVoluntario.get(j).doubleValue());
-						} else {
-							valorPredicao = qntVolAvaliaramItem[j][k]
-									* (mediaDiferencas[j][k] + preferenciasVoluntario.get(j).doubleValue());
-						}
-
-						qntAvaliacoesItem[k] = qntAvaliacoesItem[k] + qntVolAvaliaramItem[j][k];
-
-						predicoes.put(k, predicoes.get(k).doubleValue() + valorPredicao);
+					if (itemX >= itemAvaliado) {
+						valorPredicao = qntVolAvaliaramItem[itemAvaliado][itemX]
+								* (-1 * diffMediaAvaliacoesItem[itemAvaliado][itemX]
+										+ matrizAvaliacaoItemVoluntario.get(itemAvaliado).doubleValue());
+					} else {
+						valorPredicao = qntVolAvaliaramItem[itemAvaliado][itemX]
+								* (diffMediaAvaliacoesItem[itemAvaliado][itemX]
+										+ matrizAvaliacaoItemVoluntario.get(itemAvaliado).doubleValue());
 					}
+
+					qntAvaliacoesItem[itemX] = qntAvaliacoesItem[itemX] + qntVolAvaliaramItem[itemAvaliado][itemX];
+
+					predicoes.put(itemX, predicoes.get(itemX).doubleValue() + valorPredicao);
 				}
 			}
 		}
 
-		return calculaMedias(qntAvaliacoesItem);
+		calculaMedias(qntAvaliacoesItem);
+		
+		return getIdsItensRecomendados();
 	}
 
-	private List<Long> calculaMedias(double[] qntAvaliacoesItem) {
-		for (int aux : predicoes.keySet()) {
-			predicoes.put(aux, predicoes.get(aux).doubleValue() / (qntAvaliacoesItem[aux]));
+	private void calculaMedias(double[] qntAvaliacoesItem) {		
+		double media;
+		
+		for (int item : predicoes.keySet()) {
+			media = predicoes.get(item).doubleValue() / qntAvaliacoesItem[item];
+			predicoes.put(item, media);
 		}
+	}
 
+	private List<Long> getIdsItensRecomendados() {
 		
 		// Fazer sort de predicoes pela avaliacao
 		
 		List<Long> idItensRecomendados = new ArrayList<>();
 
-		for (int aux : predicoes.keySet()) {
-			double avaliacao = predicoes.get(aux).doubleValue();
+		for (int item : predicoes.keySet()) {
+			double avaliacao = predicoes.get(item).doubleValue();
 			if (!Double.isNaN(avaliacao) && avaliacao >= new Double(3)) {
-				idItensRecomendados.add(new Long(aux));
+				idItensRecomendados.add(new Long(item));
 			}
 
-			System.out.println(aux + " " + avaliacao);
+			System.out.println(item + " " + avaliacao);
 		}
-
+		
 		return idItensRecomendados;
 	}
 
-	private boolean itemNaoAvaliado(int i) {
-		return !preferenciasVoluntario.containsKey(i);
+	private boolean isItemNaoAvaliado(int i) {
+		return !matrizAvaliacaoItemVoluntario.containsKey(i);
 	}
 
 	private void zeraMatrizPredicoes() {
@@ -105,7 +118,7 @@ public class Predicoes {
 		}
 	}
 
-	public void getPreferenciasVoluntario(int voluntarioPredicoes) {
+	public void getAvaliacoesFeitaPeloVoluntario(int voluntarioPredicoes) {
 		try {
 
 			FileInputStream fileInputStram = new FileInputStream(new File(pathArquivoAvaliacoes));
@@ -120,9 +133,9 @@ public class Predicoes {
 				linhaFormatada = retiraVirgula(getProximaLinha(dataInputStram));
 				voluntarioTemp = getProximoInt(linhaFormatada);
 
-				while (voluntarioTemp == voluntarioPredicoes) {
+				while (voluntarioPredicoes == voluntarioTemp) {
 
-					preferenciasVoluntario.put(getProximoInt(linhaFormatada), getProximoDouble(linhaFormatada));
+					matrizAvaliacaoItemVoluntario.put(getProximoInt(linhaFormatada), getProximoDouble(linhaFormatada));
 
 					linhaFormatada = retiraVirgula(getProximaLinha(dataInputStram));
 					voluntarioTemp = getProximoInt(linhaFormatada);
@@ -138,7 +151,13 @@ public class Predicoes {
 		}
 	}
 
-	public void lePrecalculaDiferencasEntreItens() {
+	public void leArquivoDiffMediaAvaliacoes() {
+		/*
+		 * Le o arquivo com as diferencas media de avaliacoes e salva na
+		 * diffMediaAvaliacoesItem e salva a qnt de voluntarios que avaliaram o
+		 * item em qntVolAvaliaramItem
+		 * 
+		 */
 		try {
 
 			FileInputStream fileInputStream = new FileInputStream(new File(pathArquivoDiferencas));
@@ -146,16 +165,16 @@ public class Predicoes {
 			DataInputStream dataInputStream = new DataInputStream(bufferedInputStream);
 
 			String linha = getProximaLinha(dataInputStream);
-			StringTokenizer token = new StringTokenizer(linha, "\t");
+			StringTokenizer token = getTab(linha);
 
 			quantidadeItensAvaliados = getProximoInt(token);
 
-			mediaDiferencas = new Double[quantidadeItensAvaliados + 1][quantidadeItensAvaliados + 1];
+			diffMediaAvaliacoesItem = new Double[quantidadeItensAvaliados + 1][quantidadeItensAvaliados + 1];
 			qntVolAvaliaramItem = new Double[quantidadeItensAvaliados + 1][quantidadeItensAvaliados + 1];
 
 			for (int item1 = 1; item1 <= quantidadeItensAvaliados; item1++) {
 				for (int item2 = 1; item2 <= quantidadeItensAvaliados; item2++) {
-					mediaDiferencas[item1][item2] = new Double("0");
+					diffMediaAvaliacoesItem[item1][item2] = new Double("0");
 					qntVolAvaliaramItem[item1][item2] = new Double("0");
 				}
 			}
@@ -163,15 +182,15 @@ public class Predicoes {
 			while (dataInputStream.available() != 0) {
 
 				linha = getProximaLinha(dataInputStream);
-				token = new StringTokenizer(linha, "\t");
+				token = getTab(linha);
 
 				int item1 = getProximoInt(token);
 				int item2 = getProximoInt(token);
 
-				mediaDiferencas[item1][item2] = getProximoDouble(token);
+				diffMediaAvaliacoesItem[item1][item2] = getProximoDouble(token);
 
 				linha = getProximaLinha(dataInputStream);
-				token = new StringTokenizer(linha, "\t");
+				token = getTab(linha);
 
 				item1 = getProximoInt(token);
 				item2 = getProximoInt(token);
@@ -186,6 +205,10 @@ public class Predicoes {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private StringTokenizer getTab(String linha) {
+		return new StringTokenizer(linha, "\t");
 	}
 
 	private Integer getProximoInt(StringTokenizer token) {

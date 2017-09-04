@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 public class SlopeOne {
 
 	HashMap<Integer, Map<Integer, Double>> matrizVoluntarioItemAvaliacao;
-	double mediaAvaliacoes[][];
+	double diffMediaAvaliacoes[][];
 	long quantidadeAvaliacoes[][];
 
 	int quantidadeItens = 0;
@@ -99,7 +99,7 @@ public class SlopeOne {
 
 	public void calculaMatrizDiferencas() {
 
-		mediaAvaliacoes = new double[quantidadeItens + 1][quantidadeItens + 1];
+		diffMediaAvaliacoes = new double[quantidadeItens + 1][quantidadeItens + 1];
 		quantidadeAvaliacoes = new long[quantidadeItens + 1][quantidadeItens + 1];
 
 		calculaDiferencas();
@@ -107,23 +107,37 @@ public class SlopeOne {
 	}
 
 	private void calculaDiferencas() {
+		 /*
+		  * matrizVoluntarioItemAvaliacao =  soma das diffs das notas dadas por tds vol pra os itens 1 e 2
+		  * quantidadeAvaliacoes = qnt de vol que avaliaram os itens
+		  */
+		
+		double diffAvaliacoesItem1Item2;
+		
 		for (int voluntario : matrizVoluntarioItemAvaliacao.keySet()) {
 			for (int item1 : matrizVoluntarioItemAvaliacao.get(voluntario).keySet()) {
 				for (int item2 : matrizVoluntarioItemAvaliacao.get(voluntario).keySet()) {
-					mediaAvaliacoes[item1][item2] = mediaAvaliacoes[item1][item2]
-							+ (matrizVoluntarioItemAvaliacao.get(voluntario).get(item1).doubleValue()
-									- (matrizVoluntarioItemAvaliacao.get(voluntario).get(item2).doubleValue()));
+					
+					diffAvaliacoesItem1Item2 = matrizVoluntarioItemAvaliacao.get(voluntario).get(item1).doubleValue()
+							- (matrizVoluntarioItemAvaliacao.get(voluntario).get(item2).doubleValue());
+					
+					diffMediaAvaliacoes[item1][item2] = diffMediaAvaliacoes[item1][item2] + diffAvaliacoesItem1Item2;
+					
 					quantidadeAvaliacoes[item1][item2] = quantidadeAvaliacoes[item1][item2] + 1;
 				}
 			}
 		}
 	}
 
-	private void calculaMedias() {
+	private void calculaMedias() {		
+		 /*
+		  *  Calcula diferenca media das avaliacoes ( diffMediaAvaliacoes / quantidadeAvaliacoes)
+		  */
+		
 		for (int item1 = 1; item1 <= quantidadeItens; item1++) {
 			for (int item2 = item1; item2 <= quantidadeItens; item2++) {
 				if (quantidadeAvaliacoes[item1][item2] > 0) {
-					mediaAvaliacoes[item1][item2] = mediaAvaliacoes[item1][item2] / quantidadeAvaliacoes[item1][item2];
+					diffMediaAvaliacoes[item1][item2] = diffMediaAvaliacoes[item1][item2] / quantidadeAvaliacoes[item1][item2];
 				}
 			}
 		}
@@ -139,12 +153,12 @@ public class SlopeOne {
 			for (int item1 = 1; item1 <= quantidadeItens; item1++) {
 				for (int item2 = item1; item2 <= quantidadeItens; item2++) {
 
-					if (!Double.isNaN(mediaAvaliacoes[item1][item2])) {
+					if (!Double.isNaN(diffMediaAvaliacoes[item1][item2])) {
 						fileOutputStream.write(String.valueOf(item1).getBytes());
 						fileOutputStream.write(String.valueOf("\t").getBytes());
 						fileOutputStream.write(String.valueOf(item2).getBytes());
 						fileOutputStream.write(String.valueOf("\t").getBytes());
-						fileOutputStream.write(String.valueOf(mediaAvaliacoes[item1][item2]).getBytes());
+						fileOutputStream.write(String.valueOf(diffMediaAvaliacoes[item1][item2]).getBytes());
 						fileOutputStream.write(String.valueOf("\n").getBytes());
 
 						fileOutputStream.write(String.valueOf(item1).getBytes());
