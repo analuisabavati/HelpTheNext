@@ -14,14 +14,48 @@
 	<ui:define name="content">
 		<h:form id="form">
 
-			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
-				layout="grid" rows="9" paginator="true" style="margin-top:20px">
-
-				<f:facet name="header"> Vagas Disponiveis </f:facet>
-
+			<p:dataGrid value="#{recomendarVagas.vagasRecomendadas}" var="vaga"
+				columns="3" layout="grid" rows="3" paginator="false"
+				style="margin-top:20px">
+				<f:facet name="header"> Vagas Recomendadas: </f:facet>
 				<p:panel>
 					<h:panelGrid columns="1" style="width:100%;">
+						<p:commandLink update=":form:vagaRecomendadaDetail"
+							oncomplete="PF('vagaRecomendadaDialog').show()">
+							<f:setPropertyActionListener value="#{vaga}"
+								target="#{recomendarVagas.selectedVaga}" />
+							<f:setPropertyActionListener value="#{vaga}"
+								target="#{editarVaga.vaga}" />
+							<p:graphicImage value="#{vagaImagem.imagem}" style="width:100%;">
+								<f:param name="vagaId" value="#{vaga.id}" />
+							</p:graphicImage>
+						</p:commandLink>
+						<h:panelGrid columns="2" style="width:100%">
+							<h:outputText value="Titulo:" style="font-weight: bold" />
+							<h:outputText value="#{vaga.titulo}" />
+							<h:outputText value="Local:" style="font-weight: bold" />
+							<h:outputText value="#{vaga.ongEntity.cidade}" />
+							<h:outputText value="Trabalho à distancia"
+								style="font-weight: bold" />
+							<h:outputText value="#{vaga.trabalhoDistancia}" />
+							<p:commandButton value="Mais informações"
+								update=":form:vagaRecomendadaDetail"
+								oncomplete="PF('vagaRecomendadaDialog').show()">
+								<f:setPropertyActionListener value="#{vaga}"
+									target="#{recomendarVagas.selectedVaga}" />
+								<f:setPropertyActionListener value="#{vaga}"
+									target="#{editarVaga.vaga}" />
+							</p:commandButton>
+						</h:panelGrid>
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
 
+			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
+				layout="grid" rows="9" paginator="true" style="margin-top:20px">
+				<f:facet name="header"> Totas Vagas Disponiveis: </f:facet>
+				<p:panel>
+					<h:panelGrid columns="1" style="width:100%;">
 						<p:commandLink update=":form:vagaDetail"
 							action="#{consultaVagasView.ativarBotoes}"
 							oncomplete="PF('vagaDialog').show()">
@@ -32,21 +66,15 @@
 							<p:graphicImage value="#{vagaImagem.imagem}" style="width:100%;">
 								<f:param name="vagaId" value="#{vaga.id}" />
 							</p:graphicImage>
-
-
 						</p:commandLink>
-
 						<h:panelGrid columns="2" style="width:100%">
 							<h:outputText value="Titulo:" style="font-weight: bold" />
 							<h:outputText value="#{vaga.titulo}" />
-
 							<h:outputText value="Local:" style="font-weight: bold" />
 							<h:outputText value="#{vaga.ongEntity.cidade}" />
-
 							<h:outputText value="Trabalho à distancia"
 								style="font-weight: bold" />
 							<h:outputText value="#{vaga.trabalhoDistancia}" />
-
 							<p:commandButton value="Mais informações"
 								update=":form:vagaDetail"
 								action="#{consultaVagasView.ativarBotoes}"
@@ -55,13 +83,10 @@
 									target="#{consultaVagasView.selectedVaga}" />
 								<f:setPropertyActionListener value="#{vaga}"
 									target="#{editarVaga.vaga}" />
-
 							</p:commandButton>
-
 						</h:panelGrid>
 					</h:panelGrid>
 				</p:panel>
-
 			</p:dataGrid>
 
 			<p:dialog header="Informações" widgetVar="vagaDialog" modal="true"
@@ -110,12 +135,61 @@
 						<p:commandButton value="Tenho Interesse!"
 							id="commandButton-salvar" icon="ui-icon-like"
 							action="#{consultaVagasView.enviarEmailInteresse}" />
-							
-						<p:rating value="#{editarVaga.vaga.avaliacaoVaga.avaliacao}" />
 
+						<p:rating value="#{editarVaga.vaga.avaliacaoVaga.avaliacao}" />
 						<p:commandButton value="Avaliar Vaga" id="commandButton-curtir"
 							icon="ui-icon-like" action="#{editarVaga.avaliarVaga}" />
 
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+
+			<p:dialog header="Informações" widgetVar="vagaRecomendadaDialog"
+				modal="true" showEffect="blind" hideEffect="explode"
+				resizable="false">
+				<p:outputPanel id="vagaRecomendadaDetail" style="text-align:center;">
+					<p:panelGrid columns="2"
+						rendered="#{not empty recomendarVagas.selectedVaga}"
+						columnClasses="label,value">
+						<h:outputText value="Titulo:" />
+						<h:outputText value="#{recomendarVagas.selectedVaga.titulo}"
+							style="font-weight: bold" />
+						<h:outputText value="Descrição: " />
+						<h:outputText value="#{recomendarVagas.selectedVaga.descricao}"
+							style="font-weight: bold" />
+						<h:outputText value="Nome do Responsavel:" />
+						<h:outputText
+							value="#{recomendarVagas.selectedVaga.nomeResponsavel}"
+							style="font-weight: bold" />
+						<h:outputText value="Email para contato:" />
+						<h:outputText value="#{recomendarVagas.selectedVaga.email}"
+							style="font-weight: bold" />
+						<h:outputText value="Causas:" />
+						<h:outputText value="#{recomendarVagas.selectedVaga.causasString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Habilidades Necessarias:" />
+						<h:outputText
+							value="#{recomendarVagas.selectedVaga.habilidadesString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Dias: " />
+						<h:outputText value="#{recomendarVagas.selectedVaga.diasString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Periodo: " />
+						<h:outputText
+							value="#{recomendarVagas.selectedVaga.periodoString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Vaga Cadastrada pela ONG " />
+						<h:outputText
+							value="#{recomendarVagas.selectedVaga.ongEntity.nomeONG}"
+							style="font-weight: bold" />
+
+						<p:commandButton value="Tenho Interesse!"
+							id="commandButton-salvar" icon="ui-icon-like"
+							action="#{consultaVagasView.enviarEmailInteresse}" />
 
 					</p:panelGrid>
 				</p:outputPanel>
