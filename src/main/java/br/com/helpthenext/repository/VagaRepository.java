@@ -217,10 +217,10 @@ public class VagaRepository {
 	@SuppressWarnings("unchecked")
 	public List<VagaModel> findByIds(List<Long> ids) {
 		try {
-			
+					
+			entityManager = Uteis.JpaEntityManager();
 			entityManager.joinTransaction();
 			
-			entityManager = Uteis.JpaEntityManager();
 			Query query = entityManager.createNamedQuery("VagaEntity.findByIds");
 			query.setParameter("list", ids);
 
