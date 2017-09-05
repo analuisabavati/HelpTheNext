@@ -218,10 +218,10 @@ public class EventoRepository {
 	@SuppressWarnings("unchecked")
 	public List<EventoModel> findByIds(List<Long> ids) {
 		try {
-			
-			entityManager.joinTransaction();
-			
+					
 			entityManager = Uteis.JpaEntityManager();
+			entityManager.joinTransaction();
+		
 			Query query = entityManager.createNamedQuery("EventoEntity.findByIds");
 			query.setParameter("list", ids);
 

@@ -24,7 +24,7 @@ public class RecomendarEventos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String pathArquivoAvaliacoesEventos = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avalicaoesEventos.dat";
+	private static final String pathArquivoAvaliacoesEventos = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avalicaoesEventos.txt";
 	private static final String pathArquivoDiffEventos = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diffEventos.txt";
 
 	@Inject
@@ -69,7 +69,7 @@ public class RecomendarEventos implements Serializable {
 				fileOutputStream.write(String.valueOf("\n").getBytes());
 			}
 			
-			fileOutputStream.write(String.valueOf("0").getBytes());
+			fileOutputStream.write(String.valueOf("-1").getBytes());
 
 			fileOutputStream.close();
 

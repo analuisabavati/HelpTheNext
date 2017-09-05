@@ -61,20 +61,30 @@ public class SlopeOne {
 			while (dataInputStream.available() != 0) {
 
 				linha = removeVirgula(getProximaLinha(dataInputStream));
-				voluntario = getProximoToken(linha);
+				voluntario = getProximoTokenInt(linha);
+				
+				if(voluntario == -1) {
+					break;
+				}
+				
 				voluntarioTemp = voluntario;
 
 				matrizVoluntarioItemAvaliacao.put(voluntario, new HashMap<Integer, Double>());
 
 				while (voluntario == voluntarioTemp) {
 
-					item = getProximoToken(linha);
+					item = getProximoTokenInt(linha);
 
 					matrizVoluntarioItemAvaliacao.get(voluntario).put(item, getProximoTokenDouble(linha));
 
 					if (dataInputStream.available() != 0) {
 						linha = removeVirgula(getProximaLinha(dataInputStream));
-						voluntarioTemp = getProximoToken(linha);
+						voluntarioTemp = getProximoTokenInt(linha);
+						
+						if(voluntario == -1) {
+							break;
+						}
+						
 					} else {
 						voluntarioTemp = -1;
 					}
@@ -186,7 +196,7 @@ public class SlopeOne {
 		return new Double(t.nextToken());
 	}
 
-	private Integer getProximoToken(StringTokenizer t) {
+	private Integer getProximoTokenInt(StringTokenizer t) {
 		return new Integer(t.nextToken());
 	}
 }

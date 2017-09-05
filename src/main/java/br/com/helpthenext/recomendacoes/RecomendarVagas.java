@@ -24,7 +24,7 @@ public class RecomendarVagas implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String pathArquivoAvaliacoesVagas = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avalicaoesVagas.dat";
+	private static final String pathArquivoAvaliacoesVagas = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avalicaoesVagas.txt";
 	private static final String pathArquivoDiffVagas = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diffVagas.txt";
 
 	@Inject
@@ -70,8 +70,6 @@ public class RecomendarVagas implements Serializable {
 				fileOutputStream.write(String.valueOf("\n").getBytes());
 			}
 			
-			fileOutputStream.write(String.valueOf("0").getBytes());
-
 			fileOutputStream.close();
 
 		} catch (Exception e) {

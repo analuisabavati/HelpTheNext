@@ -15,15 +15,15 @@
 		<h:form id="form">
 		
 		<p:dataGrid value="#{recomendarEventos.eventosRecomendados}" var="evento"
-				columns="3" layout="grid" rows="6" paginator="true"
-				style="margin-top:20px; margin-right:20px; margin-left:20px">
-				<f:facet name="header"> Eventos Recomendados </f:facet>
+				columns="3" layout="grid" rows="3" paginator="false"
+				style="margin-top:20px">
+				<f:facet name="header"> Eventos Recomendados: </f:facet>
 				<p:panel header="#{evento.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
 						<p:commandLink update=":form:eventoRecomendadoDetail"
 							oncomplete="PF('eventoRecomendadoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
-								target="#{eventosRecomendados.selectedEvento}" />
+								target="#{recomendarEventos.selectedEvento}" />
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{editarEvento.evento}" />
 							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
@@ -44,8 +44,8 @@
 
 			<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
 				columns="3" layout="grid" rows="6" paginator="true"
-				style="margin-top:20px; margin-right:20px; margin-left:20px">
-				<f:facet name="header"> Eventos </f:facet>
+				style="margin-top:20px">
+				<f:facet name="header"> Todos Eventos Disponiveis: </f:facet>
 				<p:panel header="#{evento.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
 						<p:commandLink update=":form:eventoDetail"
