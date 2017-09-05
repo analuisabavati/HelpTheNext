@@ -100,36 +100,42 @@ public class VagaRepository {
 		VagaModel vagaModel = null;
 
 		for (VagaEntity vagaEntity : vagasEntity) {
-			vagaModel = new VagaModel();
-
-			Long idVaga = vagaEntity.getId();
-			vagaModel.setId(idVaga);
-			vagaModel.setTitulo(vagaEntity.getTitulo());
-			vagaModel.setDescricao(vagaEntity.getDescricao());
-			vagaModel.setNomeResponsavel(vagaEntity.getNomeResponsavel());
-			vagaModel.setEmail(vagaEntity.getEmail());
-			vagaModel.setBanner(vagaEntity.getBanner());
-			vagaModel.setDataCadastro(vagaEntity.getDataCadastro());
-			vagaModel.setTrabalhoDistancia(vagaEntity.getTrabalhoDistancia());
-
-			vagaModel.setCausas(vagaModel.toStringArrayCausas(vagaEntity.getCausas()));
-			vagaModel.setHabilidades(vagaModel.toStringArrayHabilidades(vagaEntity.getHabilidades()));
-			vagaModel.setPeriodos(vagaModel.toStringArrayPeriodos(vagaEntity.getPeriodos()));
-			vagaModel.setDias(vagaModel.toStringArrayDias(vagaEntity.getDias()));
-			vagaModel.setOngEntity(vagaEntity.getOngEntity());
-			
-			vagaModel.setCausasString(vagaModel.getCausas() == null ? null : Arrays.toString(vagaModel.getCausas()));
-			vagaModel.setHabilidadesString(vagaModel.getHabilidades()  == null ? null : Arrays.toString(vagaModel.getHabilidades()));
-			vagaModel.setDiasString(vagaModel.getDias() == null ? null : Arrays.toString(vagaModel.getDias()));
-			vagaModel.setPeriodoString(vagaModel.getPeriodos() == null ? null : Arrays.toString(vagaModel.getPeriodos()));
-			vagaModel.setDataCadastroDate(asDate(vagaModel.getDataCadastro()));
-			
-			vagaModel.setAvaliacaoVaga(getAvaliacaoEvento(vagaEntity, idVaga));
-
+			vagaModel = toVagaModel(vagasModel, vagaEntity);
 			vagasModel.add(vagaModel);
 		}
 
 		return vagasModel;
+	}
+
+	private VagaModel toVagaModel(List<VagaModel> vagasModel, VagaEntity vagaEntity) {
+		VagaModel vagaModel;
+		vagaModel = new VagaModel();
+
+		Long idVaga = vagaEntity.getId();
+		vagaModel.setId(idVaga);
+		vagaModel.setTitulo(vagaEntity.getTitulo());
+		vagaModel.setDescricao(vagaEntity.getDescricao());
+		vagaModel.setNomeResponsavel(vagaEntity.getNomeResponsavel());
+		vagaModel.setEmail(vagaEntity.getEmail());
+		vagaModel.setBanner(vagaEntity.getBanner());
+		vagaModel.setDataCadastro(vagaEntity.getDataCadastro());
+		vagaModel.setTrabalhoDistancia(vagaEntity.getTrabalhoDistancia());
+
+		vagaModel.setCausas(vagaModel.toStringArrayCausas(vagaEntity.getCausas()));
+		vagaModel.setHabilidades(vagaModel.toStringArrayHabilidades(vagaEntity.getHabilidades()));
+		vagaModel.setPeriodos(vagaModel.toStringArrayPeriodos(vagaEntity.getPeriodos()));
+		vagaModel.setDias(vagaModel.toStringArrayDias(vagaEntity.getDias()));
+		vagaModel.setOngEntity(vagaEntity.getOngEntity());
+		
+		vagaModel.setCausasString(vagaModel.getCausas() == null ? null : Arrays.toString(vagaModel.getCausas()));
+		vagaModel.setHabilidadesString(vagaModel.getHabilidades()  == null ? null : Arrays.toString(vagaModel.getHabilidades()));
+		vagaModel.setDiasString(vagaModel.getDias() == null ? null : Arrays.toString(vagaModel.getDias()));
+		vagaModel.setPeriodoString(vagaModel.getPeriodos() == null ? null : Arrays.toString(vagaModel.getPeriodos()));
+		vagaModel.setDataCadastroDate(asDate(vagaModel.getDataCadastro()));
+		
+		vagaModel.setAvaliacaoVaga(getAvaliacaoEvento(vagaEntity, idVaga));
+
+		return vagaModel;
 	}
 	
 
@@ -205,5 +211,32 @@ public class VagaRepository {
 			avaliacao.setIdVoluntario(voluntarioByUsuarioSessao.getId());
 		}
 		return avaliacao;
+	}
+	
+
+	@SuppressWarnings("unchecked")
+	public List<VagaModel> findByIds(List<Long> ids) {
+		try {
+			
+			entityManager.joinTransaction();
+			
+			entityManager = Uteis.JpaEntityManager();
+			Query query = entityManager.createNamedQuery("VagaEntity.findByIds");
+			query.setParameter("list", ids);
+
+			List<VagaEntity> result = (List<VagaEntity>) query.getResultList();
+			
+			List<VagaModel> vagasModel = new ArrayList<VagaModel>();
+			VagaModel vagaModel = null;
+
+			for (VagaEntity vagaEntity : result) {
+				vagaModel = toVagaModel(vagasModel, vagaEntity);
+				vagasModel.add(vagaModel);
+			}
+	
+			return vagasModel;
+		} catch (Exception e) {
+			return new ArrayList<>();
+		}
 	}
 }

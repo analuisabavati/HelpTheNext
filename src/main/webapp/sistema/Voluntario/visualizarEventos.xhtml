@@ -13,16 +13,41 @@
 <ui:composition template="/template/Voluntario/layoutBase.xhtml">
 	<ui:define name="content">
 		<h:form id="form">
+		
+		<p:dataGrid value="#{recomendarEventos.eventosRecomendados}" var="evento"
+				columns="3" layout="grid" rows="6" paginator="true"
+				style="margin-top:20px; margin-right:20px; margin-left:20px">
+				<f:facet name="header"> Eventos Recomendados </f:facet>
+				<p:panel header="#{evento.titulo}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%; hight:200px">
+						<p:commandLink update=":form:eventoRecomendadoDetail"
+							oncomplete="PF('eventoRecomendadoDialog').show()">
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{eventosRecomendados.selectedEvento}" />
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{editarEvento.evento}" />
+							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
+								<f:param name="eventoId" value="#{evento.id}" />
+							</p:graphicImage>
+						</p:commandLink>
+						<p:commandButton value="Mais Informações"
+							update=":form:eventoRecomendadoDetail"
+							oncomplete="PF('eventoRecomendadoDialog').show()">
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{recomendarEventos.selectedEvento}" />
+							<f:setPropertyActionListener value="#{evento}"
+								target="#{editarEvento.evento}" />
+						</p:commandButton>
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
 
 			<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
 				columns="3" layout="grid" rows="6" paginator="true"
 				style="margin-top:20px; margin-right:20px; margin-left:20px">
-
 				<f:facet name="header"> Eventos </f:facet>
-
 				<p:panel header="#{evento.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px">
-
 						<p:commandLink update=":form:eventoDetail"
 							action="#{consultaEventosView.ativarBotoes}"
 							oncomplete="PF('eventoDialog').show()">
@@ -34,7 +59,6 @@
 								<f:param name="eventoId" value="#{evento.id}" />
 							</p:graphicImage>
 						</p:commandLink>
-
 						<p:commandButton value="Mais Informações"
 							update=":form:eventoDetail"
 							action="#{consultaEventosView.ativarBotoes}"
@@ -44,10 +68,8 @@
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{editarEvento.evento}" />
 						</p:commandButton>
-
 					</h:panelGrid>
 				</p:panel>
-
 			</p:dataGrid>
 
 			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
@@ -95,6 +117,53 @@
 						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
 
 						<p:commandButton value="Avaliar Evento" id="commandButton-curtir"
+							icon="ui-icon-like" action="#{editarEvento.avaliarEvento}" />
+
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+			
+			<p:dialog header="Evento Info" widgetVar="eventoRecomenddoDialog" modal="true"
+				showEffect="blind" hideEffect="explode" resizable="false">
+				<p:outputPanel id="eventoRecomendadoDetail" style="text-align:center;">
+					<p:panelGrid columns="2"
+						rendered="#{not empty recomendarEventos.selectedEvento}"
+						columnClasses="label,value">
+
+						<h:outputText value="Titulo:" />
+						<h:outputText value="#{recomendarEventos.selectedEvento.titulo}"
+							style="font-weight: bold" />
+						<h:outputText value="Descrição: " />
+						<h:outputText
+							value="#{recomendarEventos.selectedEvento.descricao}"
+							style="font-weight: bold" />
+						<h:outputText value="Nome do Responsavel:" />
+						<h:outputText
+							value="#{recomendarEventos.selectedEvento.nomeResponsavel}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Email para contato" />
+						<h:outputText value="#{recomendarEventos.selectedEvento.email}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Data e Hora: " />
+						<h:outputText
+							value="#{recomendarEventos.selectedEvento.dataHora}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Local:" />
+						<h:outputText value="#{recomendarEventos.selectedEvento.local}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Causas" />
+						<h:outputText
+							value="#{recomendarEventos.selectedEvento.causasString}"
+							style="font-weight: bold" />
+
+						<h:outputText value=" " />
+						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
+
+						<p:commandButton value="Avaliar Evento" id="commandButton-avaliar"
 							icon="ui-icon-like" action="#{editarEvento.avaliarEvento}" />
 
 					</p:panelGrid>

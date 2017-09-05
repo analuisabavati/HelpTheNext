@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Gerador {
 	
-	public String gerarTelefone() {		
+	public static String gerarTelefone() {		
 		Random numRandom = new Random();
 
 		int n1 = numRandom.nextInt(10);
@@ -25,7 +25,7 @@ public class Gerador {
 	}
 
 
-	public String gerarCPF() {
+	public static String gerarCPF() {
 		Random numRandom = new Random();
 
 		int n1 = numRandom.nextInt(10);
@@ -45,7 +45,7 @@ public class Gerador {
 				+ String.valueOf(n10) + String.valueOf(n11);
 	}
 
-	public String gerarCEP() {
+	public static String gerarCEP() {
 		Random numRandom = new Random();
 
 		int n1 = numRandom.nextInt(10);
@@ -62,7 +62,7 @@ public class Gerador {
 
 	}
 
-	public String gerarSenha() {
+	public static String gerarSenha() {
 		int tamanhoSenha = 6;
 
 		char[] chart = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
@@ -80,7 +80,7 @@ public class Gerador {
 		return new String(senha);
 	}
 
-	public int numAleatorio(int minimo, int maximo) {
+	public static int numAleatorio(int minimo, int maximo) {
 	    Random random = new Random();
 	    return random.nextInt((maximo - minimo) + 1) + minimo;
 	}

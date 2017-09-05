@@ -44,6 +44,9 @@ public class RecomendarVagas implements Serializable {
 
 	@Produces
 	private List<VagaModel> vagasRecomendadas;
+	
+	private VagaModel selectedVaga;
+
 
 	@PostConstruct
 	public void init() {
@@ -66,6 +69,8 @@ public class RecomendarVagas implements Serializable {
 				fileOutputStream.write(String.valueOf(avaliacaoVagaEntity.getAvaliacao()).getBytes());
 				fileOutputStream.write(String.valueOf("\n").getBytes());
 			}
+			
+			fileOutputStream.write(String.valueOf("0").getBytes());
 
 			fileOutputStream.close();
 
@@ -82,8 +87,7 @@ public class RecomendarVagas implements Serializable {
 	public void recomendaVagasConformePredicoes() {
 		Long idVoluntarioSessao = voluntarioRepository.getIdVoluntarioSessao();
 		List<Long> idsVagas = predicoes.calculaPredicoes(idVoluntarioSessao.intValue(), pathArquivoAvaliacoesVagas, pathArquivoDiffVagas);
-		
-		// fazer busca dos itens e tela 
+		vagasRecomendadas = vagaRepository.findByIds(idsVagas);
 	}
 
 	// -----------------------------------------------------------------------------------------------
@@ -130,4 +134,29 @@ public class RecomendarVagas implements Serializable {
 	public static String getPatharquivodiffvagas() {
 		return pathArquivoDiffVagas;
 	}
+
+	public VoluntarioRepository getVoluntarioRepository() {
+		return voluntarioRepository;
+	}
+
+	public void setVoluntarioRepository(VoluntarioRepository voluntarioRepository) {
+		this.voluntarioRepository = voluntarioRepository;
+	}
+
+	public Predicoes getPredicoes() {
+		return predicoes;
+	}
+
+	public void setPredicoes(Predicoes predicoes) {
+		this.predicoes = predicoes;
+	}
+
+	public VagaModel getSelectedVaga() {
+		return selectedVaga;
+	}
+
+	public void setSelectedVaga(VagaModel selectedVaga) {
+		this.selectedVaga = selectedVaga;
+	}
+	
 }

@@ -19,7 +19,7 @@ import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 
 @ViewScoped
-@Named(value = "recomendarVagas")
+@Named(value = "recomendarEventos")
 public class RecomendarEventos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -44,11 +44,14 @@ public class RecomendarEventos implements Serializable {
 
 	@Produces
 	private List<EventoModel> eventosRecomendados;
+	
+	private EventoModel selectedEvento;
 
 	@PostConstruct
 	public void init() {
 		gerarArquivoAvaliacoesEventos();
 		calcularMatrizDiferencasMedia();
+		recomendaEventosConformePredicoes();
 	}
 
 	public void gerarArquivoAvaliacoesEventos() {
@@ -65,6 +68,8 @@ public class RecomendarEventos implements Serializable {
 				fileOutputStream.write(String.valueOf(a.getAvaliacao()).getBytes());
 				fileOutputStream.write(String.valueOf("\n").getBytes());
 			}
+			
+			fileOutputStream.write(String.valueOf("0").getBytes());
 
 			fileOutputStream.close();
 
@@ -81,8 +86,7 @@ public class RecomendarEventos implements Serializable {
 	public void recomendaEventosConformePredicoes() {
 		Long idVoluntarioSessao = voluntarioRepository.getIdVoluntarioSessao();
 		List<Long> idsVagas = predicoes.calculaPredicoes(idVoluntarioSessao.intValue(), pathArquivoAvaliacoesEventos, pathArquivoDiffEventos);
-
-		// fazer busca dos itens e tela 
+		eventosRecomendados = eventoRepository.findByIds(idsVagas);
 	}
 
 	// -----------------------------------------------------------------------------------------------
@@ -129,4 +133,29 @@ public class RecomendarEventos implements Serializable {
 	public static String getPatharquivodiffeventos() {
 		return pathArquivoDiffEventos;
 	}
+
+	public VoluntarioRepository getVoluntarioRepository() {
+		return voluntarioRepository;
+	}
+
+	public void setVoluntarioRepository(VoluntarioRepository voluntarioRepository) {
+		this.voluntarioRepository = voluntarioRepository;
+	}
+
+	public Predicoes getPredicoes() {
+		return predicoes;
+	}
+
+	public void setPredicoes(Predicoes predicoes) {
+		this.predicoes = predicoes;
+	}
+
+	public EventoModel getSelectedEvento() {
+		return selectedEvento;
+	}
+
+	public void setSelectedEvento(EventoModel selectedEvento) {
+		this.selectedEvento = selectedEvento;
+	}
+
 }

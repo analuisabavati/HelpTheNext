@@ -25,10 +25,8 @@ import br.com.helpthenext.enums.Periodos;
 
 @Table(name = "tb_vaga")
 @Entity
-@NamedQueries({
-	 
-	@NamedQuery(name = "VagaEntity.findAll",query= "SELECT p FROM VagaEntity p")
- 
+@NamedQueries({ @NamedQuery(name = "VagaEntity.findByIds", query = "SELECT p FROM VagaEntity p WHERE p.id IN :list"),
+		@NamedQuery(name = "VagaEntity.findAll", query = "SELECT p FROM VagaEntity p")
 })
 public class VagaEntity implements Serializable {
 
@@ -48,24 +46,24 @@ public class VagaEntity implements Serializable {
 	@Column(name = "nome_responsavel")
 	private String nomeResponsavel;
 
-	@Column(name = "banner", length=10000000)
+	@Column(name = "banner", length = 10000000)
 	private byte[] banner;
-	
+
 	@Column(name = "email")
 	private String email;
 
-	@ElementCollection(targetClass=Causas.class)
-    @Enumerated(EnumType.ORDINAL)
-    @CollectionTable(name="vaga_causas")
-    @Column(name="causas") 
+	@ElementCollection(targetClass = Causas.class)
+	@Enumerated(EnumType.ORDINAL)
+	@CollectionTable(name = "vaga_causas")
+	@Column(name = "causas")
 	private List<Causas> causas;
 
-	@ElementCollection(targetClass=Habilidades.class)
-    @Enumerated(EnumType.ORDINAL)
-    @CollectionTable(name="vaga_habilidades")
-    @Column(name="habilidades") 
+	@ElementCollection(targetClass = Habilidades.class)
+	@Enumerated(EnumType.ORDINAL)
+	@CollectionTable(name = "vaga_habilidades")
+	@Column(name = "habilidades")
 	private List<Habilidades> habilidades;
-	
+
 	@ElementCollection(targetClass = DiasSemana.class)
 	@Enumerated(EnumType.ORDINAL)
 	@CollectionTable(name = "vaga_dias")
@@ -77,18 +75,17 @@ public class VagaEntity implements Serializable {
 	@CollectionTable(name = "vaga_periodos")
 	@Column(name = "periodos")
 	private List<Periodos> periodos;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_ong")
+	@JoinColumn(name = "id_ong")
 	private ONGEntity ongEntity;
-	
+
 	@Column(name = "dt_cadastro")
 	private LocalDateTime dataCadastro;
-	
+
 	@Column(name = "trabalho_distancia")
 	private String trabalhoDistancia;
-	
-	
+
 	public String getTrabalhoDistancia() {
 		return trabalhoDistancia;
 	}
@@ -196,6 +193,5 @@ public class VagaEntity implements Serializable {
 	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-		
-	
+
 }

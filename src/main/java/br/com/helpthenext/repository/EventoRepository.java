@@ -213,4 +213,28 @@ public class EventoRepository {
 
 		return eventoModel;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<EventoModel> findByIds(List<Long> ids) {
+		try {
+			
+			entityManager.joinTransaction();
+			
+			entityManager = Uteis.JpaEntityManager();
+			Query query = entityManager.createNamedQuery("EventoEntity.findByIds");
+			query.setParameter("list", ids);
+
+			List<EventoEntity> result = (List<EventoEntity>) query.getResultList();
+			
+			List<EventoModel> resultModel = new ArrayList<>();
+			for (EventoEntity eventoEntity : result) {
+				resultModel.add(toEventoModel(eventoEntity));
+			}
+			
+			return resultModel;
+		} catch (Exception e) {
+			return new ArrayList<>();
+		}
+	}
 }
