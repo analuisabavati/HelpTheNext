@@ -47,7 +47,6 @@ public class RecomendarVagas implements Serializable {
 	
 	private VagaModel selectedVaga;
 
-
 	@PostConstruct
 	public void init() {
 		gerarArquivoAvaliacoesVagas();
