@@ -70,6 +70,8 @@ public class RecomendarVagas implements Serializable {
 				fileOutputStream.write(String.valueOf("\n").getBytes());
 			}
 			
+			fileOutputStream.write(String.valueOf("-1").getBytes());
+			
 			fileOutputStream.close();
 
 		} catch (Exception e) {
