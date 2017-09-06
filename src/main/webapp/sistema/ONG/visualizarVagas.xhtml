@@ -20,7 +20,8 @@
 				<f:facet name="header"> Vagas Disponiveis </f:facet>
 
 				<p:panel>
-					<h:panelGrid columns="1" style="width:100%;">
+					<h:panelGrid columns="1" style="width:100%;"
+						styleClass="ui-noborder">
 
 						<p:commandLink update=":form:vagaDetail"
 							action="#{consultaVagasView.ativarBotoes}"
@@ -36,7 +37,8 @@
 
 						</p:commandLink>
 
-						<h:panelGrid columns="2" style="width:100%">
+						<h:panelGrid columns="2" style="width:100%"
+							styleClass="ui-noborder">
 							<h:outputText value="Titulo:" style="font-weight: bold" />
 							<h:outputText value="#{vaga.titulo}" />
 
@@ -67,7 +69,7 @@
 			<p:dialog header="Informações" widgetVar="vagaDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="vagaDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
+					<p:panelGrid columns="2" styleClass="ui-noborder"
 						rendered="#{not empty consultaVagasView.selectedVaga}"
 						columnClasses="label,value">
 						<h:outputText value="Titulo:" />
@@ -106,6 +108,9 @@
 						<h:outputText
 							value="#{consultaVagasView.selectedVaga.ongEntity.nomeONG}"
 							style="font-weight: bold" />
+
+						<h:outputText value=" " />
+						<h:outputText value=" " />
 
 						<p:button value="Editar" outcome="editarVaga.xhtml"
 							disabled="#{!(consultaVagasView.botaoEditar)}">

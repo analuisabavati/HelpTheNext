@@ -13,13 +13,14 @@
 <ui:composition template="/template/Voluntario/layoutBase.xhtml">
 	<ui:define name="content">
 		<h:form id="form">
-		
-		<p:dataGrid value="#{recomendarEventos.eventosRecomendados}" var="evento"
-				columns="3" layout="grid" rows="3" paginator="false"
+
+			<p:dataGrid value="#{recomendarEventos.eventosRecomendados}"
+				var="evento" columns="3" layout="grid" rows="3" paginator="false"
 				style="margin-top:20px">
 				<f:facet name="header"> Eventos Recomendados: </f:facet>
 				<p:panel header="#{evento.titulo}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%; hight:200px">
+					<h:panelGrid columns="1" style="width:100%; hight:200px"
+						styleClass="ui-noborder">
 						<p:commandLink update=":form:eventoRecomendadoDetail"
 							oncomplete="PF('eventoRecomendadoDialog').show()">
 							<f:setPropertyActionListener value="#{evento}"
@@ -47,7 +48,8 @@
 				style="margin-top:20px">
 				<f:facet name="header"> Todos Eventos Disponiveis: </f:facet>
 				<p:panel header="#{evento.titulo}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%; hight:200px">
+					<h:panelGrid columns="1" style="width:100%; hight:200px"
+						styleClass="ui-noborder">
 						<p:commandLink update=":form:eventoDetail"
 							action="#{consultaEventosView.ativarBotoes}"
 							oncomplete="PF('eventoDialog').show()">
@@ -75,7 +77,7 @@
 			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="eventoDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
+					<p:panelGrid columns="2" styleClass="ui-noborder"
 						rendered="#{not empty consultaEventosView.selectedEvento}"
 						columnClasses="label,value">
 
@@ -109,9 +111,13 @@
 							value="#{consultaEventosView.selectedEvento.causasString}"
 							style="font-weight: bold" />
 
+						<h:outputText value=" " />
+						<h:outputText value=" " />
 						<p:button value="Editar" outcome="editarEvento.xhtml"
 							disabled="#{!(consultaEventosView.botaoEditar)}">
 						</p:button>
+						<h:outputText value=" " />
+						<h:outputText value=" " />
 
 						<h:outputText value=" " />
 						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
@@ -122,11 +128,13 @@
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
-			
-			<p:dialog header="Evento Info" widgetVar="eventoRecomendadoDialog" modal="true"
-				showEffect="blind" hideEffect="explode" resizable="false">
-				<p:outputPanel id="eventoRecomendadoDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
+
+			<p:dialog header="Evento Info" widgetVar="eventoRecomendadoDialog"
+				modal="true" showEffect="blind" hideEffect="explode"
+				resizable="false">
+				<p:outputPanel id="eventoRecomendadoDetail"
+					style="text-align:center;">
+					<p:panelGrid columns="2" styleClass="ui-noborder"
 						rendered="#{not empty recomendarEventos.selectedEvento}"
 						columnClasses="label,value">
 
@@ -147,8 +155,7 @@
 							style="font-weight: bold" />
 
 						<h:outputText value="Data e Hora: " />
-						<h:outputText
-							value="#{recomendarEventos.selectedEvento.dataHora}"
+						<h:outputText value="#{recomendarEventos.selectedEvento.dataHora}"
 							style="font-weight: bold" />
 
 						<h:outputText value="Local:" />
@@ -159,6 +166,8 @@
 						<h:outputText
 							value="#{recomendarEventos.selectedEvento.causasString}"
 							style="font-weight: bold" />
+						<h:outputText value=" " />
+						<h:outputText value=" " />
 
 						<h:outputText value=" " />
 						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />

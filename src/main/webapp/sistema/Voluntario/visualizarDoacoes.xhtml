@@ -21,7 +21,8 @@
 				<f:facet name="header"> Doações </f:facet>
 
 				<p:panel header="#{doacao.titulo}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%; hight:200px">
+					<h:panelGrid columns="1" style="width:100%; hight:200px"
+						styleClass="ui-noborder">
 
 						<p:commandLink update=":form:doacaoDetail"
 							action="#{consultaDoacoesView.ativarBotoes}"
@@ -35,7 +36,8 @@
 							</p:graphicImage>
 						</p:commandLink>
 
-						<p:commandButton value="Mais Informações" update=":form:doacaoDetail"
+						<p:commandButton value="Mais Informações"
+							update=":form:doacaoDetail"
 							action="#{consultaDoacoesView.ativarBotoes}"
 							oncomplete="PF('doacaoDialog').show()">
 							<f:setPropertyActionListener value="#{doacao}"
@@ -53,7 +55,7 @@
 			<p:dialog header="Informações" widgetVar="doacaoDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="doacaoDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
+					<p:panelGrid columns="2" styleClass="ui-noborder"
 						rendered="#{not empty consultaDoacoesView.selectedDoacao}"
 						columnClasses="label,value">
 
@@ -85,6 +87,9 @@
 							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.cidade}"
 							style="font-weight: bold" />
 
+						<h:outputText value=" " />
+						<h:outputText value=" " />
+
 						<p:button value="Editar" outcome="editarDoacao.xhtml"
 							disabled="#{!(consultaDoacoesView.botaoEditar)}">
 						</p:button>
@@ -92,13 +97,13 @@
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
-			
+
 			<p:messages showDetail="true" autoUpdate="true" closable="true"
-						severity="warn" />
-					<p:messages autoUpdate="true" closable="true" severity="error" />
-					<p:messages showDetail="true" autoUpdate="true" closable="true"
-						severity="info" />
-			
+				severity="warn" />
+			<p:messages autoUpdate="true" closable="true" severity="error" />
+			<p:messages showDetail="true" autoUpdate="true" closable="true"
+				severity="info" />
+
 		</h:form>
 	</ui:define>
 </ui:composition>

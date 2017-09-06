@@ -16,10 +16,11 @@
 
 			<p:dataGrid value="#{recomendarVagas.vagasRecomendadas}" var="vaga"
 				columns="3" layout="grid" rows="3" paginator="false"
-				style="margin-top:20px">
+				styleClass="ui-noborder" style="margin-top:20px">
 				<f:facet name="header"> Vagas Recomendadas: </f:facet>
 				<p:panel>
-					<h:panelGrid columns="1" style="width:100%;">
+					<h:panelGrid columns="1" style="width:100%;"
+						styleClass="ui-noborder">
 						<p:commandLink update=":form:vagaRecomendadaDetail"
 							oncomplete="PF('vagaRecomendadaDialog').show()">
 							<f:setPropertyActionListener value="#{vaga}"
@@ -30,7 +31,8 @@
 								<f:param name="vagaId" value="#{vaga.id}" />
 							</p:graphicImage>
 						</p:commandLink>
-						<h:panelGrid columns="2" style="width:100%">
+						<h:panelGrid columns="2" style="width:100%"
+							styleClass="ui-noborder">
 							<h:outputText value="Titulo:" style="font-weight: bold" />
 							<h:outputText value="#{vaga.titulo}" />
 							<h:outputText value="Local:" style="font-weight: bold" />
@@ -55,7 +57,8 @@
 				layout="grid" rows="9" paginator="true" style="margin-top:20px">
 				<f:facet name="header"> Todas Vagas Disponiveis: </f:facet>
 				<p:panel>
-					<h:panelGrid columns="1" style="width:100%;">
+					<h:panelGrid columns="1" style="width:100%;"
+						styleClass="ui-noborder">
 						<p:commandLink update=":form:vagaDetail"
 							action="#{consultaVagasView.ativarBotoes}"
 							oncomplete="PF('vagaDialog').show()">
@@ -67,7 +70,8 @@
 								<f:param name="vagaId" value="#{vaga.id}" />
 							</p:graphicImage>
 						</p:commandLink>
-						<h:panelGrid columns="2" style="width:100%">
+						<h:panelGrid columns="2" style="width:100%"
+							styleClass="ui-noborder">
 							<h:outputText value="Titulo:" style="font-weight: bold" />
 							<h:outputText value="#{vaga.titulo}" />
 							<h:outputText value="Local:" style="font-weight: bold" />
@@ -92,7 +96,7 @@
 			<p:dialog header="Informações" widgetVar="vagaDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="vagaDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
+					<p:panelGrid columns="2" styleClass="ui-noborder"
 						rendered="#{not empty consultaVagasView.selectedVaga}"
 						columnClasses="label,value">
 						<h:outputText value="Titulo:" />
@@ -132,9 +136,15 @@
 							value="#{consultaVagasView.selectedVaga.ongEntity.nomeONG}"
 							style="font-weight: bold" />
 
+						<h:outputText value=" " />
+						<h:outputText value=" " />
+
 						<p:commandButton value="Tenho Interesse!"
 							id="commandButton-salvar" icon="ui-icon-like"
 							action="#{consultaVagasView.enviarEmailInteresse}" />
+
+						<h:outputText value=" " />
+						<h:outputText value=" " />
 
 						<h:outputText value="" />
 						<p:rating value="#{editarVaga.vaga.avaliacaoVaga.avaliacao}" />
@@ -149,7 +159,7 @@
 				modal="true" showEffect="blind" hideEffect="explode"
 				resizable="false">
 				<p:outputPanel id="vagaRecomendadaDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
+					<p:panelGrid columns="2" styleClass="ui-noborder"
 						rendered="#{not empty recomendarVagas.selectedVaga}"
 						columnClasses="label,value">
 						<h:outputText value="Titulo:" />
@@ -187,6 +197,9 @@
 						<h:outputText
 							value="#{recomendarVagas.selectedVaga.ongEntity.nomeONG}"
 							style="font-weight: bold" />
+
+						<h:outputText value=" " />
+						<h:outputText value=" " />
 
 						<p:commandButton value="Tenho Interesse!"
 							id="commandButton-interesse" icon="ui-icon-like"
