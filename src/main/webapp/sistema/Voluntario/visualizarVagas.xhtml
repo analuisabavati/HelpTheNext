@@ -53,7 +53,7 @@
 
 			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
 				layout="grid" rows="9" paginator="true" style="margin-top:20px">
-				<f:facet name="header"> Totas Vagas Disponiveis: </f:facet>
+				<f:facet name="header"> Todas Vagas Disponiveis: </f:facet>
 				<p:panel>
 					<h:panelGrid columns="1" style="width:100%;">
 						<p:commandLink update=":form:vagaDetail"
@@ -136,6 +136,7 @@
 							id="commandButton-salvar" icon="ui-icon-like"
 							action="#{consultaVagasView.enviarEmailInteresse}" />
 
+						<h:outputText value="" />
 						<p:rating value="#{editarVaga.vaga.avaliacaoVaga.avaliacao}" />
 						<p:commandButton value="Avaliar Vaga" id="commandButton-curtir"
 							icon="ui-icon-like" action="#{editarVaga.avaliarVaga}" />

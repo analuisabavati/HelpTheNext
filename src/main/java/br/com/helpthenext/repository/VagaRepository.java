@@ -87,10 +87,10 @@ public class VagaRepository {
 		entityManager.persist(vagaEntity);
 	}
 
-	// busca todas vagas no bd
 	public List<VagaModel> getVagas() {
 
 		entityManager = Uteis.JpaEntityManager();
+		
 		Query query = entityManager.createNamedQuery("VagaEntity.findAll");
 
 		@SuppressWarnings("unchecked")
@@ -201,6 +201,10 @@ public class VagaRepository {
 	
 	private AvaliacaoVagaEntity getAvaliacaoEvento(VagaEntity VagaEntity, Long idVaga) {
 		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		
+		if (voluntarioByUsuarioSessao == null) {
+			return new AvaliacaoVagaEntity();
+		}
 
 		AvaliacaoVagaEntity avaliacao = avaliacaoVagaRepository.findByVoluntarioVaga(voluntarioByUsuarioSessao.getId(),
 				VagaEntity.getId());
@@ -217,6 +221,10 @@ public class VagaRepository {
 	@SuppressWarnings("unchecked")
 	public List<VagaModel> findByIds(List<Long> ids) {
 		try {
+			
+			if (ids == null || ids.isEmpty()) {
+				return null;
+			}
 					
 			entityManager = Uteis.JpaEntityManager();
 			entityManager.joinTransaction();

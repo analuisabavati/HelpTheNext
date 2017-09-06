@@ -15,6 +15,7 @@ import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
+import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
 import br.com.helpthenext.repository.entity.EventoEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
@@ -124,6 +125,10 @@ public class EventoRepository {
 	private AvaliacaoEventoEntity getAvaliacaoEvento(EventoEntity eventoEntity, Long idEvento) {
 		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
 
+		if (voluntarioByUsuarioSessao == null) {
+			return new AvaliacaoEventoEntity();
+		}
+		
 		AvaliacaoEventoEntity avaliacao = avaliacaoEventoRepository.findByVoluntarioEvento(voluntarioByUsuarioSessao.getId(),
 				eventoEntity.getId());
 		if (avaliacao == null) {
@@ -218,6 +223,10 @@ public class EventoRepository {
 	@SuppressWarnings("unchecked")
 	public List<EventoModel> findByIds(List<Long> ids) {
 		try {
+			
+			if (ids == null || ids.isEmpty()) {
+				return null;
+			}
 					
 			entityManager = Uteis.JpaEntityManager();
 			entityManager.joinTransaction();
