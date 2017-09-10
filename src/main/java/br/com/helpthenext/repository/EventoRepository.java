@@ -15,7 +15,6 @@ import br.com.helpthenext.controller.UsuarioController;
 import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
-import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
 import br.com.helpthenext.repository.entity.EventoEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
@@ -166,9 +165,10 @@ public class EventoRepository {
 	}
 
 	public void removeEvento(EventoModel evento) {
-		entityManager = Uteis.JpaEntityManager();
+		entityManager = Uteis.JpaEntityManager();		
 		eventoEntity = getEvento(evento.getId());
 		entityManager.remove(eventoEntity);
+
 	}
 
 	public void removeEvento(EventoEntity evento) {

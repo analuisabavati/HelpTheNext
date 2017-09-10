@@ -23,15 +23,15 @@ public class SlopeOne {
 
 	public static void main(String args[]) {
 		System.out.println("\n[SlopOne] -  Iniciando SlopeOne  -");
-		String pathArqDiferencas1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\slope-intermidiary-output.txt";
-		String pathArqAvaliacoes1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\ratings.dat";
+		String pathArqDiferencas1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diff.txt";
+		String pathArqAvaliacoes1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avaliacoes.txt";
 
-		long inicio = System.currentTimeMillis();
+	//	long inicio = System.currentTimeMillis();
 		SlopeOne s = new SlopeOne();
 		s.calculaMatrizDiferencas(pathArqAvaliacoes1, pathArqDiferencas1);
-		long fim = System.currentTimeMillis();
+//		long fim = System.currentTimeMillis();
 
-		System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio) + " ms.");
+	//	System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio) + " ms.");
 	}
 
 	public void calculaMatrizDiferencas(String pathArquivoAvaliacoes, String pathArquivoDiferencas) {

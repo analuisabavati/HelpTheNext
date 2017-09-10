@@ -25,15 +25,15 @@ public class Predicoes {
 
 	public static void main(String args[]) {
 		System.out.println("\n[SlopOne] -  Iniciando Predicoes  -");
-		String pathArqDiferencas1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\slope-intermidiary-output.txt";
-		String pathArqAvaliacoes1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\ratings.dat";
+		String pathArqDiferencas1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diff.txt";
+		String pathArqAvaliacoes1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avaliacoes.txt";
 
-		long inicio = System.currentTimeMillis();
+	//	long inicio = System.currentTimeMillis();
 		Predicoes p = new Predicoes();
 		p.calculaPredicoes(2, pathArqAvaliacoes1, pathArqDiferencas1);
-		long fim = System.currentTimeMillis();
+//		long fim = System.currentTimeMillis();
 
-		System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio) + " ms.");
+	//	System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio) + " ms.");
 	}
 
 	public List<Long> calculaPredicoes(int idVoluntario, String pathArquivoAvaliacoes, String pathArquivoDiferencas) {
@@ -92,8 +92,6 @@ public class Predicoes {
 
 	private List<Long> getIdsItensRecomendados() {
 		
-		// Fazer sort de predicoes pela avaliacao
-		
 		List<Long> idItensRecomendados = new ArrayList<>();
 
 		for (int item : predicoes.keySet()) {
@@ -104,7 +102,7 @@ public class Predicoes {
 
 			System.out.println(item + " " + avaliacao);
 		}
-		
+				
 		return idItensRecomendados;
 	}
 
