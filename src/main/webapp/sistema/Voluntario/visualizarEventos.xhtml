@@ -15,7 +15,7 @@
 		<h:form id="form">
 
 			<p:dataGrid value="#{recomendarEventos.eventosRecomendados}"
-				var="evento" columns="3" layout="grid" rows="3" paginator="false"
+				var="evento" columns="3" layout="grid" rows="3" paginator="true"
 				style="margin-top:20px">
 				<f:facet name="header"> Eventos Recomendados: </f:facet>
 				<p:panel header="#{evento.titulo}" style="text-align:center">
@@ -42,6 +42,12 @@
 					</h:panelGrid>
 				</p:panel>
 			</p:dataGrid>
+
+			<br />
+			<br />
+			<p:separator />
+			<br />
+			<br />
 
 			<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
 				columns="3" layout="grid" rows="6" paginator="true"

@@ -104,10 +104,13 @@ public class EventoRepository {
 			eventoModel.setBanner(eventoEntity.getBanner());
 			eventoModel.setDataCadastro(eventoEntity.getDataCadastro());
 
-			Integer c = eventoEntity.getCausa().ordinal();
-			eventoModel.setCausa(c.toString());
-
-			eventoModel.setCausasString(eventoEntity.getCausa().toString());
+			if(eventoEntity.getCausa() != null) {
+				Integer c = eventoEntity.getCausa().ordinal();
+				eventoModel.setCausa(c.toString());
+				
+				eventoModel.setCausasString(eventoEntity.getCausa().toString());
+			}
+			
 
 			eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
@@ -207,10 +210,13 @@ public class EventoRepository {
 		eventoModel.setEmail(eventoEntity.getEmail());
 		eventoModel.setBanner(eventoEntity.getBanner());
 
-		Integer c = eventoEntity.getCausa().ordinal();
-		eventoModel.setCausa(c.toString());
-
-		eventoModel.setCausasString(eventoModel.getCausa());
+		if (eventoEntity.getCausa() != null) {
+			Integer c = eventoEntity.getCausa().ordinal();
+			eventoModel.setCausa(c.toString());
+	
+			eventoModel.setCausasString(eventoModel.getCausa());
+		}
+		
 		eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
 		eventoModel.setOngEntity(eventoEntity.getOngEntity());
@@ -229,7 +235,6 @@ public class EventoRepository {
 			}
 					
 			entityManager = Uteis.JpaEntityManager();
-			entityManager.joinTransaction();
 		
 			Query query = entityManager.createNamedQuery("EventoEntity.findByIds");
 			query.setParameter("list", ids);
@@ -243,6 +248,7 @@ public class EventoRepository {
 			
 			return resultModel;
 		} catch (Exception e) {
+			System.err.println("EventoRepository - findByIds" + e);
 			return new ArrayList<>();
 		}
 	}

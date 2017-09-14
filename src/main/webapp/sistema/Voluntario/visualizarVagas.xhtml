@@ -15,7 +15,7 @@
 		<h:form id="form">
 
 			<p:dataGrid value="#{recomendarVagas.vagasRecomendadas}" var="vaga"
-				columns="3" layout="grid" rows="3" paginator="false"
+				columns="3" layout="grid" rows="3" paginator="true"
 				styleClass="ui-noborder" style="margin-top:20px">
 				<f:facet name="header"> Vagas Recomendadas: </f:facet>
 				<p:panel>
@@ -52,6 +52,12 @@
 					</h:panelGrid>
 				</p:panel>
 			</p:dataGrid>
+			
+			<br />
+			<br />
+			<p:separator />
+			<br />
+			<br />
 
 			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
 				layout="grid" rows="9" paginator="true" style="margin-top:20px">
