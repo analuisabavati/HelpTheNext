@@ -29,7 +29,7 @@ public class EditarONG implements Serializable {
 
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
-		ONGEntity v = ongRepository.getONGByUsuarioSessao();
+		ONGEntity v = ongRepository.findONGByUsuarioSessao();
 		this.ong = ongRepository.toONGModel(v);
 	}
 	

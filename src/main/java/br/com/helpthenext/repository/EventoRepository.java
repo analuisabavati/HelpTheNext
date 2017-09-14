@@ -50,7 +50,7 @@ public class EventoRepository {
 		}
 	}
 
-	public EventoEntity getEvento(Long id) {
+	public EventoEntity findEventoById(Long id) {
 		entityManager = Uteis.JpaEntityManager();
 		return entityManager.find(EventoEntity.class, id);
 	}
@@ -72,13 +72,13 @@ public class EventoRepository {
 
 		eventoEntity.setCausa(Causas.values()[Integer.parseInt(eventoModel.getCausa())]);
 
-		eventoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
-		eventoEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
+		eventoEntity.setVoluntarioEntity(voluntarioRepository.findVoluntarioByUsuarioSessao());
+		eventoEntity.setOngEntity(ongRepository.findONGByUsuarioSessao());
 
 		entityManager.persist(eventoEntity);
 	}
 
-	public List<EventoModel> getEventos() {
+	public List<EventoModel> findAll() {
 
 		entityManager = Uteis.JpaEntityManager();
 		Query query = entityManager.createNamedQuery("EventoEntity.findAll");
@@ -116,7 +116,7 @@ public class EventoRepository {
 
 			eventoModel.setOngEntity(eventoEntity.getOngEntity());
 			eventoModel.setVoluntarioEntity(eventoEntity.getVoluntarioEntity());
-			eventoModel.setAvaliacaoEvento(getAvaliacaoEvento(eventoEntity, idEvento));
+			eventoModel.setAvaliacaoEvento(findAvaliacaoEvento(eventoEntity, idEvento));
 
 			eventosModel.add(eventoModel);
 		}
@@ -124,8 +124,8 @@ public class EventoRepository {
 		return eventosModel;
 	}
 
-	private AvaliacaoEventoEntity getAvaliacaoEvento(EventoEntity eventoEntity, Long idEvento) {
-		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
+	private AvaliacaoEventoEntity findAvaliacaoEvento(EventoEntity eventoEntity, Long idEvento) {
+		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.findVoluntarioByUsuarioSessao();
 
 		if (voluntarioByUsuarioSessao == null) {
 			return new AvaliacaoEventoEntity();
@@ -153,7 +153,7 @@ public class EventoRepository {
 
 		entityManager = Uteis.JpaEntityManager();
 
-		eventoEntity = getEvento(eventoModel.getId());
+		eventoEntity = findEventoById(eventoModel.getId());
 		eventoEntity.setTitulo(eventoModel.getTitulo());
 		eventoEntity.setDescricao(eventoModel.getDescricao());
 		eventoEntity.setNomeResponsavel(eventoModel.getNomeResponsavel());
@@ -184,7 +184,7 @@ public class EventoRepository {
 
 	public EventoEntity toEventoEntity(EventoModel eventoModel) {
 
-		EventoEntity eventoEntity = getEvento(eventoModel.getId());
+		EventoEntity eventoEntity = findEventoById(eventoModel.getId());
 		eventoEntity.setTitulo(eventoModel.getTitulo());
 		eventoEntity.setDescricao(eventoModel.getDescricao());
 		eventoEntity.setNomeResponsavel(eventoModel.getNomeResponsavel());
@@ -195,8 +195,8 @@ public class EventoRepository {
 
 		eventoEntity.setCausa(Causas.values()[Integer.parseInt(eventoModel.getCausa())]);
 
-		eventoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
-		eventoEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
+		eventoEntity.setVoluntarioEntity(voluntarioRepository.findVoluntarioByUsuarioSessao());
+		eventoEntity.setOngEntity(ongRepository.findONGByUsuarioSessao());
 
 		return eventoEntity;
 	}

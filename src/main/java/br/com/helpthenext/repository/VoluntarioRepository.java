@@ -163,7 +163,7 @@ public class VoluntarioRepository {
 		entityManager.merge(voluntarioEntity);
 	}
 
-	public Long getIdVoluntarioSessao() {
+	public Long findByIdVoluntarioSessao() {
 
 		UsuarioEntity usuario = usuarioEntity.fromUsuarioModel(usuarioController.GetUsuarioSession());
 
@@ -179,7 +179,7 @@ public class VoluntarioRepository {
 		}
 	}
 
-	public VoluntarioEntity getVoluntarioByUsuarioSessao() {
+	public VoluntarioEntity findVoluntarioByUsuarioSessao() {
 
 		UsuarioEntity usuario = usuarioEntity.fromUsuarioModel(usuarioController.GetUsuarioSession());
 
@@ -296,7 +296,7 @@ public class VoluntarioRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<VoluntarioModel> getVoluntariosCidadeEstado(String cidade, String estado) {
+	public List<VoluntarioModel> findVoluntariosByCidadeEstado(String cidade, String estado) {
 		try {
 
 			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByCidadeEstado");
@@ -318,7 +318,7 @@ public class VoluntarioRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<VoluntarioModel> getVoluntariosTrabalhoDistancia() {
+	public List<VoluntarioModel> findVoluntariosByTrabalhoDistancia() {
 		try {
 
 			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByTrabalhoDistancia");

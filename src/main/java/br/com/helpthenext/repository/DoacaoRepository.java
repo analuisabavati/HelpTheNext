@@ -30,7 +30,7 @@ public class DoacaoRepository {
 
 	EntityManager entityManager;
 	
-	public DoacaoEntity getDoacao(Long id) {
+	public DoacaoEntity findDoacaoById(Long id) {
 		entityManager = Uteis.JpaEntityManager();
 		return entityManager.find(DoacaoEntity.class, id);
 	}
@@ -58,12 +58,12 @@ public class DoacaoRepository {
 		}
 		doacaoEntity.setPeriodos(periodos);
 		
-		doacaoEntity.setVoluntarioEntity(voluntarioRepository.getVoluntarioByUsuarioSessao());
+		doacaoEntity.setVoluntarioEntity(voluntarioRepository.findVoluntarioByUsuarioSessao());
 	
 		entityManager.persist(doacaoEntity);
 	}
 
-	public List<DoacaoModel> getDoacaos() {
+	public List<DoacaoModel> findAll() {
 		
 		entityManager = Uteis.JpaEntityManager();
 		Query query = entityManager.createNamedQuery("DoacaoEntity.findAll");
@@ -99,7 +99,7 @@ public class DoacaoRepository {
 
 		entityManager = Uteis.JpaEntityManager();
 
-		doacaoEntity = getDoacao(doacaoModel.getId());
+		doacaoEntity = findDoacaoById(doacaoModel.getId());
 		doacaoEntity.setTitulo(doacaoModel.getTitulo());
 		doacaoEntity.setDescricao(doacaoModel.getDescricao());
 		doacaoEntity.setFoto(doacaoModel.getFoto());
@@ -122,7 +122,7 @@ public class DoacaoRepository {
 	
 	public void removerDoacao(DoacaoModel doacao) {
 		entityManager = Uteis.JpaEntityManager();
-		doacaoEntity = getDoacao(doacao.getId());
+		doacaoEntity = findDoacaoById(doacao.getId());
 		entityManager.remove(doacaoEntity);
 	}
 

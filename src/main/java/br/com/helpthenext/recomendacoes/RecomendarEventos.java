@@ -84,7 +84,7 @@ public class RecomendarEventos implements Serializable {
 	}
 
 	public void recomendaEventosConformePredicoes() {
-		Long idVoluntarioSessao = voluntarioRepository.getIdVoluntarioSessao();
+		Long idVoluntarioSessao = voluntarioRepository.findByIdVoluntarioSessao();
 		List<Long> idsVagas = predicoes.calculaPredicoes(idVoluntarioSessao.intValue(), pathArquivoAvaliacoesEventos, pathArquivoDiffEventos);
 		eventosRecomendados = eventoRepository.findByIds(idsVagas);
 	}

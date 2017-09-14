@@ -63,7 +63,7 @@ public class ONGRepository {
 		entityManager.persist(ongEntity);
 	}
 
-	public ONGEntity getONGByUsuarioSessao() {
+	public ONGEntity findONGByUsuarioSessao() {
 
 		UsuarioEntity usuario = usuarioEntity.fromUsuarioModel(usuarioController.GetUsuarioSession());
 
@@ -78,7 +78,7 @@ public class ONGRepository {
 		}
 	}
 
-	public ONGEntity getONG(Long id) {
+	public ONGEntity findONGById(Long id) {
 		entityManager = Uteis.JpaEntityManager();
 		return entityManager.find(ONGEntity.class, id);
 	}
@@ -87,7 +87,7 @@ public class ONGRepository {
 
 		entityManager = Uteis.JpaEntityManager();
 
-		ongEntity = getONG(ongModel.getId());
+		ongEntity = findONGById(ongModel.getId());
 		ongEntity.setEmail(ongModel.getEmail());
 		ongEntity.setNomeONG(ongModel.getNomeONG());
 		ongEntity.setNomeResponsavel(ongModel.getNomeResponsavel());

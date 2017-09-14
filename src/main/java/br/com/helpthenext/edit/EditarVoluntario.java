@@ -29,7 +29,7 @@ public class EditarVoluntario implements Serializable {
 	
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
-		VoluntarioEntity v = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		VoluntarioEntity v = voluntarioRepository.findVoluntarioByUsuarioSessao();
 		this.voluntario = voluntarioRepository.toVoluntarioModel(v);	
 	}
 	

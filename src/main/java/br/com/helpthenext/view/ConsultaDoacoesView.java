@@ -47,11 +47,11 @@ public class ConsultaDoacoesView implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		this.doacoes = doacaoRepository.getDoacaos();
+		this.doacoes = doacaoRepository.findAll();
 	}
 
 	public void ativarBotoes() {
-		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		VoluntarioEntity vol = voluntarioRepository.findVoluntarioByUsuarioSessao();
 		if (vol != null && selectedDoacao != null && selectedDoacao.getVoluntarioEntity() != null
 				&& selectedDoacao.getVoluntarioEntity().getId() != null) {
 			if (selectedDoacao.getVoluntarioEntity() != null
@@ -65,7 +65,7 @@ public class ConsultaDoacoesView implements Serializable {
 
 	public void enviarEmailInteresse() {
 
-		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
+		ONGEntity ong = ongRepository.findONGByUsuarioSessao();
 
 		StringBuilder msg = new StringBuilder();
 		msg.append("--------------------------- HelpTheNext -------------------------");

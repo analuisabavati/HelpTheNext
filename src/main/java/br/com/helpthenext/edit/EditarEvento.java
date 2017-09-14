@@ -35,7 +35,7 @@ public class EditarEvento implements Serializable {
 	private UploadedFile uploadedFile;
 	
 	public void avaliarEvento() {
-		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.findVoluntarioByUsuarioSessao();
 
 		evento.getAvaliacaoEvento().setIdEvento(evento.getId());
 		evento.getAvaliacaoEvento().setIdVoluntario(voluntarioByUsuarioSessao.getId());

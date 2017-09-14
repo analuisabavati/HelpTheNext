@@ -38,7 +38,7 @@ public class VagaRepository {
 
 	private EntityManager entityManager;
 
-	public VagaEntity getVaga(Long id) {
+	public VagaEntity findVagaById(Long id) {
 		entityManager = Uteis.JpaEntityManager();
 		return entityManager.find(VagaEntity.class, id);
 	}
@@ -82,12 +82,12 @@ public class VagaRepository {
 
 		vagaEntity.setPeriodos(periodos);
 
-		vagaEntity.setOngEntity(ongRepository.getONGByUsuarioSessao());
+		vagaEntity.setOngEntity(ongRepository.findONGByUsuarioSessao());
 
 		entityManager.persist(vagaEntity);
 	}
 
-	public List<VagaModel> getVagas() {
+	public List<VagaModel> findAll() {
 
 		entityManager = Uteis.JpaEntityManager();
 		
@@ -133,7 +133,7 @@ public class VagaRepository {
 		vagaModel.setPeriodoString(vagaModel.getPeriodos() == null ? null : Arrays.toString(vagaModel.getPeriodos()));
 		vagaModel.setDataCadastroDate(asDate(vagaModel.getDataCadastro()));
 		
-		vagaModel.setAvaliacaoVaga(getAvaliacaoEvento(vagaEntity, idVaga));
+		vagaModel.setAvaliacaoVaga(findAvaliacaoEvento(vagaEntity, idVaga));
 
 		return vagaModel;
 	}
@@ -150,7 +150,7 @@ public class VagaRepository {
 
 		entityManager = Uteis.JpaEntityManager();
 
-		vagaEntity = getVaga(vagaModel.getId());
+		vagaEntity = findVagaById(vagaModel.getId());
 
 		vagaEntity.setTitulo(vagaModel.getTitulo());
 		vagaEntity.setDescricao(vagaModel.getDescricao());
@@ -190,7 +190,7 @@ public class VagaRepository {
 
 	public void removeVaga(VagaModel vagaModel) {
 		entityManager = Uteis.JpaEntityManager();
-		vagaEntity = getVaga(vagaModel.getId());
+		vagaEntity = findVagaById(vagaModel.getId());
 		entityManager.remove(vagaEntity);
 	}
 
@@ -199,8 +199,8 @@ public class VagaRepository {
 		entityManager.remove(vaga);
 	}
 	
-	private AvaliacaoVagaEntity getAvaliacaoEvento(VagaEntity VagaEntity, Long idVaga) {
-		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
+	private AvaliacaoVagaEntity findAvaliacaoEvento(VagaEntity VagaEntity, Long idVaga) {
+		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.findVoluntarioByUsuarioSessao();
 		
 		if (voluntarioByUsuarioSessao == null) {
 			return new AvaliacaoVagaEntity();

@@ -45,10 +45,10 @@ public class RecomendarVoluntarios implements Serializable {
 		List<VoluntarioModel> voluntariosEncontrados = new ArrayList<>();
 
 		if (vaga.getTrabalhoDistancia().equals("S")) {
-			voluntariosEncontrados = voluntarioRepository.getVoluntariosTrabalhoDistancia();
+			voluntariosEncontrados = voluntarioRepository.findVoluntariosByTrabalhoDistancia();
 		} else {
-			ONGEntity ong = ongRepository.getONGByUsuarioSessao();
-			voluntariosEncontrados = voluntarioRepository.getVoluntariosCidadeEstado(ong.getCidade(), ong.getEstado());
+			ONGEntity ong = ongRepository.findONGByUsuarioSessao();
+			voluntariosEncontrados = voluntarioRepository.findVoluntariosByCidadeEstado(ong.getCidade(), ong.getEstado());
 		}
 
 		int somatorio = 0;
@@ -120,7 +120,7 @@ public class RecomendarVoluntarios implements Serializable {
 
 	public void enviarEmail() {
 
-		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
+		ONGEntity ong = ongRepository.findONGByUsuarioSessao();
 
 		StringBuilder msg = new StringBuilder();
 		msg.append("--------------------------- HelpTheNext -------------------------");

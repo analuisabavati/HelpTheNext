@@ -50,11 +50,11 @@ public class ConsultaEventosView implements Serializable {
 
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
-		this.eventos = eventoRepository.getEventos();
+		this.eventos = eventoRepository.findAll();
 	}
 
 	public void ativarBotoes() {
-		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
+		ONGEntity ong = ongRepository.findONGByUsuarioSessao();
 		if (ong != null && selectedEvento != null && selectedEvento.getOngEntity() != null
 				&& selectedEvento.getOngEntity().getId() != null) {
 			if (selectedEvento.getOngEntity() != null && selectedEvento.getOngEntity().getId().equals(ong.getId())) {
@@ -64,7 +64,7 @@ public class ConsultaEventosView implements Serializable {
 			}
 		}
 
-		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		VoluntarioEntity vol = voluntarioRepository.findVoluntarioByUsuarioSessao();
 		if (vol != null && selectedEvento != null && selectedEvento.getVoluntarioEntity() != null
 				&& selectedEvento.getVoluntarioEntity().getId() != null) {
 			if (selectedEvento.getVoluntarioEntity() != null

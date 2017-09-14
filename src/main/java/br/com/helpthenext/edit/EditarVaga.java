@@ -35,7 +35,7 @@ public class EditarVaga implements Serializable {
 	private UploadedFile uploadedFile;
 	
 	public void avaliarVaga() {
-		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.findVoluntarioByUsuarioSessao();
 
 		vaga.getAvaliacaoVaga().setIdVaga(vaga.getId());
 		vaga.getAvaliacaoVaga().setIdVoluntario(voluntarioByUsuarioSessao.getId());

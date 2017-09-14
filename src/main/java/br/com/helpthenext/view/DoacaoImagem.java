@@ -31,7 +31,7 @@ public class DoacaoImagem {
         else {
             String doaocaoId = context.getExternalContext().getRequestParameterMap().get("doacaoId");
             if (doaocaoId != null) {
-            	DoacaoEntity doaocao = DoacaoRepository.getDoacao(new Long(doaocaoId));
+            	DoacaoEntity doaocao = DoacaoRepository.findDoacaoById(new Long(doaocaoId));
             	if (doaocao != null && doaocao.getFoto() != null ) {
             		return new DefaultStreamedContent(new ByteArrayInputStream(doaocao.getFoto()));
             	}

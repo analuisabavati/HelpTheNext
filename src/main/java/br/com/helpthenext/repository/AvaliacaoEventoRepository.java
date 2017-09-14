@@ -24,7 +24,7 @@ public class AvaliacaoEventoRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<AvaliacaoEventoEntity> getByIdVoluntario(Long id) {
+	public List<AvaliacaoEventoEntity> findByIdVoluntario(Long id) {
 		Query query = Uteis.JpaEntityManager().createNamedQuery("AvaliacaoEventoEntity.findByIdVoluntario");
 
 		query.setParameter("id", id);

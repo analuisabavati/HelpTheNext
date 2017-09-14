@@ -31,7 +31,7 @@ public class EventoImagem {
         else {
             String eventoId = context.getExternalContext().getRequestParameterMap().get("eventoId");
             if (eventoId != null) {
-            	EventoEntity evento = eventoRepository.getEvento(new Long(eventoId));
+            	EventoEntity evento = eventoRepository.findEventoById(new Long(eventoId));
             	if (evento != null && evento.getBanner() != null ) {
             		return new DefaultStreamedContent(new ByteArrayInputStream(evento.getBanner()));
             	}

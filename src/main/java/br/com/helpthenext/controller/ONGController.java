@@ -37,7 +37,7 @@ public class ONGController {
 	
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
-		this.ong = ongRepository.getONGByUsuarioSessao();
+		this.ong = ongRepository.findONGByUsuarioSessao();
 	}
 	
 	public void atualizarONG() {	

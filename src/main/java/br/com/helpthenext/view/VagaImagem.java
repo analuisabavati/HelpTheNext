@@ -31,7 +31,7 @@ public class VagaImagem {
         else { 
             String vagaId = context.getExternalContext().getRequestParameterMap().get("vagaId");
             if (vagaId != null) {
-            	VagaEntity vaga = vagaRepository.getVaga(new Long(vagaId));
+            	VagaEntity vaga = vagaRepository.findVagaById(new Long(vagaId));
             	if (vaga != null && vaga.getBanner() != null ) {
             		return new DefaultStreamedContent(new ByteArrayInputStream(vaga.getBanner()));
             	}

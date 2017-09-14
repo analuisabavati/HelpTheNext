@@ -51,11 +51,11 @@ public class ConsultaVagasView implements Serializable {
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
 		this.vagas = null;
-		this.vagas = vagaRepository.getVagas();
+		this.vagas = vagaRepository.findAll();
 	}
 
 	public void ativarBotoes() {
-		ONGEntity ong = ongRepository.getONGByUsuarioSessao();
+		ONGEntity ong = ongRepository.findONGByUsuarioSessao();
 		if (ong != null && selectedVaga != null && selectedVaga.getOngEntity() != null
 				&& selectedVaga.getOngEntity().getId() != null) {
 			if (selectedVaga.getOngEntity() != null && selectedVaga.getOngEntity().getId().equals(ong.getId())) {
@@ -80,7 +80,7 @@ public class ConsultaVagasView implements Serializable {
 
 	public void enviarEmailInteresse() {
 
-		VoluntarioEntity vol = voluntarioRepository.getVoluntarioByUsuarioSessao();
+		VoluntarioEntity vol = voluntarioRepository.findVoluntarioByUsuarioSessao();
 
 		StringBuilder msg = new StringBuilder();
 		msg.append("--------------------------- HelpTheNext -------------------------");
