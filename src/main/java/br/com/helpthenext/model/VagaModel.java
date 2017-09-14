@@ -34,7 +34,7 @@ public class VagaModel {
 	private String periodoString;
 	private Date dataCadastroDate;
 	
-	private AvaliacaoVagaEntity avaliacaoVaga;
+	private AvaliacaoVagaEntity avaliacaoVaga = new AvaliacaoVagaEntity();
 	
 	public Date getDataCadastroDate() {
 		return dataCadastroDate;

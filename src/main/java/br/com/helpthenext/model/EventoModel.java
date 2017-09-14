@@ -27,7 +27,7 @@ public class EventoModel {
 	private String causasString;
 	private Date dataCadastroDate;
 	
-	private AvaliacaoEventoEntity avaliacaoEvento;
+	private AvaliacaoEventoEntity avaliacaoEvento = new AvaliacaoEventoEntity();
 	
 	public Date getDataCadastroDate() {
 		return dataCadastroDate;

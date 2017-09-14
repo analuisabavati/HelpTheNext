@@ -16,20 +16,13 @@ public class AvaliacaoVagaRepository {
 
 	public void salvarAtualizarAvaliacaoVaga(AvaliacaoVagaEntity avaliacao) {
 		entityManager = Uteis.JpaEntityManager();
-		
-		AvaliacaoVagaEntity novo = new AvaliacaoVagaEntity();
-		novo.setIdVaga(avaliacao.getIdVaga());
-		novo.setIdVoluntario(avaliacao.getIdVoluntario());
-		novo.setAvaliacao(avaliacao.getAvaliacao());
-		
+				
 		AvaliacaoVagaEntity existe = findByVoluntarioVaga(avaliacao.getIdVoluntario(), avaliacao.getIdVaga());
 		if (existe != null) {
 			avaliacao.setId(existe.getId());
 		}
 
-		novo.setId(avaliacao.getId());
-
-		entityManager.merge(novo);
+		entityManager.merge(avaliacao);
 	}
 	
 	public AvaliacaoVagaEntity findByVoluntarioVaga(Long idVol, Long idVaga) {

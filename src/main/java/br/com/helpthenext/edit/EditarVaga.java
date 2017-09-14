@@ -11,6 +11,8 @@ import org.primefaces.model.UploadedFile;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.AvaliacaoVagaRepository;
 import br.com.helpthenext.repository.VagaRepository;
+import br.com.helpthenext.repository.VoluntarioRepository;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 @SessionScoped
@@ -25,11 +27,19 @@ public class EditarVaga implements Serializable {
 	@Inject
 	transient private AvaliacaoVagaRepository avaliacaoVagaRepository;
 	
+	@Inject
+	transient VoluntarioRepository voluntarioRepository;
+	
 	private VagaModel vaga;
 	
 	private UploadedFile uploadedFile;
 	
 	public void avaliarVaga() {
+		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
+
+		vaga.getAvaliacaoVaga().setIdVaga(vaga.getId());
+		vaga.getAvaliacaoVaga().setIdVoluntario(voluntarioByUsuarioSessao.getId());
+		
 		avaliacaoVagaRepository.salvarAtualizarAvaliacaoVaga(vaga.getAvaliacaoVaga());
 		Uteis.MensagemInfo("Vaga avaliada!");
 		vaga.getAvaliacaoVaga().setAvaliacao(0);

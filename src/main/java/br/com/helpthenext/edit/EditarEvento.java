@@ -11,6 +11,8 @@ import org.primefaces.model.UploadedFile;
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.AvaliacaoEventoRepository;
 import br.com.helpthenext.repository.EventoRepository;
+import br.com.helpthenext.repository.VoluntarioRepository;
+import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 @SessionScoped
@@ -25,11 +27,19 @@ public class EditarEvento implements Serializable {
 	@Inject
 	transient AvaliacaoEventoRepository avaliacaoEventoRepository;
 	
+	@Inject
+	transient VoluntarioRepository voluntarioRepository;
+	
 	private EventoModel evento;
 	
 	private UploadedFile uploadedFile;
 	
 	public void avaliarEvento() {
+		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.getVoluntarioByUsuarioSessao();
+
+		evento.getAvaliacaoEvento().setIdEvento(evento.getId());
+		evento.getAvaliacaoEvento().setIdVoluntario(voluntarioByUsuarioSessao.getId());
+		
 		avaliacaoEventoRepository.salvarAtualizarAvaliacaoEvento(evento.getAvaliacaoEvento());
 		Uteis.MensagemInfo("Evento avaliado!");
 		evento.getAvaliacaoEvento().setAvaliacao(0);

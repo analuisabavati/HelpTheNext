@@ -48,7 +48,7 @@
 				</p:tab>
 
 				<p:tab title="Todos Eventos Disponiveis">
-					
+
 					<p:inputText id="inputText-busca"
 						style="width:30%; height:30px; margin-left:60px" maxlength="80"
 						placeholder="Digite o titulo do evento"
@@ -138,8 +138,8 @@
 						<h:outputText value=" " />
 						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
 
-						<p:commandButton value="Avaliar Evento" id="commandButton-curtir"
-							action="#{editarEvento.avaliarEvento}" />
+						<p:commandButton value="Avaliar Evento" id="commandButton-avaliar2"
+							icon="ui-icon-like" action="#{editarEvento.avaliarEvento}" />
 
 					</p:panelGrid>
 				</p:outputPanel>

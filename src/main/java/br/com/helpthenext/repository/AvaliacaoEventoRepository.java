@@ -60,19 +60,13 @@ public class AvaliacaoEventoRepository {
 	public void salvarAtualizarAvaliacaoEvento(AvaliacaoEventoEntity avaliacao) {
 		entityManager = Uteis.JpaEntityManager();
 		
-		AvaliacaoEventoEntity novo = new AvaliacaoEventoEntity();
-		novo.setIdEvento(avaliacao.getIdEvento());
-		novo.setIdVoluntario(avaliacao.getIdVoluntario());
-		novo.setAvaliacao(avaliacao.getAvaliacao());
 		
 		AvaliacaoEventoEntity existe = findByVoluntarioEvento(avaliacao.getIdVoluntario(), avaliacao.getIdEvento());
 		if (existe != null) {
 			avaliacao.setId(existe.getId());
 		}
 
-		novo.setId(avaliacao.getId());
-
-		entityManager.merge(novo);
+		entityManager.merge(avaliacao);
 	}
 	
 	@SuppressWarnings({ "unchecked" })
