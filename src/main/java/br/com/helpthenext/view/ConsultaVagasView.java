@@ -45,6 +45,8 @@ public class ConsultaVagasView implements Serializable {
 	private VagaModel selectedVaga;
 
 	private boolean botaoEditar;
+	
+	private String busca;
 
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
@@ -141,6 +143,14 @@ public class ConsultaVagasView implements Serializable {
 
 	public void setBotaoEditar(boolean botaoEditar) {
 		this.botaoEditar = botaoEditar;
+	}
+	
+	public void setBusca(String busca) {
+		this.busca = busca;
+	}
+
+	public String getBusca() {
+		return busca;
 	}
 
 }

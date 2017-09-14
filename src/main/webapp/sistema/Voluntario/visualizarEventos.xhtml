@@ -14,71 +14,81 @@
 	<ui:define name="content">
 		<h:form id="form">
 
-			<p:dataGrid value="#{recomendarEventos.eventosRecomendados}"
-				var="evento" columns="3" layout="grid" rows="3" paginator="true"
-				style="margin-top:20px">
-				<f:facet name="header"> Eventos Recomendados: </f:facet>
-				<p:panel header="#{evento.titulo}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%; hight:200px"
-						styleClass="ui-noborder">
-						<p:commandLink update=":form:eventoRecomendadoDetail"
-							oncomplete="PF('eventoRecomendadoDialog').show()">
-							<f:setPropertyActionListener value="#{evento}"
-								target="#{recomendarEventos.selectedEvento}" />
-							<f:setPropertyActionListener value="#{evento}"
-								target="#{editarEvento.evento}" />
-							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
-								<f:param name="eventoId" value="#{evento.id}" />
-							</p:graphicImage>
-						</p:commandLink>
-						<p:commandButton value="Mais Informações"
-							update=":form:eventoRecomendadoDetail"
-							oncomplete="PF('eventoRecomendadoDialog').show()">
-							<f:setPropertyActionListener value="#{evento}"
-								target="#{recomendarEventos.selectedEvento}" />
-							<f:setPropertyActionListener value="#{evento}"
-								target="#{editarEvento.evento}" />
-						</p:commandButton>
-					</h:panelGrid>
-				</p:panel>
-			</p:dataGrid>
+			<p:tabView>
+				<p:tab title="Eventos Recomendados">
+					<p:dataGrid value="#{recomendarEventos.eventosRecomendados}"
+						var="evento" columns="3" layout="grid" rows="3" paginator="true"
+						style="margin-top:20px">
+						<f:facet name="header"> Eventos Recomendados: </f:facet>
+						<p:panel header="#{evento.titulo}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%; hight:200px"
+								styleClass="ui-noborder">
+								<p:commandLink update=":form:eventoRecomendadoDetail"
+									oncomplete="PF('eventoRecomendadoDialog').show()">
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{recomendarEventos.selectedEvento}" />
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{editarEvento.evento}" />
+									<p:graphicImage value="#{eventoImagem.imagem}"
+										style="width:100%">
+										<f:param name="eventoId" value="#{evento.id}" />
+									</p:graphicImage>
+								</p:commandLink>
+								<p:commandButton value="Mais Informações"
+									update=":form:eventoRecomendadoDetail"
+									oncomplete="PF('eventoRecomendadoDialog').show()">
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{recomendarEventos.selectedEvento}" />
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{editarEvento.evento}" />
+								</p:commandButton>
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+				</p:tab>
 
-			<br />
-			<br />
-			<p:separator />
-			<br />
-			<br />
+				<p:tab title="Todos Eventos Disponiveis">
+					
+					<p:inputText id="inputText-busca"
+						style="width:30%; height:30px; margin-left:60px" maxlength="80"
+						placeholder="Digite o titulo do evento"
+						value="#{consultaEventosView.busca}" />
+					<p:outputLabel value=" " />
+					<p:commandButton value="Buscar" update="form" action="#"></p:commandButton>
 
-			<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
-				columns="3" layout="grid" rows="6" paginator="true"
-				style="margin-top:20px">
-				<f:facet name="header"> Todos Eventos Disponiveis: </f:facet>
-				<p:panel header="#{evento.titulo}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%; hight:200px"
-						styleClass="ui-noborder">
-						<p:commandLink update=":form:eventoDetail"
-							action="#{consultaEventosView.ativarBotoes}"
-							oncomplete="PF('eventoDialog').show()">
-							<f:setPropertyActionListener value="#{evento}"
-								target="#{consultaEventosView.selectedEvento}" />
-							<f:setPropertyActionListener value="#{evento}"
-								target="#{editarEvento.evento}" />
-							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
-								<f:param name="eventoId" value="#{evento.id}" />
-							</p:graphicImage>
-						</p:commandLink>
-						<p:commandButton value="Mais Informações"
-							update=":form:eventoDetail"
-							action="#{consultaEventosView.ativarBotoes}"
-							oncomplete="PF('eventoDialog').show()">
-							<f:setPropertyActionListener value="#{evento}"
-								target="#{consultaEventosView.selectedEvento}" />
-							<f:setPropertyActionListener value="#{evento}"
-								target="#{editarEvento.evento}" />
-						</p:commandButton>
-					</h:panelGrid>
-				</p:panel>
-			</p:dataGrid>
+					<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
+						columns="3" layout="grid" rows="6" paginator="true"
+						style="margin-top:20px">
+						<f:facet name="header"> Todos Eventos Disponiveis: </f:facet>
+						<p:panel header="#{evento.titulo}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%; hight:200px"
+								styleClass="ui-noborder">
+								<p:commandLink update=":form:eventoDetail"
+									action="#{consultaEventosView.ativarBotoes}"
+									oncomplete="PF('eventoDialog').show()">
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{consultaEventosView.selectedEvento}" />
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{editarEvento.evento}" />
+									<p:graphicImage value="#{eventoImagem.imagem}"
+										style="width:100%">
+										<f:param name="eventoId" value="#{evento.id}" />
+									</p:graphicImage>
+								</p:commandLink>
+								<p:commandButton value="Mais Informações"
+									update=":form:eventoDetail"
+									action="#{consultaEventosView.ativarBotoes}"
+									oncomplete="PF('eventoDialog').show()">
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{consultaEventosView.selectedEvento}" />
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{editarEvento.evento}" />
+								</p:commandButton>
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+				</p:tab>
+			</p:tabView>
 
 			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">

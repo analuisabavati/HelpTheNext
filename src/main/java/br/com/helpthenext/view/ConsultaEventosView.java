@@ -45,6 +45,8 @@ public class ConsultaEventosView implements Serializable {
 	private boolean botaoCurtir;
 
 	private boolean botaoEditar;
+	
+	private String busca;
 
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
@@ -123,8 +125,42 @@ public class ConsultaEventosView implements Serializable {
 		return avaliacao;
 	}
 
+	public EventoRepository getEventoRepository() {
+		return eventoRepository;
+	}
+
+	public void setEventoRepository(EventoRepository eventoRepository) {
+		this.eventoRepository = eventoRepository;
+	}
+
+	public ONGRepository getOngRepository() {
+		return ongRepository;
+	}
+
+	public void setOngRepository(ONGRepository ongRepository) {
+		this.ongRepository = ongRepository;
+	}
+
+	public VoluntarioRepository getVoluntarioRepository() {
+		return voluntarioRepository;
+	}
+
+	public void setVoluntarioRepository(VoluntarioRepository voluntarioRepository) {
+		this.voluntarioRepository = voluntarioRepository;
+	}
+
+	public String getBusca() {
+		return busca;
+	}
+
+	public void setBusca(String busca) {
+		this.busca = busca;
+	}
+
 	public void setAvaliacao(Integer avaliacao) {
 		this.avaliacao = avaliacao;
 	}
+	
+	
 
 }
