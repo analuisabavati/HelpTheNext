@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import br.com.helpthenext.uteis.MapUtil;
+
 public class Predicoes {
 
 	HashMap<Integer, Double> matrizAvaliacaoItemVoluntario = new HashMap<Integer, Double>();
@@ -96,6 +98,8 @@ public class Predicoes {
 	}
 
 	private List<Long> getIdsItensRecomendados() {
+		
+		MapUtil.sortByValue(predicoes);
 
 		List<Long> idItensRecomendados = new ArrayList<>();
 
