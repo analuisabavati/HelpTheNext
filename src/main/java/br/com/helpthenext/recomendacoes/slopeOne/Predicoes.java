@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import br.com.helpthenext.uteis.MapUtil;
+import br.com.helpthenext.uteis.HashMapUtil;
 
 public class Predicoes {
 
@@ -99,7 +99,7 @@ public class Predicoes {
 
 	private List<Long> getIdsItensRecomendados() {
 		
-		MapUtil.sortByValue(predicoes);
+		predicoes = HashMapUtil.sortByValue(predicoes);
 
 		List<Long> idItensRecomendados = new ArrayList<>();
 
@@ -111,7 +111,7 @@ public class Predicoes {
 
 			System.out.println(item + " " + avaliacao);
 		}
-
+		
 		return idItensRecomendados;
 	}
 

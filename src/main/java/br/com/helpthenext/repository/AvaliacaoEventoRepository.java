@@ -41,6 +41,7 @@ public class AvaliacaoEventoRepository {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	public AvaliacaoEventoEntity findByVoluntarioEvento(Long idVol,
 			Long idEvento) {
 		try {
@@ -48,12 +49,18 @@ public class AvaliacaoEventoRepository {
 
 			query.setParameter("idVoluntario", idVol);
 			query.setParameter("idEvento", idEvento);
-
-			return (AvaliacaoEventoEntity) query.getSingleResult();
+			
+			List<AvaliacaoEventoEntity> result = query.getResultList();
+			
+			if (result != null && !result.isEmpty()) {
+				return result.get(0);
+			}
+			
+			return null;
 
 		} catch (NoResultException nre) {
 			return null;
-		}
+		} 
 
 	}
 
