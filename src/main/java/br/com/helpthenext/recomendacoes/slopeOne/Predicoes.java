@@ -23,18 +23,22 @@ public class Predicoes {
 	String pathArquivoAvaliacoes;
 	String pathArquivoDiferencas;
 
-	public static void main(String args[]) {
-		System.out.println("\n[SlopOne] -  Iniciando Predicoes  -");
-		String pathArqDiferencas1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diff.txt";
-		String pathArqAvaliacoes1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avaliacoes.txt";
-
-	//	long inicio = System.currentTimeMillis();
-		Predicoes p = new Predicoes();
-		p.calculaPredicoes(2, pathArqAvaliacoes1, pathArqDiferencas1);
-//		long fim = System.currentTimeMillis();
-
-	//	System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio) + " ms.");
-	}
+	/*
+	 * public static void main(String args[]) {
+	 * System.out.println("\n[SlopOne] -  Iniciando Predicoes  -"); String
+	 * pathArqDiferencas1 =
+	 * "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diff.txt";
+	 * String pathArqAvaliacoes1 =
+	 * "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avaliacoes.txt";
+	 * 
+	 * // long inicio = System.currentTimeMillis(); Predicoes p = new
+	 * Predicoes(); p.calculaPredicoes(2, pathArqAvaliacoes1,
+	 * pathArqDiferencas1); // long fim = System.currentTimeMillis();
+	 * 
+	 * // System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio)
+	 * + " ms."); }
+	 * 
+	 */
 
 	public List<Long> calculaPredicoes(int idVoluntario, String pathArquivoAvaliacoes, String pathArquivoDiferencas) {
 
@@ -48,14 +52,15 @@ public class Predicoes {
 		double qntAvaliacoesItem[] = new double[quantidadeItensAvaliados + 1];
 
 		for (int itemAvaliado : matrizAvaliacaoItemVoluntario.keySet()) {
-			
+
 			for (int itemX = 1; itemX <= quantidadeItensAvaliados; itemX++) {
-				
+
 				if (itemX != itemAvaliado && isItemNaoAvaliado(itemX)) {
 					double valorPredicao = 0;
-					
+
 					/*
-					 * Calcula a nota que o voluntario daria ao itemX baseado no itemAvaliado
+					 * Calcula a nota que o voluntario daria ao itemX baseado no
+					 * itemAvaliado
 					 * 
 					 */
 
@@ -77,13 +82,13 @@ public class Predicoes {
 		}
 
 		calculaMedias(qntAvaliacoesItem);
-		
+
 		return getIdsItensRecomendados();
 	}
 
-	private void calculaMedias(double[] qntAvaliacoesItem) {		
+	private void calculaMedias(double[] qntAvaliacoesItem) {
 		double media;
-		
+
 		for (int item : predicoes.keySet()) {
 			media = predicoes.get(item).doubleValue() / qntAvaliacoesItem[item];
 			predicoes.put(item, media);
@@ -91,7 +96,7 @@ public class Predicoes {
 	}
 
 	private List<Long> getIdsItensRecomendados() {
-		
+
 		List<Long> idItensRecomendados = new ArrayList<>();
 
 		for (int item : predicoes.keySet()) {
@@ -102,7 +107,7 @@ public class Predicoes {
 
 			System.out.println(item + " " + avaliacao);
 		}
-				
+
 		return idItensRecomendados;
 	}
 

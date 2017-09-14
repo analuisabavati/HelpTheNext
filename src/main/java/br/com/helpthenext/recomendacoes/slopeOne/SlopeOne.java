@@ -21,18 +21,21 @@ public class SlopeOne {
 	String pathArquivoAvaliacoes;
 	String pathArquivoDiferencas;
 
-	public static void main(String args[]) {
-		System.out.println("\n[SlopOne] -  Iniciando SlopeOne  -");
-		String pathArqDiferencas1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diff.txt";
-		String pathArqAvaliacoes1 = "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avaliacoes.txt";
-
-	//	long inicio = System.currentTimeMillis();
-		SlopeOne s = new SlopeOne();
-		s.calculaMatrizDiferencas(pathArqAvaliacoes1, pathArqDiferencas1);
-//		long fim = System.currentTimeMillis();
-
-	//	System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio) + " ms.");
-	}
+	/*
+	 * public static void main(String args[]) {
+	 * System.out.println("\n[SlopOne] -  Iniciando SlopeOne  -"); String
+	 * pathArqDiferencas1 =
+	 * "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diff.txt";
+	 * String pathArqAvaliacoes1 =
+	 * "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avaliacoes.txt";
+	 * 
+	 * // long inicio = System.currentTimeMillis(); SlopeOne s = new SlopeOne();
+	 * s.calculaMatrizDiferencas(pathArqAvaliacoes1, pathArqDiferencas1); //
+	 * long fim = System.currentTimeMillis();
+	 * 
+	 * // System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio)
+	 * + " ms."); }
+	 */
 
 	public void calculaMatrizDiferencas(String pathArquivoAvaliacoes, String pathArquivoDiferencas) {
 
@@ -62,11 +65,11 @@ public class SlopeOne {
 
 				linha = removeVirgula(getProximaLinha(dataInputStream));
 				voluntario = getProximoTokenInt(linha);
-				
-				if(voluntario == -1) {
+
+				if (voluntario == -1) {
 					break;
 				}
-				
+
 				voluntarioTemp = voluntario;
 
 				matrizVoluntarioItemAvaliacao.put(voluntario, new HashMap<Integer, Double>());
@@ -80,11 +83,11 @@ public class SlopeOne {
 					if (dataInputStream.available() != 0) {
 						linha = removeVirgula(getProximaLinha(dataInputStream));
 						voluntarioTemp = getProximoTokenInt(linha);
-						
-						if(voluntario == -1) {
+
+						if (voluntario == -1) {
 							break;
 						}
-						
+
 					} else {
 						voluntarioTemp = -1;
 					}
@@ -117,37 +120,40 @@ public class SlopeOne {
 	}
 
 	private void calculaDiferencas() {
-		 /*
-		  * matrizVoluntarioItemAvaliacao =  soma das diffs das notas dadas por tds vol pra os itens 1 e 2
-		  * quantidadeAvaliacoes = qnt de vol que avaliaram os itens
-		  */
-		
+		/*
+		 * matrizVoluntarioItemAvaliacao = soma das diffs das notas dadas por
+		 * tds vol pra os itens 1 e 2 quantidadeAvaliacoes = qnt de vol que
+		 * avaliaram os itens
+		 */
+
 		double diffAvaliacoesItem1Item2;
-		
+
 		for (int voluntario : matrizVoluntarioItemAvaliacao.keySet()) {
 			for (int item1 : matrizVoluntarioItemAvaliacao.get(voluntario).keySet()) {
 				for (int item2 : matrizVoluntarioItemAvaliacao.get(voluntario).keySet()) {
-					
+
 					diffAvaliacoesItem1Item2 = matrizVoluntarioItemAvaliacao.get(voluntario).get(item1).doubleValue()
 							- (matrizVoluntarioItemAvaliacao.get(voluntario).get(item2).doubleValue());
-					
+
 					diffMediaAvaliacoes[item1][item2] = diffMediaAvaliacoes[item1][item2] + diffAvaliacoesItem1Item2;
-					
+
 					quantidadeAvaliacoes[item1][item2] = quantidadeAvaliacoes[item1][item2] + 1;
 				}
 			}
 		}
 	}
 
-	private void calculaMedias() {		
-		 /*
-		  *  Calcula diferenca media das avaliacoes ( diffMediaAvaliacoes / quantidadeAvaliacoes)
-		  */
-		
+	private void calculaMedias() {
+		/*
+		 * Calcula diferenca media das avaliacoes ( diffMediaAvaliacoes /
+		 * quantidadeAvaliacoes)
+		 */
+
 		for (int item1 = 1; item1 <= quantidadeItens; item1++) {
 			for (int item2 = item1; item2 <= quantidadeItens; item2++) {
 				if (quantidadeAvaliacoes[item1][item2] > 0) {
-					diffMediaAvaliacoes[item1][item2] = diffMediaAvaliacoes[item1][item2] / quantidadeAvaliacoes[item1][item2];
+					diffMediaAvaliacoes[item1][item2] = diffMediaAvaliacoes[item1][item2]
+							/ quantidadeAvaliacoes[item1][item2];
 				}
 			}
 		}
@@ -187,7 +193,7 @@ public class SlopeOne {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private StringTokenizer removeVirgula(String linha) {
 		return new StringTokenizer(linha, ",");
 	}
