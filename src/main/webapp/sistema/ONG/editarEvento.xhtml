@@ -15,6 +15,14 @@
 		<p:tabView style="width:50% ;margin:auto;">
 			<p:tab title="Editar evento Beneficiente">
 
+				<h:form id="form-excluir-evento" enctype="multipart/form-data">
+
+					<p:commandButton value="Excluir Evento" id="commandButton-excluir"
+						style="float: right;" icon="ui-icon-gear"
+						action="#{editarEvento.removerEvento}" ajax="false" />
+
+				</h:form>
+
 				<h:form id="form-cadastro-evento" enctype="multipart/form-data">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
@@ -76,9 +84,8 @@
 							value="#{editarEvento.uploadedFile}" />
 
 						<p:outputLabel value="Causa" />
-						<p:selectOneMenu id="basic"
-							value="#{editarEvento.evento.causa}" layout="grid"
-							columns="2" required="true"
+						<p:selectOneMenu id="basic" value="#{editarEvento.evento.causa}"
+							layout="grid" columns="2" required="true"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Escolha uma causa" itemValue="0" />
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
@@ -101,10 +108,6 @@
 
 						<p:commandButton value="Salvar Evento" id="commandButton-salvar"
 							icon="ui-icon-gear" action="#{editarEvento.editarEvento}"
-							update="panelGrid-campos-form" ajax="false" />
-
-						<p:commandButton value="Excluir Evento" id="commandButton-excluir"
-							icon="ui-icon-gear" action="#{editarEvento.removerEvento}"
 							update="panelGrid-campos-form" ajax="false" />
 
 					</h:panelGrid>
