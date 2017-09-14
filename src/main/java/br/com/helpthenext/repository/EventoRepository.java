@@ -169,8 +169,11 @@ public class EventoRepository {
 
 	public void removeEvento(EventoModel evento) {
 		entityManager = Uteis.JpaEntityManager();		
-		eventoEntity = getEvento(evento.getId());
+		eventoEntity = entityManager.find(EventoEntity.class, evento.getId());
 		entityManager.remove(eventoEntity);
+		entityManager.joinTransaction();
+		entityManager.flush();
+		entityManager.clear();
 
 	}
 

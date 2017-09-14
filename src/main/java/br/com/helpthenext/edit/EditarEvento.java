@@ -41,7 +41,7 @@ public class EditarEvento implements Serializable {
 		evento.getAvaliacaoEvento().setIdVoluntario(voluntarioByUsuarioSessao.getId());
 		
 		avaliacaoEventoRepository.salvarAtualizarAvaliacaoEvento(evento.getAvaliacaoEvento());
-		Uteis.MensagemInfo("Evento avaliado!");
+		Uteis.Mensagem("Evento avaliado!");
 		evento.getAvaliacaoEvento().setAvaliacao(0);
 	}
 

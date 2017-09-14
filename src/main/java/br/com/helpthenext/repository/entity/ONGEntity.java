@@ -91,10 +91,10 @@ public class ONGEntity implements Serializable {
 	@Column(name = "facebook")
 	private String facebook;
 	
-	@OneToMany(mappedBy = "ongEntity", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "ongEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<EventoEntity> eventos;
 	
-	@OneToMany(mappedBy = "ongEntity", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "ongEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VagaEntity> vagas;
 
 	public Long getId() {

@@ -11,7 +11,6 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -124,10 +123,10 @@ public class VoluntarioEntity {
 	@Column(name = "periodos_disponiveis")
 	private List<Periodos> periodosDisponiveis;
 
-	@OneToMany(mappedBy = "voluntarioEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "voluntarioEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<DoacaoEntity> doacoes;
 
-	@OneToMany(mappedBy = "voluntarioEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "voluntarioEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<EventoEntity> eventos;
 
 	@Column(name = "trabalho_distancia")
