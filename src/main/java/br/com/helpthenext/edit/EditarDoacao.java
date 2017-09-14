@@ -33,9 +33,11 @@ public class EditarDoacao implements Serializable {
 		Uteis.Mensagem("Doacao atualizada com sucesso!");
 	}
 
-	public void removerDoacao() {
+	public String removerDoacao() {
 		doacaoRepository.removerDoacao(doacao);
 		Uteis.Mensagem("Doacao removida com sucesso!");
+		
+		return "home.xhtml";
 	}
 
 	public DoacaoRepository getDoacaoRepository() {

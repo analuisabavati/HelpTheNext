@@ -53,9 +53,11 @@ public class EditarEvento implements Serializable {
 		Uteis.Mensagem("Evento atualizado com sucesso!");
 	}
 
-	public void removerEvento() {
+	public String removerEvento() {
 		eventoRepository.removeEvento(evento);
 		Uteis.Mensagem("Evento removido com sucesso!");
+		
+		return "home.xhtml";
 	}
 
 	public EventoRepository getEventoRepository() {

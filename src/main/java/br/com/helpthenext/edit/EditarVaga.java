@@ -53,9 +53,11 @@ public class EditarVaga implements Serializable {
 		Uteis.Mensagem("Vaga atualizada com sucesso!");
 	}
 
-	public void removerVaga() {
+	public String removerVaga() {
 		vagaRepository.removeVaga(vaga);
 		Uteis.Mensagem("Vaga removida com sucesso!");
+		
+		return "home.xhtml";
 	}
 
 	public VagaRepository getVagaRepository() {

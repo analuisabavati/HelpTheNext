@@ -16,6 +16,14 @@
 			<p:tab title="Editar de Vaga de Voluntariado"
 				enctype="multipart/form-data">
 
+				<h:form id="form-excluir-vaga" enctype="multipart/form-data">
+
+					<p:commandButton value="Excluir vaga" id="commandButton-excluir"
+						icon="ui-icon-gear" action="#{editarVaga.removerVaga}"
+						ajax="false" />
+
+				</h:form>
+
 				<h:form id="form-cadastro" enctype="multipart/form-data">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
@@ -24,18 +32,17 @@
 						<p:outputLabel value="Titulo" for="inputText-titulo" />
 						<p:inplace id="inputText-titulo" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="80" value="#{editarVaga.vaga.titulo}"
-								required="true"
+							<p:inputText style="width:100%" maxlength="80"
+								value="#{editarVaga.vaga.titulo}" required="true"
 								requiredMessage="O campo titulo é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="Descrição" for="inputText-descricao" />
-						<p:inplace  id="inputText-descricao" editor="true"
+						<p:inplace id="inputText-descricao" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputTextarea rows="6" cols="33"
-								style="width:100%" maxlength="80"
-								value="#{editarVaga.vaga.descricao}" required="true"
+							<p:inputTextarea rows="6" cols="33" style="width:100%"
+								maxlength="80" value="#{editarVaga.vaga.descricao}"
+								required="true"
 								requiredMessage="O campo descrição é de preenchimento obrigatório" />
 						</p:inplace>
 
@@ -43,26 +50,25 @@
 							for="inputText-responsavel" />
 						<p:inplace id="inputText-responsavel" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="80"
+							<p:inputText style="width:100%" maxlength="80"
 								value="#{editarVaga.vaga.nomeResponsavel}" />
 						</p:inplace>
 
 						<p:outputLabel value="Email" for="inputText-email" />
 						<p:inplace id="inputText-email" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="80" value="#{editarVaga.vaga.email}" />
+							<p:inputText style="width:100%" maxlength="80"
+								value="#{editarVaga.vaga.email}" />
 						</p:inplace>
-						
-							<p:outputLabel value="Banner da Vaga" for="foto" />
+
+						<p:outputLabel value="Banner da Vaga" for="foto" />
 						<p:fileUpload id="foto" mode="simple"
 							value="#{editarVaga.uploadedFile}" />
 
 						<p:outputLabel value="Causas" />
 						<p:selectManyCheckbox id="causas"
-							value="#{editarVaga.vaga.causas}" layout="grid"
-							columns="2" required="true"
+							value="#{editarVaga.vaga.causas}" layout="grid" columns="2"
+							required="true"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
 							<f:selectItem itemLabel="Saude" itemValue="1" />
@@ -85,8 +91,8 @@
 						<p:outputLabel value="Habilidades  Necessárias" />
 
 						<p:selectManyCheckbox id="habilidades"
-							value="#{editarVaga.vaga.habilidades}" layout="grid"
-							columns="2" required="true"
+							value="#{editarVaga.vaga.habilidades}" layout="grid" columns="2"
+							required="true"
 							requiredMessage="O campo Habilidades é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
 							<f:selectItem itemLabel="Comunicação" itemValue="1" />
@@ -105,9 +111,8 @@
 
 						<p:outputLabel value="Disponibilidade:" />
 
-						<p:selectManyCheckbox id="dia"
-							value="#{editarVaga.vaga.dias}" layout="grid"
-							columns="1" required="true"
+						<p:selectManyCheckbox id="dia" value="#{editarVaga.vaga.dias}"
+							layout="grid" columns="1" required="true"
 							requiredMessage="O campo Disponibilidade é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
 							<f:selectItem itemLabel="Terça-Feira" itemValue="2" />
@@ -121,8 +126,7 @@
 
 						<p:outputLabel value="Periodo" />
 						<p:selectManyCheckbox id="periodo"
-							value="#{editarVaga.vaga.periodos}" layout="grid"
-							columns="3">
+							value="#{editarVaga.vaga.periodos}" layout="grid" columns="3">
 							<f:selectItem itemLabel="Manha" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
@@ -131,8 +135,7 @@
 						<p:outputLabel for="selectOneRadio-trabalho"
 							value="Trabalho à distancia:" />
 						<p:selectOneRadio id="selectOneRadio-trabalho"
-							value="#{editarVaga.vaga.trabalhoDistancia}"
-							required="true"
+							value="#{editarVaga.vaga.trabalhoDistancia}" required="true"
 							requiredMessage="O campo trabalho à distancia é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Sim" itemValue="Sim" />
 							<f:selectItem itemLabel="Não" itemValue="Não" />
@@ -140,12 +143,10 @@
 
 						<p:commandButton value="Salvar alterações"
 							id="commandButton-salvar" icon="ui-icon-gear"
-							action="#{editarVaga.editarVaga}"
-							update="panelGrid-campos-form" ajax="false" />
+							action="#{editarVaga.editarVaga}" update="panelGrid-campos-form"
+							ajax="false" />
 
-						<p:commandButton value="Excluir vaga" id="commandButton-excluir"
-							icon="ui-icon-gear" action="#{editarVaga.removerVaga}"
-							update="panelGrid-campos-form" ajax="false" />
+
 
 					</h:panelGrid>
 
