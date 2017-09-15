@@ -99,8 +99,6 @@ public class Predicoes {
 
 	private List<Long> getIdsItensRecomendados() {
 		
-		predicoes = HashMapUtil.sortByValue(predicoes);
-
 		List<Long> idItensRecomendados = new ArrayList<>();
 
 		for (int item : predicoes.keySet()) {
