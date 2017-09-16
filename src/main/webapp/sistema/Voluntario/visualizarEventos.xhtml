@@ -54,7 +54,8 @@
 						placeholder="Digite o titulo do evento"
 						value="#{consultaEventosView.busca}" />
 					<p:outputLabel value=" " />
-					<p:commandButton value="Buscar" update="form" action="#"></p:commandButton>
+					<p:commandButton value="Buscar" update="form"
+						action="#{consultaEventosView.retornaEventoConformeBusca}"></p:commandButton>
 
 					<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
 						columns="3" layout="grid" rows="6" paginator="true"
@@ -129,7 +130,8 @@
 
 						<h:outputText value=" " />
 						<h:outputText value=" " />
-						<p:button value="Editar" outcome="editarEvento.xhtml" icon="fa fa-fw fa-edit"
+						<p:button value="Editar" outcome="editarEvento.xhtml"
+							icon="fa fa-fw fa-edit"
 							disabled="#{!(consultaEventosView.botaoEditar)}">
 						</p:button>
 						<h:outputText value=" " />
@@ -138,8 +140,9 @@
 						<h:outputText value=" " />
 						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
 
-						<p:commandButton value="Avaliar Evento" id="commandButton-avaliar2"
-							icon="ui-icon-like" action="#{editarEvento.avaliarEvento}" />
+						<p:commandButton value="Avaliar Evento"
+							id="commandButton-avaliar2" icon="ui-icon-like"
+							action="#{editarEvento.avaliarEvento}" />
 
 					</p:panelGrid>
 				</p:outputPanel>

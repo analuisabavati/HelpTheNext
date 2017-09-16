@@ -1,6 +1,7 @@
 package br.com.helpthenext.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.TituloUteis;
 
 @ViewScoped
 @Named(value = "consultaEventosView")
@@ -33,7 +35,6 @@ public class ConsultaEventosView implements Serializable {
 
 	@Inject
 	transient VoluntarioRepository voluntarioRepository;
-	
 	
 	@Produces
 	private List<EventoModel> eventos;
@@ -75,7 +76,21 @@ public class ConsultaEventosView implements Serializable {
 			}
 		}
 	}
-
+	
+	public void retornaEventoConformeBusca() {
+		
+		if (eventos == null || eventos.isEmpty()) {
+			eventos = eventoRepository.findAll();
+		}
+		
+		List<EventoModel> eventoConformeBusca = new ArrayList<>();
+		for (EventoModel eventoModel : this.eventos) {
+			if (TituloUteis.isSemelhantes(busca, eventoModel.getTitulo())) {
+				eventoConformeBusca.add(eventoModel);
+			}
+		}
+		eventos = eventoConformeBusca;
+	}
 	
 	public boolean isBotaoCurtir() {
 		return botaoCurtir;

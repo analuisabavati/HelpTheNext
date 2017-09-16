@@ -14,6 +14,14 @@
 	<ui:define name="content">
 		<h:form id="form">
 
+			<p:inputText id="inputText-busca"
+				style="width:30%; height:30px; margin-left:60px" maxlength="80"
+				placeholder="Digite o titulo da vaga"
+				value="#{consultaVagasView.busca}" />
+			<p:outputLabel value=" " />
+			<p:commandButton value="Buscar" update="form"
+				action="#{consultaVagasView.retornaVagasConformeBusca}"></p:commandButton>
+
 			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
 				layout="grid" rows="9" paginator="true" style="margin-top:20px">
 

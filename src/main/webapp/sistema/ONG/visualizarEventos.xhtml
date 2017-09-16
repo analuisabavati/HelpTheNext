@@ -14,6 +14,14 @@
 	<ui:define name="content">
 		<h:form id="form">
 
+			<p:inputText id="inputText-busca"
+				style="width:30%; height:30px; margin-left:60px" maxlength="80"
+				placeholder="Digite o titulo do evento"
+				value="#{consultaEventosView.busca}" />
+			<p:outputLabel value=" " />
+			<p:commandButton value="Buscar" update="form"
+				action="#{consultaEventosView.retornaEventoConformeBusca}"></p:commandButton>
+
 			<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
 				columns="3" layout="grid" rows="6" paginator="true"
 				style="margin-top:20px">
@@ -21,6 +29,7 @@
 				<f:facet name="header"> Eventos </f:facet>
 
 				<p:panel header="#{evento.titulo}" style="text-align:center">
+
 					<h:panelGrid columns="1" style="width:100%; hight:200px"
 						styleClass="ui-noborder">
 

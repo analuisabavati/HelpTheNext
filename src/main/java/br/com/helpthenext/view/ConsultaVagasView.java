@@ -1,6 +1,7 @@
 package br.com.helpthenext.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,12 +11,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.mail.JavaMailApp;
+import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VagaRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.TituloUteis;
 import br.com.helpthenext.uteis.Uteis;
 
 @ViewScoped
@@ -32,10 +35,10 @@ public class ConsultaVagasView implements Serializable {
 
 	@Inject
 	transient private ONGRepository ongRepository;
-	
+
 	@Inject
 	transient JavaMailApp javaMailApp;
-	
+
 	@Inject
 	transient VoluntarioRepository voluntarioRepository;
 
@@ -45,7 +48,7 @@ public class ConsultaVagasView implements Serializable {
 	private VagaModel selectedVaga;
 
 	private boolean botaoEditar;
-	
+
 	private String busca;
 
 	@PostConstruct // executado na inicialização da classe
@@ -111,8 +114,23 @@ public class ConsultaVagasView implements Serializable {
 
 		javaMailApp.enviarEmail(selectedVaga.getOngEntity().getEmail(), msg.toString(), assunto);
 	}
-	
-	
+
+	public void retornaVagasConformeBusca() {
+
+		if (vagas == null || vagas.isEmpty()) {
+			vagas = vagaRepository.findAll();
+		}
+
+		List<VagaModel> vagasConformeBusca = new ArrayList<>();
+		for (VagaModel eventoModel : this.vagas) {
+			if (TituloUteis.isSemelhantes(busca, eventoModel.getTitulo())) {
+				vagasConformeBusca.add(eventoModel);
+			}
+		}
+		
+		vagas = vagasConformeBusca;
+	}
+
 	public List<VagaModel> getVagas() {
 		return vagas;
 	}
@@ -144,7 +162,7 @@ public class ConsultaVagasView implements Serializable {
 	public void setBotaoEditar(boolean botaoEditar) {
 		this.botaoEditar = botaoEditar;
 	}
-	
+
 	public void setBusca(String busca) {
 		this.busca = busca;
 	}
