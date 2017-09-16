@@ -65,6 +65,11 @@ public class AvaliacaoEventoRepository {
 	}
 
 	public void salvarAtualizarAvaliacaoEvento(AvaliacaoEventoEntity avaliacao) {
+		
+		if (avaliacao.getAvaliacao() == null) {
+			return;
+		}
+		
 		entityManager = Uteis.JpaEntityManager();
 		
 		

@@ -321,7 +321,7 @@ public class VoluntarioRepository {
 	public List<VoluntarioModel> findVoluntariosByTrabalhoDistancia() {
 		try {
 
-			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByTrabalhoDistancia");
+			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByTrabalhoDistsancia");
 
 			List<VoluntarioEntity> list = query.getResultList();
 
@@ -334,5 +334,15 @@ public class VoluntarioRepository {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public void removerVoluntario(VoluntarioModel voluntario) {
+		entityManager = Uteis.JpaEntityManager();
+
+		UsuarioEntity us = entityManager.find(UsuarioEntity.class, voluntario.getUsuarioEntity().getId());
+		entityManager.remove(us);
+
+		VoluntarioEntity vol = entityManager.find(VoluntarioEntity.class, voluntario.getId());
+		entityManager.remove(vol);
 	}
 }

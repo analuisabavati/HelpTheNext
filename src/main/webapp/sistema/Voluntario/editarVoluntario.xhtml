@@ -16,68 +16,82 @@
 		<p:tabView style="width:50% ;margin:auto;">
 			<p:tab title="Editar Cadastro de Voluntario">
 
+
+				<h:form id="form-excluir-voluntario" enctype="multipart/form-data">
+
+					<p:commandButton value="Excluir cadastro" style="float: right;"
+						id="commandButton-excluir" icon="fa fa-fw fa-remove"
+						action="#{editarVoluntario.removerVoluntario}" ajax="false" />
+
+				</h:form>
+
 				<h:form id="form-cadastro" enctype="multipart/form-data">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
 						<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
-						<p:inplace id="inputText-senha-cadastro" editor="true" emptyLabel="Clique para editar">
-							<p:password 
-								value="#{editarVoluntario.voluntario.senha}"
-								required="true"
-								 />
+						<p:inplace id="inputText-senha-cadastro" editor="true"
+							emptyLabel="Clique para editar">
+							<p:password value="#{editarVoluntario.voluntario.senha}"
+								required="true" />
 						</p:inplace>
 
 						<p:separator />
 						<br />
 
 						<p:outputLabel value="Nome" for="inputText-nome" />
-						<p:inplace id="inputText-nome" editor="true" emptyLabel="Clique para editar">
+						<p:inplace id="inputText-nome" editor="true"
+							emptyLabel="Clique para editar">
 							<p:inputText value="#{editarVoluntario.voluntario.nome}"
 								label="text" />
 						</p:inplace>
 
 
 						<p:outputLabel value="Sobrenome" for="inputText-sobrenome" />
-						<p:inplace id="inputText-sobrenome" editor="true" emptyLabel="Clique para editar">
+						<p:inplace id="inputText-sobrenome" editor="true"
+							emptyLabel="Clique para editar">
 							<p:inputText style="width:90%" maxlength="70"
 								value="#{editarVoluntario.voluntario.sobrenome}" required="true"
 								requiredMessage="O campo sobrenome é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="RG" for="inputText-rg" />
-						<p:inplace id="inputText-rg" editor="true" emptyLabel="Clique para editar">
+						<p:inplace id="inputText-rg" editor="true"
+							emptyLabel="Clique para editar">
 							<p:inputMask style="width:100%" maxlength="80"
 								mask="99.999.999-9" value="#{editarVoluntario.voluntario.rg}" />
 						</p:inplace>
 
 						<p:outputLabel value="CPF" for="inputText-cpf" />
-						<p:inplace id="inputText-cpf" editor="true" emptyLabel="Clique para editar">
+						<p:inplace id="inputText-cpf" editor="true"
+							emptyLabel="Clique para editar">
 							<p:inputMask style="width:100%" maxlength="80"
 								value="#{editarVoluntario.voluntario.cpf}" mask="999.999.999-99" />
 						</p:inplace>
 
 						<p:outputLabel value="Data de Nascimento"
 							for="inputText-nascimento" />
-						<p:inplace id="inputText-nascimento" editor="true" emptyLabel="Clique para editar">
+						<p:inplace id="inputText-nascimento" editor="true"
+							emptyLabel="Clique para editar">
 							<p:calendar style="width:100%" maxlength="80"
 								value="#{editarVoluntario.voluntario.dataNascimento}" />
 						</p:inplace>
 
 						<p:outputLabel value="E-mail" for="inputText-email" />
-						<p:inplace id="inputText-email" editor="true" emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="80" value="#{editarVoluntario.voluntario.email}"
-								required="true"
+						<p:inplace id="inputText-email" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:100%" maxlength="80"
+								value="#{editarVoluntario.voluntario.email}" required="true"
 								requiredMessage="O campo email é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="Telefone" for="inputText-telefone" />
-						<p:inplace id="inputText-telefone" editor="true" emptyLabel="Clique para editar">
-							<p:inputMask  style="width:100%"
-								maxlength="80" value="#{editarVoluntario.voluntario.telefone}"
-								required="true" mask="(99) 99999-9999"
+						<p:inplace id="inputText-telefone" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputMask style="width:100%" maxlength="80"
+								value="#{editarVoluntario.voluntario.telefone}" required="true"
+								mask="(99) 99999-9999"
 								requiredMessage="O campo Telefone é de preenchimento obrigatório" />
 						</p:inplace>
 
@@ -85,48 +99,50 @@
 						<br />
 
 						<p:outputLabel value="Rua" for="inputText-rua" />
-						<p:inplace  id="inputText-rua" editor="true" emptyLabel="Clique para editar">
+						<p:inplace id="inputText-rua" editor="true"
+							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" emptyLabel="informe senha"
 								maxlength="200" value="#{editarVoluntario.voluntario.rua}" />
 						</p:inplace>
 
 						<p:outputLabel value="Numero" for="inputText-numero" />
-						<p:inplace id="inputText-numero"  editor="true" emptyLabel="Clique para editar">
-							<p:inputText style="width:50px"
-								maxlength="200" value="#{editarVoluntario.voluntario.numero}" />
+						<p:inplace id="inputText-numero" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:50px" maxlength="200"
+								value="#{editarVoluntario.voluntario.numero}" />
 						</p:inplace>
 
 						<p:outputLabel value="Complemento" for="inputText-complemento" />
-						<p:inplace id="inputText-complemento" editor="true" emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="200"
+						<p:inplace id="inputText-complemento" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:100%" maxlength="200"
 								value="#{editarVoluntario.voluntario.complemento}" />
 						</p:inplace>
 
 						<p:outputLabel value="CEP" for="inputText-cep" />
-						<p:inplace id="inputText-cep" editor="true" emptyLabel="Clique para editar">
-							<p:inputMask  style="width:100%"
-								maxlength="200" value="#{editarVoluntario.voluntario.cep}"
-								mask="99999-999" />
+						<p:inplace id="inputText-cep" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputMask style="width:100%" maxlength="200"
+								value="#{editarVoluntario.voluntario.cep}" mask="99999-999" />
 						</p:inplace>
 
 						<p:outputLabel value="Cidade" for="inputText-cidade" />
-						<p:inplace id="inputText-cidade" editor="true" emptyLabel="Clique para editar">
-							<p:inputText  style="width:100%"
-								maxlength="200" value="#{editarVoluntario.voluntario.cidade}"
-								required="true"
+						<p:inplace id="inputText-cidade" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:100%" maxlength="200"
+								value="#{editarVoluntario.voluntario.cidade}" required="true"
 								requiredMessage="O campo cidade é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="Estado" for="inputText-estado" />
-						<p:inplace id="inputText-estado"  editor="true" emptyLabel="Clique para editar">
-							<p:inputText style="width:100%"
-								maxlength="200" value="#{editarVoluntario.voluntario.estado}"
-								required="true"
+						<p:inplace id="inputText-estado" editor="true"
+							emptyLabel="Clique para editar">
+							<p:inputText style="width:100%" maxlength="200"
+								value="#{editarVoluntario.voluntario.estado}" required="true"
 								requiredMessage="O campo estado é de preenchimento obrigatório" />
 						</p:inplace>
 
-					<p:separator />
+						<p:separator />
 						<br />
 
 						<p:outputLabel value="Foto de Perfil" for="foto" />
@@ -200,14 +216,11 @@
 						</p:selectManyCheckbox>
 
 						<p:commandButton value="Salvar alterações"
-							id="commandButton-salvar" icon="ui-icon-gear"
+							id="commandButton-salvar" icon="fa-save"
 							action="#{editarVoluntario.atualizarVoluntario}"
 							update="panelGrid-campos-form" ajax="false" />
 
-						<p:commandButton value="Excluir cadastro"
-							id="commandButton-excluir" icon="ui-icon-gear"
-							action="#{editarVoluntario.atualizarVoluntario}"
-							update="panelGrid-campos-form" ajax="false" />
+
 
 					</h:panelGrid>
 

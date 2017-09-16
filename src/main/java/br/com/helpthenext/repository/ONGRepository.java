@@ -18,15 +18,15 @@ import br.com.helpthenext.uteis.Uteis;
 public class ONGRepository {
 
 	@Inject
-	ONGEntity ongEntity;
+	private ONGEntity ongEntity;
 
 	@Inject
-	UsuarioEntity usuarioEntity;
+	private UsuarioEntity usuarioEntity;
 
 	@Inject
-	UsuarioController usuarioController;
+	private UsuarioController usuarioController;
 
-	EntityManager entityManager;
+	private EntityManager entityManager;
 
 	public void salvarNovoRegistro(ONGModel ongModel) {
 
@@ -148,6 +148,16 @@ public class ONGRepository {
 		model.setSenhaONG(ongEntity.getUsuarioEntity().getSenha());
 		
 		return model;
+	}
+
+	public void removerONG(ONGModel ong) {
+		entityManager = Uteis.JpaEntityManager();
+		
+		UsuarioEntity us = entityManager.find(UsuarioEntity.class, ong.getUsuarioEntity().getId());
+		entityManager.remove(us);	
+		
+		ONGEntity ongEntity = entityManager.find(ONGEntity.class, ong.getId());
+		entityManager.remove(ongEntity);	
 	}
 
 }

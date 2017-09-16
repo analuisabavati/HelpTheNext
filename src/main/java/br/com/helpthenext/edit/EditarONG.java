@@ -40,6 +40,16 @@ public class EditarONG implements Serializable {
 		ongRepository.atualizarONG(this.ong);	
 		Uteis.Mensagem("ONG atualizada com sucesso!");
 	}
+	
+	
+	public String removerONG() {	
+	
+		ongRepository.removerONG(this.ong);	
+		Uteis.Mensagem("ONG removida com sucesso!");
+		
+		return "index.xhtml";
+	}
+		
 
 	public ONGRepository getOngRepository() {
 		return ongRepository;

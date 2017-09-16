@@ -16,6 +16,15 @@
 		<p:tabView style="width:50% ;margin:auto;">
 			<p:tab title="Editar cadastro de ONG">
 
+				<h:form id="form-excluir-ong" enctype="multipart/form-data">
+
+<>
+					<p:commandButton value="Excluir cadastro" style="float: right;"
+						id="commandButton-excluir" icon="fa fa-fw fa-remove"
+						action="#{editarONG.removerONG}" ajax="false" />
+
+				</h:form>
+
 				<h:form id="form-cadastro" enctype="multipart/form-data">
 
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
@@ -24,7 +33,7 @@
 						<p:outputLabel value="Senha" for="senha" />
 						<p:inplace id="senha" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText value="#{editarONG.ong.senhaONG}" required="true"/>
+							<p:inputText value="#{editarONG.ong.senhaONG}" required="true" />
 						</p:inplace>
 
 						<p:separator />
@@ -158,10 +167,7 @@
 							action="#{editarONG.atualizarONG}" update="panelGrid-campos-form"
 							ajax="false" />
 
-						<p:commandButton value="Excluir cadastro"
-							id="commandButton-excluir" icon="ui-icon-gear"
-							action="#{editarONG.atualizarONG}" update="panelGrid-campos-form"
-							ajax="false" />
+
 					</h:panelGrid>
 
 					<p:messages showDetail="true" autoUpdate="true" closable="true"

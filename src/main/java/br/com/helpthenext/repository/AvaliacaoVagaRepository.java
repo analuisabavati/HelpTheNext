@@ -15,6 +15,11 @@ public class AvaliacaoVagaRepository {
 	EntityManager entityManager;
 
 	public void salvarAtualizarAvaliacaoVaga(AvaliacaoVagaEntity avaliacao) {
+		
+		if(avaliacao.getAvaliacao() == null) {
+			return;
+		}
+		
 		entityManager = Uteis.JpaEntityManager();
 				
 		AvaliacaoVagaEntity existe = findByVoluntarioVaga(avaliacao.getIdVoluntario(), avaliacao.getIdVaga());

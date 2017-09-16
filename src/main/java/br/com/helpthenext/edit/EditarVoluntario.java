@@ -33,6 +33,14 @@ public class EditarVoluntario implements Serializable {
 		this.voluntario = voluntarioRepository.toVoluntarioModel(v);	
 	}
 	
+	public String removerVoluntario() {	
+		voluntarioRepository.removerVoluntario(this.voluntario);	
+		Uteis.Mensagem("Voluntario removido com sucesso!");
+		
+		return "index.xhtml";
+	}
+	
+	
 	public void atualizarVoluntario() {	
 		if (uploadedFile != null) {
 			voluntario.setFotoPerfil(uploadedFile.getContents());
