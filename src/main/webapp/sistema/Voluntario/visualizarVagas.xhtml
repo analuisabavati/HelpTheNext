@@ -30,6 +30,8 @@
 										target="#{recomendarVagas.selectedVaga}" />
 									<f:setPropertyActionListener value="#{vaga}"
 										target="#{editarVaga.vaga}" />
+									<f:setPropertyActionListener value="#{vaga}"
+										target="#{consultaVagasView.selectedVaga}" />
 									<p:graphicImage value="#{vagaImagem.imagem}"
 										style="width:100%;">
 										<f:param name="vagaId" value="#{vaga.id}" />
@@ -51,6 +53,8 @@
 											target="#{recomendarVagas.selectedVaga}" />
 										<f:setPropertyActionListener value="#{vaga}"
 											target="#{editarVaga.vaga}" />
+										<f:setPropertyActionListener value="#{vaga}"
+											target="#{consultaVagasView.selectedVaga}" />
 									</p:commandButton>
 								</h:panelGrid>
 							</h:panelGrid>
@@ -80,9 +84,11 @@
 									action="#{consultaVagasView.ativarBotoes}"
 									oncomplete="PF('vagaDialog').show()">
 									<f:setPropertyActionListener value="#{vaga}"
-										target="#{consultaVagasView.selectedVaga}" />
+										target="#{recomendarVagas.selectedVaga}" />
 									<f:setPropertyActionListener value="#{vaga}"
 										target="#{editarVaga.vaga}" />
+									<f:setPropertyActionListener value="#{vaga}"
+										target="#{consultaVagasView.selectedVaga}" />
 									<p:graphicImage value="#{vagaImagem.imagem}"
 										style="width:100%;">
 										<f:param name="vagaId" value="#{vaga.id}" />
@@ -102,9 +108,11 @@
 										action="#{consultaVagasView.ativarBotoes}"
 										oncomplete="PF('vagaDialog').show()">
 										<f:setPropertyActionListener value="#{vaga}"
-											target="#{consultaVagasView.selectedVaga}" />
+											target="#{recomendarVagas.selectedVaga}" />
 										<f:setPropertyActionListener value="#{vaga}"
 											target="#{editarVaga.vaga}" />
+										<f:setPropertyActionListener value="#{vaga}"
+											target="#{consultaVagasView.selectedVaga}" />
 									</p:commandButton>
 								</h:panelGrid>
 							</h:panelGrid>

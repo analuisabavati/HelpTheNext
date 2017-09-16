@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.helpthenext.mail.JavaMailApp;
-import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VagaRepository;

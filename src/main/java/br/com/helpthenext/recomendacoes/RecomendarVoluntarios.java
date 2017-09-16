@@ -50,7 +50,11 @@ public class RecomendarVoluntarios implements Serializable {
 			ONGEntity ong = ongRepository.findONGByUsuarioSessao();
 			voluntariosEncontrados = voluntarioRepository.findVoluntariosByCidadeEstado(ong.getCidade(), ong.getEstado());
 		}
-
+		
+		if (voluntariosEncontrados == null || voluntariosEncontrados.isEmpty()) {
+			return;
+		}
+		
 		int somatorio = 0;
 
 		List<VoluntarioModel> voluntariosRecomendados = new ArrayList<>();
