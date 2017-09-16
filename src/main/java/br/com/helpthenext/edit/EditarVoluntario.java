@@ -37,7 +37,7 @@ public class EditarVoluntario implements Serializable {
 		voluntarioRepository.removerVoluntario(this.voluntario);	
 		Uteis.Mensagem("Voluntario removido com sucesso!");
 		
-		return "index.xhtml";
+		return "fim.xhtml";
 	}
 	
 	

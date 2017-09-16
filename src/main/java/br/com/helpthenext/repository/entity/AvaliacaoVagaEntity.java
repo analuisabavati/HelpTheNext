@@ -13,11 +13,11 @@ import javax.persistence.Table;
 @Table(name = "tb_avaliacao_vaga")
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "AvaliacaoVagaEntity.findVagasAvaliadas", query = "SELECT v.idVaga FROM AvaliacaoVagaEntity v where v.idVoluntario = :idVoluntario"),
-	@NamedQuery(name = "AvaliacaoVagaEntity.findAll", query = "SELECT v FROM AvaliacaoVagaEntity v ORDER BY v.idVoluntario"),
-	@NamedQuery(name = "AvaliacaoVagaEntity.findByVoluntarioVaga", query = "SELECT v FROM AvaliacaoVagaEntity v where v.idVoluntario = :idVoluntario and v.idVaga = :idVaga"),
-	@NamedQuery(name = "AvaliacaoVagaEntity.findByIdVaga", query = "SELECT v FROM AvaliacaoVagaEntity v where v.idVaga = :idVaga"),
-	@NamedQuery(name = "AvaliacaoVagaEntity.findByIdVoluntario", query = "SELECT v FROM AvaliacaoVagaEntity v where v.idVoluntario = :id") })
+		@NamedQuery(name = "AvaliacaoVagaEntity.findVagasAvaliadas", query = "SELECT v.idVaga FROM AvaliacaoVagaEntity v where v.idVoluntario = :idVoluntario"),
+		@NamedQuery(name = "AvaliacaoVagaEntity.findAll", query = "SELECT v FROM AvaliacaoVagaEntity v ORDER BY v.idVoluntario"),
+		@NamedQuery(name = "AvaliacaoVagaEntity.findByVoluntarioVaga", query = "SELECT v FROM AvaliacaoVagaEntity v where v.idVoluntario = :idVoluntario and v.idVaga = :idVaga"),
+		@NamedQuery(name = "AvaliacaoVagaEntity.findByIdVaga", query = "SELECT v FROM AvaliacaoVagaEntity v where v.idVaga = :idVaga"),
+		@NamedQuery(name = "AvaliacaoVagaEntity.findByIdVoluntario", query = "SELECT v FROM AvaliacaoVagaEntity v where v.idVoluntario = :id") })
 public class AvaliacaoVagaEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -71,5 +71,5 @@ public class AvaliacaoVagaEntity implements Serializable {
 	public void setIdVaga(Long idVaga) {
 		this.idVaga = idVaga;
 	}
-	
+
 }

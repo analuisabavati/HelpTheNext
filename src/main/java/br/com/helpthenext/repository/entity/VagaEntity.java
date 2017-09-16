@@ -26,8 +26,8 @@ import br.com.helpthenext.enums.Periodos;
 @Table(name = "tb_vaga")
 @Entity
 @NamedQueries({ @NamedQuery(name = "VagaEntity.findByIds", query = "SELECT p FROM VagaEntity p WHERE p.id IN :list"),
-		@NamedQuery(name = "VagaEntity.findAll", query = "SELECT p FROM VagaEntity p")
-})
+		@NamedQuery(name = "VagaEntity.findAll", query = "SELECT p FROM VagaEntity p"),
+		@NamedQuery(name = "VagaEntity.findByOng", query = "SELECT p FROM VagaEntity p where p.ongEntity = :ong") })
 public class VagaEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

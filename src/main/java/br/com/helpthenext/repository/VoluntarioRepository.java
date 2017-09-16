@@ -28,7 +28,10 @@ public class VoluntarioRepository {
 
 	@Inject
 	UsuarioController usuarioController;
-
+	
+	@Inject
+	UsuarioRepository usuarioRepository;
+	
 	EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
@@ -337,12 +340,12 @@ public class VoluntarioRepository {
 	}
 
 	public void removerVoluntario(VoluntarioModel voluntario) {
+		usuarioRepository.removerUsuarioById(voluntario.getUsuarioEntity().getId());
+		
+		Long id = voluntario.getId();
+	
 		entityManager = Uteis.JpaEntityManager();
-
-		UsuarioEntity us = entityManager.find(UsuarioEntity.class, voluntario.getUsuarioEntity().getId());
-		entityManager.remove(us);
-
-		VoluntarioEntity vol = entityManager.find(VoluntarioEntity.class, voluntario.getId());
-		entityManager.remove(vol);
+		voluntarioEntity = entityManager.find(VoluntarioEntity.class, id);
+		entityManager.remove(voluntarioEntity);
 	}
 }

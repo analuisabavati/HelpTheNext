@@ -93,6 +93,37 @@ public class AvaliacaoEventoRepository {
 		}
 		return avaliacoes;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public void removeByIdVoluntario(Long id) {
+		
+		entityManager = Uteis.JpaEntityManager();
+		
+		Query query = entityManager.createNamedQuery("AvaliacaoEventoEntity.findByIdVoluntario");
 
+		query.setParameter("id", id);
+
+		List<AvaliacaoEventoEntity> result = query.getResultList();
+		
+		for (AvaliacaoEventoEntity avaliacaoEventoEntity : result) {
+			entityManager.remove(avaliacaoEventoEntity);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void removeByIdEvento(Long id) {
+		
+		entityManager = Uteis.JpaEntityManager();
+		
+		Query query = entityManager.createNamedQuery("AvaliacaoEventoEntity.findByIdEvento");
+
+		query.setParameter("id", id);
+
+		List<AvaliacaoEventoEntity> result = query.getResultList();
+		
+		for (AvaliacaoEventoEntity avaliacaoEventoEntity : result) {
+			entityManager.remove(avaliacaoEventoEntity);
+		}
+	}
 
 }

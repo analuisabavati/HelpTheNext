@@ -2,6 +2,7 @@ package br.com.helpthenext.repository;
 
 import java.io.Serializable;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.com.helpthenext.model.UsuarioModel;
@@ -11,7 +12,7 @@ import br.com.helpthenext.uteis.Uteis;
 public class UsuarioRepository implements Serializable {
  
 	private static final long serialVersionUID = 1L;
- 
+	
 	public UsuarioEntity ValidaUsuario(UsuarioModel usuarioModel){
 		try {
 			
@@ -39,4 +40,13 @@ public class UsuarioRepository implements Serializable {
 			return null;
 		}
 	}
+	
+	
+	public void removerUsuarioById(Long id) {
+		EntityManager entityManager = Uteis.JpaEntityManager();
+		
+		UsuarioEntity usuarioEntity = entityManager.find(UsuarioEntity.class, id);
+		entityManager.remove(usuarioEntity);
+	}
+	
 }

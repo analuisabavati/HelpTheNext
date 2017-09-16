@@ -18,6 +18,7 @@ import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
+import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VagaEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
@@ -29,10 +30,10 @@ public class VagaRepository {
 
 	@Inject
 	private ONGRepository ongRepository;
-	
+
 	@Inject
 	private AvaliacaoVagaRepository avaliacaoVagaRepository;
-	
+
 	@Inject
 	private VoluntarioRepository voluntarioRepository;
 
@@ -90,7 +91,7 @@ public class VagaRepository {
 	public List<VagaModel> findAll() {
 
 		entityManager = Uteis.JpaEntityManager();
-		
+
 		Query query = entityManager.createNamedQuery("VagaEntity.findAll");
 
 		@SuppressWarnings("unchecked")
@@ -126,18 +127,18 @@ public class VagaRepository {
 		vagaModel.setPeriodos(vagaModel.toStringArrayPeriodos(vagaEntity.getPeriodos()));
 		vagaModel.setDias(vagaModel.toStringArrayDias(vagaEntity.getDias()));
 		vagaModel.setOngEntity(vagaEntity.getOngEntity());
-		
+
 		vagaModel.setCausasString(vagaModel.getCausas() == null ? null : Arrays.toString(vagaModel.getCausas()));
-		vagaModel.setHabilidadesString(vagaModel.getHabilidades()  == null ? null : Arrays.toString(vagaModel.getHabilidades()));
+		vagaModel.setHabilidadesString(
+				vagaModel.getHabilidades() == null ? null : Arrays.toString(vagaModel.getHabilidades()));
 		vagaModel.setDiasString(vagaModel.getDias() == null ? null : Arrays.toString(vagaModel.getDias()));
 		vagaModel.setPeriodoString(vagaModel.getPeriodos() == null ? null : Arrays.toString(vagaModel.getPeriodos()));
 		vagaModel.setDataCadastroDate(asDate(vagaModel.getDataCadastro()));
-		
+
 		vagaModel.setAvaliacaoVaga(findAvaliacaoEvento(vagaEntity, idVaga));
 
 		return vagaModel;
 	}
-	
 
 	public Date asDate(LocalDateTime localDateTime) {
 		if (localDateTime != null) {
@@ -190,7 +191,11 @@ public class VagaRepository {
 
 	public void removeVaga(VagaModel vagaModel) {
 		entityManager = Uteis.JpaEntityManager();
-		vagaEntity = findVagaById(vagaModel.getId());
+		
+		Long id = vagaModel.getId();
+		vagaEntity = findVagaById(id);	
+		//avaliacaoVagaRepository.removeByIdVaga(id);
+		
 		entityManager.remove(vagaEntity);
 	}
 
@@ -198,10 +203,10 @@ public class VagaRepository {
 		entityManager = Uteis.JpaEntityManager();
 		entityManager.remove(vaga);
 	}
-	
+
 	private AvaliacaoVagaEntity findAvaliacaoEvento(VagaEntity VagaEntity, Long idVaga) {
 		VoluntarioEntity voluntarioByUsuarioSessao = voluntarioRepository.findVoluntarioByUsuarioSessao();
-		
+
 		if (voluntarioByUsuarioSessao == null) {
 			return new AvaliacaoVagaEntity();
 		}
@@ -216,24 +221,23 @@ public class VagaRepository {
 		}
 		return avaliacao;
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	public List<VagaModel> findByIds(List<Long> ids) {
 		try {
-			
+
 			if (ids == null || ids.isEmpty()) {
 				return null;
 			}
-					
+
 			entityManager = Uteis.JpaEntityManager();
 			entityManager.joinTransaction();
-			
+
 			Query query = entityManager.createNamedQuery("VagaEntity.findByIds");
 			query.setParameter("list", ids);
 
 			List<VagaEntity> result = (List<VagaEntity>) query.getResultList();
-			
+
 			List<VagaModel> vagasModel = new ArrayList<VagaModel>();
 			VagaModel vagaModel = null;
 
@@ -241,10 +245,30 @@ public class VagaRepository {
 				vagaModel = toVagaModel(vagasModel, vagaEntity);
 				vagasModel.add(vagaModel);
 			}
-	
+
 			return vagasModel;
 		} catch (Exception e) {
 			return new ArrayList<>();
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void removerVagaByOng(ONGEntity ong) {
+		try {
+			entityManager = Uteis.JpaEntityManager();
+
+			Query query = entityManager.createNamedQuery("VagaEntity.findByOng");
+
+			query.setParameter("ong", ong);
+
+			List<VagaEntity> result = query.getResultList();
+
+			for (VagaEntity x : result) {
+				entityManager.remove(x);
+			}
+		} catch (Exception e) {
+			return;
+		}
+
 	}
 }

@@ -64,10 +64,10 @@ public class ONGRepository {
 	}
 
 	public ONGEntity findONGByUsuarioSessao() {
-
+		entityManager = Uteis.JpaEntityManager();
+		
 		UsuarioEntity usuario = usuarioEntity.fromUsuarioModel(usuarioController.GetUsuarioSession());
 
-		entityManager = Uteis.JpaEntityManager();
 		Query query = entityManager.createNamedQuery("ONGEntity.findByUsuario");
 		query.setParameter("usuario", usuario);
 

@@ -16,6 +16,7 @@ import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.EventoEntity;
+import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
@@ -37,7 +38,7 @@ public class EventoRepository {
 	AvaliacaoEventoRepository avaliacaoEventoRepository;
 
 	EntityManager entityManager;
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Long> getIdsEventos() {
 		try {
@@ -104,13 +105,12 @@ public class EventoRepository {
 			eventoModel.setBanner(eventoEntity.getBanner());
 			eventoModel.setDataCadastro(eventoEntity.getDataCadastro());
 
-			if(eventoEntity.getCausa() != null) {
+			if (eventoEntity.getCausa() != null) {
 				Integer c = eventoEntity.getCausa().ordinal();
 				eventoModel.setCausa(c.toString());
-				
+
 				eventoModel.setCausasString(eventoEntity.getCausa().toString());
 			}
-			
 
 			eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
@@ -130,9 +130,9 @@ public class EventoRepository {
 		if (voluntarioByUsuarioSessao == null) {
 			return new AvaliacaoEventoEntity();
 		}
-		
-		AvaliacaoEventoEntity avaliacao = avaliacaoEventoRepository.findByVoluntarioEvento(voluntarioByUsuarioSessao.getId(),
-				eventoEntity.getId());
+
+		AvaliacaoEventoEntity avaliacao = avaliacaoEventoRepository
+				.findByVoluntarioEvento(voluntarioByUsuarioSessao.getId(), eventoEntity.getId());
 		if (avaliacao == null) {
 			avaliacao = new AvaliacaoEventoEntity();
 			avaliacao.setAvaliacao(0);
@@ -168,13 +168,13 @@ public class EventoRepository {
 	}
 
 	public void removeEvento(EventoModel evento) {
-		entityManager = Uteis.JpaEntityManager();		
-		eventoEntity = entityManager.find(EventoEntity.class, evento.getId());
+		entityManager = Uteis.JpaEntityManager();
+		
+		Long id = evento.getId();
+		eventoEntity = entityManager.find(EventoEntity.class, id);
+		//avaliacaoEventoRepository.removeByIdEvento(id);
+		
 		entityManager.remove(eventoEntity);
-		entityManager.joinTransaction();
-		entityManager.flush();
-		entityManager.clear();
-
 	}
 
 	public void removeEvento(EventoEntity evento) {
@@ -216,10 +216,10 @@ public class EventoRepository {
 		if (eventoEntity.getCausa() != null) {
 			Integer c = eventoEntity.getCausa().ordinal();
 			eventoModel.setCausa(c.toString());
-	
+
 			eventoModel.setCausasString(eventoModel.getCausa());
 		}
-		
+
 		eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
 
 		eventoModel.setOngEntity(eventoEntity.getOngEntity());
@@ -227,32 +227,67 @@ public class EventoRepository {
 
 		return eventoModel;
 	}
-	
-	
+
 	@SuppressWarnings("unchecked")
 	public List<EventoModel> findByIds(List<Long> ids) {
 		try {
-			
+
 			if (ids == null || ids.isEmpty()) {
 				return null;
 			}
-					
+
 			entityManager = Uteis.JpaEntityManager();
-		
+
 			Query query = entityManager.createNamedQuery("EventoEntity.findByIds");
 			query.setParameter("list", ids);
 
 			List<EventoEntity> result = (List<EventoEntity>) query.getResultList();
-			
+
 			List<EventoModel> resultModel = new ArrayList<>();
 			for (EventoEntity eventoEntity : result) {
 				resultModel.add(toEventoModel(eventoEntity));
 			}
-			
+
 			return resultModel;
 		} catch (Exception e) {
 			System.err.println("EventoRepository - findByIds" + e);
 			return new ArrayList<>();
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void removeEventosByVoluntario(VoluntarioEntity vol) {
+		try {
+			entityManager = Uteis.JpaEntityManager();
+
+			Query query = entityManager.createNamedQuery("EventoEntity.findByVoluntario");
+			query.setParameter("voluntario", vol);
+
+			List<EventoEntity> result = (List<EventoEntity>) query.getResultList();
+			for (EventoEntity eventoEntity : result) {
+				entityManager.remove(eventoEntity);
+			}
+		} catch (Exception e) {
+			return;
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public void removeEventosByOng(ONGEntity ong) {
+		try {
+			entityManager = Uteis.JpaEntityManager();
+
+			Query query = entityManager.createNamedQuery("EventoEntity.findByOng");
+			query.setParameter("ong", ong);
+
+			List<EventoEntity> result = (List<EventoEntity>) query.getResultList();
+			for (EventoEntity eventoEntity : result) {
+				entityManager.remove(eventoEntity);
+			}
+		} catch (Exception e) {
+			return;
+		}
+
 	}
 }

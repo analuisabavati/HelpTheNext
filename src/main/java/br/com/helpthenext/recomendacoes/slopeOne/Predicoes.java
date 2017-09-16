@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import br.com.helpthenext.uteis.HashMapUtil;
-
 public class Predicoes {
 
 	HashMap<Integer, Double> matrizAvaliacaoItemVoluntario = new HashMap<Integer, Double>();

@@ -23,10 +23,9 @@ import br.com.helpthenext.enums.Periodos;
 
 @Table(name = "tb_doacao")
 @Entity
-@NamedQueries({
-	 
-	@NamedQuery(name = "DoacaoEntity.findAll",query= "SELECT p FROM DoacaoEntity p")
- 
+@NamedQueries({ 
+	@NamedQuery(name = "DoacaoEntity.findAll",query= "SELECT p FROM DoacaoEntity p"),
+	@NamedQuery(name = "DoacaoEntity.findByVoluntario",query= "SELECT p FROM DoacaoEntity p WHERE p.voluntarioEntity = :voluntario")
 })
 public class DoacaoEntity  implements Serializable {
 

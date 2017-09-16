@@ -22,6 +22,8 @@ import br.com.helpthenext.enums.Causas;
 @Entity
 @NamedQueries({ @NamedQuery(name = "EventoEntity.findByIds", query = "SELECT p FROM EventoEntity p WHERE p.id IN :list"),
 		@NamedQuery(name = "EventoEntity.findAll", query = "SELECT p FROM EventoEntity p"),
+		@NamedQuery(name = "EventoEntity.findByVoluntario", query = "SELECT p FROM EventoEntity p WHERE p.voluntarioEntity = :voluntario"),
+		@NamedQuery(name = "EventoEntity.findByOng", query = "SELECT p FROM EventoEntity p WHERE p.ongEntity = :ong"),
 		@NamedQuery(name = "EventoEntity.getIds", query = "SELECT p.id FROM EventoEntity p"), })
 public class EventoEntity implements Serializable {
 

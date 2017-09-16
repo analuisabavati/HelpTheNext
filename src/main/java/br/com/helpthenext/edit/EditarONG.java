@@ -47,7 +47,7 @@ public class EditarONG implements Serializable {
 		ongRepository.removerONG(this.ong);	
 		Uteis.Mensagem("ONG removida com sucesso!");
 		
-		return "index.xhtml";
+		return "fim.xhtml";
 	}
 		
 
