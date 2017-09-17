@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,8 +18,8 @@ import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.uteis.ComparadorVoluntarios;
 
-@SessionScoped
 @Named(value = "recomendarVoluntarios")
+@SessionScoped
 public class RecomendarVoluntarios implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,11 +33,12 @@ public class RecomendarVoluntarios implements Serializable {
 	@Inject
 	transient JavaMailApp javaMailApp;
 
+	@Produces
 	List<VoluntarioModel> voluntariosRecomendados;
 
-	private VoluntarioModel selectedVoluntario;
+	VoluntarioModel selectedVoluntario;
 
-	private VagaModel vaga;
+	VagaModel vaga;
 
 	public void recomendarVoluntarios(VagaModel vaga) {
 
@@ -48,13 +50,15 @@ public class RecomendarVoluntarios implements Serializable {
 			voluntariosEncontrados = voluntarioRepository.findVoluntariosByTrabalhoDistancia();
 		} else {
 			ONGEntity ong = ongRepository.findONGByUsuarioSessao();
-			voluntariosEncontrados = voluntarioRepository.findVoluntariosByCidadeEstado(ong.getCidade(), ong.getEstado());
+			voluntariosEncontrados = voluntarioRepository.findVoluntariosByCidadeEstado(ong.getCidade(),
+					ong.getEstado());
 		}
-		
+
 		if (voluntariosEncontrados == null || voluntariosEncontrados.isEmpty()) {
+			this.voluntariosRecomendados = new ArrayList<>();
 			return;
 		}
-		
+
 		int somatorio = 0;
 
 		List<VoluntarioModel> voluntariosRecomendados = new ArrayList<>();
@@ -110,15 +114,7 @@ public class RecomendarVoluntarios implements Serializable {
 		}
 
 		Collections.sort(voluntariosRecomendados, new ComparadorVoluntarios());
-
-		int i = 0;
-		for (VoluntarioModel x : voluntariosRecomendados) {
-			if (i > 6) {
-				voluntariosRecomendados.remove(x);
-			}
-			i++;
-		}
-
+		
 		this.voluntariosRecomendados = voluntariosRecomendados;
 	}
 

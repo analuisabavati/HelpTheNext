@@ -41,8 +41,9 @@
 
 						<p:outputLabel value="Email" for="inputText-email" />
 						<p:inputText id="inputText-email" style="width:100%"
-							maxlength="80" value="#{vagaController.vagaModel.email}">
-							<f:validateRegex
+							maxlength="80" value="#{vagaController.vagaModel.email}" validatorMessage="Email incorreto"
+							requiredMessage="O campo email é de preenchimento obrigatório">
+							<f:validateRegex 
 								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 						</p:inputText>
 

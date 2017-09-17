@@ -25,7 +25,6 @@ public class JPAFilter implements Filter {
     }
  
 	public void destroy() {
- 
 		this.entityManagerFactory.close();
 	}
  
@@ -49,7 +48,7 @@ public class JPAFilter implements Filter {
 			entityManager.getTransaction().commit();
  
 		} catch (Exception e) {
-			System.out.println("ERRO: " +e);
+			System.out.println("ERRO: " + e);
 
 			/*SE TIVER ERRO NA OPERAÇÃO É EXECUTADO O rollback*/
 			entityManager.getTransaction().rollback();

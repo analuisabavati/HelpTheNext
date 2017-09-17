@@ -316,7 +316,7 @@ public class VoluntarioRepository {
 
 			return model;
 		} catch (Exception e) {
-			return null;
+			return new ArrayList<>();
 		}
 	}
 
@@ -324,7 +324,7 @@ public class VoluntarioRepository {
 	public List<VoluntarioModel> findVoluntariosByTrabalhoDistancia() {
 		try {
 
-			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByTrabalhoDistsancia");
+			Query query = Uteis.JpaEntityManager().createNamedQuery("VoluntarioEntity.findByTrabalhoDistancia");
 
 			List<VoluntarioEntity> list = query.getResultList();
 
@@ -335,7 +335,7 @@ public class VoluntarioRepository {
 
 			return model;
 		} catch (Exception e) {
-			return null;
+			return new ArrayList<>();
 		}
 	}
 

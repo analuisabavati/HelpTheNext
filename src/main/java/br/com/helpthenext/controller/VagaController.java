@@ -38,13 +38,11 @@ public class VagaController {
 		if (uploadedFile != null) {
 			vagaModel.setBanner(uploadedFile.getContents());
 		}
+		
 		vagaRepository.salvarNovoRegistro(this.vagaModel);
 		Uteis.MensagemInfo("Vaga cadastrada com sucesso!");
-	
-		recomendarVoluntarios.recomendarVoluntarios(vagaModel);
 		
-		this.vagaModel = null;
-		this.uploadedFile = null;
+		recomendarVoluntarios.recomendarVoluntarios(vagaModel);
 		
 		return "recomendarVoluntario.xhtml";
 	}
