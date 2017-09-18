@@ -20,9 +20,6 @@ public class TituloUteis {
 			return true;
 		}
 
-		if (titulo.contains(busca) == true) {
-			return true;
-		}
 		
 		return false;
 	}
