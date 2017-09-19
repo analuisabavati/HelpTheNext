@@ -19,14 +19,14 @@
 						value="#{usuarioController.usuarioModel.senha}" />
 
 		<p:commandButton value="Acessar" id="commandButton-acessar"
-							icon="ui-icon-gear" action="#{usuarioController.EfetuarLogin}"
+							icon="fa fa-sign-in" action="#{usuarioController.EfetuarLogin}"
 							update="growl-mensagem" />
 	</h:panelGrid>
 
 	<p:menubar style="background :#D6DDE7;">
-		<p:menuitem value="Inicio" icon="ui-icon-home" url="index.xhtml" />
-		<p:menuitem value="Cadastrar Voluntario" icon="ui-icon-document" url="cadastrarVoluntario.xhtml" />
-		<p:menuitem value="Cadastrar ONG" icon="ui-icon-document" url="cadastrarONG.xhtml" />
+		<p:menuitem value="Inicio" icon="fa fa-home" url="index.xhtml" />
+		<p:menuitem value="Cadastrar Voluntario" icon="fa fa-plus-square" url="cadastrarVoluntario.xhtml" />
+		<p:menuitem value="Cadastrar ONG" icon="fa fa-plus-square" url="cadastrarONG.xhtml" />
 	</p:menubar>
 
 </h:form>
