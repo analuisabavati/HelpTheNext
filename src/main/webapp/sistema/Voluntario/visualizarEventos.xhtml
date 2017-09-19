@@ -15,37 +15,7 @@
 		<h:form id="form">
 
 			<p:tabView>
-				<p:tab title="Eventos Recomendados">
-					<p:dataGrid value="#{recomendarEventos.eventosRecomendados}"
-						var="evento" columns="3" layout="grid" rows="3" paginator="true"
-						style="margin-top:20px">
-						<f:facet name="header"> Eventos Recomendados: </f:facet>
-						<p:panel header="#{evento.titulo}" style="text-align:center">
-							<h:panelGrid columns="1" style="width:100%; hight:200px"
-								styleClass="ui-noborder">
-								<p:commandLink update=":form:eventoRecomendadoDetail"
-									oncomplete="PF('eventoRecomendadoDialog').show()">
-									<f:setPropertyActionListener value="#{evento}"
-										target="#{recomendarEventos.selectedEvento}" />
-									<f:setPropertyActionListener value="#{evento}"
-										target="#{editarEvento.evento}" />
-									<p:graphicImage value="#{eventoImagem.imagem}"
-										style="width:100%">
-										<f:param name="eventoId" value="#{evento.id}" />
-									</p:graphicImage>
-								</p:commandLink>
-								<p:commandButton value="Mais Informações"
-									update=":form:eventoRecomendadoDetail"
-									oncomplete="PF('eventoRecomendadoDialog').show()">
-									<f:setPropertyActionListener value="#{evento}"
-										target="#{recomendarEventos.selectedEvento}" />
-									<f:setPropertyActionListener value="#{evento}"
-										target="#{editarEvento.evento}" />
-								</p:commandButton>
-							</h:panelGrid>
-						</p:panel>
-					</p:dataGrid>
-				</p:tab>
+
 
 				<p:tab title="Todos Eventos Disponiveis">
 
@@ -59,6 +29,7 @@
 
 					<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
 						columns="3" layout="grid" rows="6" paginator="true"
+						emptyMessage="Nenhum evento foi cadastrado até o momento."
 						style="margin-top:20px">
 						<f:facet name="header"> Todos Eventos Disponiveis: </f:facet>
 						<p:panel header="#{evento.titulo}" style="text-align:center">
@@ -82,6 +53,39 @@
 									oncomplete="PF('eventoDialog').show()">
 									<f:setPropertyActionListener value="#{evento}"
 										target="#{consultaEventosView.selectedEvento}" />
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{editarEvento.evento}" />
+								</p:commandButton>
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+				</p:tab>
+
+				<p:tab title="Eventos Recomendados">
+					<p:dataGrid value="#{recomendarEventos.eventosRecomendados}"
+						var="evento" columns="3" layout="grid" rows="3" paginator="true"
+						emptyMessage="Não há eventos recomendados até o momento! Você pode começar avaliando os eventos disponiveis."
+						style="margin-top:20px">
+						<f:facet name="header"> Eventos Recomendados: </f:facet>
+						<p:panel header="#{evento.titulo}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%; hight:200px"
+								styleClass="ui-noborder">
+								<p:commandLink update=":form:eventoRecomendadoDetail"
+									oncomplete="PF('eventoRecomendadoDialog').show()">
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{recomendarEventos.selectedEvento}" />
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{editarEvento.evento}" />
+									<p:graphicImage value="#{eventoImagem.imagem}"
+										style="width:100%">
+										<f:param name="eventoId" value="#{evento.id}" />
+									</p:graphicImage>
+								</p:commandLink>
+								<p:commandButton value="Mais Informações"
+									update=":form:eventoRecomendadoDetail"
+									oncomplete="PF('eventoRecomendadoDialog').show()">
+									<f:setPropertyActionListener value="#{evento}"
+										target="#{recomendarEventos.selectedEvento}" />
 									<f:setPropertyActionListener value="#{evento}"
 										target="#{editarEvento.evento}" />
 								</p:commandButton>
@@ -141,7 +145,7 @@
 						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
 
 						<p:commandButton value="Avaliar Evento"
-							id="commandButton-avaliar2" icon="ui-icon-like"
+							id="commandButton-avaliar2" icon="fa fa-star-o"
 							action="#{editarEvento.avaliarEvento}" />
 
 					</p:panelGrid>
@@ -192,7 +196,7 @@
 						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
 
 						<p:commandButton value="Avaliar Evento" id="commandButton-avaliar"
-							icon="ui-icon-like" action="#{editarEvento.avaliarEvento}" />
+							icon="fa fa-star-o" action="#{editarEvento.avaliarEvento}" />
 
 					</p:panelGrid>
 				</p:outputPanel>

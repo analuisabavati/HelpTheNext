@@ -10,30 +10,31 @@
 	</h:panelGrid>
 
 	<p:menubar style="background :	#D6DDE7;">
-		<p:menuitem value="Home" icon="ui-icon-home" url="home.xhtml" />
-		<p:submenu label="Vagas" icon="ui-icon-pencil">
-			<p:menuitem value="Visualizar Vaga(s)" url="visualizarVagas.xhtml" icon="ui-icon-document" />
+		<p:menuitem value="Home" icon="fa fa-home" url="home.xhtml" />
+		
+		<p:submenu label="Vagas" icon="fa fa-book">
+			<p:menuitem value="Visualizar Vaga(s)" url="visualizarVagas.xhtml" icon="fa fa-file" />
 		</p:submenu>
 		
-		<p:submenu label="Eventos" icon="ui-icon-document">
+		<p:submenu label="Eventos" icon="fa fa-book">
 			<p:menuitem value="Cadastrar Evento" url="cadastrarEvento.xhtml"
-				icon="ui-icon-pencil" />
+				icon="fa fa-plus-square" />
 			<p:menuitem value="Visualizar Evento(s)" url="visualizarEventos.xhtml"
-				icon="ui-icon-document" />
+				icon="fa fa-file" />
 		</p:submenu>
 		
-		<p:submenu label="Doações" icon="ui-icon-document">
+		<p:submenu label="Doações" icon="fa fa-book">
 			<p:menuitem value="Cadastrar Doação" url="cadastrarDoacao.xhtml"
-				icon="ui-icon-pencil" />
+				icon="fa fa-plus-square" />
 			<p:menuitem value="Visualizar Doações" url="visualizarDoacoes.xhtml"
-				icon="ui-icon-document" />
+				icon="fa fa-file" />
 		</p:submenu>
 
-		<p:submenu label="Minha Conta" icon="ui-icon-pencil"
+		<p:submenu label="Minha Conta" icon="fa fa-user-circle"
 			sytle="margin-right: 5%">
 			<p:menuitem value="Editar Cadastro" url="editarVoluntario.xhtml"
-				icon="ui-icon-pencil" />
-			<p:menuitem value="Logout" icon="ui-icon-extlink"
+				icon="fa fa-pencil-square-o" />
+			<p:menuitem value="Logout" icon="fa fa-sign-out"
 				action="#{usuarioController.Logout}" />
 		</p:submenu>
 	</p:menubar>

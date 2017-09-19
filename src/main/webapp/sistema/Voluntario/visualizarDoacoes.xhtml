@@ -16,6 +16,7 @@
 
 			<p:dataGrid value="#{consultaDoacoesView.doacoes}" var="doacao"
 				columns="3" layout="grid" rows="9" paginator="true"
+				emptyMessage="Nenhuma doação foi cadastrada até o momento."
 				style="margin-top:20px">
 
 				<f:facet name="header"> Doações </f:facet>
@@ -91,6 +92,7 @@
 						<h:outputText value=" " />
 
 						<p:button value="Editar" outcome="editarDoacao.xhtml"
+							icon="fa fa-fw fa-edit"
 							disabled="#{!(consultaDoacoesView.botaoEditar)}">
 						</p:button>
 
