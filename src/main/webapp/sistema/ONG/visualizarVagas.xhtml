@@ -52,7 +52,9 @@
 							<h:outputText value="#{vaga.titulo}" />
 
 							<h:outputText value="Local:" style="font-weight: bold" />
-							<h:outputText value="#{vaga.ongEntity.cidade}" />
+							<h:outputText
+								value="#{vaga.ongEntity.cidade} - #{vaga.ongEntity.estado}" />
+
 
 							<h:outputText value="Trabalho à distancia"
 								style="font-weight: bold" />
