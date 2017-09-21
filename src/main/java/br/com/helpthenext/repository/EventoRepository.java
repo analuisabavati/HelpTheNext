@@ -16,7 +16,6 @@ import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.EventoEntity;
-import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
@@ -38,18 +37,6 @@ public class EventoRepository {
 	AvaliacaoEventoRepository avaliacaoEventoRepository;
 
 	EntityManager entityManager;
-
-	@SuppressWarnings("unchecked")
-	public List<Long> getIdsEventos() {
-		try {
-			entityManager = Uteis.JpaEntityManager();
-			Query query = entityManager.createNamedQuery("EventoEntity.getIds");
-
-			return query.getResultList();
-		} catch (Exception e) {
-			return new ArrayList<>();
-		}
-	}
 
 	public EventoEntity findEventoById(Long id) {
 		entityManager = Uteis.JpaEntityManager();
@@ -172,14 +159,8 @@ public class EventoRepository {
 		
 		Long id = evento.getId();
 		eventoEntity = entityManager.find(EventoEntity.class, id);
-		//avaliacaoEventoRepository.removeByIdEvento(id);
 		
 		entityManager.remove(eventoEntity);
-	}
-
-	public void removeEvento(EventoEntity evento) {
-		entityManager = Uteis.JpaEntityManager();
-		entityManager.remove(evento);
 	}
 
 	public EventoEntity toEventoEntity(EventoModel eventoModel) {
@@ -255,39 +236,4 @@ public class EventoRepository {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public void removeEventosByVoluntario(VoluntarioEntity vol) {
-		try {
-			entityManager = Uteis.JpaEntityManager();
-
-			Query query = entityManager.createNamedQuery("EventoEntity.findByVoluntario");
-			query.setParameter("voluntario", vol);
-
-			List<EventoEntity> result = (List<EventoEntity>) query.getResultList();
-			for (EventoEntity eventoEntity : result) {
-				entityManager.remove(eventoEntity);
-			}
-		} catch (Exception e) {
-			return;
-		}
-
-	}
-
-	@SuppressWarnings("unchecked")
-	public void removeEventosByOng(ONGEntity ong) {
-		try {
-			entityManager = Uteis.JpaEntityManager();
-
-			Query query = entityManager.createNamedQuery("EventoEntity.findByOng");
-			query.setParameter("ong", ong);
-
-			List<EventoEntity> result = (List<EventoEntity>) query.getResultList();
-			for (EventoEntity eventoEntity : result) {
-				entityManager.remove(eventoEntity);
-			}
-		} catch (Exception e) {
-			return;
-		}
-
-	}
 }

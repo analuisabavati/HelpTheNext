@@ -13,33 +13,6 @@ import br.com.helpthenext.uteis.Uteis;
 public class AvaliacaoEventoRepository {
 	
 	EntityManager entityManager;
-	
-	@SuppressWarnings("unchecked")
-	public List<AvaliacaoEventoEntity> findEventosAvaliados(Long id) {
-		Query query = Uteis.JpaEntityManager().createNamedQuery("AvaliacaoEventoEntity.findEventosAvaliados");
-
-		query.setParameter("idVoluntario", id);
-
-		return query.getResultList();
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<AvaliacaoEventoEntity> findByIdVoluntario(Long id) {
-		Query query = Uteis.JpaEntityManager().createNamedQuery("AvaliacaoEventoEntity.findByIdVoluntario");
-
-		query.setParameter("id", id);
-
-		return query.getResultList();
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<AvaliacaoEventoEntity> getByIdEvento(Long id) {
-		Query query = Uteis.JpaEntityManager().createNamedQuery("AvaliacaoEventoEntity.findByIdEvento");
-
-		query.setParameter("id", id);
-
-		return query.getResultList();
-	}
 
 	@SuppressWarnings("unchecked")
 	public AvaliacaoEventoEntity findByVoluntarioEvento(Long idVol,
@@ -61,17 +34,14 @@ public class AvaliacaoEventoRepository {
 		} catch (NoResultException nre) {
 			return null;
 		} 
-
 	}
 
-	public void salvarAtualizarAvaliacaoEvento(AvaliacaoEventoEntity avaliacao) {
-		
+	public void salvarAtualizarAvaliacaoEvento(AvaliacaoEventoEntity avaliacao) {	
 		if (avaliacao.getAvaliacao() == null) {
 			return;
 		}
 		
 		entityManager = Uteis.JpaEntityManager();
-		
 		
 		AvaliacaoEventoEntity existe = findByVoluntarioEvento(avaliacao.getIdVoluntario(), avaliacao.getIdEvento());
 		if (existe != null) {
@@ -92,38 +62,6 @@ public class AvaliacaoEventoRepository {
 			avaliacoes = new ArrayList<>();
 		}
 		return avaliacoes;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void removeByIdVoluntario(Long id) {
-		
-		entityManager = Uteis.JpaEntityManager();
-		
-		Query query = entityManager.createNamedQuery("AvaliacaoEventoEntity.findByIdVoluntario");
-
-		query.setParameter("id", id);
-
-		List<AvaliacaoEventoEntity> result = query.getResultList();
-		
-		for (AvaliacaoEventoEntity avaliacaoEventoEntity : result) {
-			entityManager.remove(avaliacaoEventoEntity);
-		}
-	}
-
-	@SuppressWarnings("unchecked")
-	public void removeByIdEvento(Long id) {
-		
-		entityManager = Uteis.JpaEntityManager();
-		
-		Query query = entityManager.createNamedQuery("AvaliacaoEventoEntity.findByIdEvento");
-
-		query.setParameter("id", id);
-
-		List<AvaliacaoEventoEntity> result = query.getResultList();
-		
-		for (AvaliacaoEventoEntity avaliacaoEventoEntity : result) {
-			entityManager.remove(avaliacaoEventoEntity);
-		}
 	}
 
 }

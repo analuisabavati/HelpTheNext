@@ -58,34 +58,4 @@ public class AvaliacaoVagaRepository {
 		return avaliacoes;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public void removeByIdVoluntario(Long id) {
-		
-		entityManager = Uteis.JpaEntityManager();
-		
-		Query query = entityManager.createNamedQuery("AvaliacaoVagaEntity.findByIdVoluntario");
-
-		query.setParameter("id", id);
-
-		List<AvaliacaoVagaEntity> result = query.getResultList();		
-		for (AvaliacaoVagaEntity x : result) {
-			entityManager.remove(x);
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void removeByIdVaga(Long id) {
-		
-		entityManager = Uteis.JpaEntityManager();
-		
-		Query query = entityManager.createNamedQuery("AvaliacaoVagaEntity.findByIdVaga");
-
-		query.setParameter("id", id);
-
-		List<AvaliacaoVagaEntity> result = query.getResultList();		
-		for (AvaliacaoVagaEntity x : result) {
-			entityManager.remove(x);
-		}
-	}
-	
 }

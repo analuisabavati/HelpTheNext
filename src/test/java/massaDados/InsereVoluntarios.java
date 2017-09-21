@@ -50,7 +50,7 @@ public class InsereVoluntarios {
 
 		usuario.setUsuario("voluntario" + i);
 		usuario.setTipoUsuario(TipoUsuario.VOLUNTARIO);
-		usuario.setSenha(gerador.gerarSenha());
+		usuario.setSenha(Gerador.gerarSenha());
 
 		return usuario;
 	}
@@ -61,18 +61,18 @@ public class InsereVoluntarios {
 		voluntarioEntity.setNome("voluntario" + i);
 		voluntarioEntity.setSobrenome("sobrenome" + i);
 		voluntarioEntity.setSexo(i % 2 == 0 ? "M" : "F");
-		voluntarioEntity.setCpf(gerador.gerarCPF());
+		voluntarioEntity.setCpf(Gerador.gerarCPF());
 		voluntarioEntity.setDataNascimento(new Date());
 		voluntarioEntity.setDataCadastro(LocalDateTime.now());
 		voluntarioEntity.setEmail("ana_bavati@hotmail.com");
 
 		voluntarioEntity.setEstado("SP");
 		voluntarioEntity.setCidade("Campinas");
-		voluntarioEntity.setCep(gerador.gerarCEP());
+		voluntarioEntity.setCep(Gerador.gerarCEP());
 		voluntarioEntity.setComplemento("-");
 		voluntarioEntity.setNumero(new Long(i.toString()));
 		voluntarioEntity.setRua("Rua " + i);
-		voluntarioEntity.setTelefone(gerador.gerarTelefone());
+		voluntarioEntity.setTelefone(Gerador.gerarTelefone());
 		voluntarioEntity.setRg(null);
 		voluntarioEntity.setTrabalhoDistancia(i % 2 == 0 ? "S" : "N");
 
@@ -89,12 +89,12 @@ public class InsereVoluntarios {
 	
 	private List<Periodos> getPeriodos() {
 
-		int qnt = gerador.numAleatorio(1, 3);
+		int qnt = Gerador.numAleatorio(1, 3);
 
 		List<Integer> numeros = new ArrayList<>();
 
 		for (int i = 0; i < qnt; i++) {
-			int n = gerador.numAleatorio(0, 2);
+			int n = Gerador.numAleatorio(0, 2);
 			if (!numeros.contains(n)) {
 				numeros.add(n);
 			}
@@ -111,12 +111,12 @@ public class InsereVoluntarios {
 	
 	private List<DiasSemana> getDias() {
 
-		int qnt = gerador.numAleatorio(1, 6);
+		int qnt = Gerador.numAleatorio(1, 6);
 
 		List<Integer> numeros = new ArrayList<>();
 
 		for (int i = 0; i < qnt; i++) {
-			int n = gerador.numAleatorio(0, 6);
+			int n = Gerador.numAleatorio(0, 6);
 			if (!numeros.contains(n)) {
 				numeros.add(n);
 			}
@@ -132,12 +132,12 @@ public class InsereVoluntarios {
 	
 	private List<Habilidades> getHabilidades() {
 
-		int qnt = gerador.numAleatorio(1, 2);
+		int qnt = Gerador.numAleatorio(1, 2);
 
 		List<Integer> numeros = new ArrayList<>();
 
 		for (int i = 0; i < qnt; i++) {
-			int n = gerador.numAleatorio(0, 11);
+			int n = Gerador.numAleatorio(0, 11);
 			if (!numeros.contains(n)) {
 				numeros.add(n);
 			}
@@ -153,12 +153,12 @@ public class InsereVoluntarios {
 
 	private List<Causas> getCausas() {
 
-		int qnt = gerador.numAleatorio(1, 3);
+		int qnt = Gerador.numAleatorio(1, 3);
 
 		List<Integer> numeros = new ArrayList<>();
 
 		for (int i = 0; i < qnt; i++) {
-			int n = gerador.numAleatorio(0, 11);
+			int n = Gerador.numAleatorio(0, 11);
 			if (!numeros.contains(n)) {
 				numeros.add(n);
 			}

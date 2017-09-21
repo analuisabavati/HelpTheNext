@@ -15,7 +15,6 @@ import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.entity.DoacaoEntity;
-import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
 
 public class DoacaoRepository {
@@ -126,31 +125,6 @@ public class DoacaoRepository {
 		entityManager = Uteis.JpaEntityManager();
 		doacaoEntity = findDoacaoById(doacao.getId());
 		entityManager.remove(doacaoEntity);
-	}
-
-	public void removerDoacao(DoacaoEntity doacao) {
-		entityManager = Uteis.JpaEntityManager();
-		entityManager.remove(doacao);
-	}
-
-	@SuppressWarnings("unchecked")
-	public void removerDoacaoByVoluntario(VoluntarioEntity vol) {
-		try {
-			entityManager = Uteis.JpaEntityManager();
-
-			Query query = entityManager.createNamedQuery("DoacaoEntity.findByVoluntario");
-
-			query.setParameter("voluntario", vol);
-
-			List<DoacaoEntity> result = query.getResultList();
-
-			for (DoacaoEntity x : result) {
-				entityManager.remove(x);
-			}
-		} catch (Exception e) {
-			return;
-		}
-
 	}
 
 }

@@ -38,13 +38,13 @@ public class InsereONGs {
 		ongEntity.setEmail("ana_bavati@hotmail.com");
 		ongEntity.setNomeONG("ONG" +i);
 		ongEntity.setNomeResponsavel("Responsavel ong "+i);
-		ongEntity.setTelefone(gerador.gerarTelefone());
+		ongEntity.setTelefone(Gerador.gerarTelefone());
 		ongEntity.setDescricao("Descricao sobre a ong");
 
 		
 		ongEntity.setCausas(getCausas());
 
-		ongEntity.setCep(gerador.gerarCEP());
+		ongEntity.setCep(Gerador.gerarCEP());
 		ongEntity.setCidade("Campinas");
 		ongEntity.setEstado("SP");
 		
@@ -62,19 +62,19 @@ public class InsereONGs {
 
 		usuario.setUsuario("ONG" + i);
 		usuario.setTipoUsuario(TipoUsuario.ONG);
-		usuario.setSenha(gerador.gerarSenha());
+		usuario.setSenha(Gerador.gerarSenha());
 
 		return usuario;
 	}
 	
 	private java.util.List<Causas> getCausas() {
 
-		int qnt = gerador.numAleatorio(1, 3);
+		int qnt = Gerador.numAleatorio(1, 3);
 
 		List<Integer> numeros = new ArrayList<>();
 
 		for (int i = 0; i < qnt; i++) {
-			int n = gerador.numAleatorio(0, 11);
+			int n = Gerador.numAleatorio(0, 11);
 			if (!numeros.contains(n)) {
 				numeros.add(n);
 			}

@@ -23,29 +23,12 @@ public class Predicoes {
 	String pathArquivoAvaliacoes;
 	String pathArquivoDiferencas;
 
-	/*
-	 * public static void main(String args[]) {
-	 * System.out.println("\n[SlopOne] -  Iniciando Predicoes  -"); String
-	 * pathArqDiferencas1 =
-	 * "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\diff.txt";
-	 * String pathArqAvaliacoes1 =
-	 * "C:\\Users\\ana_b\\git\\HelpTheNext\\src\\main\\resources\\slopeOne\\avaliacoes.txt";
-	 * 
-	 * // long inicio = System.currentTimeMillis(); Predicoes p = new
-	 * Predicoes(); p.calculaPredicoes(2, pathArqAvaliacoes1,
-	 * pathArqDiferencas1); // long fim = System.currentTimeMillis();
-	 * 
-	 * // System.out.println("\n[SlopOne] Tempo de execução: " + (fim - inicio)
-	 * + " ms."); }
-	 * 
-	 */
-
 	public List<Long> calculaPredicoes(int idVoluntario, String pathArquivoAvaliacoes, String pathArquivoDiferencas) {
 
 		this.pathArquivoAvaliacoes = pathArquivoAvaliacoes;
 		this.pathArquivoDiferencas = pathArquivoDiferencas;
 
-		getAvaliacoesFeitaPeloVoluntario(idVoluntario);
+		getAvaliacoesFeitasPeloVoluntario(idVoluntario);
 		leArquivoDiffMediaAvaliacoes();
 		zeraMatrizPredicoes();
 
@@ -121,7 +104,7 @@ public class Predicoes {
 		}
 	}
 
-	public void getAvaliacoesFeitaPeloVoluntario(int voluntarioPredicoes) {
+	public void getAvaliacoesFeitasPeloVoluntario(int voluntarioPredicoes) {
 		try {
 
 			FileInputStream fileInputStram = new FileInputStream(new File(pathArquivoAvaliacoes));
