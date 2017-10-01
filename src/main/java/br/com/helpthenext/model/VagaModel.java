@@ -11,6 +11,7 @@ import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
 import br.com.helpthenext.repository.entity.ONGEntity;
+import br.com.helpthenext.uteis.DadosUtil;
 
 public class VagaModel {
 
@@ -50,7 +51,7 @@ public class VagaModel {
 	}
 
 	public void setCausasString(String causasString) {
-		this.causasString = causasString;
+		this.causasString = DadosUtil.formataCausas(causasString);
 	}
 
 	public String getHabilidadesString() {
@@ -58,7 +59,7 @@ public class VagaModel {
 	}
 
 	public void setHabilidadesString(String habilidadesString) {
-		this.habilidadesString = habilidadesString;
+		this.habilidadesString = DadosUtil.formataHabilidades(habilidadesString);
 	}
 
 	public String getDiasString() {
@@ -66,7 +67,7 @@ public class VagaModel {
 	}
 
 	public void setDiasString(String diasString) {
-		this.diasString = diasString;
+		this.diasString = DadosUtil.formataDias(diasString);
 	}
 
 	public String getPeriodoString() {
@@ -74,7 +75,7 @@ public class VagaModel {
 	}
 
 	public void setPeriodoString(String periodoString) {
-		this.periodoString = periodoString;
+		this.periodoString = DadosUtil.formataPeriodos(periodoString);
 	}
 
 

@@ -9,6 +9,7 @@ import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.DadosUtil;
 
 public class EventoModel {
 
@@ -153,7 +154,7 @@ public class EventoModel {
 	}
 
 	public void setCausasString(String causasString) {
-		this.causasString = causasString;
+		this.causasString = DadosUtil.formataCausas(causasString);
 	}
 
 	public AvaliacaoEventoEntity getAvaliacaoEvento() {

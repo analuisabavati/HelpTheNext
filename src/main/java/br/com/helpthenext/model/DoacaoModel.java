@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.DadosUtil;
 
 public class DoacaoModel {
 
@@ -27,7 +28,7 @@ public class DoacaoModel {
 	}
 
 	public void setDiasString(String diasString) {
-		this.diasString = diasString;
+		this.diasString = DadosUtil.formataDias(diasString);
 	}
 
 	public String getPeriodoString() {
@@ -35,7 +36,7 @@ public class DoacaoModel {
 	}
 
 	public void setPeriodoString(String periodoString) {
-		this.periodoString = periodoString;
+		this.periodoString = DadosUtil.formataPeriodos(periodoString);
 	}
 
 
