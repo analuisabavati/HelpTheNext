@@ -259,56 +259,56 @@ public class VoluntarioModel {
 	}
 
 	public String[] toStringArrayCausas(List<Causas> causas) {
-
 		if (causas == null || causas.isEmpty()) {
 			return null;
 		}
 
 		List<String> stringCausas = new ArrayList<>();
 		for (Causas causa : causas) {
-			stringCausas.add(causa.toString());
+			Integer ordinal = causa.ordinal();
+			stringCausas.add(ordinal.toString());
 		}
 
 		return stringCausas.toArray(new String[stringCausas.size()]);
 	}
 
 	public String[] toStringArrayHabilidades(List<Habilidades> habilidades) {
-
 		if (habilidades == null || habilidades.isEmpty()) {
 			return null;
 		}
 
 		List<String> stringVetor = new ArrayList<>();
 		for (Habilidades habilidade : habilidades) {
-			stringVetor.add(habilidade.toString());
+			Integer ordinal = habilidade.ordinal();
+			stringVetor.add(ordinal.toString());
 		}
 
 		return stringVetor.toArray(new String[stringVetor.size()]);
 	}
 
 	public String[] toStringArrayDiasSemana(List<DiasSemana> disponibilidadeDias) {
-
 		if (disponibilidadeDias == null || disponibilidadeDias.isEmpty()) {
 			return null;
 		}
 
 		List<String> stringVetor = new ArrayList<>();
 		for (DiasSemana dias : disponibilidadeDias) {
-			stringVetor.add(dias.toString());
+			Integer ordinal = dias.ordinal();
+			stringVetor.add(ordinal.toString());
 		}
 
 		return stringVetor.toArray(new String[stringVetor.size()]);
 	}
 
 	public String[] toStringArrayPeriodos(List<Periodos> disponibilidadePeriodos) {
-
 		if (disponibilidadePeriodos == null || disponibilidadePeriodos.isEmpty()) {
 			return null;
 		}
 
 		List<String> stringVetor = new ArrayList<>();
 		for (Periodos p : disponibilidadePeriodos) {
-			stringVetor.add(p.toString());
+			Integer ordinal = p.ordinal();
+			stringVetor.add(ordinal.toString());
 		}
 
 		return stringVetor.toArray(new String[stringVetor.size()]);

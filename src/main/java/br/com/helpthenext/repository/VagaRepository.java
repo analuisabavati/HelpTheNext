@@ -125,7 +125,7 @@ public class VagaRepository {
 		vagaModel.setCausas(vagaModel.toStringArrayCausas(vagaEntity.getCausas()));
 		vagaModel.setHabilidades(vagaModel.toStringArrayHabilidades(vagaEntity.getHabilidades()));
 		vagaModel.setPeriodos(vagaModel.toStringArrayPeriodos(vagaEntity.getPeriodos()));
-		vagaModel.setDias(vagaModel.toStringArrayDias(vagaEntity.getDias()));
+		vagaModel.setDias(vagaModel.toStringArrayDiasSemana(vagaEntity.getDias()));
 		vagaModel.setOngEntity(vagaEntity.getOngEntity());
 
 		vagaModel.setCausasString(vagaModel.getCausas() == null ? null : Arrays.toString(vagaModel.getCausas()));

@@ -99,7 +99,8 @@ public class DoacaoModel {
 
 		List<String> stringCausas = new ArrayList<>();
 		for (Periodos x : list) {
-			stringCausas.add(x.toString());
+			Integer ordinal = x.ordinal();
+			stringCausas.add(ordinal.toString());
 		}
 
 		return stringCausas.toArray(new String[stringCausas.size()]);
@@ -113,7 +114,8 @@ public class DoacaoModel {
 
 		List<String> stringCausas = new ArrayList<>();
 		for (DiasSemana x : list) {
-			stringCausas.add(x.toString());
+			Integer ordinal = x.ordinal();
+			stringCausas.add(ordinal.toString());
 		}
 
 		return stringCausas.toArray(new String[stringCausas.size()]);

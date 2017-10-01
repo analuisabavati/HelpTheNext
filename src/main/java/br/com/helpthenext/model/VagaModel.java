@@ -184,60 +184,62 @@ public class VagaModel {
 	}
 
 	public String[] toStringArrayCausas(List<Causas> causas) {
-
 		if (causas == null || causas.isEmpty()) {
 			return null;
 		}
 
 		List<String> stringCausas = new ArrayList<>();
 		for (Causas causa : causas) {
-			stringCausas.add(causa.toString());
+			Integer ordinal = causa.ordinal();
+			stringCausas.add(ordinal.toString());
 		}
 
 		return stringCausas.toArray(new String[stringCausas.size()]);
 	}
-
-	public String[] toStringArrayHabilidades(List<Habilidades> list) {
-
-		if (list == null || list.isEmpty()) {
+	public String[] toStringArrayHabilidades(List<Habilidades> habilidades) {
+		if (habilidades == null || habilidades.isEmpty()) {
 			return null;
 		}
 
-		List<String> stringCausas = new ArrayList<>();
-		for (Habilidades x : list) {
-			stringCausas.add(x.toString());
+		List<String> stringVetor = new ArrayList<>();
+		for (Habilidades habilidade : habilidades) {
+			Integer ordinal = habilidade.ordinal();
+			stringVetor.add(ordinal.toString());
 		}
 
-		return stringCausas.toArray(new String[stringCausas.size()]);
+		return stringVetor.toArray(new String[stringVetor.size()]);
 	}
 
-	public String[] toStringArrayPeriodos(List<Periodos> list) {
+	public String[] toStringArrayDiasSemana(List<DiasSemana> disponibilidadeDias) {
 
-		if (list == null || list.isEmpty()) {
+		if (disponibilidadeDias == null || disponibilidadeDias.isEmpty()) {
 			return null;
 		}
 
-		List<String> stringCausas = new ArrayList<>();
-		for (Periodos x : list) {
-			stringCausas.add(x.toString());
+		List<String> stringVetor = new ArrayList<>();
+		for (DiasSemana dias : disponibilidadeDias) {
+			Integer ordinal = dias.ordinal();
+			stringVetor.add(ordinal.toString());
 		}
 
-		return stringCausas.toArray(new String[stringCausas.size()]);
+		return stringVetor.toArray(new String[stringVetor.size()]);
 	}
 
-	public String[] toStringArrayDias(List<DiasSemana> list) {
+	public String[] toStringArrayPeriodos(List<Periodos> disponibilidadePeriodos) {
 
-		if (list == null || list.isEmpty()) {
+		if (disponibilidadePeriodos == null || disponibilidadePeriodos.isEmpty()) {
 			return null;
 		}
 
-		List<String> stringCausas = new ArrayList<>();
-		for (DiasSemana x : list) {
-			stringCausas.add(x.toString());
+		List<String> stringVetor = new ArrayList<>();
+		for (Periodos p : disponibilidadePeriodos) {
+			Integer ordinal = p.ordinal();
+			stringVetor.add(ordinal.toString());
 		}
 
-		return stringCausas.toArray(new String[stringCausas.size()]);
+		return stringVetor.toArray(new String[stringVetor.size()]);
 	}
+
 
 	public AvaliacaoVagaEntity getAvaliacaoVaga() {
 		return avaliacaoVaga;
