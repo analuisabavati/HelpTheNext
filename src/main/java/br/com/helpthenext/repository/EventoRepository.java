@@ -17,6 +17,7 @@ import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.EventoEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.DadosUtil;
 import br.com.helpthenext.uteis.Uteis;
 
 public class EventoRepository {
@@ -96,7 +97,7 @@ public class EventoRepository {
 				Integer c = eventoEntity.getCausa().ordinal();
 				eventoModel.setCausa(c.toString());
 
-				eventoModel.setCausasString(eventoEntity.getCausa().toString());
+				eventoModel.setCausasString(DadosUtil.formataCausas(c.toString()));
 			}
 
 			eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));
@@ -198,7 +199,7 @@ public class EventoRepository {
 			Integer c = eventoEntity.getCausa().ordinal();
 			eventoModel.setCausa(c.toString());
 
-			eventoModel.setCausasString(eventoModel.getCausa());
+			eventoModel.setCausasString(DadosUtil.formataCausas(c.toString()));
 		}
 
 		eventoModel.setDataCadastroDate(asDate(eventoModel.getDataCadastro()));

@@ -143,7 +143,8 @@ public class EventoModel {
 		
 		List<String> stringCausas = new ArrayList<>();
 		for(Causas causa: causas) {
-			stringCausas.add(causa.toString());
+			Integer ordinal = causa.ordinal();
+			stringCausas.add(ordinal.toString());
 		}
 		
 		return stringCausas.toArray(new String[stringCausas.size()]);
