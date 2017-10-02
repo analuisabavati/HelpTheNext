@@ -211,7 +211,6 @@ public class VagaModel {
 	}
 
 	public String[] toStringArrayDiasSemana(List<DiasSemana> disponibilidadeDias) {
-
 		if (disponibilidadeDias == null || disponibilidadeDias.isEmpty()) {
 			return null;
 		}
@@ -226,7 +225,6 @@ public class VagaModel {
 	}
 
 	public String[] toStringArrayPeriodos(List<Periodos> disponibilidadePeriodos) {
-
 		if (disponibilidadePeriodos == null || disponibilidadePeriodos.isEmpty()) {
 			return null;
 		}

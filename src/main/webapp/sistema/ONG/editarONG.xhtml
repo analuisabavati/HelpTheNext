@@ -32,7 +32,8 @@
 						<p:outputLabel value="Senha" for="senha" />
 						<p:inplace id="senha" editor="true"
 							emptyLabel="Clique para editar">
-							<p:inputText value="#{editarONG.ong.senhaONG}" required="true" />
+							<p:inputText value="#{editarONG.ong.senhaONG}" required="true"
+								requiredMessage="O campo senha é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:separator />
@@ -45,6 +46,7 @@
 								value="#{editarONG.ong.nomeONG}" required="true"
 								requiredMessage="O campo nome da ONG é de preenchimento obrigatório" />
 						</p:inplace>
+
 						<p:outputLabel value="Nome do responsavel"
 							for="inputText-nomeResponsavel" />
 						<p:inplace id="inputText-nomeResponsavel" editor="true"
@@ -88,7 +90,6 @@
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" maxlength="200"
 								value="#{editarONG.ong.rua}" />
-
 						</p:inplace>
 
 						<p:outputLabel value="Numero" for="inputText-numero" />
@@ -183,8 +184,6 @@
 							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
 							<f:selectItem itemLabel="Outras" itemValue="13" />
 						</p:selectManyCheckbox>
-
-
 
 						<p:commandButton value="Salvar alterações"
 							id="commandButton-salvar" icon="fa fa-floppy-o"

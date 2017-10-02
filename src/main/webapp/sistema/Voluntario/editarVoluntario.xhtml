@@ -33,7 +33,9 @@
 						<p:outputLabel value="Senha" for="inputText-senha-cadastro" />
 						<p:inplace id="inputText-senha-cadastro" editor="true"
 							emptyLabel="Clique para editar">
-							<p:password value="#{editarVoluntario.voluntario.senha}" />
+							<p:inputText value="#{editarVoluntario.voluntario.senha}"
+								required="true"
+								requiredMessage="O campo senha é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:separator />
@@ -43,7 +45,8 @@
 						<p:inplace id="inputText-nome" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText value="#{editarVoluntario.voluntario.nome}"
-								label="text" />
+								label="text" required="true"
+								requiredMessage="O campo nome é de preenchimento obrigatório" />
 						</p:inplace>
 
 
@@ -244,8 +247,6 @@
 							id="commandButton-salvar" icon="fa fa-floppy-o"
 							action="#{editarVoluntario.atualizarVoluntario}"
 							update="panelGrid-campos-form" ajax="false" />
-
-
 
 					</h:panelGrid>
 

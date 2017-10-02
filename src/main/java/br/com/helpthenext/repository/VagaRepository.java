@@ -18,7 +18,6 @@ import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
-import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VagaEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
 import br.com.helpthenext.uteis.Uteis;
@@ -82,19 +81,17 @@ public class VagaRepository {
 		}
 
 		vagaEntity.setPeriodos(periodos);
-
 		vagaEntity.setOngEntity(ongRepository.findONGByUsuarioSessao());
 
 		entityManager.persist(vagaEntity);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<VagaModel> findAll() {
 
 		entityManager = Uteis.JpaEntityManager();
 
-		Query query = entityManager.createNamedQuery("VagaEntity.findAll");
-
-		@SuppressWarnings("unchecked")
+		Query query = entityManager.createNamedQuery("VagaEntity.findAll");	
 		Collection<VagaEntity> vagasEntity = (Collection<VagaEntity>) query.getResultList();
 
 		List<VagaModel> vagasModel = new ArrayList<VagaModel>();
@@ -129,8 +126,7 @@ public class VagaRepository {
 		vagaModel.setOngEntity(vagaEntity.getOngEntity());
 
 		vagaModel.setCausasString(vagaModel.getCausas() == null ? null : Arrays.toString(vagaModel.getCausas()));
-		vagaModel.setHabilidadesString(
-				vagaModel.getHabilidades() == null ? null : Arrays.toString(vagaModel.getHabilidades()));
+		vagaModel.setHabilidadesString(vagaModel.getHabilidades() == null ? null : Arrays.toString(vagaModel.getHabilidades()));
 		vagaModel.setDiasString(vagaModel.getDias() == null ? null : Arrays.toString(vagaModel.getDias()));
 		vagaModel.setPeriodoString(vagaModel.getPeriodos() == null ? null : Arrays.toString(vagaModel.getPeriodos()));
 		vagaModel.setDataCadastroDate(asDate(vagaModel.getDataCadastro()));
@@ -194,7 +190,6 @@ public class VagaRepository {
 		
 		Long id = vagaModel.getId();
 		vagaEntity = findVagaById(id);	
-		//avaliacaoVagaRepository.removeByIdVaga(id);
 		
 		entityManager.remove(vagaEntity);
 	}
@@ -211,8 +206,7 @@ public class VagaRepository {
 			return new AvaliacaoVagaEntity();
 		}
 
-		AvaliacaoVagaEntity avaliacao = avaliacaoVagaRepository.findByVoluntarioVaga(voluntarioByUsuarioSessao.getId(),
-				VagaEntity.getId());
+		AvaliacaoVagaEntity avaliacao = avaliacaoVagaRepository.findByVoluntarioVaga(voluntarioByUsuarioSessao.getId(), VagaEntity.getId());
 		if (avaliacao == null) {
 			avaliacao = new AvaliacaoVagaEntity();
 			avaliacao.setAvaliacao(0);
@@ -252,23 +246,4 @@ public class VagaRepository {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public void removerVagaByOng(ONGEntity ong) {
-		try {
-			entityManager = Uteis.JpaEntityManager();
-
-			Query query = entityManager.createNamedQuery("VagaEntity.findByOng");
-
-			query.setParameter("ong", ong);
-
-			List<VagaEntity> result = query.getResultList();
-
-			for (VagaEntity x : result) {
-				entityManager.remove(x);
-			}
-		} catch (Exception e) {
-			return;
-		}
-
-	}
 }
