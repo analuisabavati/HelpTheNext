@@ -11,6 +11,7 @@ import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
+import br.com.helpthenext.uteis.DadosUtil;
 
 public class VoluntarioModel {
 
@@ -319,15 +320,15 @@ public class VoluntarioModel {
 	}
 
 	public void setHabilidadesString(String habilidadesString) {
-		this.habilidadesString = habilidadesString;
+		this.habilidadesString = DadosUtil.formataHabilidades(habilidadesString);
 	}
-
+	
 	public String getCausasString() {
 		return causasString;
 	}
 
 	public void setCausasString(String causasString) {
-		this.causasString = causasString;
+		this.causasString = DadosUtil.formataCausas(causasString);
 	}
 
 	public String getDisponibilidadeDiasString() {
@@ -335,7 +336,7 @@ public class VoluntarioModel {
 	}
 
 	public void setDisponibilidadeDiasString(String disponibilidadeDiasString) {
-		this.disponibilidadeDiasString = disponibilidadeDiasString;
+		this.disponibilidadeDiasString = DadosUtil.formataDias(disponibilidadeDiasString);
 	}
 
 	public String getDisponibilidadePeriodosString() {
@@ -343,7 +344,7 @@ public class VoluntarioModel {
 	}
 
 	public void setDisponibilidadePeriodosString(String disponibilidadePeriodosString) {
-		this.disponibilidadePeriodosString = disponibilidadePeriodosString;
+		this.disponibilidadePeriodosString =  DadosUtil.formataPeriodos(disponibilidadePeriodosString);
 	}
 
 	public AvaliacaoEventoEntity getAvaliacaoEvento() {

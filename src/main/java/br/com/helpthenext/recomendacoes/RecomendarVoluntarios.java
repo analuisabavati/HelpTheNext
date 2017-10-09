@@ -108,7 +108,7 @@ public class RecomendarVoluntarios implements Serializable {
 			if (somatorio != 0) {
 				voluntarioModel.setPontos(somatorio);
 				voluntariosRecomendados.add(voluntarioModel);
-			}
+			}	
 
 			somatorio = 0;
 		}

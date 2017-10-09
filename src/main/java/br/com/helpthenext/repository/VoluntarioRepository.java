@@ -2,6 +2,7 @@ package br.com.helpthenext.repository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,17 +22,17 @@ import br.com.helpthenext.uteis.Uteis;
 public class VoluntarioRepository {
 
 	@Inject
-	VoluntarioEntity voluntarioEntity;
+	private VoluntarioEntity voluntarioEntity;
 
 	@Inject
-	UsuarioEntity usuarioEntity;
+	private UsuarioEntity usuarioEntity;
 
 	@Inject
-	UsuarioController usuarioController;
-	
+	private UsuarioController usuarioController;
+
 	@Inject
-	UsuarioRepository usuarioRepository;
-	
+	private UsuarioRepository usuarioRepository;
+
 	EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
@@ -285,10 +286,14 @@ public class VoluntarioRepository {
 		voluntarioModel.setDisponibilidadePeriodos(
 				voluntarioModel.toStringArrayPeriodos(voluntarioEntity.getPeriodosDisponiveis()));
 
-		voluntarioModel.setCausasString(voluntarioEntity.getCausas().toString());
-		voluntarioModel.setHabilidadesString(voluntarioEntity.getHabilidades().toString());
-		voluntarioModel.setDisponibilidadeDiasString(voluntarioEntity.getDiasDisponiveis().toString());
-		voluntarioModel.setDisponibilidadePeriodosString(voluntarioEntity.getPeriodosDisponiveis().toString());
+		voluntarioModel.setDisponibilidadeDiasString(voluntarioModel.getDisponibilidadeDias() == null ? null
+				: Arrays.toString(voluntarioModel.getDisponibilidadeDias()));
+		voluntarioModel.setDisponibilidadePeriodosString(voluntarioModel.getDisponibilidadePeriodos() == null ? null
+				: Arrays.toString(voluntarioModel.getDisponibilidadePeriodos()));
+		voluntarioModel.setCausasString(
+				voluntarioModel.getCausas() == null ? null : Arrays.toString(voluntarioModel.getCausas()));
+		voluntarioModel.setHabilidadesString(
+				voluntarioModel.getHabilidades() == null ? null : Arrays.toString(voluntarioModel.getHabilidades()));
 
 		UsuarioEntity usuarioEntity = voluntarioEntity.getUsuarioEntity();
 		voluntarioModel.setUsuarioEntity(usuarioEntity);
@@ -341,9 +346,9 @@ public class VoluntarioRepository {
 
 	public void removerVoluntario(VoluntarioModel voluntario) {
 		usuarioRepository.removerUsuarioById(voluntario.getUsuarioEntity().getId());
-		
+
 		Long id = voluntario.getId();
-	
+
 		entityManager = Uteis.JpaEntityManager();
 		voluntarioEntity = entityManager.find(VoluntarioEntity.class, id);
 		entityManager.remove(voluntarioEntity);
