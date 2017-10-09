@@ -15,8 +15,8 @@ public class Predicoes {
 	HashMap<Integer, Double> matrizAvaliacaoItemVoluntario = new HashMap<Integer, Double>();
 	HashMap<Integer, Double> predicoes = new HashMap<Integer, Double>();
 
-	Double diffMediaAvaliacoesItem[][];
-	Double qntVolAvaliaramItem[][];
+	Double diffMediaAvaliacoesItem1Item2[][];
+	Double qntVolAvaliaramItem1Item2[][];
 
 	int quantidadeItensAvaliados;
 
@@ -48,16 +48,12 @@ public class Predicoes {
 					 */
 
 					if (itemX >= itemAvaliado) {
-						valorPredicao = qntVolAvaliaramItem[itemAvaliado][itemX]
-								* (-1 * diffMediaAvaliacoesItem[itemAvaliado][itemX]
-										+ matrizAvaliacaoItemVoluntario.get(itemAvaliado).doubleValue());
+						valorPredicao = removeValorPredicao(itemAvaliado, itemX);
 					} else {
-						valorPredicao = qntVolAvaliaramItem[itemAvaliado][itemX]
-								* (diffMediaAvaliacoesItem[itemAvaliado][itemX]
-										+ matrizAvaliacaoItemVoluntario.get(itemAvaliado).doubleValue());
+						valorPredicao = calculaValorPredicao(itemAvaliado, itemX);
 					}
 
-					qntAvaliacoesItem[itemX] = qntAvaliacoesItem[itemX] + qntVolAvaliaramItem[itemAvaliado][itemX];
+					qntAvaliacoesItem[itemX] = qntAvaliacoesItem[itemX] + qntVolAvaliaramItem1Item2[itemAvaliado][itemX];
 
 					predicoes.put(itemX, predicoes.get(itemX).doubleValue() + valorPredicao);
 				}
@@ -67,6 +63,18 @@ public class Predicoes {
 		calculaMedias(qntAvaliacoesItem);
 
 		return getIdsItensRecomendados();
+	}
+
+	private double calculaValorPredicao(int itemAvaliado, int itemX) {
+		return (diffMediaAvaliacoesItem1Item2[itemAvaliado][itemX]
+				+ matrizAvaliacaoItemVoluntario.get(itemAvaliado).doubleValue())
+				* qntVolAvaliaramItem1Item2[itemAvaliado][itemX];
+	}
+
+	private double removeValorPredicao(int itemAvaliado, int itemX) {
+		return (-1 * diffMediaAvaliacoesItem1Item2[itemAvaliado][itemX]
+				+ matrizAvaliacaoItemVoluntario.get(itemAvaliado).doubleValue())
+				* qntVolAvaliaramItem1Item2[itemAvaliado][itemX];
 	}
 
 	private void calculaMedias(double[] qntAvaliacoesItem) {
@@ -79,7 +87,7 @@ public class Predicoes {
 	}
 
 	private List<Long> getIdsItensRecomendados() {
-		
+
 		List<Long> idItensRecomendados = new ArrayList<>();
 
 		for (int item : predicoes.keySet()) {
@@ -90,7 +98,7 @@ public class Predicoes {
 
 			System.out.println(item + " " + avaliacao);
 		}
-		
+
 		return idItensRecomendados;
 	}
 
@@ -153,17 +161,7 @@ public class Predicoes {
 			String linha = getProximaLinha(dataInputStream);
 			StringTokenizer token = getTab(linha);
 
-			quantidadeItensAvaliados = getProximoInt(token);
-
-			diffMediaAvaliacoesItem = new Double[quantidadeItensAvaliados + 1][quantidadeItensAvaliados + 1];
-			qntVolAvaliaramItem = new Double[quantidadeItensAvaliados + 1][quantidadeItensAvaliados + 1];
-
-			for (int item1 = 1; item1 <= quantidadeItensAvaliados; item1++) {
-				for (int item2 = 1; item2 <= quantidadeItensAvaliados; item2++) {
-					diffMediaAvaliacoesItem[item1][item2] = new Double("0");
-					qntVolAvaliaramItem[item1][item2] = new Double("0");
-				}
-			}
+			zerandoMatrizes(token);
 
 			while (dataInputStream.available() != 0) {
 
@@ -173,7 +171,7 @@ public class Predicoes {
 				int item1 = getProximoInt(token);
 				int item2 = getProximoInt(token);
 
-				diffMediaAvaliacoesItem[item1][item2] = getProximoDouble(token);
+				diffMediaAvaliacoesItem1Item2[item1][item2] = getProximoDouble(token);
 
 				linha = getProximaLinha(dataInputStream);
 				token = getTab(linha);
@@ -181,7 +179,7 @@ public class Predicoes {
 				item1 = getProximoInt(token);
 				item2 = getProximoInt(token);
 
-				qntVolAvaliaramItem[item1][item2] = getProximoDouble(token);
+				qntVolAvaliaramItem1Item2[item1][item2] = getProximoDouble(token);
 			}
 
 			fileInputStream.close();
@@ -190,6 +188,20 @@ public class Predicoes {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	private void zerandoMatrizes(StringTokenizer token) {
+		quantidadeItensAvaliados = getProximoInt(token);
+
+		diffMediaAvaliacoesItem1Item2 = new Double[quantidadeItensAvaliados + 1][quantidadeItensAvaliados + 1];
+		qntVolAvaliaramItem1Item2 = new Double[quantidadeItensAvaliados + 1][quantidadeItensAvaliados + 1];
+
+		for (int item1 = 1; item1 <= quantidadeItensAvaliados; item1++) {
+			for (int item2 = 1; item2 <= quantidadeItensAvaliados; item2++) {
+				diffMediaAvaliacoesItem1Item2[item1][item2] = new Double("0");
+				qntVolAvaliaramItem1Item2[item1][item2] = new Double("0");
+			}
 		}
 	}
 
