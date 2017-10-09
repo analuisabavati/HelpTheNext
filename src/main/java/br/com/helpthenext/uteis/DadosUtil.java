@@ -7,6 +7,8 @@ public class DadosUtil {
 			return null;
 		}
 		
+		habilidades = habilidades.replace("10", "Saúde e Psicologia");
+		habilidades = habilidades.replace("11", "Outros");	
 		habilidades = habilidades.replace("0", "Artes e Artesanato");
 		habilidades = habilidades.replace("1", "Comunicação");
 		habilidades = habilidades.replace("2", "Dança e Musica");
@@ -17,9 +19,7 @@ public class DadosUtil {
 		habilidades = habilidades.replace("7", "Gestão");
 		habilidades = habilidades.replace("8", "Idiomas");
 		habilidades = habilidades.replace("9", "Informática e Eletrônica");
-		habilidades = habilidades.replace("10", "Saúde e Psicologia");
-		habilidades = habilidades.replace("11", "Idiomas");
-		habilidades = habilidades.replace("12", "Outros");
+
 		habilidades = habilidades.replace(",", " - ");
 		habilidades = habilidades.replace("[", " ");
 		habilidades = habilidades.replace("]", " ");
@@ -32,6 +32,10 @@ public class DadosUtil {
 			return null;
 		}
 
+		x = x.replace("10", "Consumo Consciente");
+		x = x.replace("11", "Capacitação Profissional");
+		x = x.replace("12", "Combate à probreza");
+		x = x.replace("13", "Outras");
 		x = x.replace("0", "Pessoas com deficiência");
 		x = x.replace("1", "Saúde");
 		x = x.replace("2", "Proteção Animal");
@@ -42,11 +46,7 @@ public class DadosUtil {
 		x = x.replace("7", "Defesa de direitos");
 		x = x.replace("8", "Cultura, Esporte e Arte");
 		x = x.replace("9", "Crianças e Jovens");
-		x = x.replace("10", "Consumo Consciente");
-		x = x.replace("11", "Capacitação Profissional");
-		x = x.replace("12", "Combate à probreza");
-		x = x.replace("13", "Outras");
-
+		
 		x = x.replace(",", " - ");
 		x = x.replace("[", " ");
 		x = x.replace("]", " ");
