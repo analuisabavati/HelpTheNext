@@ -20,6 +20,15 @@
 				style="margin-top:20px">
 
 				<f:facet name="header"> Doações </f:facet>
+				
+				<p:inputText id="inputText-busca"
+						style="width:30%; height:30px; margin-left:60px" maxlength="80"
+						placeholder="Digite o titulo do evento"
+						value="#{consultaDoacoesView.busca}" />
+					<p:outputLabel value=" " />
+					<p:commandButton value="Buscar" update="form"
+						action="#{consultaDoacoesView.retornaDoacoesConformeBusca}"></p:commandButton>
+				
 
 				<p:panel header="#{doacao.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px"

@@ -121,9 +121,9 @@ public class ConsultaVagasView implements Serializable {
 		}
 
 		List<VagaModel> vagasConformeBusca = new ArrayList<>();
-		for (VagaModel eventoModel : this.vagas) {
-			if (TituloUteis.isSemelhantes(busca, eventoModel.getTitulo())) {
-				vagasConformeBusca.add(eventoModel);
+		for (VagaModel vagaModel : this.vagas) {
+			if (TituloUteis.isSemelhantes(busca, vagaModel.getTitulo())) {
+				vagasConformeBusca.add(vagaModel);
 			}
 		}
 		

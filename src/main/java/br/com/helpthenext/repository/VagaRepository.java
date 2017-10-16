@@ -151,7 +151,7 @@ public class VagaRepository {
 
 		vagaEntity.setTitulo(vagaModel.getTitulo());
 		vagaEntity.setDescricao(vagaModel.getDescricao());
-		vagaEntity.setNomeResponsavel(vagaModel.getDescricao());
+		vagaEntity.setNomeResponsavel(vagaModel.getNomeResponsavel());
 		vagaEntity.setEmail(vagaModel.getEmail());
 		vagaEntity.setBanner(vagaModel.getBanner());
 		vagaEntity.setDataCadastro(LocalDateTime.now());

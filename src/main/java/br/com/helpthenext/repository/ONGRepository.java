@@ -52,6 +52,8 @@ public class ONGRepository {
 		ongEntity.setComplemento(ongModel.getComplemento());
 		ongEntity.setCep(ongModel.getCep());
 		ongEntity.setCidade(ongModel.getCidade());
+		ongEntity.setEstado(ongModel.getEstado());
+
 		ongEntity.setFoto(ongModel.getFoto());
 
 		UsuarioEntity usuarioEntity = ongModel.getUsuarioEntity();

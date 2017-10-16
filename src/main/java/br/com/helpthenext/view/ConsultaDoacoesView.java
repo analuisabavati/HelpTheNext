@@ -1,6 +1,7 @@
 package br.com.helpthenext.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,6 +17,7 @@ import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
+import br.com.helpthenext.uteis.TituloUteis;
 
 @ViewScoped
 @Named(value = "consultaDoacoesView")
@@ -44,6 +46,8 @@ public class ConsultaDoacoesView implements Serializable {
 	private DoacaoModel selectedDoacao;
 
 	private boolean botaoEditar;
+	
+	private String busca;
 
 	@PostConstruct
 	public void init() {
@@ -61,6 +65,22 @@ public class ConsultaDoacoesView implements Serializable {
 				botaoEditar = false;
 			}
 		}
+	}
+	
+	public void retornaDoacoesConformeBusca() {
+
+		if (doacoes == null || doacoes.isEmpty()) {
+			doacoes = doacaoRepository.findAll();
+		}
+
+		List<DoacaoModel> doacoesConformeBusca = new ArrayList<>();
+		for (DoacaoModel doacaoModel : this.doacoes) {
+			if (TituloUteis.isSemelhantes(busca, doacaoModel.getTitulo())) {
+				doacoesConformeBusca.add(doacaoModel);
+			}
+		}
+		
+		doacoes = doacoesConformeBusca;
 	}
 
 	public void enviarEmailInteresse() {
@@ -132,4 +152,46 @@ public class ConsultaDoacoesView implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public DoacaoRepository getDoacaoRepository() {
+		return doacaoRepository;
+	}
+
+	public void setDoacaoRepository(DoacaoRepository doacaoRepository) {
+		this.doacaoRepository = doacaoRepository;
+	}
+
+	public VoluntarioRepository getVoluntarioRepository() {
+		return voluntarioRepository;
+	}
+
+	public void setVoluntarioRepository(VoluntarioRepository voluntarioRepository) {
+		this.voluntarioRepository = voluntarioRepository;
+	}
+
+	public JavaMailApp getJavaMailApp() {
+		return javaMailApp;
+	}
+
+	public void setJavaMailApp(JavaMailApp javaMailApp) {
+		this.javaMailApp = javaMailApp;
+	}
+
+	public ONGRepository getOngRepository() {
+		return ongRepository;
+	}
+
+	public void setOngRepository(ONGRepository ongRepository) {
+		this.ongRepository = ongRepository;
+	}
+
+	public String getBusca() {
+		return busca;
+	}
+
+	public void setBusca(String busca) {
+		this.busca = busca;
+	}
+	
 }
+
