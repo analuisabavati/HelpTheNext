@@ -47,7 +47,7 @@ public class SlopeOne {
 
 			while (dataInputStream.available() != 0) {
 
-				linha = removeVirgula(getProximaLinha(dataInputStream));
+				linha = removeVirgulas(getProximaLinha(dataInputStream));
 				voluntario = getProximoTokenInt(linha);
 
 				if (voluntario == -1) {
@@ -65,7 +65,7 @@ public class SlopeOne {
 					matrizVoluntarioItemAvaliacao.get(voluntario).put(item, getProximoTokenDouble(linha));
 
 					if (dataInputStream.available() != 0) {
-						linha = removeVirgula(getProximaLinha(dataInputStream));
+						linha = removeVirgulas(getProximaLinha(dataInputStream));
 						voluntarioTemp = getProximoTokenInt(linha);
 
 						if (voluntario == -1) {
@@ -178,7 +178,7 @@ public class SlopeOne {
 		}
 	}
 
-	private StringTokenizer removeVirgula(String linha) {
+	private StringTokenizer removeVirgulas(String linha) {
 		return new StringTokenizer(linha, ",");
 	}
 

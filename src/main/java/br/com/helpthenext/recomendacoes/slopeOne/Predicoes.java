@@ -161,7 +161,7 @@ public class Predicoes {
 			String linha = getProximaLinha(dataInputStream);
 			StringTokenizer token = getTab(linha);
 
-			zerandoMatrizes(token);
+			zeraMatrizes(token);
 
 			while (dataInputStream.available() != 0) {
 
@@ -191,7 +191,7 @@ public class Predicoes {
 		}
 	}
 
-	private void zerandoMatrizes(StringTokenizer token) {
+	private void zeraMatrizes(StringTokenizer token) {
 		quantidadeItensAvaliados = getProximoInt(token);
 
 		diffMediaAvaliacoesItem1Item2 = new Double[quantidadeItensAvaliados + 1][quantidadeItensAvaliados + 1];
