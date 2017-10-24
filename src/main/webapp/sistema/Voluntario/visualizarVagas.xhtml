@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+
 </h:head>
 
 <ui:composition template="/template/Voluntario/layoutBase.xhtml">
@@ -27,11 +28,11 @@
 					<p:commandButton value="Buscar" update="form"
 						action="#{consultaVagasView.retornaVagasConformeBusca}"></p:commandButton>
 
-					<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga"
+					<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" styleClass="ui-datagrid-no-border" 
 						columns="3" layout="grid" rows="6" paginator="true"
 						emptyMessage="Nenhuma vaga foi cadastrada até o momento."
 						style="margin-top:20px">
-						<f:facet name="header"> Todas Vagas Disponiveis: </f:facet>
+						<f:facet name="header"> Vagas Disponiveis: </f:facet>
 						<p:panel>
 							<h:panelGrid columns="1" style="width:100%;"
 								styleClass="ui-noborder">
@@ -45,7 +46,7 @@
 									<f:setPropertyActionListener value="#{vaga}"
 										target="#{consultaVagasView.selectedVaga}" />
 									<p:graphicImage value="#{vagaImagem.imagem}"
-										style="width:100%;">
+										style=" max-width:200px; max-height:150px; width: auto; height: auto;">
 										<f:param name="vagaId" value="#{vaga.id}" />
 									</p:graphicImage>
 								</p:commandLink>
@@ -54,7 +55,8 @@
 									<h:outputText value="Titulo:" style="font-weight: bold" />
 									<h:outputText value="#{vaga.titulo}" />
 									<h:outputText value="Local:" style="font-weight: bold" />
-									<h:outputText value="#{vaga.ongEntity.cidade} - #{vaga.ongEntity.estado}" />
+									<h:outputText
+										value="#{vaga.ongEntity.cidade} - #{vaga.ongEntity.estado}" />
 									<h:outputText value="Trabalho à distancia"
 										style="font-weight: bold" />
 									<h:outputText value="#{vaga.trabalhoDistancia}" />
@@ -96,7 +98,7 @@
 									<f:setPropertyActionListener value="#{vaga}"
 										target="#{consultaVagasView.selectedVaga}" />
 									<p:graphicImage value="#{vagaImagem.imagem}"
-										style="width:100%;">
+										style=" max-width:200px; max-height:150px; width: auto; height: auto;">
 										<f:param name="vagaId" value="#{vaga.id}" />
 									</p:graphicImage>
 								</p:commandLink>
@@ -105,7 +107,8 @@
 									<h:outputText value="Titulo:" style="font-weight: bold" />
 									<h:outputText value="#{vaga.titulo}" />
 									<h:outputText value="Local:" style="font-weight: bold" />
-									<h:outputText value="#{vaga.ongEntity.cidade} - #{vaga.ongEntity.estado}" />
+									<h:outputText
+										value="#{vaga.ongEntity.cidade} - #{vaga.ongEntity.estado}" />
 									<h:outputText value="Trabalho à distancia"
 										style="font-weight: bold" />
 									<h:outputText value="#{vaga.trabalhoDistancia}" />
