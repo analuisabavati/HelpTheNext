@@ -35,7 +35,7 @@ public class VoluntarioController {
 	private UploadedFile uploadedFile;
 	
 
-	public void salvarNovoVoluntario() {
+	public String salvarNovoVoluntario() {
 		if (usuarioRepository.validaUsuarioCadastrado(this.voluntarioModel.getUsuarioEntity().getUsuario()) != null) {
 			Uteis.Mensagem("Nome de usuario já utilizado. Por favor informe outro usuario!");
 		} else {
@@ -47,6 +47,8 @@ public class VoluntarioController {
 			this.voluntarioModel = null;
 			Uteis.MensagemInfo(" Voluntario cadastrado com sucesso!");
 		}
+		
+		return "index.xhtml";
 	}
 	
 	public UploadedFile getUploadedFile() {

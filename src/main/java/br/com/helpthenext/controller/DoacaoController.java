@@ -22,13 +22,15 @@ public class DoacaoController {
 	
 	private UploadedFile uploadedFile;
 
-	public void salvarNovaDoacao() {
+	public String salvarNovaDoacao() {
 		if (uploadedFile != null) {
 			doacaoModel.setFoto(uploadedFile.getContents());
 		}
 		doacaoRepository.salvarNovoRegistro(this.doacaoModel);
 		this.doacaoModel = null;
 		Uteis.MensagemInfo("Doação cadastrada com sucesso!");
+		
+		return "home.xhtml";
 	}
  
 	public DoacaoModel getDoacaoModel() {

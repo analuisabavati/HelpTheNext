@@ -25,12 +25,14 @@ public class EditarDoacao implements Serializable {
 	
 	private UploadedFile uploadedFile;
 	
-	public void editarDoacao() {
+	public String editarDoacao() {
 		if (uploadedFile != null) {
 			doacao.setFoto(uploadedFile.getContents());
 		}
 		doacaoRepository.atualizarDoacao(doacao);
-		Uteis.Mensagem("Doacao atualizada com sucesso!");
+		Uteis.MensagemInfo("Doacao atualizada com sucesso!");
+		
+		return "home.xhtml";
 	}
 
 	public String removerDoacao() {

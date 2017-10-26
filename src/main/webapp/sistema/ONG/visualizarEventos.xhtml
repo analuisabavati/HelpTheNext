@@ -41,7 +41,8 @@
 								target="#{consultaEventosView.selectedEvento}" />
 							<f:setPropertyActionListener value="#{evento}"
 								target="#{editarEvento.evento}" />
-							<p:graphicImage value="#{eventoImagem.imagem}" style="width:100%">
+							<p:graphicImage value="#{eventoImagem.imagem}"
+								style=" max-width:700px; max-height:500px; width: auto; height: auto;">
 								<f:param name="eventoId" value="#{evento.id}" />
 							</p:graphicImage>
 						</p:commandLink>
@@ -61,7 +62,7 @@
 
 			</p:dataGrid>
 
-			<p:dialog header="Evento Info" widgetVar="eventoDialog" modal="true"
+			<p:dialog header="Informações" widgetVar="eventoDialog" modal="true"
 				showEffect="blind" hideEffect="explode" resizable="false">
 				<p:outputPanel id="eventoDetail" style="text-align:center;">
 					<p:panelGrid columns="2" styleClass="ui-noborder"

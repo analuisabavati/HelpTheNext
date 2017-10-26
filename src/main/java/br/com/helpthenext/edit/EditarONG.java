@@ -33,12 +33,14 @@ public class EditarONG implements Serializable {
 		this.ong = ongRepository.toONGModel(v);
 	}
 	
-	public void atualizarONG() {	
+	public String atualizarONG() {	
 		if (uploadedFile != null) {
 			ong.setFoto(uploadedFile.getContents());
 		}
 		ongRepository.atualizarONG(this.ong);	
-		Uteis.Mensagem("ONG atualizada com sucesso!");
+		Uteis.MensagemInfo("ONG atualizada com sucesso!");
+		
+		return "home.xhtml";
 	}
 	
 	

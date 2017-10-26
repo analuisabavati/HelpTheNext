@@ -44,7 +44,7 @@ public class ONGController {
 		ongRepository.atualizarONG(ong);
 	}
 	
-	public void salvarNovaONG() {
+	public String salvarNovaONG() {
 		if (usuarioRepository.validaUsuarioCadastrado(this.ongModel.getUsuarioEntity().getUsuario()) != null) {
 			Uteis.Mensagem("Nome de usuario já utilizado. Por favor informe outro usuario!");
 		} else {
@@ -56,6 +56,8 @@ public class ONGController {
 			this.ongModel = null;
 			Uteis.MensagemInfo("ONG cadastrada com sucesso!");
 		}
+		
+		return "index.xhtml";
 	}
 
 	public UploadedFile getUploadedFile() {

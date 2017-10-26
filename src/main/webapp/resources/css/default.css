@@ -2,6 +2,10 @@
     font-size: 14px !important;  
 } 
  
+.ui-datagrid-no-border .ui-datagrid-content {
+   border: none;
+} 
+ 
 html,
 body {
    margin:0;

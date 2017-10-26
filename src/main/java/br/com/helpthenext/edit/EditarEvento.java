@@ -45,12 +45,14 @@ public class EditarEvento implements Serializable {
 		evento.getAvaliacaoEvento().setAvaliacao(0);
 	}
 
-	public void editarEvento() {
+	public String editarEvento() {
 		if (uploadedFile != null) {
 			evento.setBanner(uploadedFile.getContents());
 		}
 		eventoRepository.atualizarEvento(evento);
-		Uteis.Mensagem("Evento atualizado com sucesso!");
+		Uteis.MensagemInfo("Evento atualizado com sucesso!");
+		
+		return "home.xhtml";
 	}
 
 	public String removerEvento() {

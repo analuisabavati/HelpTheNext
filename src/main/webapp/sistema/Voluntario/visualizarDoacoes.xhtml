@@ -23,7 +23,7 @@
 				action="#{consultaDoacoesView.retornaDoacoesConformeBusca}"></p:commandButton>
 
 			<p:dataGrid value="#{consultaDoacoesView.doacoes}" var="doacao"
-				columns="3" layout="grid" rows="9" paginator="true"
+				columns="3" layout="grid" rows="6" paginator="true"
 				emptyMessage="Nenhuma doação foi cadastrada até o momento."
 				style="margin-top:20px">
 
@@ -41,7 +41,8 @@
 								target="#{consultaDoacoesView.selectedDoacao}" />
 							<f:setPropertyActionListener value="#{doacao}"
 								target="#{editarDoacao.doacao}" />
-							<p:graphicImage value="#{doacaoImagem.imagem}" style="width:100%">
+							<p:graphicImage value="#{doacaoImagem.imagem}"
+								style=" max-width:500px; max-height:500px; width: auto; height: auto;">
 								<f:param name="doacaoId" value="#{doacao.id}" />
 							</p:graphicImage>
 						</p:commandLink>

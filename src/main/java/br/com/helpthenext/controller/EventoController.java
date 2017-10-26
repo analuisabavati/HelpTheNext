@@ -22,13 +22,15 @@ public class EventoController {
 		
 	private UploadedFile uploadedFile;
 	
-	public void salvarNovoEvento() {
+	public String salvarNovoEvento() {
 		if (uploadedFile != null) {
 			eventoModel.setBanner(uploadedFile.getContents());
 		}
 		eventoRepository.salvarNovoRegistro(this.eventoModel);
 		this.eventoModel = null;
 		Uteis.MensagemInfo("Evento cadastrado com sucesso!");
+		
+		return "home.xhtml";
 	}
 	
 	public UploadedFile getUploadedFile() {

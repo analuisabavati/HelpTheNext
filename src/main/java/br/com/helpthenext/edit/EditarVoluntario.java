@@ -41,12 +41,14 @@ public class EditarVoluntario implements Serializable {
 	}
 	
 	
-	public void atualizarVoluntario() {	
+	public String atualizarVoluntario() {	
 		if (uploadedFile != null) {
 			voluntario.setFotoPerfil(uploadedFile.getContents());
 		}
 		voluntarioRepository.atualizarVoluntario(this.voluntario);	
-		Uteis.Mensagem("Voluntario atualizado com sucesso!");
+		Uteis.MensagemInfo("Voluntario atualizado com sucesso!");
+		
+		return "home.xhtml";
 	}
 	
 	public VoluntarioRepository getVoluntarioRepository() {
