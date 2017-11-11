@@ -26,6 +26,30 @@
 					<p:commandButton value="Buscar" update="form"
 						action="#{consultaVagasView.retornaVagasConformeBusca}"></p:commandButton>
 
+					<p:selectOneMenu id="basic"
+						value="#{eventoController.eventoModel.causa}" layout="grid"
+						columns="2" required="true"
+						requiredMessage="O campo causa é de preenchimento obrigatório">
+						<f:selectItem itemLabel="Escolha uma causa" itemValue="0" />
+						<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
+						<f:selectItem itemLabel="Saúde" itemValue="1" />
+						<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+						<f:selectItem itemLabel="Participação cidadã" itemValue="3" />
+						<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+						<f:selectItem itemLabel="Idosos" itemValue="5" />
+						<f:selectItem itemLabel="Educação" itemValue="6" />
+						<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+						<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
+						<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+						<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+						<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+						<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+						<f:selectItem itemLabel="Outras" itemValue="13" />
+					</p:selectOneMenu>
+					<p:commandButton value="Buscar" update="form"
+						action="#{consultaVagasView.retornaVagasConformeBusca}"></p:commandButton>
+
+
 					<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga"
 						styleClass="ui-datagrid-no-border" columns="3" layout="grid"
 						rows="6" paginator="true"
@@ -56,7 +80,7 @@
 									<h:outputText value="Local:" style="font-weight: bold" />
 									<h:outputText
 										value="#{vaga.ongEntity.cidade} - #{vaga.ongEntity.estado}" />
-									<h:outputText value="Trabalho à distancia"
+									<h:outputText value="Trabalho à distância:"
 										style="font-weight: bold" />
 									<h:outputText value="#{vaga.trabalhoDistancia}" />
 									<p:commandButton value="Mais informações"
@@ -108,7 +132,7 @@
 									<h:outputText value="Local:" style="font-weight: bold" />
 									<h:outputText
 										value="#{vaga.ongEntity.cidade} - #{vaga.ongEntity.estado}" />
-									<h:outputText value="Trabalho à distancia"
+									<h:outputText value="Trabalho à distância:"
 										style="font-weight: bold" />
 									<h:outputText value="#{vaga.trabalhoDistancia}" />
 									<p:commandButton value="Mais informações"
