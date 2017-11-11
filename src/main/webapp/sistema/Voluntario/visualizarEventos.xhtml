@@ -17,7 +17,7 @@
 			<p:tabView>
 
 
-				<p:tab title="Eventos Disponiveis">
+				<p:tab title="Eventos disponíveis">
 
 					<p:inputText id="inputText-busca"
 						style="width:30%; height:30px; margin-left:60px" maxlength="80"
@@ -31,7 +31,7 @@
 						columns="3" layout="grid" rows="6" paginator="true"
 						emptyMessage="Nenhum evento foi cadastrado até o momento."
 						style="margin-top:20px">
-						<f:facet name="header"> Eventos Disponiveis: </f:facet>
+						<f:facet name="header"> Eventos disponíveis: </f:facet>
 						<p:panel header="#{evento.titulo}" style="text-align:center">
 							<h:panelGrid columns="1" style="width:100%; hight:200px"
 								styleClass="ui-noborder">
@@ -48,6 +48,7 @@
 										<f:param name="eventoId" value="#{evento.id}" />
 									</p:graphicImage>
 								</p:commandLink>
+
 								<p:commandButton value="Mais Informações"
 									update=":form:eventoDetail"
 									action="#{consultaEventosView.ativarBotoes}"
@@ -62,12 +63,12 @@
 					</p:dataGrid>
 				</p:tab>
 
-				<p:tab title="Eventos Recomendados">
+				<p:tab title="Eventos recomendados">
 					<p:dataGrid value="#{recomendarEventos.eventosRecomendados}"
 						var="evento" columns="3" layout="grid" rows="3" paginator="true"
-						emptyMessage="Não há eventos recomendados até o momento! Você pode começar avaliando os eventos disponiveis."
+						emptyMessage="Não há eventos recomendados até o momento! Você pode começar avaliando os eventos disponíveis."
 						style="margin-top:20px">
-						<f:facet name="header"> Eventos Recomendados: </f:facet>
+						<f:facet name="header"> Eventos recomendados: </f:facet>
 						<p:panel header="#{evento.titulo}" style="text-align:center">
 							<h:panelGrid columns="1" style="width:100%; hight:200px"
 								styleClass="ui-noborder">
@@ -82,6 +83,8 @@
 										<f:param name="eventoId" value="#{evento.id}" />
 									</p:graphicImage>
 								</p:commandLink>
+
+
 								<p:commandButton value="Mais Informações"
 									update=":form:eventoRecomendadoDetail"
 									oncomplete="PF('eventoRecomendadoDialog').show()">
@@ -103,19 +106,19 @@
 						rendered="#{not empty consultaEventosView.selectedEvento}"
 						columnClasses="label,value">
 
-						<h:outputText value="Titulo:" />
+						<h:outputText value="Título:" />
 						<h:outputText value="#{consultaEventosView.selectedEvento.titulo}"
 							style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
 						<h:outputText
 							value="#{consultaEventosView.selectedEvento.descricao}"
 							style="font-weight: bold" />
-						<h:outputText value="Nome do Responsavel:" />
+						<h:outputText value="Nome do responsável:" />
 						<h:outputText
 							value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Email para contato" />
+						<h:outputText value="E-mail para contato" />
 						<h:outputText value="#{consultaEventosView.selectedEvento.email}"
 							style="font-weight: bold" />
 
@@ -128,23 +131,27 @@
 						<h:outputText value="#{consultaEventosView.selectedEvento.local}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Causas" />
+						<h:outputText value="Causa: " />
 						<h:outputText
 							value="#{consultaEventosView.selectedEvento.causasString}"
 							style="font-weight: bold" />
 
 						<h:outputText value=" " />
 						<h:outputText value=" " />
+
 						<p:button value="Editar" outcome="editarEvento.xhtml"
 							icon="fa fa-fw fa-edit"
 							disabled="#{!(consultaEventosView.botaoEditar)}">
 						</p:button>
-						<h:outputText value=" " />
-						<h:outputText value=" " />
 
+						<br />
+						<p:separator />
+						<br />
+
+						<h:outputText
+							value="Avalie aqui o quanto este evento é de seu interesse:" />
 						<h:outputText value=" " />
 						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
-
 						<p:commandButton value="Avaliar Evento"
 							id="commandButton-avaliar2" icon="fa fa-star-o"
 							action="#{editarEvento.avaliarEvento}" />
@@ -162,19 +169,19 @@
 						rendered="#{not empty recomendarEventos.selectedEvento}"
 						columnClasses="label,value">
 
-						<h:outputText value="Titulo:" />
+						<h:outputText value="Título:" />
 						<h:outputText value="#{recomendarEventos.selectedEvento.titulo}"
 							style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
 						<h:outputText
 							value="#{recomendarEventos.selectedEvento.descricao}"
 							style="font-weight: bold" />
-						<h:outputText value="Nome do Responsavel:" />
+						<h:outputText value="Nome do responsável:" />
 						<h:outputText
 							value="#{recomendarEventos.selectedEvento.nomeResponsavel}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Email para contato" />
+						<h:outputText value="E-mail para contato" />
 						<h:outputText value="#{recomendarEventos.selectedEvento.email}"
 							style="font-weight: bold" />
 
@@ -186,15 +193,20 @@
 						<h:outputText value="#{recomendarEventos.selectedEvento.local}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Causas" />
+						<h:outputText value="Causa:" />
 						<h:outputText
 							value="#{recomendarEventos.selectedEvento.causasString}"
 							style="font-weight: bold" />
-						<h:outputText value=" " />
-						<h:outputText value=" " />
+						
+						
+						
+						<p:separator />
+						<br />
 
+						<h:outputText
+							value="Avalie aqui o quanto este evento é de seu interesse:" />
 						<h:outputText value=" " />
-						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
+						<p:rating value="#{recomendarEventos.selectedEvento.avaliacaoEvento.avaliacao}" />
 
 						<p:commandButton value="Avaliar Evento" id="commandButton-avaliar"
 							icon="fa fa-star-o" action="#{editarEvento.avaliarEvento}" />

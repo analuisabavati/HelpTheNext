@@ -22,12 +22,12 @@
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
-						<p:outputLabel value="Usuario" for="inputText-usuario" />
+						<p:outputLabel value="Usuário" for="inputText-usuario" />
 						<p:inputText id="inputText-usuario" style="width:90%"
 							maxlength="70"
 							value="#{ongController.ongModel.usuarioEntity.usuario}"
 							required="true"
-							requiredMessage="O campo usuario é de preenchimento obrigatório" />
+							requiredMessage="O campo usuário é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Senha" for="inputText-senha" />
 						<p:password id="inputText-senha" style="width:90%" maxlength="70"
@@ -44,12 +44,12 @@
 							required="true"
 							requiredMessage="O campo nome da ONG é de preenchimento obrigatório" />
 
-						<p:outputLabel value="Nome do responsavel"
+						<p:outputLabel value="Nome do responsável"
 							for="inputText-nomeResponsavel" />
 						<p:inputText id="inputText-nomeResponsavel" style="width:90%"
 							maxlength="70" value="#{ongController.ongModel.nomeResponsavel}"
 							required="true"
-							requiredMessage="O campo nome do responsavel é de preenchimento obrigatório" />
+							requiredMessage="O campo nome do responsável é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Descrição da ONG" for="inputText-descricao" />
 						<p:inputTextarea rows="6" cols="33" id="inputText-descricao"
@@ -79,7 +79,7 @@
 						<p:inputText id="inputText-rua" style="width:100%" maxlength="200"
 							value="#{ongController.ongModel.rua}" />
 
-						<p:outputLabel value="Numero" for="inputText-numero" />
+						<p:outputLabel value="Número" for="inputText-numero" />
 						<p:inputText id="inputText-numero" style="width:50px"
 							maxlength="200" value="#{ongController.ongModel.numero}" />
 
@@ -140,20 +140,19 @@
 						<p:separator />
 						<br />
 
-						<p:outputLabel value="Causas" />
+						<p:outputLabel value="Causa(s)" />
 						<p:selectManyCheckbox id="basic"
 							value="#{ongController.ongModel.causas}" layout="grid"
 							columns="2">
-							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
+							<f:selectItem itemLabel="Saúde" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Participação cidadã" itemValue="3" />
 							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
 							<f:selectItem itemLabel="Idosos" itemValue="5" />
 							<f:selectItem itemLabel="Educação" itemValue="6" />
 							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
-								itemValue="8" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
 							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
 							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
 							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />

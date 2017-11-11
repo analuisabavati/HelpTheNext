@@ -20,11 +20,11 @@
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
-						<p:outputLabel value="Titulo do evento" for="inputText-titulo" />
+						<p:outputLabel value="Título do evento" for="inputText-titulo" />
 						<p:inputText id="inputText-titulo" style="width:100%"
 							maxlength="80" value="#{eventoController.eventoModel.titulo}"
 							required="true"
-							requiredMessage="O campo titulo é de preenchimento obrigatório" />
+							requiredMessage="O campo título é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Descrição do evento"
 							for="inputText-descricao" />
@@ -33,13 +33,13 @@
 							value="#{eventoController.eventoModel.descricao}" required="true"
 							requiredMessage="O campo descrição é de preenchimento obrigatório" />
 
-						<p:outputLabel value="Responsavel pelo evento"
+						<p:outputLabel value="Responsável pelo evento"
 							for="inputText-responsavel" />
 						<p:inputText id="inputText-responsavel" style="width:100%"
 							maxlength="80"
 							value="#{eventoController.eventoModel.nomeResponsavel}"
 							required="true"
-							requiredMessage="O campo responsavel é de preenchimento obrigatório" />
+							requiredMessage="O campo responsável é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Local do evento" for="inputText-local" />
 						<p:inputText id="inputText-local" style="width:100%"
@@ -51,9 +51,9 @@
 						<p:calendar pattern="MM/dd/yyyy HH:mm:ss" id="inputText-horario"
 							style="width:100%" maxlength="80"
 							value="#{eventoController.eventoModel.dataHora}" required="true"
-							requiredMessage="O campo horario é de preenchimento obrigatório" />
+							requiredMessage="O campo horário é de preenchimento obrigatório" />
 
-						<p:outputLabel value="Email" for="inputText-email" />
+						<p:outputLabel value="E-mail" for="inputText-email" />
 						<p:inputText id="inputText-email" style="width:100%"
 							maxlength="80" value="#{eventoController.eventoModel.email}">
 							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -69,16 +69,15 @@
 							columns="2" required="true"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Escolha uma causa" itemValue="0" />
-							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
+							<f:selectItem itemLabel="Saúde" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Participação cidadã" itemValue="3" />
 							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
 							<f:selectItem itemLabel="Idosos" itemValue="5" />
 							<f:selectItem itemLabel="Educação" itemValue="6" />
 							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
-								itemValue="8" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
 							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
 							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
 							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />

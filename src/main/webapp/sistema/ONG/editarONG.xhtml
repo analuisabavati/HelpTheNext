@@ -47,13 +47,13 @@
 								requiredMessage="O campo nome da ONG é de preenchimento obrigatório" />
 						</p:inplace>
 
-						<p:outputLabel value="Nome do responsavel"
+						<p:outputLabel value="Nome do responsável"
 							for="inputText-nomeResponsavel" />
 						<p:inplace id="inputText-nomeResponsavel" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:90%" maxlength="70"
 								value="#{editarONG.ong.nomeResponsavel}" required="true"
-								requiredMessage="O campo nome do responsavel é de preenchimento obrigatório" />
+								requiredMessage="O campo nome do responsável é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="Descrição da ONG" for="inputText-descricao" />
@@ -92,7 +92,7 @@
 								value="#{editarONG.ong.rua}" />
 						</p:inplace>
 
-						<p:outputLabel value="Numero" for="inputText-numero" />
+						<p:outputLabel value="Número" for="inputText-numero" />
 						<p:inplace id="inputText-numero" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:50px" maxlength="200"
@@ -122,8 +122,7 @@
 						</p:inplace>
 
 						<p:outputLabel value="Estado" for="inputText-estado" />
-						<p:selectOneMenu id="inputText-estado" required="true"
-							requiredMessage="O campo estado  é de preenchimento obrigatório"
+						<p:selectOneMenu id="inputText-estado" 
 							value="#{editarONG.ong.estado}" style="width:100%">
 							<f:selectItem itemLabel="Escolha um estado" itemValue="" />
 							<f:selectItem itemLabel="AC" itemValue="AC" />
@@ -164,20 +163,19 @@
 						<p:separator />
 						<br />
 
-						<p:outputLabel value="Causas" />
+						<p:outputLabel value="Causa(s)" />
 
 						<p:selectManyCheckbox id="basic" value="#{editarONG.ong.causas}"
 							layout="grid" columns="2">
-							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
+							<f:selectItem itemLabel="Saúde" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Participação cidadã" itemValue="3" />
 							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
 							<f:selectItem itemLabel="Idosos" itemValue="5" />
 							<f:selectItem itemLabel="Educação" itemValue="6" />
 							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
-								itemValue="8" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
 							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
 							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
 							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />

@@ -13,10 +13,10 @@
 <ui:composition template="/template/Voluntario/layoutBase.xhtml">
 	<ui:define name="content">
 		<h:form id="form">
-		
+
 			<p:tabView>
 
-				<p:tab title="Vagas Disponiveis">
+				<p:tab title="Vagas disponíveis">
 
 					<p:inputText id="inputText-busca"
 						style="width:30%; height:30px; margin-left:60px" maxlength="80"
@@ -26,11 +26,12 @@
 					<p:commandButton value="Buscar" update="form"
 						action="#{consultaVagasView.retornaVagasConformeBusca}"></p:commandButton>
 
-					<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" styleClass="ui-datagrid-no-border" 
-						columns="3" layout="grid" rows="6" paginator="true"
+					<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga"
+						styleClass="ui-datagrid-no-border" columns="3" layout="grid"
+						rows="6" paginator="true"
 						emptyMessage="Nenhuma vaga foi cadastrada até o momento."
 						style="margin-top:20px">
-						<f:facet name="header"> Vagas Disponiveis: </f:facet>
+						<f:facet name="header"> Vagas disponíveis: </f:facet>
 						<p:panel>
 							<h:panelGrid columns="1" style="width:100%;"
 								styleClass="ui-noborder">
@@ -50,7 +51,7 @@
 								</p:commandLink>
 								<h:panelGrid columns="2" style="width:100%"
 									styleClass="ui-noborder">
-									<h:outputText value="Titulo:" style="font-weight: bold" />
+									<h:outputText value="Título:" style="font-weight: bold" />
 									<h:outputText value="#{vaga.titulo}" />
 									<h:outputText value="Local:" style="font-weight: bold" />
 									<h:outputText
@@ -77,13 +78,13 @@
 				</p:tab>
 
 
-				<p:tab title="Vagas Recomendadas">
+				<p:tab title="Vagas recomendadas">
 
 					<p:dataGrid value="#{recomendarVagas.vagasRecomendadas}" var="vaga"
 						columns="3" layout="grid" rows="3" paginator="true"
 						emptyMessage="Não há vagas recomendadas até o momento! Você pode começar avaliando as vagas disponiveis."
 						styleClass="ui-noborder" style="margin-top:20px">
-						<f:facet name="header"> Vagas Recomendadas: </f:facet>
+						<f:facet name="header"> Vagas recomendadas: </f:facet>
 						<p:panel>
 							<h:panelGrid columns="1" style="width:100%;"
 								styleClass="ui-noborder">
@@ -102,7 +103,7 @@
 								</p:commandLink>
 								<h:panelGrid columns="2" style="width:100%"
 									styleClass="ui-noborder">
-									<h:outputText value="Titulo:" style="font-weight: bold" />
+									<h:outputText value="Título:" style="font-weight: bold" />
 									<h:outputText value="#{vaga.titulo}" />
 									<h:outputText value="Local:" style="font-weight: bold" />
 									<h:outputText
@@ -135,42 +136,53 @@
 					<p:panelGrid columns="2" styleClass="ui-noborder"
 						rendered="#{not empty consultaVagasView.selectedVaga}"
 						columnClasses="label,value">
-						<h:outputText value="Titulo:" />
+						<h:outputText value="Título:" />
 						<h:outputText value="#{consultaVagasView.selectedVaga.titulo}"
 							style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
 						<h:outputText value="#{consultaVagasView.selectedVaga.descricao}"
 							style="font-weight: bold" />
-						<h:outputText value="Nome do Responsavel:" />
+
+						<p:separator />
+						<br />
+
+						<h:outputText value="Nome do responsável:" />
 						<h:outputText
 							value="#{consultaVagasView.selectedVaga.nomeResponsavel}"
 							style="font-weight: bold" />
-						<h:outputText value="Email para contato:" />
+						<h:outputText value="E-mail para contato:" />
+
 						<h:outputText value="#{consultaVagasView.selectedVaga.email}"
-							style="font-weight: bold" />
-						<h:outputText value="Causas:" />
-						<h:outputText
-							value="#{consultaVagasView.selectedVaga.causasString}"
-							style="font-weight: bold" />
-
-						<h:outputText value="Habilidades Necessarias:" />
-						<h:outputText
-							value="#{consultaVagasView.selectedVaga.habilidadesString}"
-							style="font-weight: bold" />
-
-						<h:outputText value="Dias: " />
-						<h:outputText value="#{consultaVagasView.selectedVaga.diasString}"
-							style="font-weight: bold" />
-
-						<h:outputText value="Periodo: " />
-						<h:outputText
-							value="#{consultaVagasView.selectedVaga.periodoString}"
 							style="font-weight: bold" />
 
 						<h:outputText value="Vaga Cadastrada pela ONG " />
 						<h:outputText
 							value="#{consultaVagasView.selectedVaga.ongEntity.nomeONG}"
 							style="font-weight: bold" />
+
+
+						<p:separator />
+						<br />
+
+						<h:outputText value="Causa(s):" />
+						<h:outputText
+							value="#{consultaVagasView.selectedVaga.causasString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Habilidade(s) necessária(s):" />
+						<h:outputText
+							value="#{consultaVagasView.selectedVaga.habilidadesString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Dia(s): " />
+						<h:outputText value="#{consultaVagasView.selectedVaga.diasString}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Período(s): " />
+						<h:outputText
+							value="#{consultaVagasView.selectedVaga.periodoString}"
+							style="font-weight: bold" />
+
 
 						<h:outputText value=" " />
 						<h:outputText value=" " />
@@ -182,7 +194,13 @@
 						<h:outputText value=" " />
 						<h:outputText value=" " />
 
-						<h:outputText value="" />
+						<br />
+						<p:separator />
+						<br />
+
+						<h:outputText
+							value="Avalie aqui o quanto esta vaga é de seu interesse:" />
+						<h:outputText value=" " />
 						<p:rating value="#{editarVaga.vaga.avaliacaoVaga.avaliacao}" />
 						<p:commandButton value="Avaliar Vaga" id="commandButton-curtir"
 							icon="fa fa-star-o" action="#{editarVaga.avaliarVaga}" />
@@ -198,40 +216,48 @@
 					<p:panelGrid columns="2" styleClass="ui-noborder"
 						rendered="#{not empty recomendarVagas.selectedVaga}"
 						columnClasses="label,value">
-						<h:outputText value="Titulo:" />
+						<h:outputText value="Título:" />
 						<h:outputText value="#{recomendarVagas.selectedVaga.titulo}"
 							style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
 						<h:outputText value="#{recomendarVagas.selectedVaga.descricao}"
 							style="font-weight: bold" />
-						<h:outputText value="Nome do Responsavel:" />
+
+						<p:separator />
+						<br />
+
+						<h:outputText value="Nome do responsável:" />
 						<h:outputText
 							value="#{recomendarVagas.selectedVaga.nomeResponsavel}"
 							style="font-weight: bold" />
-						<h:outputText value="Email para contato:" />
+						<h:outputText value="E-mail para contato:" />
 						<h:outputText value="#{recomendarVagas.selectedVaga.email}"
 							style="font-weight: bold" />
-						<h:outputText value="Causas:" />
+
+						<h:outputText value="Vaga cadastrada pela ONG " />
+						<h:outputText
+							value="#{recomendarVagas.selectedVaga.ongEntity.nomeONG}"
+							style="font-weight: bold" />
+
+						<p:separator />
+						<br />
+
+						<h:outputText value="Causa(s):" />
 						<h:outputText value="#{recomendarVagas.selectedVaga.causasString}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Habilidades Necessarias:" />
+						<h:outputText value="Habilidade(s) necessárias:" />
 						<h:outputText
 							value="#{recomendarVagas.selectedVaga.habilidadesString}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Dias: " />
+						<h:outputText value="Dia(s): " />
 						<h:outputText value="#{recomendarVagas.selectedVaga.diasString}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Periodo: " />
+						<h:outputText value="Período(s): " />
 						<h:outputText
 							value="#{recomendarVagas.selectedVaga.periodoString}"
-							style="font-weight: bold" />
-
-						<h:outputText value="Vaga Cadastrada pela ONG " />
-						<h:outputText
-							value="#{recomendarVagas.selectedVaga.ongEntity.nomeONG}"
 							style="font-weight: bold" />
 
 						<h:outputText value=" " />
@@ -243,7 +269,13 @@
 						<h:outputText value=" " />
 						<h:outputText value=" " />
 
-						<h:outputText value="" />
+						<br />
+						<p:separator />
+						<br />
+
+						<h:outputText
+							value="Avalie aqui o quanto esta vaga é de seu interesse:" />
+						<h:outputText value=" " />
 						<p:rating value="#{editarVaga.vaga.avaliacaoVaga.avaliacao}" />
 						<p:commandButton value="Avaliar Vaga" id="commandButton-curtir2"
 							icon="fa fa-star-o" action="#{editarVaga.avaliarVaga}" />

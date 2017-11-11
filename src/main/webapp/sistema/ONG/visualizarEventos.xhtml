@@ -16,7 +16,7 @@
 
 			<p:inputText id="inputText-busca"
 				style="width:30%; height:30px; margin-left:60px" maxlength="80"
-				placeholder="Digite o titulo do evento"
+				placeholder="Digite o título do evento"
 				value="#{consultaEventosView.busca}" />
 			<p:outputLabel value=" " />
 			<p:commandButton value="Buscar" update="form"
@@ -27,7 +27,7 @@
 				emptyMessage="Nenhum evento foi cadastrado até o momento."
 				style="margin-top:20px">
 
-				<f:facet name="header"> Eventos </f:facet>
+				<f:facet name="header"> Eventos disponíveis </f:facet>
 
 				<p:panel header="#{evento.titulo}" style="text-align:center">
 
@@ -69,19 +69,19 @@
 						rendered="#{not empty consultaEventosView.selectedEvento}"
 						columnClasses="label,value">
 
-						<h:outputText value="Titulo:" />
+						<h:outputText value="Título:" />
 						<h:outputText value="#{consultaEventosView.selectedEvento.titulo}"
 							style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
 						<h:outputText
 							value="#{consultaEventosView.selectedEvento.descricao}"
 							style="font-weight: bold" />
-						<h:outputText value="Nome do Responsavel:" />
+						<h:outputText value="Nome do responsável:" />
 						<h:outputText
 							value="#{consultaEventosView.selectedEvento.nomeResponsavel}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Email para contato" />
+						<h:outputText value="E-mail para contato" />
 						<h:outputText value="#{consultaEventosView.selectedEvento.email}"
 							style="font-weight: bold" />
 
@@ -94,7 +94,7 @@
 						<h:outputText value="#{consultaEventosView.selectedEvento.local}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Causas" />
+						<h:outputText value="Causa" />
 						<h:outputText
 							value="#{consultaEventosView.selectedEvento.causasString}"
 							style="font-weight: bold" />

@@ -13,11 +13,12 @@
 <ui:composition template="/template/ONG/layoutBase.xhtml">
 	<ui:define name="content">
 		<p:tabView style="width:50% ;margin:auto;">
-			<p:tab title="Editar Cadastro de Evento Beneficente">
+			<p:tab title="Editar cadastro de evento beneficente">
+
 
 				<h:form id="form-excluir-evento" enctype="multipart/form-data">
 
-					<p:commandButton value="Excluir Evento" id="commandButton-excluir"
+					<p:commandButton value="Excluir evento" id="commandButton-excluir"
 						style="float: right;" icon="fa fa-fw fa-remove"
 						action="#{editarEvento.removerEvento}" ajax="false" />
 
@@ -28,12 +29,12 @@
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
-						<p:outputLabel value="Titulo do evento" for="inputText-titulo" />
+						<p:outputLabel value="Título do evento" for="inputText-titulo" />
 						<p:inplace id="inputText-titulo" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" maxlength="80"
 								value="#{editarEvento.evento.titulo}" required="true"
-								requiredMessage="O campo titulo é de preenchimento obrigatório" />
+								requiredMessage="O campo título é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="Descrição do evento"
@@ -46,7 +47,7 @@
 								requiredMessage="O campo descrição é de preenchimento obrigatório" />
 						</p:inplace>
 
-						<p:outputLabel value="Responsavel pelo evento"
+						<p:outputLabel value="Responsável pelo evento"
 							for="inputText-responsavel" />
 						<p:inplace id="inputText-responsavel" editor="true"
 							emptyLabel="Clique para editar">
@@ -71,7 +72,7 @@
 								requiredMessage="O campo horario é de preenchimento obrigatório" />
 						</p:inplace>
 
-						<p:outputLabel value="Email" for="inputText-email" />
+						<p:outputLabel value="E-mail" for="inputText-email" />
 						<p:inplace id="inputText-email" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" maxlength="80"
@@ -86,18 +87,17 @@
 						<p:outputLabel value="Causa" />
 						<p:selectOneMenu id="basic" value="#{editarEvento.evento.causa}"
 							layout="grid" columns="2" required="true"
-							requiredMessage="O campo Causas é de preenchimento obrigatório">
+							requiredMessage="O campo causa é de preenchimento obrigatório">
 							<f:selectItem itemLabel="Escolha uma causa" itemValue="0" />
-							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
+							<f:selectItem itemLabel="Saúde" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Participação cidadã" itemValue="3" />
 							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
 							<f:selectItem itemLabel="Idosos" itemValue="5" />
 							<f:selectItem itemLabel="Educação" itemValue="6" />
 							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
-								itemValue="8" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
 							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
 							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
 							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
@@ -105,22 +105,20 @@
 							<f:selectItem itemLabel="Outras" itemValue="13" />
 						</p:selectOneMenu>
 
-
-						<p:commandButton value="Salvar Evento" id="commandButton-salvar"
+				
+						<p:commandButton value="Salvar evento" id="commandButton-salvar"
 							icon="fa fa-floppy-o" action="#{editarEvento.editarEvento}"
 							update="panelGrid-campos-form" ajax="false" />
 
 					</h:panelGrid>
-
-					<p:messages showDetail="true" autoUpdate="true" closable="true"
-						severity="warn" />
-					<p:messages autoUpdate="true" closable="true" severity="error" />
-					<p:messages showDetail="true" autoUpdate="true" closable="true"
-						severity="info" />
-
-
 				</h:form>
 
+
+				<p:messages showDetail="true" autoUpdate="true" closable="true"
+					severity="warn" />
+				<p:messages autoUpdate="true" closable="true" severity="error" />
+				<p:messages showDetail="true" autoUpdate="true" closable="true"
+					severity="info" />
 			</p:tab>
 
 		</p:tabView>

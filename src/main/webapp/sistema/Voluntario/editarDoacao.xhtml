@@ -13,11 +13,11 @@
 <ui:composition template="/template/Voluntario/layoutBase.xhtml">
 	<ui:define name="content">
 		<p:tabView style="width:50% ;margin:auto;">
-			<p:tab title="Editar Cadastro de Objeto para Doação">
+			<p:tab title="Editar cadastro de objeto para doação">
 
 				<h:form id="form-excluir-doacao" enctype="multipart/form-data">
 
-					<p:commandButton value="Excluir Doação" id="commandButton-excluir"
+					<p:commandButton value="Excluir doação" id="commandButton-excluir"
 						icon="fa fa-fw fa-remove" action="#{editarDoacao.removerDoacao}"
 						style="float: right;" ajax="false" />
 
@@ -28,12 +28,12 @@
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
-						<p:outputLabel value="Titulo da doação" for="inputText-titulo" />
+						<p:outputLabel value="Título da doação" for="inputText-titulo" />
 						<p:inplace id="inputText-titulo" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:100%" maxlength="80"
 								value="#{editarDoacao.doacao.titulo}" required="true"
-								requiredMessage="O titulo da vaga é de preenchimento obrigatório" />
+								requiredMessage="O título da vaga é de preenchimento obrigatório" />
 						</p:inplace>
 
 						<p:outputLabel value="Descrição da doação"
@@ -58,15 +58,15 @@
 							<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
 							<f:selectItem itemLabel="Quinta-Feira" itemValue="4" />
 							<f:selectItem itemLabel="Sexta-Feira" itemValue="5" />
-							<f:selectItem itemLabel="Sabado" itemValue="6" />
+							<f:selectItem itemLabel="Sábado" itemValue="6" />
 							<f:selectItem itemLabel="Domingo" itemValue="0" />
 						</p:selectManyCheckbox>
 
-						<p:outputLabel value="Periodo" />
+						<p:outputLabel value="Períodos" />
 
 						<p:selectManyCheckbox id="periodos"
 							value="#{editarDoacao.doacao.periodos}" layout="grid" columns="3">
-							<f:selectItem itemLabel="Manha" itemValue="0" />
+							<f:selectItem itemLabel="Manhã" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>

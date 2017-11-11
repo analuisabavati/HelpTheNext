@@ -26,7 +26,7 @@
 				emptyMessage="Nenhuma vaga foi cadastrada até o momento."
 				layout="grid" rows="6" paginator="true" style="margin-top:20px">
 
-				<f:facet name="header"> Vagas Disponiveis </f:facet>
+				<f:facet name="header"> Vagas disponíveis </f:facet>
 
 				<p:panel>
 					<h:panelGrid columns="1" style="width:100%;"
@@ -49,7 +49,7 @@
 
 						<h:panelGrid columns="2" style="width:100%"
 							styleClass="ui-noborder">
-							<h:outputText value="Titulo:" style="font-weight: bold" />
+							<h:outputText value="Título:" style="font-weight: bold" />
 							<h:outputText value="#{vaga.titulo}" />
 
 							<h:outputText value="Local:" style="font-weight: bold" />
@@ -84,41 +84,48 @@
 					<p:panelGrid columns="2" styleClass="ui-noborder"
 						rendered="#{not empty consultaVagasView.selectedVaga}"
 						columnClasses="label,value">
-						<h:outputText value="Titulo:" />
+						<h:outputText value="Título:" />
 						<h:outputText value="#{consultaVagasView.selectedVaga.titulo}"
 							style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
 						<h:outputText value="#{consultaVagasView.selectedVaga.descricao}"
 							style="font-weight: bold" />
-						<h:outputText value="Nome do Responsavel:" />
+
+						<p:separator />
+						<br />
+
+						<h:outputText value="Nome do responsável:" />
 						<h:outputText
 							value="#{consultaVagasView.selectedVaga.nomeResponsavel}"
 							style="font-weight: bold" />
-						<h:outputText value="Email para contato:" />
+						<h:outputText value="E-mail para contato:" />
 						<h:outputText value="#{consultaVagasView.selectedVaga.email}"
 							style="font-weight: bold" />
-						<h:outputText value="Causas:" />
+
+						<h:outputText value="Vaga cadastrada pela ONG: " />
+						<h:outputText
+							value="#{consultaVagasView.selectedVaga.ongEntity.nomeONG}"
+							style="font-weight: bold" />
+
+						<p:separator />
+						<br />
+						<h:outputText value="Causa(s):" />
 						<h:outputText
 							value="#{consultaVagasView.selectedVaga.causasString}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Habilidades Necessarias:" />
+						<h:outputText value="Habilidade(s) necessária(s):" />
 						<h:outputText
 							value="#{consultaVagasView.selectedVaga.habilidadesString}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Dias: " />
+						<h:outputText value="Dia(s): " />
 						<h:outputText value="#{consultaVagasView.selectedVaga.diasString}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Periodo: " />
+						<h:outputText value="Período(s): " />
 						<h:outputText
 							value="#{consultaVagasView.selectedVaga.periodoString}"
-							style="font-weight: bold" />
-
-						<h:outputText value="Vaga Cadastrada pela ONG " />
-						<h:outputText
-							value="#{consultaVagasView.selectedVaga.ongEntity.nomeONG}"
 							style="font-weight: bold" />
 
 						<h:outputText value=" " />

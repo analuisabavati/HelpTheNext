@@ -20,11 +20,11 @@
 					<h:panelGrid id="panelGrid-campos-form" columns="2"
 						cellpadding="10">
 
-						<p:outputLabel value="Titulo da doação" for="inputText-titulo" />
+						<p:outputLabel value="Título da doação" for="inputText-titulo" />
 						<p:inputText id="inputText-titulo" style="width:100%"
 							maxlength="80" value="#{doacaoController.doacaoModel.titulo}"
 							required="true"
-							requiredMessage="O titulo da vaga é de preenchimento obrigatório" />
+							requiredMessage="O título da doação é de preenchimento obrigatório" />
 
 						<p:outputLabel value="Descrição da doação"
 							for="inputText-descricao" />
@@ -46,16 +46,15 @@
 							<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
 							<f:selectItem itemLabel="Quinta-Feira" itemValue="4" />
 							<f:selectItem itemLabel="Sexta-Feira" itemValue="5" />
-							<f:selectItem itemLabel="Sabado" itemValue="6" />
+							<f:selectItem itemLabel="Sábado" itemValue="6" />
 							<f:selectItem itemLabel="Domingo" itemValue="0" />
 						</p:selectManyCheckbox>
 
-						<p:outputLabel value="Periodo" />
-
+						<p:outputLabel value="Períodos" />
 						<p:selectManyCheckbox id="periodos"
 							value="#{doacaoController.doacaoModel.periodos}" layout="grid"
 							columns="3">
-							<f:selectItem itemLabel="Manha" itemValue="0" />
+							<f:selectItem itemLabel="Manhã" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
@@ -66,11 +65,9 @@
 
 					</h:panelGrid>
 
-					<p:messages showDetail="true" autoUpdate="true" closable="true"
-						severity="warn" />
+					<p:messages showDetail="true" autoUpdate="true" closable="true" severity="warn" />
 					<p:messages autoUpdate="true" closable="true" severity="error" />
-					<p:messages showDetail="true" autoUpdate="true" closable="true"
-						severity="info" />
+					<p:messages showDetail="true" autoUpdate="true" closable="true" severity="info" />
 
 				</h:form>
 

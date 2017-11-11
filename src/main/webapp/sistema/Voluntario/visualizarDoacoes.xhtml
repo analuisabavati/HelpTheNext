@@ -16,7 +16,7 @@
 
 			<p:inputText id="inputText-busca"
 				style="width:30%; height:30px; margin-left:60px" maxlength="80"
-				placeholder="Digite o titulo da doação"
+				placeholder="Digite o título da doação"
 				value="#{consultaDoacoesView.busca}" />
 			<p:outputLabel value=" " />
 			<p:commandButton value="Buscar" update="form"
@@ -28,7 +28,6 @@
 				style="margin-top:20px">
 
 				<f:facet name="header"> Doações </f:facet>
-
 
 				<p:panel header="#{doacao.titulo}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%; hight:200px"
@@ -70,7 +69,7 @@
 						rendered="#{not empty consultaDoacoesView.selectedDoacao}"
 						columnClasses="label,value">
 
-						<h:outputText value="Titulo:" />
+						<h:outputText value="Título:" />
 						<h:outputText value="#{consultaDoacoesView.selectedDoacao.titulo}"
 							style="font-weight: bold" />
 						<h:outputText value="Descrição: " />
@@ -78,28 +77,58 @@
 							value="#{consultaDoacoesView.selectedDoacao.descricao}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Nome do Voluntario: " />
+						<p:separator />
+						<br />
+
+						<h:outputText value="Nome do Voluntário: " />
 						<h:outputText
 							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.nome}"
 							style="font-weight: bold" />
 
+						<h:outputText value="Telefone:  " />
+						<h:outputText
+							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.telefone}"
+							style="font-weight: bold" />
+
+						<h:outputText value="E-mail:  " />
+						<h:outputText
+							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.email}"
+							style="font-weight: bold" />
+
+						<p:separator />
+						<br />
+
 						<h:outputText value="Retirada:  " />
+						<br />
+						<h:outputText value="Dia(s):  " />
+
 						<h:outputText
 							value="#{consultaDoacoesView.selectedDoacao.diasString}"
 							style="font-weight: bold" />
 
-						<h:outputText value="Periodos:  " />
+						<h:outputText value="Perído(s):  " />
+
 						<h:outputText
 							value="#{consultaDoacoesView.selectedDoacao.periodoString}"
 							style="font-weight: bold" />
-						<h:outputText value="Cidade:  " />
 
+						<h:outputText value="  " />
+						<h:outputText value="  " />
+
+
+						<h:outputText value="Cidade:  " />
 						<h:outputText
 							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.cidade}"
 							style="font-weight: bold" />
 
-						<h:outputText value=" " />
-						<h:outputText value=" " />
+						<h:outputText value="Estado:  " />
+						<h:outputText
+							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.estado}"
+							style="font-weight: bold" />
+
+						<p:separator />
+						<br />
+
 
 						<p:button value="Editar" outcome="editarDoacao.xhtml"
 							icon="fa fa-fw fa-edit"

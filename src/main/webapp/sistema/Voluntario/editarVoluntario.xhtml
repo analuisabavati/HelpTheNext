@@ -14,7 +14,7 @@
 	<ui:define name="content">
 
 		<p:tabView style="width:50% ;margin:auto;">
-			<p:tab title="Editar Cadastro de Voluntario">
+			<p:tab title="Editar cadastro de voluntário">
 
 				<h:form id="form-excluir-voluntario" enctype="multipart/form-data">
 
@@ -106,7 +106,7 @@
 								maxlength="200" value="#{editarVoluntario.voluntario.rua}" />
 						</p:inplace>
 
-						<p:outputLabel value="Numero" for="inputText-numero" />
+						<p:outputLabel value="Número" for="inputText-numero" />
 						<p:inplace id="inputText-numero" editor="true"
 							emptyLabel="Clique para editar">
 							<p:inputText style="width:50px" maxlength="200"
@@ -178,20 +178,19 @@
 						<p:separator />
 						<br />
 
-						<p:outputLabel value="Causas" for="causas" />
+						<p:outputLabel value="Causa(s)" for="causas" />
 						<p:selectManyCheckbox id="causas"
 							value="#{editarVoluntario.voluntario.causas}" layout="grid"
 							columns="2">
-							<f:selectItem itemLabel="Pessoas com deficiencia" itemValue="0" />
-							<f:selectItem itemLabel="Saude" itemValue="1" />
+							<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
+							<f:selectItem itemLabel="Saúde" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
-							<f:selectItem itemLabel="Participação cidada" itemValue="3" />
+							<f:selectItem itemLabel="Participação cidadã" itemValue="3" />
 							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
 							<f:selectItem itemLabel="Idosos" itemValue="5" />
 							<f:selectItem itemLabel="Educação" itemValue="6" />
 							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
-							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
-								itemValue="8" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
 							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
 							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
 							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
@@ -201,21 +200,21 @@
 						<p:separator />
 						<br />
 
-						<p:outputLabel value="Habilidades" for="habilidades" />
+						<p:outputLabel value="Habilidade(s)" for="habilidades" />
 						<p:selectManyCheckbox id="habilidades"
 							value="#{editarVoluntario.voluntario.habilidades}" layout="grid"
 							columns="2">
 							<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
 							<f:selectItem itemLabel="Comunicação" itemValue="1" />
-							<f:selectItem itemLabel="Dança/Musica" itemValue="2" />
+							<f:selectItem itemLabel="Dança/Música" itemValue="2" />
 							<f:selectItem itemLabel="Direito" itemValue="3" />
 							<f:selectItem itemLabel="Educação" itemValue="4" />
 							<f:selectItem itemLabel="Esportes" itemValue="5" />
 							<f:selectItem itemLabel="Gastronomia" itemValue="6" />
 							<f:selectItem itemLabel="Gestão" itemValue="7" />
 							<f:selectItem itemLabel="Idiomas" itemValue="8" />
-							<f:selectItem itemLabel="Informatica/Eletronica" itemValue="9" />
-							<f:selectItem itemLabel="Saude/Psicologia" itemValue="10" />
+							<f:selectItem itemLabel="Informática/Eletrônica" itemValue="9" />
+							<f:selectItem itemLabel="Saúde/Psicologia" itemValue="10" />
 							<f:selectItem itemLabel="Outras" itemValue="11" />
 						</p:selectManyCheckbox>
 
@@ -231,13 +230,13 @@
 							<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
 							<f:selectItem itemLabel="Quinta-Feira" itemValue="4" />
 							<f:selectItem itemLabel="Sexta-Feira" itemValue="5" />
-							<f:selectItem itemLabel="Sabado" itemValue="6" />
+							<f:selectItem itemLabel="Sábado" itemValue="6" />
 							<f:selectItem itemLabel="Domingo" itemValue="0" />
 						</p:selectManyCheckbox>
 
 						<p:selectManyCheckbox id="periodos" layout="grid" columns="1"
 							value="#{editarVoluntario.voluntario.disponibilidadePeriodos}">
-							<f:selectItem itemLabel="Manha" itemValue="0" />
+							<f:selectItem itemLabel="Manhã" itemValue="0" />
 							<f:selectItem itemLabel="Tarde" itemValue="1" />
 							<f:selectItem itemLabel="Noite" itemValue="2" />
 						</p:selectManyCheckbox>
