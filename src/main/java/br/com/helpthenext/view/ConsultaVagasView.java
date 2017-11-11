@@ -2,6 +2,7 @@ package br.com.helpthenext.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -49,6 +50,11 @@ public class ConsultaVagasView implements Serializable {
 	private boolean botaoEditar;
 
 	private String busca;
+	private String[] causas;
+	private String[] habilidades;
+	private String[] dias;
+	private String[] periodos;
+	private String trabalhoDistancia;
 
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
@@ -115,7 +121,7 @@ public class ConsultaVagasView implements Serializable {
 	}
 
 	public void retornaVagasConformeBusca() {
-			
+
 		if (busca == null || busca.isEmpty()) {
 			vagas = vagaRepository.findAll();
 		}
@@ -127,11 +133,104 @@ public class ConsultaVagasView implements Serializable {
 		List<VagaModel> vagasConformeBusca = new ArrayList<>();
 		for (VagaModel vagaModel : this.vagas) {
 			if (TituloUteis.isSemelhantes(busca, vagaModel.getTitulo())) {
-				vagasConformeBusca.add(vagaModel);
+				adicionaVaga(vagasConformeBusca, vagaModel);
 			}
 		}
-		
+
 		vagas = vagasConformeBusca;
+	}
+
+	public void filtrarVagas() {
+		vagas = vagaRepository.findAll();
+
+		List<VagaModel> vagasFiltradas = new ArrayList<>();
+
+		int filtrosAtendidos = 0;
+		for (VagaModel vaga : vagas) {
+			if (contemCausa(vaga)) {
+				filtrosAtendidos++;
+			} else if (causas.length == 0) {
+				filtrosAtendidos++;
+			} 
+			
+			if (contemHabilidde(vaga)) {
+				filtrosAtendidos++;
+			} else if (habilidades.length == 0) {
+				filtrosAtendidos++;
+			}
+			
+			if (contemDias(vaga)) {
+				filtrosAtendidos++;
+			} else if (dias.length == 0) {
+				filtrosAtendidos++;
+			} 
+			
+			if (contemPeriodos(vaga)) {
+				filtrosAtendidos++;
+			} else if (periodos.length == 0) {
+				filtrosAtendidos++;
+			}
+			
+			if ((vaga.getTrabalhoDistancia() != null && vaga.getTrabalhoDistancia().equals(trabalhoDistancia)) || trabalhoDistancia.equals("T")) {
+				filtrosAtendidos++;
+			} else if (trabalhoDistancia.isEmpty()) {
+				filtrosAtendidos++;
+			} 
+			
+			if (filtrosAtendidos == 5) {
+				adicionaVaga(vagasFiltradas, vaga);
+			}
+			
+			filtrosAtendidos = 0;
+		}
+
+		vagas = vagasFiltradas;
+	}
+
+	private boolean contemPeriodos(VagaModel vaga) {
+		boolean contem = false;
+		for(int i = 0; i < periodos.length; i++) {
+			if (vaga.getPeriodos() != null && vaga.getPeriodos() != null && Arrays.asList(vaga.getPeriodos()).contains(periodos[i])) {
+				contem = true;
+			}
+		}
+		return contem;
+	}
+
+	private boolean contemDias(VagaModel vaga) {
+		boolean contem = false;
+		for(int i = 0; i < dias.length; i++) {
+			if (vaga.getDias() != null && Arrays.asList(vaga.getDias()).contains(dias[i])) {
+				contem = true;
+			}
+		}
+		return contem;
+	}
+
+	private boolean contemHabilidde(VagaModel vaga) {
+		boolean contem = false;
+		for(int i = 0; i < habilidades.length; i++) {
+			if (vaga.getHabilidades() != null && Arrays.asList(vaga.getHabilidades()).contains(habilidades[i])) {
+				contem = true;
+			}
+		}
+		return contem;
+	}
+
+	private boolean contemCausa(VagaModel vaga) {
+		boolean contem = false;
+		for(int i = 0; i < causas.length; i++) {
+			if (vaga.getCausas() != null && Arrays.asList(vaga.getCausas()).contains(causas[i])) {
+				contem = true;
+			}
+		}
+		return contem;
+	}
+
+	private void adicionaVaga(List<VagaModel> vagasFiltradas, VagaModel vaga) {
+		if (!vagasFiltradas.contains(vaga)) {
+			vagasFiltradas.add(vaga);
+		}
 	}
 
 	public List<VagaModel> getVagas() {
@@ -172,6 +271,82 @@ public class ConsultaVagasView implements Serializable {
 
 	public String getBusca() {
 		return busca;
+	}
+
+	public VagaRepository getVagaRepository() {
+		return vagaRepository;
+	}
+
+	public void setVagaRepository(VagaRepository vagaRepository) {
+		this.vagaRepository = vagaRepository;
+	}
+
+	public ONGRepository getOngRepository() {
+		return ongRepository;
+	}
+
+	public void setOngRepository(ONGRepository ongRepository) {
+		this.ongRepository = ongRepository;
+	}
+
+	public JavaMailApp getJavaMailApp() {
+		return javaMailApp;
+	}
+
+	public void setJavaMailApp(JavaMailApp javaMailApp) {
+		this.javaMailApp = javaMailApp;
+	}
+
+	public VoluntarioRepository getVoluntarioRepository() {
+		return voluntarioRepository;
+	}
+
+	public void setVoluntarioRepository(VoluntarioRepository voluntarioRepository) {
+		this.voluntarioRepository = voluntarioRepository;
+	}
+
+	public String[] getCausas() {
+		return causas;
+	}
+
+	public void setCausas(String[] causas) {
+		this.causas = causas;
+	}
+
+	public String[] getHabilidades() {
+		return habilidades;
+	}
+
+	public void setHabilidades(String[] habilidades) {
+		this.habilidades = habilidades;
+	}
+
+	public String[] getDias() {
+		return dias;
+	}
+
+	public void setDias(String[] dias) {
+		this.dias = dias;
+	}
+
+	public String[] getPeriodos() {
+		return periodos;
+	}
+
+	public void setPeriodos(String[] periodos) {
+		this.periodos = periodos;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getTrabalhoDistancia() {
+		return trabalhoDistancia;
+	}
+
+	public void setTrabalhoDistancia(String trabalhoDistancia) {
+		this.trabalhoDistancia = trabalhoDistancia;
 	}
 
 }
