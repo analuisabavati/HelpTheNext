@@ -115,6 +115,10 @@ public class ConsultaVagasView implements Serializable {
 	}
 
 	public void retornaVagasConformeBusca() {
+			
+		if (busca == null || busca.isEmpty()) {
+			vagas = vagaRepository.findAll();
+		}
 
 		if (vagas == null || vagas.isEmpty()) {
 			vagas = vagaRepository.findAll();

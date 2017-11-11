@@ -79,6 +79,10 @@ public class ConsultaEventosView implements Serializable {
 	
 	public void retornaEventoConformeBusca() {
 		
+		if (busca == null || busca.isEmpty()) {
+			eventos = eventoRepository.findAll();
+		}
+		
 		if (eventos == null || eventos.isEmpty()) {
 			eventos = eventoRepository.findAll();
 		}
