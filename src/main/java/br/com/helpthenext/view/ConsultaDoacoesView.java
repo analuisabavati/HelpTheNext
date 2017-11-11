@@ -45,7 +45,8 @@ public class ConsultaDoacoesView implements Serializable {
 
 	private DoacaoModel selectedDoacao;
 
-	private boolean botaoEditar;
+
+	private Boolean exibirBotaoEditar;
 	
 	private String busca;
 
@@ -60,9 +61,9 @@ public class ConsultaDoacoesView implements Serializable {
 				&& selectedDoacao.getVoluntarioEntity().getId() != null) {
 			if (selectedDoacao.getVoluntarioEntity() != null
 					&& selectedDoacao.getVoluntarioEntity().getId().equals(vol.getId())) {
-				botaoEditar = true;
+				exibirBotaoEditar = true;
 			} else {
-				botaoEditar = false;
+				exibirBotaoEditar = null;
 			}
 		}
 	}
@@ -145,14 +146,6 @@ public class ConsultaDoacoesView implements Serializable {
 		this.selectedDoacao = selectedDoacao;
 	}
 
-	public boolean isBotaoEditar() {
-		return botaoEditar;
-	}
-
-	public void setBotaoEditar(boolean botaoEditar) {
-		this.botaoEditar = botaoEditar;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -196,6 +189,15 @@ public class ConsultaDoacoesView implements Serializable {
 	public void setBusca(String busca) {
 		this.busca = busca;
 	}
+
+	public Boolean getExibirBotaoEditar() {
+		return exibirBotaoEditar;
+	}
+
+	public void setExibirBotaoEditar(Boolean exibirBotaoEditar) {
+		this.exibirBotaoEditar = exibirBotaoEditar;
+	}
+	
 	
 }
 

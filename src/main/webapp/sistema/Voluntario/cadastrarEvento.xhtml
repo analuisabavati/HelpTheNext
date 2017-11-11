@@ -54,7 +54,7 @@
 						<p:outputLabel value="Email" for="inputText-email" />
 						<p:inputText id="inputText-email" style="width:100%"
 							maxlength="80" value="#{eventoController.eventoModel.email}"
-							required="true"
+							required="true"  validatorMessage="E-mail incorreto"
 							requiredMessage="O campo email é de preenchimento obrigatório">
 							<f:validateRegex
 								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -69,7 +69,7 @@
 							value="#{eventoController.eventoModel.causa}" layout="grid"
 							columns="2" required="true"
 							requiredMessage="O campo causa é de preenchimento obrigatório">
-							<f:selectItem itemLabel="Escolha uma causa" itemValue="0" />
+							<f:selectItem itemLabel="Escolha uma causa"/>
 							<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
 							<f:selectItem itemLabel="Saúde" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />

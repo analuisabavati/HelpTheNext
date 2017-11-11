@@ -126,13 +126,14 @@
 							value="#{consultaDoacoesView.selectedDoacao.voluntarioEntity.estado}"
 							style="font-weight: bold" />
 
-						<p:separator />
-						<br />
-
+						<h:outputText value="  " />
+						<h:outputText value="  " />
+						<h:outputText value="  " />
+						<h:outputText value="  " />
 
 						<p:button value="Editar" outcome="editarDoacao.xhtml"
 							icon="fa fa-fw fa-edit"
-							disabled="#{!(consultaDoacoesView.botaoEditar)}">
+							rendered="#{not empty consultaDoacoesView.exibirBotaoEditar}">
 						</p:button>
 
 					</p:panelGrid>

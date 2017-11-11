@@ -47,7 +47,7 @@ public class ConsultaVagasView implements Serializable {
 
 	private VagaModel selectedVaga;
 
-	private boolean botaoEditar;
+	private Boolean exibirBotaoEditar;
 
 	private String busca;
 	private String[] causas;
@@ -67,9 +67,9 @@ public class ConsultaVagasView implements Serializable {
 		if (ong != null && selectedVaga != null && selectedVaga.getOngEntity() != null
 				&& selectedVaga.getOngEntity().getId() != null) {
 			if (selectedVaga.getOngEntity() != null && selectedVaga.getOngEntity().getId().equals(ong.getId())) {
-				botaoEditar = true;
+				exibirBotaoEditar = true;
 			} else {
-				botaoEditar = false;
+				exibirBotaoEditar = null;
 			}
 		}
 	}
@@ -257,14 +257,6 @@ public class ConsultaVagasView implements Serializable {
 		this.selectedVaga = selectedVaga;
 	}
 
-	public boolean isBotaoEditar() {
-		return botaoEditar;
-	}
-
-	public void setBotaoEditar(boolean botaoEditar) {
-		this.botaoEditar = botaoEditar;
-	}
-
 	public void setBusca(String busca) {
 		this.busca = busca;
 	}
@@ -348,5 +340,14 @@ public class ConsultaVagasView implements Serializable {
 	public void setTrabalhoDistancia(String trabalhoDistancia) {
 		this.trabalhoDistancia = trabalhoDistancia;
 	}
+
+	public Boolean getExibirBotaoEditar() {
+		return exibirBotaoEditar;
+	}
+
+	public void setExibirBotaoEditar(Boolean exibirBotaoEditar) {
+		this.exibirBotaoEditar = exibirBotaoEditar;
+	}
+
 
 }

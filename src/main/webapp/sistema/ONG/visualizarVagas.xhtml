@@ -22,6 +22,12 @@
 			<p:commandButton value="Buscar" update="form"
 				action="#{consultaVagasView.retornaVagasConformeBusca}"></p:commandButton>
 
+			<div align="right">
+				<p:commandButton value="Filtrar" update=":form:filtrosDetail"
+					icon="fa fa-filter" oncomplete="PF('filtrosDialog').show()">
+				</p:commandButton>
+			</div>
+
 			<p:dataGrid value="#{consultaVagasView.vagas}" var="vaga" columns="3"
 				emptyMessage="Nenhuma vaga foi cadastrada até o momento."
 				layout="grid" rows="6" paginator="true" style="margin-top:20px">
@@ -132,12 +138,96 @@
 						<h:outputText value=" " />
 
 						<p:button value="Editar" outcome="editarVaga.xhtml"
-							icon="fa fa-fw fa-edit"
-							disabled="#{!(consultaVagasView.botaoEditar)}">
+							icon="fa fa-fw fa-edit" rendered="#{not empty consultaVagasView.exibirBotaoEditar}">
 						</p:button>
 
 					</p:panelGrid>
 				</p:outputPanel>
+			</p:dialog>
+
+			<p:dialog header="Aplicar filtros" widgetVar="filtrosDialog"
+				modal="true" showEffect="blind" hideEffect="explode"
+				resizable="false">
+				<h:panelGrid id="filtrosDetail" columns="2" cellpadding="10">
+
+					<p:outputLabel value="Selecione os filtros desejados:" />
+					<p:outputLabel value=" " />
+
+					<p:outputLabel value="Causa(s)" />
+					<p:selectManyCheckbox id="causas"
+						value="#{consultaVagasView.causas}" layout="grid" columns="2">
+						<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
+						<f:selectItem itemLabel="Saúde" itemValue="1" />
+						<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+						<f:selectItem itemLabel="Participação cidadã" itemValue="3" />
+						<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+						<f:selectItem itemLabel="Idosos" itemValue="5" />
+						<f:selectItem itemLabel="Educação" itemValue="6" />
+						<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+						<f:selectItem itemLabel="Cultura, Esporte e/ou Arte" itemValue="8" />
+						<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+						<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+						<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+						<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+						<f:selectItem itemLabel="Outras" itemValue="13" />
+					</p:selectManyCheckbox>
+
+
+					<p:outputLabel value="Habilidade(s) necessária(s)" />
+
+					<p:selectManyCheckbox id="habilidades"
+						value="#{consultaVagasView.habilidades}" layout="grid" columns="2">
+						<f:selectItem itemLabel="Artes/Artesanato" itemValue="0" />
+						<f:selectItem itemLabel="Comunicação" itemValue="1" />
+						<f:selectItem itemLabel="Dança/Música" itemValue="2" />
+						<f:selectItem itemLabel="Direito" itemValue="3" />
+						<f:selectItem itemLabel="Educação" itemValue="4" />
+						<f:selectItem itemLabel="Esportes" itemValue="5" />
+						<f:selectItem itemLabel="Gastronomia" itemValue="6" />
+						<f:selectItem itemLabel="Gestão" itemValue="7" />
+						<f:selectItem itemLabel="Idiomas" itemValue="8" />
+						<f:selectItem itemLabel="Informática/Eletrônica" itemValue="9" />
+						<f:selectItem itemLabel="Saúde/Psicologia" itemValue="10" />
+						<f:selectItem itemLabel="Outras" itemValue="11" />
+					</p:selectManyCheckbox>
+
+
+					<p:outputLabel value="Disponibilidade:" />
+					<br />
+					<p:selectManyCheckbox id="dia" value="#{consultaVagasView.dias}"
+						layout="grid" columns="1">
+						<f:selectItem itemLabel="Segunda-Feira" itemValue="1" />
+						<f:selectItem itemLabel="Terça-Feira" itemValue="2" />
+						<f:selectItem itemLabel="Quarta-Feira" itemValue="3" />
+						<f:selectItem itemLabel="Quinta-Feira" itemValue="4" />
+						<f:selectItem itemLabel="Sexta-Feira" itemValue="5" />
+						<f:selectItem itemLabel="Sábado" itemValue="6" />
+						<f:selectItem itemLabel="Domingo" itemValue="0" />
+					</p:selectManyCheckbox>
+
+					<p:selectManyCheckbox id="periodo"
+						value="#{consultaVagasView.periodos}" layout="grid" columns="1">
+						<f:selectItem itemLabel="Manhã" itemValue="0" />
+						<f:selectItem itemLabel="Tarde" itemValue="1" />
+						<f:selectItem itemLabel="Noite" itemValue="2" />
+					</p:selectManyCheckbox>
+
+					<p:outputLabel for="selectOneRadio-trabalho"
+						value="Trabalho à distância:" />
+					<p:selectOneRadio id="selectOneRadio-trabalho"
+						value="#{consultaVagasView.trabalhoDistancia}">
+						<f:selectItem itemLabel="Sim" itemValue="Sim" />
+						<f:selectItem itemLabel="Não" itemValue="Não" />
+						<f:selectItem itemLabel="Todos" itemValue="T" />
+					</p:selectOneRadio>
+
+					<p:outputLabel value=" " />
+					<p:commandButton value="Filtar" id="filtrar" style="float: right;"
+						onclick="filtrosDialog.hide()" icon="fa fa-filter" update="form"
+						action="#{consultaVagasView.filtrarVagas}" />
+
+
+				</h:panelGrid>
 			</p:dialog>
 
 			<p:messages showDetail="true" autoUpdate="true" closable="true"

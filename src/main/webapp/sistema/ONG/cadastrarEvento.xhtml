@@ -54,7 +54,7 @@
 							requiredMessage="O campo horário é de preenchimento obrigatório" />
 
 						<p:outputLabel value="E-mail" for="inputText-email" />
-						<p:inputText id="inputText-email" style="width:100%"
+						<p:inputText id="inputText-email" style="width:100%"  validatorMessage="E-mail incorreto"
 							maxlength="80" value="#{eventoController.eventoModel.email}">
 							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 						</p:inputText>
@@ -68,7 +68,7 @@
 							value="#{eventoController.eventoModel.causa}" layout="grid"
 							columns="2" required="true"
 							requiredMessage="O campo Causas é de preenchimento obrigatório">
-							<f:selectItem itemLabel="Escolha uma causa" itemValue="0" />
+							<f:selectItem itemLabel="Escolha uma causa" />
 							<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
 							<f:selectItem itemLabel="Saúde" itemValue="1" />
 							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />

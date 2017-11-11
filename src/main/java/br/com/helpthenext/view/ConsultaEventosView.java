@@ -44,10 +44,10 @@ public class ConsultaEventosView implements Serializable {
 	private Integer avaliacao;
 
 	private boolean botaoCurtir;
-
-	private boolean botaoEditar;
+	private Boolean exibirBotaoEditar;
 	
 	private String busca;
+	private String causa;
 
 	@PostConstruct // executado na inicialização da classe
 	public void init() {
@@ -59,9 +59,9 @@ public class ConsultaEventosView implements Serializable {
 		if (ong != null && selectedEvento != null && selectedEvento.getOngEntity() != null
 				&& selectedEvento.getOngEntity().getId() != null) {
 			if (selectedEvento.getOngEntity() != null && selectedEvento.getOngEntity().getId().equals(ong.getId())) {
-				botaoEditar = true;
+				exibirBotaoEditar = true;
 			} else {
-				botaoEditar = false;
+				exibirBotaoEditar = null;
 			}
 		}
 
@@ -70,9 +70,9 @@ public class ConsultaEventosView implements Serializable {
 				&& selectedEvento.getVoluntarioEntity().getId() != null) {
 			if (selectedEvento.getVoluntarioEntity() != null
 					&& selectedEvento.getVoluntarioEntity().getId().equals(vol.getId())) {
-				botaoEditar = true;
+				exibirBotaoEditar = true;
 			} else {
-				botaoEditar = false;
+				exibirBotaoEditar = null;
 			}
 		}
 	}
@@ -96,6 +96,25 @@ public class ConsultaEventosView implements Serializable {
 		eventos = eventoConformeBusca;
 	}
 	
+	public void filtrar() {
+		if (causa == null || causa.isEmpty()) {
+			eventos = eventoRepository.findAll();
+			return;
+		}
+		
+		eventos = eventoRepository.findAll();
+		
+		List<EventoModel> eventosFiltrados = new ArrayList<>();
+		for (EventoModel evento : eventos) {
+			if (evento.getCausa() != null && 
+					evento.getCausa().equals(causa)) {
+				eventosFiltrados.add(evento);
+			}
+		}
+		
+		eventos = eventosFiltrados;
+	}
+	
 	public boolean isBotaoCurtir() {
 		return botaoCurtir;
 	}
@@ -104,12 +123,12 @@ public class ConsultaEventosView implements Serializable {
 		this.botaoCurtir = botaoCurtir;
 	}
 
-	public boolean isBotaoEditar() {
-		return botaoEditar;
+	public Boolean getExibirBotaoEditar() {
+		return exibirBotaoEditar;
 	}
 
-	public void setBotaoEditar(boolean botaoEditar) {
-		this.botaoEditar = botaoEditar;
+	public void setExibirBotaoEditar(Boolean exibirBotaoEditar) {
+		this.exibirBotaoEditar = exibirBotaoEditar;
 	}
 
 	public EventoModel getEventoModel() {
@@ -179,7 +198,13 @@ public class ConsultaEventosView implements Serializable {
 	public void setAvaliacao(Integer avaliacao) {
 		this.avaliacao = avaliacao;
 	}
-	
-	
+
+	public String getCausa() {
+		return causa;
+	}
+
+	public void setCausa(String causa) {
+		this.causa = causa;
+	}
 
 }

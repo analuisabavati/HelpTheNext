@@ -19,13 +19,42 @@
 
 				<p:tab title="Eventos disponíveis">
 
-					<p:inputText id="inputText-busca"
-						style="width:30%; height:30px; margin-left:60px" maxlength="80"
-						placeholder="Digite o titulo do evento"
-						value="#{consultaEventosView.busca}" />
-					<p:outputLabel value=" " />
-					<p:commandButton value="Buscar" update="form"
-						action="#{consultaEventosView.retornaEventoConformeBusca}"></p:commandButton>
+					<div style="height: 40px; width: 100%">
+
+						<p:inputText id="inputText-busca"
+							style="height:30px; margin-left:50px; width: 30%" maxlength="80"
+							placeholder="Digite o título do evento"
+							value="#{consultaEventosView.busca}" />
+						<p:outputLabel value=" " />
+						<p:commandButton value="Buscar" update="form"
+							action="#{consultaEventosView.retornaEventoConformeBusca}"></p:commandButton>
+
+
+						<p:commandButton value="Filtar" update="form" icon="fa fa-filter"
+							style="margin-right:50px; float: right"
+							action="#{consultaEventosView.filtrar}"></p:commandButton>
+
+						<p:selectOneMenu id="basic" style=" float: right"
+							value="#{consultaEventosView.causa}" layout="grid" columns="2">
+							<f:selectItem itemLabel="Escolha uma causa" />
+							<f:selectItem itemLabel="Pessoas com deficiência" itemValue="0" />
+							<f:selectItem itemLabel="Saúde" itemValue="1" />
+							<f:selectItem itemLabel="Proteção Animal" itemValue="2" />
+							<f:selectItem itemLabel="Participação cidadã" itemValue="3" />
+							<f:selectItem itemLabel="Meio Ambiente" itemValue="4" />
+							<f:selectItem itemLabel="Idosos" itemValue="5" />
+							<f:selectItem itemLabel="Educação" itemValue="6" />
+							<f:selectItem itemLabel="Defesa de direitos" itemValue="7" />
+							<f:selectItem itemLabel="Cultura, Esporte e/ou Arte"
+								itemValue="8" />
+							<f:selectItem itemLabel="Crianças/Jovens" itemValue="9" />
+							<f:selectItem itemLabel="Consumo Consciente" itemValue="10" />
+							<f:selectItem itemLabel="Capacitação Profissional" itemValue="11" />
+							<f:selectItem itemLabel="Combate à pobreza" itemValue="12" />
+							<f:selectItem itemLabel="Outras" itemValue="13" />
+						</p:selectOneMenu>
+
+					</div>
 
 					<p:dataGrid value="#{consultaEventosView.eventos}" var="evento"
 						columns="3" layout="grid" rows="6" paginator="true"
@@ -136,15 +165,7 @@
 							value="#{consultaEventosView.selectedEvento.causasString}"
 							style="font-weight: bold" />
 
-						<h:outputText value=" " />
-						<h:outputText value=" " />
 
-						<p:button value="Editar" outcome="editarEvento.xhtml"
-							icon="fa fa-fw fa-edit"
-							disabled="#{!(consultaEventosView.botaoEditar)}">
-						</p:button>
-
-						<br />
 						<p:separator />
 						<br />
 
@@ -155,6 +176,17 @@
 						<p:commandButton value="Avaliar Evento"
 							id="commandButton-avaliar2" icon="fa fa-star-o"
 							action="#{editarEvento.avaliarEvento}" />
+
+						<h:outputText value=" " />
+						<h:outputText value=" " />
+						<h:outputText value=" " />
+						<h:outputText value=" " />
+
+						<p:button value="Editar" outcome="editarEvento.xhtml"
+							icon="fa fa-fw fa-edit"
+							rendered="#{not empty consultaEventosView.exibirBotaoEditar}">
+						</p:button>
+
 
 					</p:panelGrid>
 				</p:outputPanel>
@@ -197,16 +229,17 @@
 						<h:outputText
 							value="#{recomendarEventos.selectedEvento.causasString}"
 							style="font-weight: bold" />
-						
-						
-						
+
+
+
 						<p:separator />
 						<br />
 
 						<h:outputText
 							value="Avalie aqui o quanto este evento é de seu interesse:" />
 						<h:outputText value=" " />
-						<p:rating value="#{recomendarEventos.selectedEvento.avaliacaoEvento.avaliacao}" />
+						<p:rating
+							value="#{recomendarEventos.selectedEvento.avaliacaoEvento.avaliacao}" />
 
 						<p:commandButton value="Avaliar Evento" id="commandButton-avaliar"
 							icon="fa fa-star-o" action="#{editarEvento.avaliarEvento}" />
