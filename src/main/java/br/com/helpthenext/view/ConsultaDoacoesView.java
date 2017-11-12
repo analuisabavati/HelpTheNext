@@ -69,13 +69,10 @@ public class ConsultaDoacoesView implements Serializable {
 	}
 	
 	public void retornaDoacoesConformeBusca() {
+		doacoes = doacaoRepository.findAll();
 		
 		if (busca == null || busca.isEmpty()) {
-			doacoes = doacaoRepository.findAll();
-		}
-
-		if (doacoes == null || doacoes.isEmpty()) {
-			doacoes = doacaoRepository.findAll();
+			return;
 		}
 
 		List<DoacaoModel> doacoesConformeBusca = new ArrayList<>();

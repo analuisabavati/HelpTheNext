@@ -19,7 +19,7 @@
 				<p:tab title="Vagas disponíveis">
 
 					<p:inputText id="inputText-busca"
-						style="width:30%; height:30px; margin-left:60px" maxlength="80"
+						style="width:30%; height:30px; margin-left:2cm" maxlength="80"
 						placeholder="Digite o titulo da vaga"
 						value="#{consultaVagasView.busca}" />
 					<p:outputLabel value=" " />
@@ -27,7 +27,7 @@
 						action="#{consultaVagasView.retornaVagasConformeBusca}"></p:commandButton>
 
 					<div align="right">
-						<p:commandButton value="Filtrar" update=":form:filtrosDetail"
+						<p:commandButton value="Filtrar" update=":form:filtrosDetail" style="margin-right:2cm"
 							icon="fa fa-filter" oncomplete="PF('filtrosDialog').show()">
 						</p:commandButton>
 					</div>
