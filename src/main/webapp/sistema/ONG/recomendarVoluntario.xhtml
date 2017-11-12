@@ -19,7 +19,7 @@
 				emptyMessage="Não há voluntarios recomendados para esta vaga até o momento."
 				style="margin-top:20px">
 
-				<f:facet name="header"> Voluntarios recomendados para a vaga cadastrada: </f:facet>
+				<f:facet name="header"> Voluntários recomendados para a vaga cadastrada: </f:facet>
 
 				<p:panel>
 					<h:panelGrid columns="1" style="width:100%;">
@@ -34,24 +34,49 @@
 							<h:outputText value="Estado:" style="font-weight: bold" />
 							<h:outputText value="#{vol.estado}" />
 
-							<h:outputText value="Trabalho à distancia"
+							<h:outputText value="Trabalho à distância"
 								style="font-weight: bold" />
 							<h:outputText value="#{vol.trabalhoDistancia}" />
+							<p:separator />
+							<br />
 
-							<h:outputText value="Dias disponiveis" style="font-weight: bold" />
+							<h:outputText value="Disponibilidade:  "
+								style="font-weight: bold" />
+							<br />
+
+							<h:outputText value=" " />
+							<h:outputText value=" " />
+
+
+							<h:outputText value="Dia(s):" style="font-weight: bold" />
 							<h:outputText value="#{vol.disponibilidadeDiasString}" />
 
-							<h:outputText value="Periodos disponiveis"
-								style="font-weight: bold" />
+							<h:outputText value=" " />
+							<h:outputText value=" " />
+
+
+							<h:outputText value="Período(s)" style="font-weight: bold" />
 							<h:outputText value="#{vol.disponibilidadePeriodosString}" />
 
-							<h:outputText value="Habilidades" style="font-weight: bold" />
+							<p:separator />
+							<br />
+
+							<h:outputText value="Habilidade(s):" style="font-weight: bold" />
 							<h:outputText value="#{vol.habilidadesString}" />
 
-							<h:outputText value="Causas" style="font-weight: bold" />
+							<p:separator />
+							<br />
+
+							<h:outputText value="Causa(s):" style="font-weight: bold" />
 							<h:outputText value="#{vol.causasString}" />
 
-							<p:commandButton value="Enviar E-mail!"
+							<p:separator />
+							<br />
+
+							<h:outputText value=" " />
+							<h:outputText value=" " />
+
+							<p:commandButton value="Enviar Email!"
 								action="#{recomendarVoluntarios.enviarEmail}">
 								<f:setPropertyActionListener value="#{vol}"
 									target="#{recomendarVoluntarios.selectedVoluntario}" />

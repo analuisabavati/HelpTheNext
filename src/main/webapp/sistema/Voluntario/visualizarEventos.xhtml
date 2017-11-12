@@ -30,7 +30,7 @@
 							action="#{consultaEventosView.retornaEventoConformeBusca}"></p:commandButton>
 
 
-						<p:commandButton value="Filtar" update="form" icon="fa fa-filter"
+						<p:commandButton value="Filtrar" update="form" icon="fa fa-filter"
 							style="margin-right:50px; float: right"
 							action="#{consultaEventosView.filtrar}"></p:commandButton>
 
@@ -170,7 +170,7 @@
 						<br />
 
 						<h:outputText
-							value="Avalie aqui o quanto este evento é de seu interesse:" />
+							value="Avalie aqui o quanto este evento é de seu interesse:" style="font-weight: bold; font-size: 14px;"/>
 						<h:outputText value=" " />
 						<p:rating value="#{editarEvento.evento.avaliacaoEvento.avaliacao}" />
 						<p:commandButton value="Avaliar Evento"
@@ -236,7 +236,7 @@
 						<br />
 
 						<h:outputText
-							value="Avalie aqui o quanto este evento é de seu interesse:" />
+							value="Avalie aqui o quanto este evento é de seu interesse:" style="font-weight: bold; font-size: 14px;"/>
 						<h:outputText value=" " />
 						<p:rating
 							value="#{recomendarEventos.selectedEvento.avaliacaoEvento.avaliacao}" />
