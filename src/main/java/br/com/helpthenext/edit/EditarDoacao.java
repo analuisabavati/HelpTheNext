@@ -30,14 +30,14 @@ public class EditarDoacao implements Serializable {
 			doacao.setFoto(uploadedFile.getContents());
 		}
 		doacaoRepository.atualizarDoacao(doacao);
-		Uteis.MensagemInfo("Doacao atualizada com sucesso!");
+		Uteis.MensagemInfo("Doação atualizada com sucesso!");
 		
 		return "home.xhtml";
 	}
 
 	public String removerDoacao() {
 		doacaoRepository.removerDoacao(doacao);
-		Uteis.Mensagem("Doacao removida com sucesso!");
+		Uteis.MensagemInfo("Doação removida com sucesso!");
 		
 		return "home.xhtml";
 	}

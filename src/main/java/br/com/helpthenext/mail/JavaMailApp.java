@@ -52,11 +52,11 @@ public class JavaMailApp
                  
                   Transport.send(message);
                  
-                  Uteis.Mensagem("E-mail enviado com sucesso!");
+                  Uteis.MensagemInfo("E-mail enviado com sucesso!");
                   
              } catch (MessagingException e) {
             	 System.err.println(e);
-                 Uteis.Mensagem("Ocorreu um erro ao enviar o e-mail!");
+                 Uteis.MensagemInfo("Ocorreu um erro ao enviar o e-mail!");
             }
       }
 }

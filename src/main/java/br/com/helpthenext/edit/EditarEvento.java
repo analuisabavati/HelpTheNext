@@ -41,7 +41,7 @@ public class EditarEvento implements Serializable {
 		evento.getAvaliacaoEvento().setIdVoluntario(voluntarioByUsuarioSessao.getId());
 		
 		avaliacaoEventoRepository.salvarAtualizarAvaliacaoEvento(evento.getAvaliacaoEvento());
-		Uteis.Mensagem("Evento avaliado!");
+		Uteis.MensagemInfo("Evento avaliado com sucesso!");
 		evento.getAvaliacaoEvento().setAvaliacao(0);
 	}
 
@@ -57,7 +57,7 @@ public class EditarEvento implements Serializable {
 
 	public String removerEvento() {
 		eventoRepository.removeEvento(evento);
-		Uteis.Mensagem("Evento removido com sucesso!");
+		Uteis.MensagemInfo("Evento removido com sucesso!");
 		
 		return "home.xhtml";
 	}

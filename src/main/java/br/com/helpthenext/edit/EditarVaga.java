@@ -41,7 +41,7 @@ public class EditarVaga implements Serializable {
 		vaga.getAvaliacaoVaga().setIdVoluntario(voluntarioByUsuarioSessao.getId());
 		
 		avaliacaoVagaRepository.salvarAtualizarAvaliacaoVaga(vaga.getAvaliacaoVaga());
-		Uteis.MensagemInfo("Vaga avaliada!");
+		Uteis.MensagemInfo("Vaga avaliada com sucesso!");
 		vaga.getAvaliacaoVaga().setAvaliacao(0);
 	}
 	
@@ -57,7 +57,7 @@ public class EditarVaga implements Serializable {
 
 	public String removerVaga() {
 		vagaRepository.removeVaga(vaga);
-		Uteis.Mensagem("Vaga removida com sucesso!");
+		Uteis.MensagemInfo("Vaga removida com sucesso!");
 	
 		
 		return "home.xhtml";
