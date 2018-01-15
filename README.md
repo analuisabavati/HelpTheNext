@@ -6,6 +6,6 @@ Esta plataforma permite a divulgação de vagas de voluntariado, eventos benefic
 doações de bens materiais no ambiente virtual. Além disso, possui um sistema de
 recomendação baseado em filtragem colaborativa, capaz de recomendar vagas e eventos
 aos voluntários. O desenvolvimento do sistema ocorreu por meio do método iterativo e
-incremental, com a utilização de diversas tecnologias, como: Java, CDI, JSF e JPA.
+incremental, com a utilização de diversas tecnologias, como: Java EE e mapeamento objeto relacional com JPA (Hibernate).
 
 https://www.youtube.com/watch?v=sxCjs3jDed4
