@@ -17,7 +17,7 @@ import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.TituloUteis;
+import br.com.helpthenext.util.TituloUteis;
 
 @ViewScoped
 @Named(value = "consultaDoacoesView")
@@ -94,10 +94,10 @@ public class ConsultaDoacoesView implements Serializable {
 		msg.append("\n");
 		msg.append("\n");
 		msg.append("\n");
-		msg.append("Olá " + selectedDoacao.getVoluntarioEntity().getNome());
+		msg.append("Olï¿½ " + selectedDoacao.getVoluntarioEntity().getNome());
 		msg.append("\n");
 		msg.append("\n");
-		msg.append("A ONG " + ong.getNomeONG() + " tem interesse na sua doação intitulada como "
+		msg.append("A ONG " + ong.getNomeONG() + " tem interesse na sua doaï¿½ï¿½o intitulada como "
 				+ selectedDoacao.getTitulo() + ".");
 		msg.append("\n");
 		msg.append("\n");
@@ -112,9 +112,9 @@ public class ConsultaDoacoesView implements Serializable {
 		msg.append("\n");
 		msg.append("\n");
 		msg.append(
-				"Por favor, não responda a este e-mail - que foi gerada a partir de uma conta que envia mensagens automaticamente e não pode receber respostas de volta.");
+				"Por favor, nï¿½o responda a este e-mail - que foi gerada a partir de uma conta que envia mensagens automaticamente e nï¿½o pode receber respostas de volta.");
 
-		String assunto = "[HelpTheNext] Uma ONG está interessada na sua doação!!";
+		String assunto = "[HelpTheNext] Uma ONG estï¿½ interessada na sua doaï¿½ï¿½o!!";
 
 		javaMailApp.enviarEmail(selectedDoacao.getVoluntarioEntity().getEmail(), msg.toString(), assunto);
 	}

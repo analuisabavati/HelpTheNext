@@ -16,7 +16,7 @@ import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.TituloUteis;
+import br.com.helpthenext.util.TituloUteis;
 
 @ViewScoped
 @Named(value = "consultaEventosView")
@@ -49,7 +49,7 @@ public class ConsultaEventosView implements Serializable {
 	private String busca;
 	private String causa;
 
-	@PostConstruct // executado na inicialização da classe
+	@PostConstruct // executado na inicializaï¿½ï¿½o da classe
 	public void init() {
 		this.eventos = eventoRepository.findAll();
 	}

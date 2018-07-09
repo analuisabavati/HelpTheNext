@@ -11,7 +11,7 @@ import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.UsuarioRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @RequestScoped
 @Named(value = "voluntarioController")
@@ -37,7 +37,7 @@ public class VoluntarioController {
 
 	public String salvarNovoVoluntario() {
 		if (usuarioRepository.validaUsuarioCadastrado(this.voluntarioModel.getUsuarioEntity().getUsuario()) != null) {
-			Uteis.Mensagem("Nome de usuario já utilizado. Por favor informe outro usuario!");
+			Uteis.Mensagem("Nome de usuario jï¿½ utilizado. Por favor informe outro usuario!");
 		} else {
 			if (uploadedFile != null) {
 				voluntarioModel.setFotoPerfil(uploadedFile.getContents());

@@ -8,7 +8,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 public class AvaliacaoVagaRepository {
 	

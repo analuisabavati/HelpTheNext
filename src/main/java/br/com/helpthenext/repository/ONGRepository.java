@@ -13,7 +13,7 @@ import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.model.ONGModel;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 public class ONGRepository {
 

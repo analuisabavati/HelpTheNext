@@ -12,7 +12,7 @@ import br.com.helpthenext.model.ONGModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.UsuarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @RequestScoped
 @Named(value = "ongController")
@@ -35,7 +35,7 @@ public class ONGController {
 	
 	private UploadedFile uploadedFile;
 	
-	@PostConstruct // executado na inicialização da classe
+	@PostConstruct // executado na inicializaï¿½ï¿½o da classe
 	public void init() {
 		this.ong = ongRepository.findONGByUsuarioSessao();
 	}
@@ -46,7 +46,7 @@ public class ONGController {
 	
 	public String salvarNovaONG() {
 		if (usuarioRepository.validaUsuarioCadastrado(this.ongModel.getUsuarioEntity().getUsuario()) != null) {
-			Uteis.Mensagem("Nome de usuario já utilizado. Por favor informe outro usuario!");
+			Uteis.Mensagem("Nome de usuario jï¿½ utilizado. Por favor informe outro usuario!");
 		} else {
 			if (uploadedFile != null) {
 				ongModel.setFoto(uploadedFile.getContents());

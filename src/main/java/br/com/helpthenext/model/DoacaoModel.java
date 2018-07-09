@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.DadosUtil;
+import br.com.helpthenext.util.DadosUtil;
 
 public class DoacaoModel {
 

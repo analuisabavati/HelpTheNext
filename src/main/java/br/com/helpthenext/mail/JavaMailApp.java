@@ -11,7 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 public class JavaMailApp
 {

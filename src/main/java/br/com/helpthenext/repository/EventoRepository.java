@@ -17,8 +17,8 @@ import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.EventoEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.DadosUtil;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.DadosUtil;
+import br.com.helpthenext.util.Uteis;
 
 public class EventoRepository {
 

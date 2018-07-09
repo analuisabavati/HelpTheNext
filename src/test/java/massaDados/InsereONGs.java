@@ -12,7 +12,7 @@ import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 public class InsereONGs {
 

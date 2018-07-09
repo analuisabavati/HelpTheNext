@@ -13,7 +13,7 @@ import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.repository.UsuarioRepository;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
  
 @Named(value="usuarioController")
 @SessionScoped
@@ -65,7 +65,7 @@ public class UsuarioController implements Serializable {
 				}
 			}
 			else{
-				Uteis.Mensagem("Não foi possível efetuar o login com esse usuário e senha!");
+				Uteis.Mensagem("Nï¿½o foi possï¿½vel efetuar o login com esse usuï¿½rio e senha!");
 				return null;
 			}
 		}

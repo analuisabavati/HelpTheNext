@@ -13,7 +13,7 @@ import br.com.helpthenext.repository.AvaliacaoVagaRepository;
 import br.com.helpthenext.repository.VagaRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @SessionScoped
 @Named(value = "editarVaga")

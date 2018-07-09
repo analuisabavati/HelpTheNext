@@ -8,7 +8,7 @@ import org.primefaces.model.UploadedFile;
 
 import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.DoacaoRepository;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @Named(value = "doacaoController")
 @RequestScoped
@@ -28,7 +28,7 @@ public class DoacaoController {
 		}
 		doacaoRepository.salvarNovoRegistro(this.doacaoModel);
 		this.doacaoModel = null;
-		Uteis.MensagemInfo("Doação cadastrada com sucesso!");
+		Uteis.MensagemInfo("Doaï¿½ï¿½o cadastrada com sucesso!");
 		
 		return "home.xhtml";
 	}

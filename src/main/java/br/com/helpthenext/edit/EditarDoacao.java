@@ -10,7 +10,7 @@ import org.primefaces.model.UploadedFile;
 
 import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.DoacaoRepository;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @SessionScoped
 @Named(value = "editarDoacao")
@@ -30,14 +30,14 @@ public class EditarDoacao implements Serializable {
 			doacao.setFoto(uploadedFile.getContents());
 		}
 		doacaoRepository.atualizarDoacao(doacao);
-		Uteis.MensagemInfo("Doação atualizada com sucesso!");
+		Uteis.MensagemInfo("Doaï¿½ï¿½o atualizada com sucesso!");
 		
 		return "home.xhtml";
 	}
 
 	public String removerDoacao() {
 		doacaoRepository.removerDoacao(doacao);
-		Uteis.MensagemInfo("Doação removida com sucesso!");
+		Uteis.MensagemInfo("Doaï¿½ï¿½o removida com sucesso!");
 		
 		return "home.xhtml";
 	}

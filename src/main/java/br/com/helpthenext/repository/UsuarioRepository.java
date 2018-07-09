@@ -7,7 +7,7 @@ import javax.persistence.Query;
 
 import br.com.helpthenext.model.UsuarioModel;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
  
 public class UsuarioRepository implements Serializable {
  

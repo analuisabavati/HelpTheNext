@@ -9,7 +9,7 @@ import org.primefaces.model.UploadedFile;
 import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.recomendacoes.RecomendarVoluntarios;
 import br.com.helpthenext.repository.VagaRepository;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @Named(value = "vagaController")
 @RequestScoped

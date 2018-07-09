@@ -16,7 +16,7 @@ import br.com.helpthenext.enums.TipoUsuario;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 public class InsereVoluntarios {
 

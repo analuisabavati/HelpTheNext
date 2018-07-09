@@ -9,7 +9,7 @@ import br.com.helpthenext.enums.Causas;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.DadosUtil;
+import br.com.helpthenext.util.DadosUtil;
 
 public class EventoModel {
 

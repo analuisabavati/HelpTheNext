@@ -12,7 +12,7 @@ import org.primefaces.model.UploadedFile;
 import br.com.helpthenext.model.ONGModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @SessionScoped
 @Named(value = "editarONG")
@@ -27,7 +27,7 @@ public class EditarONG implements Serializable {
 	
 	private UploadedFile uploadedFile;
 
-	@PostConstruct // executado na inicialização da classe
+	@PostConstruct // executado na inicializaï¿½ï¿½o da classe
 	public void init() {
 		ONGEntity v = ongRepository.findONGByUsuarioSessao();
 		this.ong = ongRepository.toONGModel(v);

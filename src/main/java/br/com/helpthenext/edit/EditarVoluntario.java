@@ -12,7 +12,7 @@ import org.primefaces.model.UploadedFile;
 import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @SessionScoped
 @Named(value = "editarVoluntario")
@@ -27,7 +27,7 @@ public class EditarVoluntario implements Serializable {
 	
 	private UploadedFile uploadedFile;
 	
-	@PostConstruct // executado na inicialização da classe
+	@PostConstruct // executado na inicializaï¿½ï¿½o da classe
 	public void init() {
 		VoluntarioEntity v = voluntarioRepository.findVoluntarioByUsuarioSessao();
 		this.voluntario = voluntarioRepository.toVoluntarioModel(v);	

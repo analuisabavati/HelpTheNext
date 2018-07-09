@@ -20,7 +20,7 @@ import br.com.helpthenext.model.VagaModel;
 import br.com.helpthenext.repository.entity.AvaliacaoVagaEntity;
 import br.com.helpthenext.repository.entity.VagaEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 public class VagaRepository {
 

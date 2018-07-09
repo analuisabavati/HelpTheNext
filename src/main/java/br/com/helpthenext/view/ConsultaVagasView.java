@@ -18,8 +18,8 @@ import br.com.helpthenext.repository.VagaRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.TituloUteis;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.TituloUteis;
+import br.com.helpthenext.util.Uteis;
 
 @ViewScoped
 @Named(value = "consultaVagasView")
@@ -56,7 +56,7 @@ public class ConsultaVagasView implements Serializable {
 	private String[] periodos;
 	private String trabalhoDistancia;
 
-	@PostConstruct // executado na inicialização da classe
+	@PostConstruct // executado na inicializaï¿½ï¿½o da classe
 	public void init() {
 		this.vagas = null;
 		this.vagas = vagaRepository.findAll();
@@ -95,7 +95,7 @@ public class ConsultaVagasView implements Serializable {
 		msg.append("\n");
 		msg.append("\n");
 		msg.append("\n");
-		msg.append("Olá " + selectedVaga.getOngEntity().getNomeONG());
+		msg.append("Olï¿½ " + selectedVaga.getOngEntity().getNomeONG());
 		msg.append("\n");
 		msg.append("\n");
 		msg.append("O voluntario " + vol.getNome() + " tem interesse na sua vaga intitulada como "
@@ -113,9 +113,9 @@ public class ConsultaVagasView implements Serializable {
 		msg.append("\n");
 		msg.append("\n");
 		msg.append(
-				"Por favor, não responda a este e-mail - que foi gerada a partir de uma conta que envia mensagens automaticamente e não pode receber respostas de volta.");
+				"Por favor, nï¿½o responda a este e-mail - que foi gerada a partir de uma conta que envia mensagens automaticamente e nï¿½o pode receber respostas de volta.");
 
-		String assunto = "[HelpTheNext] Um voluntario está interessado na sua vaga!!";
+		String assunto = "[HelpTheNext] Um voluntario estï¿½ interessado na sua vaga!!";
 
 		javaMailApp.enviarEmail(selectedVaga.getOngEntity().getEmail(), msg.toString(), assunto);
 	}

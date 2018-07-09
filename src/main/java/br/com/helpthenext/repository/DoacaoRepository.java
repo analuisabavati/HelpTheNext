@@ -15,7 +15,7 @@ import br.com.helpthenext.enums.DiasSemana;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.model.DoacaoModel;
 import br.com.helpthenext.repository.entity.DoacaoEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 public class DoacaoRepository {
 

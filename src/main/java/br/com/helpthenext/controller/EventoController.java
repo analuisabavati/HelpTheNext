@@ -8,7 +8,7 @@ import org.primefaces.model.UploadedFile;
 
 import br.com.helpthenext.model.EventoModel;
 import br.com.helpthenext.repository.EventoRepository;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @RequestScoped
 @Named(value = "eventoController")

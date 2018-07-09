@@ -11,7 +11,7 @@ import br.com.helpthenext.enums.Habilidades;
 import br.com.helpthenext.enums.Periodos;
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
 import br.com.helpthenext.repository.entity.UsuarioEntity;
-import br.com.helpthenext.uteis.DadosUtil;
+import br.com.helpthenext.util.DadosUtil;
 
 public class VoluntarioModel {
 

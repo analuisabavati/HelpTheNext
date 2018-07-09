@@ -13,7 +13,7 @@ import br.com.helpthenext.repository.AvaliacaoEventoRepository;
 import br.com.helpthenext.repository.EventoRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.VoluntarioEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 @SessionScoped
 @Named(value = "editarEvento")

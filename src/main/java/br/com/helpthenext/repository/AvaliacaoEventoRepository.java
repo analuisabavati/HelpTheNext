@@ -8,15 +8,14 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.helpthenext.repository.entity.AvaliacaoEventoEntity;
-import br.com.helpthenext.uteis.Uteis;
+import br.com.helpthenext.util.Uteis;
 
 public class AvaliacaoEventoRepository {
 	
 	EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
-	public AvaliacaoEventoEntity findByVoluntarioEvento(Long idVol,
-			Long idEvento) {
+	public AvaliacaoEventoEntity findByVoluntarioEvento(Long idVol, Long idEvento) {
 		try {
 			Query query = Uteis.JpaEntityManager().createNamedQuery("AvaliacaoEventoEntity.findByVoluntarioEvento");
 

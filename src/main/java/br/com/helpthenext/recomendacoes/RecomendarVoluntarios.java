@@ -16,7 +16,7 @@ import br.com.helpthenext.model.VoluntarioModel;
 import br.com.helpthenext.repository.ONGRepository;
 import br.com.helpthenext.repository.VoluntarioRepository;
 import br.com.helpthenext.repository.entity.ONGEntity;
-import br.com.helpthenext.uteis.ComparadorVoluntarios;
+import br.com.helpthenext.util.ComparadorVoluntarios;
 
 @Named(value = "recomendarVoluntarios")
 @SessionScoped
@@ -127,7 +127,7 @@ public class RecomendarVoluntarios implements Serializable {
 		msg.append("\n");
 		msg.append("\n");
 		msg.append("\n");
-		msg.append("Olá " + selectedVoluntario.getNome());
+		msg.append("Olï¿½ " + selectedVoluntario.getNome());
 		msg.append("\n");
 		msg.append("\n");
 		msg.append("A ONG " + ong.getNomeONG() + " cadastrou uma nova vaga de voluntariado intitulada "
@@ -145,9 +145,9 @@ public class RecomendarVoluntarios implements Serializable {
 		msg.append("\n");
 		msg.append("\n");
 		msg.append(
-				"Por favor, não responda a este e-mail - que foi gerada a partir de uma conta que envia mensagens automaticamente e não pode receber respostas de volta.");
+				"Por favor, nï¿½o responda a este e-mail - que foi gerada a partir de uma conta que envia mensagens automaticamente e nï¿½o pode receber respostas de volta.");
 
-		String assunto = "[HelpTheNext] Há uma nova vaga compativel com seu perfil!!";
+		String assunto = "[HelpTheNext] Hï¿½ uma nova vaga compativel com seu perfil!!";
 
 		javaMailApp.enviarEmail(selectedVoluntario.getEmail(), msg.toString(), assunto);
 	}
