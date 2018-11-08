@@ -7,4 +7,3 @@ doações de bens materiais no ambiente virtual. Além disso, possui um sistema 
 recomendação baseado em filtragem colaborativa, capaz de recomendar vagas e eventos
 aos voluntários. 
 
-Funcionamento: https://www.youtube.com/watch?v=sxCjs3jDed4
